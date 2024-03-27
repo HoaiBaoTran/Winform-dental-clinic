@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using N19_DentalClinic.database;
 
 namespace N19_DentalClinic
 {

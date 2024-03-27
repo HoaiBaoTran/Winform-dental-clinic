@@ -36,25 +36,26 @@
             btnLogin = new Button();
             btnSignup = new Button();
             pictureBox1 = new PictureBox();
-            labelText = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // tbEmail
             // 
             tbEmail.Font = new Font("Segoe UI", 20F);
-            tbEmail.Location = new Point(432, 601);
+            tbEmail.Location = new Point(346, 481);
+            tbEmail.Margin = new Padding(2);
             tbEmail.Name = "tbEmail";
-            tbEmail.Size = new Size(805, 61);
+            tbEmail.Size = new Size(645, 52);
             tbEmail.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 24F);
-            label1.Location = new Point(60, 595);
+            label1.Location = new Point(48, 476);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(141, 65);
+            label1.Size = new Size(117, 54);
             label1.TabIndex = 1;
             label1.Text = "Email";
             // 
@@ -62,27 +63,30 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 24F);
-            label2.Location = new Point(60, 735);
+            label2.Location = new Point(48, 588);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(226, 65);
+            label2.Size = new Size(190, 54);
             label2.TabIndex = 2;
             label2.Text = "Mật khẩu";
             // 
             // tbPassword
             // 
             tbPassword.Font = new Font("Segoe UI", 20F);
-            tbPassword.Location = new Point(432, 741);
+            tbPassword.Location = new Point(346, 593);
+            tbPassword.Margin = new Padding(2);
             tbPassword.Name = "tbPassword";
-            tbPassword.Size = new Size(805, 61);
+            tbPassword.Size = new Size(645, 52);
             tbPassword.TabIndex = 3;
             // 
             // btnLogin
             // 
             btnLogin.BackColor = Color.LimeGreen;
             btnLogin.Font = new Font("Segoe UI", 20F);
-            btnLogin.Location = new Point(504, 897);
+            btnLogin.Location = new Point(403, 718);
+            btnLogin.Margin = new Padding(2);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(270, 69);
+            btnLogin.Size = new Size(216, 55);
             btnLogin.TabIndex = 4;
             btnLogin.Text = "Đăng nhập";
             btnLogin.UseVisualStyleBackColor = false;
@@ -91,9 +95,10 @@
             // 
             btnSignup.BackColor = Color.DeepSkyBlue;
             btnSignup.Font = new Font("Segoe UI", 20F);
-            btnSignup.Location = new Point(855, 897);
+            btnSignup.Location = new Point(684, 718);
+            btnSignup.Margin = new Padding(2);
             btnSignup.Name = "btnSignup";
-            btnSignup.Size = new Size(270, 69);
+            btnSignup.Size = new Size(216, 55);
             btnSignup.TabIndex = 5;
             btnSignup.Text = "Đăng ký";
             btnSignup.UseVisualStyleBackColor = false;
@@ -102,29 +107,19 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(520, 34);
+            pictureBox1.Location = new Point(416, 27);
+            pictureBox1.Margin = new Padding(2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(516, 516);
-            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox1.Size = new Size(400, 400);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
             // 
-            // labelText
-            // 
-            labelText.AutoSize = true;
-            labelText.Font = new Font("Segoe UI", 24F);
-            labelText.Location = new Point(60, 895);
-            labelText.Name = "labelText";
-            labelText.Size = new Size(141, 65);
-            labelText.TabIndex = 7;
-            labelText.Text = "Email";
-            // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1478, 1144);
-            Controls.Add(labelText);
+            ClientSize = new Size(1182, 903);
             Controls.Add(pictureBox1);
             Controls.Add(btnSignup);
             Controls.Add(btnLogin);
@@ -132,6 +127,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(tbEmail);
+            Margin = new Padding(2);
             Name = "Form1";
             Text = "Login Form";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -148,6 +144,5 @@
         private Button btnLogin;
         private Button btnSignup;
         private PictureBox pictureBox1;
-        private Label labelText;
     }
 }

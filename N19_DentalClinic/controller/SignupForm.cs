@@ -1,5 +1,8 @@
 ﻿using FireSharp.Response;
 using N19_DentalClinic.model;
+using N19_DentalClinic.repository;
+using N19_DentalClinic.service;
+using N19_DentalClinic.service.impl;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,13 +19,12 @@ namespace N19_DentalClinic
 {
     public partial class SignupForm : Form
     {
-
-        FirebaseConnection firebaseConnection;
+        private PersonService personService;
 
         public SignupForm()
         {
             InitializeComponent();
-            firebaseConnection = new FirebaseConnection();
+            personService = new PersonServiceImpl();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -33,7 +35,7 @@ namespace N19_DentalClinic
             this.Close();
         }
 
-        private async void btnSignup_Click(object sender, EventArgs e)
+        private void btnSignup_Click(object sender, EventArgs e)
         {
             if (checkValidField())
             {
@@ -44,11 +46,8 @@ namespace N19_DentalClinic
 
                 Person person = new Person(name, email, password, phoneNumber);
 
-
-                SetResponse response = await firebaseConnection.Client.SetTaskAsync("Person/" + email, person);
-                Person result = response.ResultAs<Person>();
-
-                MessageBox.Show("Person Inserted: " + result);
+                personService.CreatePersonAccount(person);
+                
             }
         }
 
