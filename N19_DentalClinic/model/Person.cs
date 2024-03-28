@@ -25,5 +25,10 @@ namespace N19_DentalClinic.model
             this.PhoneNumber = phoneNumber;
         }
 
+        public override string ToString()
+        {
+            return String.Format("Name: {0}, Email: {1}, PhoneNumber: {2}", Name, Email, PhoneNumber);
+        }
+
     }
 }

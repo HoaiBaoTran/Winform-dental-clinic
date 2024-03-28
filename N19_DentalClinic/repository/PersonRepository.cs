@@ -26,5 +26,12 @@ namespace N19_DentalClinic.repository
 
             MessageBox.Show("Person Inserted: " + result);
         }
+
+        public async Task<Person> GetAccountByEmail(string email)
+        {
+            FirebaseResponse response = await firebaseConnection.Client.GetTaskAsync("Person/" + email);
+            Person result = response.ResultAs<Person>();
+            return result;
+        }
     }
 }

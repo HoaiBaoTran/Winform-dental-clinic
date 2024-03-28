@@ -1,4 +1,5 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using N19_DentalClinic.controller;
 using N19_DentalClinic.database;
 
 namespace N19_DentalClinic
@@ -22,9 +23,19 @@ namespace N19_DentalClinic
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Hello");
+            MessageBox.Show("Sai tên đăng nhập hoặt mật khẩu");
+            MessageBox.Show("Đăng nhập thành công");
+
             string email = tbEmail.Text;
             string password = tbPassword.Text;
+        }
+
+        private void btnForgotPassword_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ForgotPasswordForm forgotPasswordForm = new ForgotPasswordForm();
+            forgotPasswordForm.ShowDialog();
+            this.Close();
         }
     }
 }

@@ -36,6 +36,7 @@
             btnLogin = new Button();
             btnSignup = new Button();
             pictureBox1 = new PictureBox();
+            btnForgotPassword = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -76,6 +77,7 @@
             tbPassword.Location = new Point(346, 593);
             tbPassword.Margin = new Padding(2);
             tbPassword.Name = "tbPassword";
+            tbPassword.PasswordChar = '*';
             tbPassword.Size = new Size(645, 52);
             tbPassword.TabIndex = 3;
             // 
@@ -90,6 +92,7 @@
             btnLogin.TabIndex = 4;
             btnLogin.Text = "Đăng nhập";
             btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Click += btnLogin_Click;
             // 
             // btnSignup
             // 
@@ -115,11 +118,26 @@
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
             // 
+            // btnForgotPassword
+            // 
+            btnForgotPassword.BackColor = Color.Crimson;
+            btnForgotPassword.Font = new Font("Segoe UI", 12F);
+            btnForgotPassword.ForeColor = SystemColors.ButtonHighlight;
+            btnForgotPassword.Location = new Point(837, 649);
+            btnForgotPassword.Margin = new Padding(2);
+            btnForgotPassword.Name = "btnForgotPassword";
+            btnForgotPassword.Size = new Size(154, 42);
+            btnForgotPassword.TabIndex = 10;
+            btnForgotPassword.Text = "Quên mật khẩu";
+            btnForgotPassword.UseVisualStyleBackColor = false;
+            btnForgotPassword.Click += btnForgotPassword_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1182, 903);
+            Controls.Add(btnForgotPassword);
             Controls.Add(pictureBox1);
             Controls.Add(btnSignup);
             Controls.Add(btnLogin);
@@ -144,5 +162,6 @@
         private Button btnLogin;
         private Button btnSignup;
         private PictureBox pictureBox1;
+        private Button btnForgotPassword;
     }
 }

@@ -133,6 +133,7 @@
             tbPassword.Location = new Point(402, 421);
             tbPassword.Margin = new Padding(2);
             tbPassword.Name = "tbPassword";
+            tbPassword.PasswordChar = '*';
             tbPassword.Size = new Size(645, 52);
             tbPassword.TabIndex = 10;
             // 
@@ -142,6 +143,7 @@
             tbConfirmPassword.Location = new Point(402, 546);
             tbConfirmPassword.Margin = new Padding(2);
             tbConfirmPassword.Name = "tbConfirmPassword";
+            tbConfirmPassword.PasswordChar = '*';
             tbConfirmPassword.Size = new Size(645, 52);
             tbConfirmPassword.TabIndex = 11;
             // 
