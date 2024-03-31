@@ -1,8 +1,10 @@
-﻿using FireSharp.Response;
+﻿using FireSharp.Extensions;
+using FireSharp.Response;
 using N19_DentalClinic.database;
 using N19_DentalClinic.model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,11 +29,16 @@ namespace N19_DentalClinic.repository
             MessageBox.Show("Person Inserted: " + result);
         }
 
-        public async Task<Person> GetAccountByEmail(string email)
+        public async FirebaseResponse GetAccountByEmail(string email)
         {
-            FirebaseResponse response = await firebaseConnection.Client.GetTaskAsync("Person/" + email);
-            Person result = response.ResultAs<Person>();
-            return result;
+            Task<FirebaseResponse> task = Task.Run(() =>
+            {
+                FirebaseResponse response = firebaseConnection.Client.GetTaskAsync("Person/" + email);
+                return response;
+            })
+            
+;           return task;
+          
         }
     }
 }

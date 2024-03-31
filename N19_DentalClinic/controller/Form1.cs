@@ -23,11 +23,11 @@ namespace N19_DentalClinic
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Sai tên đăng nhập hoặt mật khẩu");
-            MessageBox.Show("Đăng nhập thành công");
-
             string email = tbEmail.Text;
             string password = tbPassword.Text;
+
+            MessageBox.Show(email);
+            MessageBox.Show(password);
         }
 
         private void btnForgotPassword_Click(object sender, EventArgs e)

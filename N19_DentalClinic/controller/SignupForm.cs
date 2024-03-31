@@ -37,26 +37,19 @@ namespace N19_DentalClinic
 
         private void btnSignup_Click(object sender, EventArgs e)
         {
-            
-         
+            MessageBox.Show("Btn sign up clicked");
             if (checkValidField())
             {
-                MessageBox.Show("Email không hợp lệ, vui lòng sử dụng email khác");
-                MessageBox.Show("Email đã tồn tại, vui lòng sử dụng email khác");
-                MessageBox.Show("Vui lòng đặt mật khẩu có độ dài tối thiểu 6 ký tự, 1 ký tự in hoa, 1 ký tự đặc biệt và 1 số");
-                MessageBox.Show("Đăng kí thành công");
-
-                /*
                 string name = tbName.Text;
                 string email = tbEmail.Text;
                 string password = tbPassword.Text;
                 string phoneNumber = tbPhoneNumber.Text;
 
                 Person person = new Person(name, email, password, phoneNumber);
-                Person existPerson = personService.GetAccountByEmail(email).Result;
+                personService.GetAccountByEmail(email);
+                /*Person existPerson = personService.GetAccountByEmail(email).Result;
                 MessageBox.Show("Get Account called");
                 
-
                 if (existPerson != null)
                 {
                     MessageBox.Show("Email đã được sử dụng, hãy sử dụng email khác");
@@ -68,7 +61,6 @@ namespace N19_DentalClinic
 
                 //personService.CreatePersonAccount(person);
                 */
-
             }
 
         }

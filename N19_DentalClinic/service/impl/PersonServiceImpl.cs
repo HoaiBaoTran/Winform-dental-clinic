@@ -1,4 +1,5 @@
-﻿using N19_DentalClinic.model;
+﻿using FireSharp.Response;
+using N19_DentalClinic.model;
 using N19_DentalClinic.repository;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,16 @@ namespace N19_DentalClinic.service.impl
 
         public async Task<Person> GetAccountByEmail(string email)
         {
-            return await Task.FromResult(personRepository.GetAccountByEmail(email)).Result;
+            Task<FirebaseResponse> responseTask = personRepository.GetAccountByEmail(email);
+            FirebaseResponse response = await responseTask;
+            if (response.Body != "null")
+            {
+                Person person = response.ResultAs<Person>();
+                MessageBox.Show(person.ToString());
+
+            }
+            MessageBox.Show("Null");
+            return null;
         }
     }
 }
