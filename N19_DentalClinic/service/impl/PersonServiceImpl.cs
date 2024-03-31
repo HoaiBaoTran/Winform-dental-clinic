@@ -29,11 +29,10 @@ namespace N19_DentalClinic.service.impl
             FirebaseResponse response = await responseTask;
             if (response.Body != "null")
             {
+                MessageBox.Show(response.Body);
                 Person person = response.ResultAs<Person>();
-                MessageBox.Show(person.ToString());
-
+                return person;
             }
-            MessageBox.Show("Null");
             return null;
         }
     }

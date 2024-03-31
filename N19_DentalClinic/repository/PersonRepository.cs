@@ -25,20 +25,12 @@ namespace N19_DentalClinic.repository
         {
             SetResponse response = await firebaseConnection.Client.SetTaskAsync("Person/" + person.Email, person);
             Person result = response.ResultAs<Person>();
-
-            MessageBox.Show("Person Inserted: " + result);
         }
 
-        public async FirebaseResponse GetAccountByEmail(string email)
+        public async Task<FirebaseResponse> GetAccountByEmail(string email)
         {
-            Task<FirebaseResponse> task = Task.Run(() =>
-            {
-                FirebaseResponse response = firebaseConnection.Client.GetTaskAsync("Person/" + email);
-                return response;
-            })
-            
-;           return task;
-          
+            FirebaseResponse response = await firebaseConnection.Client.GetTaskAsync("Person/" + email);
+            return response;
         }
     }
 }

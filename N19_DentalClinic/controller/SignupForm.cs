@@ -14,6 +14,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace N19_DentalClinic
 {
@@ -35,9 +36,8 @@ namespace N19_DentalClinic
             this.Close();
         }
 
-        private void btnSignup_Click(object sender, EventArgs e)
+        private async void btnSignup_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Btn sign up clicked");
             if (checkValidField())
             {
                 string name = tbName.Text;
@@ -46,9 +46,9 @@ namespace N19_DentalClinic
                 string phoneNumber = tbPhoneNumber.Text;
 
                 Person person = new Person(name, email, password, phoneNumber);
-                personService.GetAccountByEmail(email);
-                /*Person existPerson = personService.GetAccountByEmail(email).Result;
-                MessageBox.Show("Get Account called");
+                /*
+                Task<Person> personTask = personService.GetAccountByEmail(email);
+                Person existPerson = await personTask;
                 
                 if (existPerson != null)
                 {
@@ -56,11 +56,12 @@ namespace N19_DentalClinic
                 }
                 else
                 {
-                    MessageBox.Show(person.ToString());
+                    MessageBox.Show("Đăng ký tài khoản thành công");
+                    personService.CreatePersonAccount(person);
                 }
-
-                //personService.CreatePersonAccount(person);
                 */
+                    personService.CreatePersonAccount(person);
+
             }
 
         }
@@ -79,12 +80,50 @@ namespace N19_DentalClinic
                 return false;
             }
 
+            if (!isValidEmail(email))
+            {
+                MessageBox.Show("Email không hợp lệ");
+                return false;
+            }
+
+            if (!isValidPassword(password))
+            {
+                MessageBox.Show("Mật khẩu phải có ít nhất 6 ký tự, chứa ít nhất 1 ký tự số và 1 ký tự đặc biệt");
+                return false;
+            }
+
             if (password != confirmPassword)
             {
                 MessageBox.Show("Mật khẩu và xác nhận mật khẩu không khớp");
                 return false;
             }
             return true;
+        }
+
+        private bool isValidEmail(string email)
+        {
+            var trimmedEmail = email.Trim();
+
+            if (trimmedEmail.EndsWith("."))
+            {
+                return false;
+            }
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == trimmedEmail;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+    
+        private bool isValidPassword(string password)
+        {
+            string regexPattern = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{6,}$";
+            Regex regex = new Regex(regexPattern);
+            return regex.IsMatch(password);
         }
     }
 }
