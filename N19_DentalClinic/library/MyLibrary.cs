@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Text.RegularExpressions;
 
 namespace N19_DentalClinic.library
 {
@@ -62,6 +63,23 @@ namespace N19_DentalClinic.library
         public static string formatEmail(string email)
         {
             return Regex.Replace(email, @"[.#$[\]]", "-");
+        }
+
+        public static string DecodeIdToken(string idToken)
+        {
+            try
+            {
+                var handler = new JwtSecurityTokenHandler();
+                var jsonToken = handler.ReadToken(idToken) as JwtSecurityToken;
+                var uid = jsonToken?.Payload["user_id"].ToString();
+                return uid;
+            }
+            catch (Exception ex)
+            {
+                // Handle exception (e.g., token is invalid)
+                Console.WriteLine("Error decoding ID token: " + ex.Message);
+                return null;
+            }
         }
     }
 }

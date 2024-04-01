@@ -22,7 +22,6 @@ namespace N19_DentalClinic.service.impl
 
         public async void CreatePersonAccount(Person person)
         {
-            person.Email = MyLibrary.formatEmail(person.Email);
             Task<SetResponse> responseTask = personRepository.CreatePersonAccount(person);
             SetResponse response = await responseTask;
             if (response.Body != "null")
