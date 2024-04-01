@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+using N19_DentalClinic.library;
 
 namespace N19_DentalClinic.service.impl
 {
@@ -16,20 +18,26 @@ namespace N19_DentalClinic.service.impl
 
         public PersonServiceImpl() {
             personRepository = new PersonRepository();
-        }
+        } 
 
-        public void CreatePersonAccount(Person person)
+        public async void CreatePersonAccount(Person person)
         {
-            personRepository.CreatePersonAccount(person);
+            person.Email = MyLibrary.formatEmail(person.Email);
+            Task<SetResponse> responseTask = personRepository.CreatePersonAccount(person);
+            SetResponse response = await responseTask;
+            if (response.Body != "null")
+            {
+                MessageBox.Show("Tạo tài khoản thành công");
+            }
         }
 
         public async Task<Person> GetAccountByEmail(string email)
         {
+            email = MyLibrary.formatEmail(email);
             Task<FirebaseResponse> responseTask = personRepository.GetAccountByEmail(email);
             FirebaseResponse response = await responseTask;
             if (response.Body != "null")
             {
-                MessageBox.Show(response.Body);
                 Person person = response.ResultAs<Person>();
                 return person;
             }

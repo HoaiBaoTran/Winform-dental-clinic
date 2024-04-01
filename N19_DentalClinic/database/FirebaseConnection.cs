@@ -16,7 +16,7 @@ namespace N19_DentalClinic.database
 
         public FirebaseConnection()
         {
-            Client = new FireSharp.FirebaseClient(config);
+            this.Client = new FireSharp.FirebaseClient(config);
 
             if (Client == null)
             {

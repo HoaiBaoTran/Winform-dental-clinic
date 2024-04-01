@@ -1,16 +1,18 @@
-﻿using System.Diagnostics;
-using N19_DentalClinic.controller;
-using N19_DentalClinic.database;
+﻿using N19_DentalClinic.controller;
+using N19_DentalClinic.library;
+using N19_DentalClinic.model;
+using N19_DentalClinic.service;
+using N19_DentalClinic.service.impl;
 
 namespace N19_DentalClinic
 {
     public partial class Form1 : Form
     {
-        FirebaseConnection firebaseConnection;
+        PersonService personService;
         public Form1()
         {
             InitializeComponent();
-            firebaseConnection = new FirebaseConnection();
+            personService = new PersonServiceImpl();    
         }
 
         private void btnSignup_Click(object sender, EventArgs e)
@@ -21,13 +23,25 @@ namespace N19_DentalClinic
             this.Close();
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
             string email = tbEmail.Text;
             string password = tbPassword.Text;
 
-            MessageBox.Show(email);
-            MessageBox.Show(password);
+            Task<Person> personTask = personService.GetAccountByEmail(email);
+            Person existPerson = await personTask;
+            if (existPerson != null)
+            {
+               if (existPerson.Email == MyLibrary.formatEmail(email) && existPerson.Password == password) {
+                    MessageBox.Show("Đăng nhập thành công");
+               } 
+               else
+               {
+                    MessageBox.Show("Email hoặc mật khẩu không đúng");
+               }
+
+            }
+
         }
 
         private void btnForgotPassword_Click(object sender, EventArgs e)
