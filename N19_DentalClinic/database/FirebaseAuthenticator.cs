@@ -66,41 +66,6 @@ namespace N19_DentalClinic.database
             }
         }
 
-        public async Task<string> FindIdTokenByEmail(string email)
-        {
-            using (var client = new HttpClient())
-            {
-                var request = new
-                {
-                    email
-                };
-
-                var content = new StringContent(JsonConvert.SerializeObject(request));
-                var response = await client.PostAsync($"https://identitytoolkit.googleapis.com/v1/accounts:lookup?key={FirebaseApiKey}", content);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var responseContent = await response.Content.ReadAsStringAsync();
-                    dynamic data = JsonConvert.DeserializeObject(responseContent);
-
-                    // Loop through the users returned in the response and find the user with matching email
-                    foreach (var user in data.users)
-                    {
-                        if (user.email == email)
-                        {
-                            return user.idToken;
-                        }
-                    }
-                    // If no user with matching email found
-                    return null;
-                }
-                else
-                {
-                    throw new Exception("Failed to find user by email.");
-                }
-            }
-        }
-
         public async Task SendVerificationEmail(string idToken)
         {
             using (var client = new HttpClient())

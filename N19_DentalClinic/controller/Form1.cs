@@ -28,20 +28,8 @@ namespace N19_DentalClinic
             string email = tbEmail.Text;
             string password = tbPassword.Text;
 
-            Task<Person> personTask = personService.GetAccountByEmail(email);
-            Person existPerson = await personTask;
-            if (existPerson != null)
-            {
-               if (existPerson.Email == MyLibrary.formatEmail(email) && existPerson.Password == password) {
-                    MessageBox.Show("Đăng nhập thành công");
-               } 
-               else
-               {
-                    MessageBox.Show("Email hoặc mật khẩu không đúng");
-               }
-
-            }
-
+            Person person = new Person(email, password);
+            personService.LoginAccount(person);
         }
 
         private void btnForgotPassword_Click(object sender, EventArgs e)

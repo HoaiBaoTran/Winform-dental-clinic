@@ -17,6 +17,11 @@ namespace N19_DentalClinic
 
         private void btnBack_Click(object sender, EventArgs e)
         {
+            backToLoginForm();
+        }
+
+        private void backToLoginForm()
+        {
             this.Hide();
             Form1 loginForm = new Form1();
             loginForm.ShowDialog();
@@ -34,17 +39,15 @@ namespace N19_DentalClinic
             if (MyLibrary.checkValidField(name, email, password, confirmPassword, phoneNumber))
             {
                 Person person = new Person(name, email, password, phoneNumber);
-                
-                Task<Person> personTask = personService.GetAccountByEmail(email);
-                Person existPerson = await personTask;
-                
-                if (existPerson != null)
+                bool isSuccess = await personService.RegisterAccount(person);
+                if (isSuccess)
                 {
-                    MessageBox.Show("Email đã được sử dụng, hãy sử dụng email khác");
+                    MessageBox.Show("Tạo tài khoản thành công");
+                    backToLoginForm();
                 }
                 else
                 {
-                    personService.CreatePersonAccount(person);
+                    MessageBox.Show("Email đã được sử dụng, hãy sử dụng email khác");
                 }
             }
         }

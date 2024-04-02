@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using N19_DentalClinic.library;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace N19_DentalClinic.service.impl
 {
@@ -20,27 +21,50 @@ namespace N19_DentalClinic.service.impl
             personRepository = new PersonRepository();
         } 
 
-        public async void CreatePersonAccount(Person person)
+        public async Task<Person> GetAccountByEmail(string email)
         {
-            Task<SetResponse> responseTask = personRepository.CreatePersonAccount(person);
-            SetResponse response = await responseTask;
-            if (response.Body != "null")
+            string idToken = await personRepository.FindIdTokenByEmail(email);
+            if (!string.IsNullOrEmpty(idToken))
             {
-                MessageBox.Show("Tạo tài khoản thành công");
+                FirebaseResponse response = await personRepository.GetAccountByIdToken(idToken);
+                if (response.Body != "null") { 
+                    Person person = response.ResultAs<Person>();
+                    return person;
+                }
+            }
+            return null;
+        }
+
+        public async void LoginAccount(Person person)
+        {
+            Person existPerson = await GetAccountByEmail(person.Email);
+            if (existPerson != null)
+            {
+                if (existPerson.Email == person.Email && PasswordHasher.VerifyPassword(person.Password, existPerson.Password))
+                {
+                    MessageBox.Show("Đăng nhập thành công");
+                    }
+                else
+                {
+                    MessageBox.Show("Email hoặc mật khẩu không đúng");
+                }
+
             }
         }
 
-        public async Task<Person> GetAccountByEmail(string email)
+        public async Task<bool> RegisterAccount(Person person)
         {
-            email = MyLibrary.formatEmail(email);
-            Task<FirebaseResponse> responseTask = personRepository.GetAccountByEmail(email);
-            FirebaseResponse response = await responseTask;
-            if (response.Body != "null")
-            {
-                Person person = response.ResultAs<Person>();
-                return person;
+            Person existPerson = await GetAccountByEmail(person.Email);
+
+            if (existPerson == null)
+            { 
+                SetResponse response = await personRepository.CreatePersonAccount(person);
+                if (response.Body != "null")
+                {
+                    return true;
+                }
             }
-            return null;
+            return false;
         }
     }
 }

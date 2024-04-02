@@ -60,11 +60,6 @@ namespace N19_DentalClinic.library
             return regex.IsMatch(password);
         }
 
-        public static string formatEmail(string email)
-        {
-            return Regex.Replace(email, @"[.#$[\]]", "-");
-        }
-
         public static string DecodeIdToken(string idToken)
         {
             try
