@@ -29,7 +29,7 @@ namespace N19_DentalClinic.model
         {
             this.Name = name;
             this.Email = email;
-            this.Password = password;
+            this.Password= password;
             this.PhoneNumber = phoneNumber;
         }
 

@@ -45,31 +45,44 @@ namespace N19_DentalClinic.service.impl
                 return;
             }
 
-            if (existPerson.Email == person.Email && PasswordHasher.VerifyPassword(person.Password, existPerson.Password))
+            /*
+            bool isEmailVerified = await personRepository.IsEmailVerified(existPerson.IdToken);
+            if (!isEmailVerified)
             {
-                bool isEmailVerified = await personRepository.IsEmailVerified(existPerson.IdToken);
-                if (!isEmailVerified)
-                {
-                    MessageBox.Show("Xin vui lòng xác thực email");
-                    personRepository.SendVerificationEmail(existPerson.IdToken);
-                    return;
-                }
+                MessageBox.Show("Xin vui lòng xác thực email");
+                personRepository.SendVerificationEmail(existPerson.IdToken);
+                return;
+             }
+            */
 
-                string idToken = await personRepository.SignInWithEmailAndPassword(person.Email, person.Password);
-                if (!string.IsNullOrEmpty(idToken)) { 
-                    MessageBox.Show("Đăng nhập thành công");
-                }
+            string idToken = await personRepository.SignInWithEmailAndPassword(person.Email, person.Password);
+            if (string.IsNullOrEmpty(idToken)) {
+                MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu");
+                return;
+            }
+
+            FirebaseResponse respone = await personRepository.UpdateIdToken(existPerson.Id, idToken);
+            if (respone.Body != "null")
+            {
+                MessageBox.Show("Đăng nhập thành công");
             }
             else
             {
-                MessageBox.Show(existPerson.Email);
-                MessageBox.Show(person.Email);
-                MessageBox.Show(existPerson.Password);
-                MessageBox.Show(person.Password);
-                MessageBox.Show("Email hoặc mật khẩu không đúng wrong verify");
+                MessageBox.Show("Đăng nhập thất bại");
+            }
+        }
+
+        public async Task<bool> ResetPassword(string email)
+        {
+            Person existPerson = await GetAccountByEmail(email);
+            if (existPerson == null)
+            {
+                MessageBox.Show("Email không đúng");
+                return false;
             }
 
-
+            bool isSuccessful = await personRepository.ResetPassword(email);
+            return isSuccessful;
         }
 
         public async Task<bool> RegisterAccount(Person person)

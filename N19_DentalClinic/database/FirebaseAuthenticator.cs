@@ -60,7 +60,8 @@ namespace N19_DentalClinic.database
                 }
                 else
                 {
-                    throw new Exception("Failed to check email verification status.");
+                    MessageBox.Show("Check xác thực email thất bại");
+                    return false;
                 }
             }
         }
@@ -102,16 +103,36 @@ namespace N19_DentalClinic.database
                 if (response.IsSuccessStatusCode)
                 {
                     var responseContent = await response.Content.ReadAsStringAsync();
-                    dynamic data = JsonConvert.DeserializeObject(responseContent);
-                    return data.idToken;
+                    dynamic data = JsonConvert.DeserializeObject(responseContent); 
+                    return data.idToken.ToString();
                 }
-                else
-                {
-                    throw new Exception("Authentication failed.");
-                }
+              
+                return "";
+                
             }
         }
 
-    
+        public async Task<bool> ResetPasswordAsync(string email)
+        {
+            using (var client = new HttpClient())
+            {
+                var request = new
+                {
+                    email,
+                    requestType = "PASSWORD_RESET"
+                };
+
+                var content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+                var response = await client.PostAsync($"https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key={FirebaseApiKey}", content);
+
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Reset mật khẩu thất bại, vui lòng thử lại trong ít phút");
+                    return false;
+                }
+                return true;
+            }
+        }
     }
 }

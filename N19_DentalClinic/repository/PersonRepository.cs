@@ -26,15 +26,14 @@ namespace N19_DentalClinic.repository
             {
                 string userId = await firebaseAuthenticator.RegisterUserWithEmailAndPassword(person.Email, person.Password);
                 person.IdToken = userId;
-                person.Id = MyLibrary.DecodeIdToken(userId);
-                person.Password = PasswordHasher.HashPassword(person.Password);
+                person.Id = MyLibrary.DecodeIdToken(userId); 
                 bool isEmailVerified = await firebaseAuthenticator.IsEmailVerified(userId);
                 if (!isEmailVerified)
                 {
                     firebaseAuthenticator.SendVerificationEmail(userId);
                     MessageBox.Show("Vui lòng xác nhận tài khoản email");
                 }
-
+                person.Password = "";
                 SetResponse response = await firebaseConnection.Client.SetTaskAsync("Person/" + person.Id, person);
                 return response;
             }
@@ -87,6 +86,24 @@ namespace N19_DentalClinic.repository
         {
             string idToken =  await firebaseAuthenticator.SignInWithEmailAndPassword(email, password);
             return idToken;
+        }
+
+        public async Task<FirebaseResponse> UpdateIdToken(string userId, string newToken)
+        {
+            FirebaseResponse response = await GetPersonData(userId);
+            Person existPerson = response.ResultAs<Person>();
+            existPerson.IdToken = newToken;
+            return await firebaseConnection.Client.UpdateTaskAsync($"Person/{userId}", existPerson);
+        }
+
+        public async Task<FirebaseResponse> GetPersonData(string userId)
+        {
+            return await firebaseConnection.Client.GetTaskAsync($"Person/{userId}");
+        }
+
+        public async Task<bool> ResetPassword(string email)
+        {
+            return await firebaseAuthenticator.ResetPasswordAsync(email);
         }
     }
 }

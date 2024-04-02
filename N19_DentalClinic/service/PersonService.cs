@@ -11,5 +11,6 @@ namespace N19_DentalClinic.service
     {
         public void LoginAccount(Person person);
         public Task<bool> RegisterAccount(Person person);
+        public Task<bool> ResetPassword(string email);
     }
 }
