@@ -10,6 +10,7 @@ namespace N19_DentalClinic.model
 {
     class Person
     {
+        public string IdToken {  get; set; }    
         public string Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
@@ -17,6 +18,12 @@ namespace N19_DentalClinic.model
         public string PhoneNumber { get; set; }
 
         public Person() { }
+
+        public Person(string email, string password)
+        {
+            this.Email = email;
+            this.Password = password;
+        }
 
         public Person(string name, string email, string password, string phoneNumber)
         {
@@ -26,11 +33,7 @@ namespace N19_DentalClinic.model
             this.PhoneNumber = phoneNumber;
         }
 
-        public Person(string email, string password)
-        {
-            this.Email = email;
-            this.Password = password;
-        }
+
 
         public override string ToString()
         {

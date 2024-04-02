@@ -50,7 +50,6 @@ namespace N19_DentalClinic.database
 
                 var content = new StringContent(JsonConvert.SerializeObject(request));
                 var response = await client.PostAsync($"https://identitytoolkit.googleapis.com/v1/accounts:lookup?key={FirebaseApiKey}", content);
-
                 if (response.IsSuccessStatusCode)
                 {
                     var responseContent = await response.Content.ReadAsStringAsync();
@@ -81,7 +80,7 @@ namespace N19_DentalClinic.database
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    throw new Exception("Failed to send verification email.");
+                    MessageBox.Show("Gửi email không thành công, vui lòng thử lại trong ít phút nữa");
                 }
             }
         }

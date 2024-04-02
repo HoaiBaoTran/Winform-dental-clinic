@@ -25,6 +25,7 @@ namespace N19_DentalClinic.repository
             try
             {
                 string userId = await firebaseAuthenticator.RegisterUserWithEmailAndPassword(person.Email, person.Password);
+                person.IdToken = userId;
                 person.Id = MyLibrary.DecodeIdToken(userId);
                 person.Password = PasswordHasher.HashPassword(person.Password);
                 bool isEmailVerified = await firebaseAuthenticator.IsEmailVerified(userId);
@@ -36,16 +37,17 @@ namespace N19_DentalClinic.repository
 
                 SetResponse response = await firebaseConnection.Client.SetTaskAsync("Person/" + person.Id, person);
                 return response;
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Authentication failed: " + ex.Message);
                 return null;
             }
-            
+
         }
 
         public async Task<FirebaseResponse> GetAccountByIdToken(string idToken)
-        { 
+        {
             FirebaseResponse response = await firebaseConnection.Client.GetTaskAsync("Person/" + idToken);
             return response;
         }
@@ -53,7 +55,7 @@ namespace N19_DentalClinic.repository
         public async Task<string> FindIdTokenByEmail(string email)
         {
             FirebaseResponse response = await firebaseConnection.Client.GetTaskAsync("Person");
-          
+
             if (response.Body != "null")
             {
                 dynamic data = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(response.Body);
@@ -63,12 +65,28 @@ namespace N19_DentalClinic.repository
                     string userEmail = userObj["Email"].ToString();
                     if (userEmail == email)
                     {
-                        return userObj["Id"].ToString();
+                        return userObj["IdToken"].ToString();
                     }
 
                 }
             }
             return "";
+        }
+
+        public async Task<bool> IsEmailVerified(string idToken)
+        {
+            return await firebaseAuthenticator.IsEmailVerified(idToken);
+        }
+
+        public async void SendVerificationEmail(string idToken)
+        {
+            await firebaseAuthenticator.SendVerificationEmail(idToken);
+        }
+
+        public async Task<string> SignInWithEmailAndPassword(string email, string password)
+        {
+            string idToken =  await firebaseAuthenticator.SignInWithEmailAndPassword(email, password);
+            return idToken;
         }
     }
 }
