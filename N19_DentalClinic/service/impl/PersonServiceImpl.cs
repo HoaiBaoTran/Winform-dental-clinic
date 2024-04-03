@@ -36,13 +36,13 @@ namespace N19_DentalClinic.service.impl
             return null;
         }
 
-        public async void LoginAccount(Person person)
+        public async Task<bool> LoginAccount(Person person)
         {
             Person existPerson = await GetAccountByEmail(person.Email);
             if (existPerson == null)
             {
                 MessageBox.Show("Email hoặc mật khẩu không đúng");
-                return;
+                return false;
             }
 
             /*
@@ -58,17 +58,19 @@ namespace N19_DentalClinic.service.impl
             string idToken = await personRepository.SignInWithEmailAndPassword(person.Email, person.Password);
             if (string.IsNullOrEmpty(idToken)) {
                 MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu");
-                return;
+                return false;
             }
 
             FirebaseResponse respone = await personRepository.UpdateIdToken(existPerson.Id, idToken);
             if (respone.Body != "null")
             {
                 MessageBox.Show("Đăng nhập thành công");
+                return true;
             }
             else
             {
                 MessageBox.Show("Đăng nhập thất bại");
+                return false;
             }
         }
 

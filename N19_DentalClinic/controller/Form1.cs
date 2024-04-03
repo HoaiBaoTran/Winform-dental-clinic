@@ -29,7 +29,14 @@ namespace N19_DentalClinic
             string password = tbPassword.Text;
 
             Person person = new Person(email, password);
-            personService.LoginAccount(person);
+            bool isSuccess = await personService.LoginAccount(person);
+            if (isSuccess)
+            {
+                this.Hide();
+                MainForm mainForm = new MainForm();
+                mainForm.ShowDialog();
+                this.Close();
+            }
         }
 
         private void btnForgotPassword_Click(object sender, EventArgs e)

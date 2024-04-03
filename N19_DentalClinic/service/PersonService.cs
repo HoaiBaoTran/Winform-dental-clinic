@@ -9,7 +9,7 @@ namespace N19_DentalClinic.service
 {
     internal interface PersonService
     {
-        public void LoginAccount(Person person);
+        public Task<bool> LoginAccount(Person person);
         public Task<bool> RegisterAccount(Person person);
         public Task<bool> ResetPassword(string email);
     }
