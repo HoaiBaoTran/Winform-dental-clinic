@@ -53,6 +53,7 @@
             label1.Size = new Size(343, 54);
             label1.TabIndex = 2;
             label1.Text = "Đăng ký tài khoản";
+            label1.Click += label1_Click;
             // 
             // label2
             // 
