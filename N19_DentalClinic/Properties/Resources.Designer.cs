@@ -63,6 +63,16 @@ namespace N19_DentalClinic.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_exit {
+            get {
+                object obj = ResourceManager.GetObject("icon-exit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap left_arrow_icon {
             get {
                 object obj = ResourceManager.GetObject("left-arrow-icon", resourceCulture);
@@ -83,9 +93,39 @@ namespace N19_DentalClinic.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap reload_icon {
+            get {
+                object obj = ResourceManager.GetObject("reload-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap right_arrow_icon {
             get {
                 object obj = ResourceManager.GetObject("right-arrow-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap search_icon {
+            get {
+                object obj = ResourceManager.GetObject("search-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap white_plus_icon {
+            get {
+                object obj = ResourceManager.GetObject("white-plus-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

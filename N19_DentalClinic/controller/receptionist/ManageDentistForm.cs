@@ -10,30 +10,25 @@ using System.Windows.Forms;
 
 namespace N19_DentalClinic.controller.receptionist
 {
-    public partial class ManageAppointmentBookingForm : Form
+    public partial class ManageDentistForm : Form
     {
-        public ManageAppointmentBookingForm()
+        public ManageDentistForm()
         {
             InitializeComponent();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void openManageAppointmentBookingForm()
         {
-
+            this.Hide();
+            ManageAppointmentBookingForm form = new ManageAppointmentBookingForm();
+            form.ShowDialog();
+            this.Close();
         }
 
         private void openManagePatientProfileForm()
         {
             this.Hide();
             ManagePatientProfileForm form = new ManagePatientProfileForm();
-            form.ShowDialog();
-            this.Close();
-        }
-
-        private void openManageDentistForm()
-        {
-            this.Hide();
-            ManageDentistForm form = new ManageDentistForm();
             form.ShowDialog();
             this.Close();
         }
@@ -46,15 +41,14 @@ namespace N19_DentalClinic.controller.receptionist
             this.Close();
         }
 
+        private void btnBookAppointment_Click(object sender, EventArgs e)
+        {
+            openManageAppointmentBookingForm();
+        }
 
         private void btnPatientProfile_Click(object sender, EventArgs e)
         {
             openManagePatientProfileForm();
-        }
-
-        private void btnManageDentist_Click(object sender, EventArgs e)
-        {
-            openManageDentistForm();
         }
 
         private void btnCreateBill_Click(object sender, EventArgs e)
@@ -62,5 +56,4 @@ namespace N19_DentalClinic.controller.receptionist
             openManageBillForm();
         }
     }
-
 }
