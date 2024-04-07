@@ -338,7 +338,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dataGridView.DefaultCellStyle = dataGridViewCellStyle1;
             dataGridView.GridColor = Color.White;
-            dataGridView.Location = new Point(256, 309);
+            dataGridView.Location = new Point(270, 309);
             dataGridView.Name = "dataGridView";
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(18, 219, 78);
