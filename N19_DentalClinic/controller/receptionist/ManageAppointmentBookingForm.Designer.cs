@@ -390,6 +390,7 @@
             btnAddAppointment.TextAlign = ContentAlignment.MiddleRight;
             btnAddAppointment.TextColor = Color.Black;
             btnAddAppointment.UseVisualStyleBackColor = false;
+            btnAddAppointment.Click += btnAddAppointment_Click;
             // 
             // roundPictureBox2
             // 

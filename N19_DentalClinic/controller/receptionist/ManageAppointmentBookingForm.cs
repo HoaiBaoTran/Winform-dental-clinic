@@ -61,6 +61,12 @@ namespace N19_DentalClinic.controller.receptionist
         {
             openManageBillForm();
         }
+
+        private void btnAddAppointment_Click(object sender, EventArgs e)
+        {
+            AddAppointmentForm form = new AddAppointmentForm();
+            form.ShowDialog();
+        }
     }
 
 }
