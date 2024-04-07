@@ -1,6 +1,6 @@
 ﻿namespace N19_DentalClinic.controller.receptionist
 {
-    partial class ManagePatientProfileForm
+    partial class AddPatientProfileForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             btnCreateBill = new component.RJButton();
             btnManageDentist = new component.RJButton();
@@ -45,26 +43,32 @@
             panel2 = new Panel();
             btnExit = new component.RJButton();
             label2 = new Label();
-            label6 = new Label();
-            btnAddDentist = new component.RJButton();
-            roundPictureBox2 = new component.RoundPictureBox();
-            dataGridView = new DataGridView();
-            patientIdCol = new DataGridViewTextBoxColumn();
-            patientNameCol = new DataGridViewTextBoxColumn();
-            dobCol = new DataGridViewTextBoxColumn();
-            patientAddressCol = new DataGridViewTextBoxColumn();
-            phoneNumberCol = new DataGridViewTextBoxColumn();
-            patientEmailCol = new DataGridViewTextBoxColumn();
-            patientGender = new DataGridViewTextBoxColumn();
-            patientHistoryCol = new DataGridViewTextBoxColumn();
-            dentistNameCol = new DataGridViewTextBoxColumn();
-            tbSearch = new TextBox();
             btnSearch = new component.RJButton();
+            tbSearch = new TextBox();
+            label6 = new Label();
+            label1 = new Label();
+            tbPatientId = new TextBox();
+            label10 = new Label();
+            tbEmail = new TextBox();
+            label7 = new Label();
+            tbPatientName = new TextBox();
+            label8 = new Label();
+            cbGender = new ComboBox();
+            label9 = new Label();
+            dateTimePicker = new DateTimePicker();
+            label11 = new Label();
+            tbAddress = new TextBox();
+            label12 = new Label();
+            tbPhoneNumber = new TextBox();
+            roundPictureBox3 = new component.RoundPictureBox();
+            btnBack = new component.RJButton();
+            roundPictureBox2 = new component.RoundPictureBox();
+            btnAddPatient = new component.RJButton();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)roundPictureBox1).BeginInit();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)roundPictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)roundPictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -84,7 +88,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(250, 1000);
-            panel1.TabIndex = 2;
+            panel1.TabIndex = 3;
             // 
             // btnCreateBill
             // 
@@ -147,6 +151,7 @@
             btnPatientProfile.Text = "Hồ sơ bệnh nhân";
             btnPatientProfile.TextColor = Color.Black;
             btnPatientProfile.UseVisualStyleBackColor = false;
+            btnPatientProfile.Click += btnPatientProfile_Click;
             // 
             // btnBookAppointment
             // 
@@ -245,10 +250,10 @@
             panel2.BackColor = Color.FromArgb(50, 56, 134);
             panel2.Controls.Add(btnExit);
             panel2.Controls.Add(label2);
-            panel2.Location = new Point(248, 0);
+            panel2.Location = new Point(242, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(1468, 125);
-            panel2.TabIndex = 3;
+            panel2.TabIndex = 4;
             // 
             // btnExit
             // 
@@ -279,152 +284,6 @@
             label2.TabIndex = 3;
             label2.Text = "label2";
             // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(294, 150);
-            label6.Name = "label6";
-            label6.Size = new Size(256, 41);
-            label6.TabIndex = 4;
-            label6.Text = "Hồ sơ bệnh nhân";
-            // 
-            // btnAddDentist
-            // 
-            btnAddDentist.BackColor = Color.FromArgb(18, 219, 78);
-            btnAddDentist.BackgroundColor = Color.FromArgb(18, 219, 78);
-            btnAddDentist.BackgroundImageLayout = ImageLayout.Zoom;
-            btnAddDentist.BorderColor = Color.PaleVioletRed;
-            btnAddDentist.BorderRadius = 5;
-            btnAddDentist.BorderSize = 0;
-            btnAddDentist.FlatAppearance.BorderSize = 0;
-            btnAddDentist.FlatStyle = FlatStyle.Flat;
-            btnAddDentist.Font = new Font("Segoe UI", 11F);
-            btnAddDentist.ForeColor = Color.Black;
-            btnAddDentist.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddDentist.Location = new Point(1459, 141);
-            btnAddDentist.Name = "btnAddDentist";
-            btnAddDentist.Size = new Size(211, 56);
-            btnAddDentist.TabIndex = 10;
-            btnAddDentist.Text = "Thêm bệnh nhân";
-            btnAddDentist.TextAlign = ContentAlignment.MiddleRight;
-            btnAddDentist.TextColor = Color.Black;
-            btnAddDentist.UseVisualStyleBackColor = false;
-            btnAddDentist.Click += btnAddDentist_Click;
-            // 
-            // roundPictureBox2
-            // 
-            roundPictureBox2.BackColor = Color.FromArgb(56, 92, 67);
-            roundPictureBox2.BackgroundImage = Properties.Resources.white_plus_icon;
-            roundPictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox2.Location = new Point(1469, 150);
-            roundPictureBox2.Name = "roundPictureBox2";
-            roundPictureBox2.Size = new Size(39, 41);
-            roundPictureBox2.TabIndex = 11;
-            roundPictureBox2.TabStop = false;
-            // 
-            // dataGridView
-            // 
-            dataGridView.BackgroundColor = Color.White;
-            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.Columns.AddRange(new DataGridViewColumn[] { patientIdCol, patientNameCol, dobCol, patientAddressCol, phoneNumberCol, patientEmailCol, patientGender, patientHistoryCol, dentistNameCol });
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Window;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.Padding = new Padding(4);
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dataGridView.DefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView.GridColor = Color.White;
-            dataGridView.Location = new Point(256, 309);
-            dataGridView.Name = "dataGridView";
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(18, 219, 78);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.Padding = new Padding(4);
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dataGridView.RowHeadersWidth = 51;
-            dataGridView.Size = new Size(1414, 615);
-            dataGridView.TabIndex = 12;
-            // 
-            // patientIdCol
-            // 
-            patientIdCol.HeaderText = "Mã bệnh nhân";
-            patientIdCol.MinimumWidth = 6;
-            patientIdCol.Name = "patientIdCol";
-            patientIdCol.Width = 125;
-            // 
-            // patientNameCol
-            // 
-            patientNameCol.HeaderText = "Họ tên";
-            patientNameCol.MinimumWidth = 6;
-            patientNameCol.Name = "patientNameCol";
-            patientNameCol.Width = 230;
-            // 
-            // dobCol
-            // 
-            dobCol.HeaderText = "Ngày sinh";
-            dobCol.MinimumWidth = 6;
-            dobCol.Name = "dobCol";
-            dobCol.Width = 125;
-            // 
-            // patientAddressCol
-            // 
-            patientAddressCol.HeaderText = "Địa chỉ";
-            patientAddressCol.MinimumWidth = 6;
-            patientAddressCol.Name = "patientAddressCol";
-            patientAddressCol.Width = 230;
-            // 
-            // phoneNumberCol
-            // 
-            phoneNumberCol.HeaderText = "Số điện thoại";
-            phoneNumberCol.MinimumWidth = 6;
-            phoneNumberCol.Name = "phoneNumberCol";
-            phoneNumberCol.Width = 125;
-            // 
-            // patientEmailCol
-            // 
-            patientEmailCol.HeaderText = "Email";
-            patientEmailCol.MinimumWidth = 6;
-            patientEmailCol.Name = "patientEmailCol";
-            patientEmailCol.Width = 150;
-            // 
-            // patientGender
-            // 
-            patientGender.HeaderText = "Giới tính";
-            patientGender.MinimumWidth = 6;
-            patientGender.Name = "patientGender";
-            patientGender.Width = 75;
-            // 
-            // patientHistoryCol
-            // 
-            patientHistoryCol.HeaderText = "Lịch sử khám";
-            patientHistoryCol.MinimumWidth = 6;
-            patientHistoryCol.Name = "patientHistoryCol";
-            patientHistoryCol.Width = 125;
-            // 
-            // dentistNameCol
-            // 
-            dentistNameCol.HeaderText = "Nha sĩ chăm sóc";
-            dentistNameCol.MinimumWidth = 6;
-            dentistNameCol.Name = "dentistNameCol";
-            dentistNameCol.Width = 150;
-            // 
-            // tbSearch
-            // 
-            tbSearch.Font = new Font("Segoe UI", 12F);
-            tbSearch.Location = new Point(294, 205);
-            tbSearch.Name = "tbSearch";
-            tbSearch.PlaceholderText = "Tìm kiếm bệnh nhân";
-            tbSearch.Size = new Size(293, 34);
-            tbSearch.TabIndex = 13;
-            // 
             // btnSearch
             // 
             btnSearch.BackColor = Color.FromArgb(219, 175, 9);
@@ -437,34 +296,270 @@
             btnSearch.FlatAppearance.BorderSize = 0;
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.ForeColor = Color.White;
-            btnSearch.Location = new Point(593, 205);
+            btnSearch.Location = new Point(610, 201);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(64, 34);
-            btnSearch.TabIndex = 14;
+            btnSearch.Size = new Size(64, 40);
+            btnSearch.TabIndex = 17;
             btnSearch.TextColor = Color.White;
             btnSearch.UseVisualStyleBackColor = false;
             // 
-            // ManagePatientProfileForm
+            // tbSearch
+            // 
+            tbSearch.Font = new Font("Segoe UI", 12F);
+            tbSearch.Location = new Point(294, 201);
+            tbSearch.Name = "tbSearch";
+            tbSearch.PlaceholderText = "Tìm kiếm bệnh nhân";
+            tbSearch.Size = new Size(293, 34);
+            tbSearch.TabIndex = 16;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(294, 150);
+            label6.Name = "label6";
+            label6.Size = new Size(256, 41);
+            label6.TabIndex = 15;
+            label6.Text = "Hồ sơ bệnh nhân";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 16F);
+            label1.Location = new Point(300, 280);
+            label1.Name = "label1";
+            label1.Size = new Size(188, 37);
+            label1.TabIndex = 38;
+            label1.Text = "Mã bệnh nhân";
+            // 
+            // tbPatientId
+            // 
+            tbPatientId.Font = new Font("Segoe UI", 14F);
+            tbPatientId.Location = new Point(500, 280);
+            tbPatientId.Name = "tbPatientId";
+            tbPatientId.PlaceholderText = "Nhập mã bệnh nhân";
+            tbPatientId.Size = new Size(481, 39);
+            tbPatientId.TabIndex = 39;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 16F);
+            label10.Location = new Point(1105, 280);
+            label10.Name = "label10";
+            label10.Size = new Size(82, 37);
+            label10.TabIndex = 51;
+            label10.Text = "Email";
+            // 
+            // tbEmail
+            // 
+            tbEmail.Font = new Font("Segoe UI", 14F);
+            tbEmail.Location = new Point(1243, 280);
+            tbEmail.Name = "tbEmail";
+            tbEmail.PlaceholderText = "Nhập địa chỉ email";
+            tbEmail.Size = new Size(421, 39);
+            tbEmail.TabIndex = 52;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 16F);
+            label7.Location = new Point(300, 365);
+            label7.Name = "label7";
+            label7.Size = new Size(131, 37);
+            label7.TabIndex = 53;
+            label7.Text = "Họ và tên";
+            // 
+            // tbPatientName
+            // 
+            tbPatientName.Font = new Font("Segoe UI", 14F);
+            tbPatientName.Location = new Point(500, 363);
+            tbPatientName.Name = "tbPatientName";
+            tbPatientName.PlaceholderText = "Nhập họ và tên bệnh nhân";
+            tbPatientName.Size = new Size(481, 39);
+            tbPatientName.TabIndex = 54;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 16F);
+            label8.Location = new Point(1105, 365);
+            label8.Name = "label8";
+            label8.Size = new Size(119, 37);
+            label8.TabIndex = 55;
+            label8.Text = "Giới tính";
+            // 
+            // cbGender
+            // 
+            cbGender.Font = new Font("Segoe UI", 14F);
+            cbGender.FormattingEnabled = true;
+            cbGender.Items.AddRange(new object[] { "Nam", "Nữ" });
+            cbGender.Location = new Point(1243, 363);
+            cbGender.Name = "cbGender";
+            cbGender.Size = new Size(163, 39);
+            cbGender.TabIndex = 56;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 16F);
+            label9.Location = new Point(300, 445);
+            label9.Name = "label9";
+            label9.Size = new Size(135, 37);
+            label9.TabIndex = 57;
+            label9.Text = "Ngày sinh";
+            // 
+            // dateTimePicker
+            // 
+            dateTimePicker.CustomFormat = "dd/MM/yyyy";
+            dateTimePicker.Font = new Font("Segoe UI", 14F);
+            dateTimePicker.Format = DateTimePickerFormat.Custom;
+            dateTimePicker.Location = new Point(500, 445);
+            dateTimePicker.Name = "dateTimePicker";
+            dateTimePicker.Size = new Size(174, 39);
+            dateTimePicker.TabIndex = 58;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 16F);
+            label11.Location = new Point(300, 525);
+            label11.Name = "label11";
+            label11.Size = new Size(98, 37);
+            label11.TabIndex = 59;
+            label11.Text = "Địa chỉ";
+            // 
+            // tbAddress
+            // 
+            tbAddress.Font = new Font("Segoe UI", 14F);
+            tbAddress.Location = new Point(500, 527);
+            tbAddress.Name = "tbAddress";
+            tbAddress.PlaceholderText = "Nhập địa chỉ";
+            tbAddress.Size = new Size(906, 39);
+            tbAddress.TabIndex = 60;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI", 16F);
+            label12.Location = new Point(300, 605);
+            label12.Name = "label12";
+            label12.Size = new Size(174, 37);
+            label12.TabIndex = 61;
+            label12.Text = "Số điện thoại";
+            // 
+            // tbPhoneNumber
+            // 
+            tbPhoneNumber.Font = new Font("Segoe UI", 14F);
+            tbPhoneNumber.Location = new Point(500, 607);
+            tbPhoneNumber.Name = "tbPhoneNumber";
+            tbPhoneNumber.PlaceholderText = "Nhập số điện thoại";
+            tbPhoneNumber.Size = new Size(481, 39);
+            tbPhoneNumber.TabIndex = 62;
+            // 
+            // roundPictureBox3
+            // 
+            roundPictureBox3.BackColor = Color.White;
+            roundPictureBox3.BackgroundImage = Properties.Resources.back_icon;
+            roundPictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
+            roundPictureBox3.Location = new Point(1578, 156);
+            roundPictureBox3.Name = "roundPictureBox3";
+            roundPictureBox3.Size = new Size(39, 41);
+            roundPictureBox3.TabIndex = 66;
+            roundPictureBox3.TabStop = false;
+            // 
+            // btnBack
+            // 
+            btnBack.BackColor = Color.DarkGray;
+            btnBack.BackgroundColor = Color.DarkGray;
+            btnBack.BackgroundImageLayout = ImageLayout.Zoom;
+            btnBack.BorderColor = Color.PaleVioletRed;
+            btnBack.BorderRadius = 5;
+            btnBack.BorderSize = 0;
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.Font = new Font("Segoe UI", 11F);
+            btnBack.ForeColor = Color.White;
+            btnBack.ImageAlign = ContentAlignment.MiddleLeft;
+            btnBack.Location = new Point(1568, 147);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(102, 56);
+            btnBack.TabIndex = 65;
+            btnBack.Text = "Hủy";
+            btnBack.TextAlign = ContentAlignment.MiddleRight;
+            btnBack.TextColor = Color.White;
+            btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
+            // 
+            // roundPictureBox2
+            // 
+            roundPictureBox2.BackColor = Color.FromArgb(56, 92, 67);
+            roundPictureBox2.BackgroundImage = Properties.Resources.white_plus_icon;
+            roundPictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
+            roundPictureBox2.Location = new Point(1430, 156);
+            roundPictureBox2.Name = "roundPictureBox2";
+            roundPictureBox2.Size = new Size(39, 41);
+            roundPictureBox2.TabIndex = 64;
+            roundPictureBox2.TabStop = false;
+            // 
+            // btnAddPatient
+            // 
+            btnAddPatient.BackColor = Color.FromArgb(18, 219, 78);
+            btnAddPatient.BackgroundColor = Color.FromArgb(18, 219, 78);
+            btnAddPatient.BackgroundImageLayout = ImageLayout.Zoom;
+            btnAddPatient.BorderColor = Color.PaleVioletRed;
+            btnAddPatient.BorderRadius = 5;
+            btnAddPatient.BorderSize = 0;
+            btnAddPatient.FlatAppearance.BorderSize = 0;
+            btnAddPatient.FlatStyle = FlatStyle.Flat;
+            btnAddPatient.Font = new Font("Segoe UI", 11F);
+            btnAddPatient.ForeColor = Color.Black;
+            btnAddPatient.ImageAlign = ContentAlignment.MiddleLeft;
+            btnAddPatient.Location = new Point(1419, 147);
+            btnAddPatient.Name = "btnAddPatient";
+            btnAddPatient.Size = new Size(138, 56);
+            btnAddPatient.TabIndex = 63;
+            btnAddPatient.Text = "Tạo mới";
+            btnAddPatient.TextAlign = ContentAlignment.MiddleRight;
+            btnAddPatient.TextColor = Color.Black;
+            btnAddPatient.UseVisualStyleBackColor = false;
+            // 
+            // AddPatientProfileForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1682, 953);
+            Controls.Add(roundPictureBox3);
+            Controls.Add(btnBack);
+            Controls.Add(roundPictureBox2);
+            Controls.Add(btnAddPatient);
+            Controls.Add(tbPhoneNumber);
+            Controls.Add(label12);
+            Controls.Add(tbAddress);
+            Controls.Add(label11);
+            Controls.Add(dateTimePicker);
+            Controls.Add(label9);
+            Controls.Add(cbGender);
+            Controls.Add(label8);
+            Controls.Add(tbPatientName);
+            Controls.Add(label7);
+            Controls.Add(tbEmail);
+            Controls.Add(label10);
+            Controls.Add(tbPatientId);
+            Controls.Add(label1);
             Controls.Add(btnSearch);
             Controls.Add(tbSearch);
-            Controls.Add(dataGridView);
-            Controls.Add(roundPictureBox2);
-            Controls.Add(btnAddDentist);
             Controls.Add(label6);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Name = "ManagePatientProfileForm";
-            Text = "ManagePatientProfileForm";
+            Name = "AddPatientProfileForm";
+            Text = "AddPatientProfileForm";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)roundPictureBox1).EndInit();
             panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)roundPictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)roundPictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -486,20 +581,26 @@
         private Panel panel2;
         private component.RJButton btnExit;
         private Label label2;
-        private Label label6;
-        private component.RJButton btnAddDentist;
-        private component.RoundPictureBox roundPictureBox2;
-        private DataGridView dataGridView;
-        private TextBox tbSearch;
         private component.RJButton btnSearch;
-        private DataGridViewTextBoxColumn patientIdCol;
-        private DataGridViewTextBoxColumn patientNameCol;
-        private DataGridViewTextBoxColumn dobCol;
-        private DataGridViewTextBoxColumn patientAddressCol;
-        private DataGridViewTextBoxColumn phoneNumberCol;
-        private DataGridViewTextBoxColumn patientEmailCol;
-        private DataGridViewTextBoxColumn patientGender;
-        private DataGridViewTextBoxColumn patientHistoryCol;
-        private DataGridViewTextBoxColumn dentistNameCol;
+        private TextBox tbSearch;
+        private Label label6;
+        private Label label1;
+        private TextBox tbPatientId;
+        private Label label10;
+        private TextBox tbEmail;
+        private Label label7;
+        private TextBox tbPatientName;
+        private Label label8;
+        private ComboBox cbGender;
+        private Label label9;
+        private DateTimePicker dateTimePicker;
+        private Label label11;
+        private TextBox tbAddress;
+        private Label label12;
+        private TextBox tbPhoneNumber;
+        private component.RoundPictureBox roundPictureBox3;
+        private component.RJButton btnBack;
+        private component.RoundPictureBox roundPictureBox2;
+        private component.RJButton btnAddPatient;
     }
 }

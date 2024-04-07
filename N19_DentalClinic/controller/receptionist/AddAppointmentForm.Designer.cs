@@ -57,7 +57,7 @@
             label10 = new Label();
             tbEmail = new TextBox();
             label11 = new Label();
-            comboBox1 = new ComboBox();
+            cbFaculty = new ComboBox();
             label12 = new Label();
             tbDentistId = new TextBox();
             rjButton1 = new component.RJButton();
@@ -160,7 +160,7 @@
             // tbSignal
             // 
             tbSignal.Font = new Font("Segoe UI", 14F);
-            tbSignal.Location = new Point(192, 100);
+            tbSignal.Location = new Point(190, 100);
             tbSignal.Name = "tbSignal";
             tbSignal.PlaceholderText = "Nhập triệu chứng";
             tbSignal.Size = new Size(1032, 39);
@@ -181,7 +181,7 @@
             cbStatus.Font = new Font("Segoe UI", 14F);
             cbStatus.FormattingEnabled = true;
             cbStatus.Items.AddRange(new object[] { "Bệnh nhân đã đến", "Bệnh nhân chưa đến" });
-            cbStatus.Location = new Point(192, 180);
+            cbStatus.Location = new Point(190, 180);
             cbStatus.Name = "cbStatus";
             cbStatus.Size = new Size(312, 39);
             cbStatus.TabIndex = 32;
@@ -221,7 +221,7 @@
             cbPatient.Font = new Font("Segoe UI", 14F);
             cbPatient.FormattingEnabled = true;
             cbPatient.Items.AddRange(new object[] { "Bệnh nhân cũ", "Bệnh nhân mới" });
-            cbPatient.Location = new Point(192, 260);
+            cbPatient.Location = new Point(190, 260);
             cbPatient.Name = "cbPatient";
             cbPatient.Size = new Size(251, 39);
             cbPatient.TabIndex = 36;
@@ -296,7 +296,7 @@
             // tbPatientName
             // 
             tbPatientName.Font = new Font("Segoe UI", 14F);
-            tbPatientName.Location = new Point(192, 340);
+            tbPatientName.Location = new Point(190, 340);
             tbPatientName.Name = "tbPatientName";
             tbPatientName.PlaceholderText = "Nhập tên bệnh nhân";
             tbPatientName.Size = new Size(345, 39);
@@ -368,7 +368,7 @@
             // tbPatientAddress
             // 
             tbPatientAddress.Font = new Font("Segoe UI", 14F);
-            tbPatientAddress.Location = new Point(201, 420);
+            tbPatientAddress.Location = new Point(190, 420);
             tbPatientAddress.Name = "tbPatientAddress";
             tbPatientAddress.PlaceholderText = "Nhập địa chỉ";
             tbPatientAddress.Size = new Size(586, 39);
@@ -403,15 +403,15 @@
             label11.TabIndex = 52;
             label11.Text = "Khoa";
             // 
-            // comboBox1
+            // cbFaculty
             // 
-            comboBox1.Font = new Font("Segoe UI", 14F);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Bệnh nhân cũ", "Bệnh nhân mới" });
-            comboBox1.Location = new Point(192, 500);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(251, 39);
-            comboBox1.TabIndex = 53;
+            cbFaculty.Font = new Font("Segoe UI", 14F);
+            cbFaculty.FormattingEnabled = true;
+            cbFaculty.Items.AddRange(new object[] { "Bệnh nhân cũ", "Bệnh nhân mới" });
+            cbFaculty.Location = new Point(190, 500);
+            cbFaculty.Name = "cbFaculty";
+            cbFaculty.Size = new Size(251, 39);
+            cbFaculty.TabIndex = 53;
             // 
             // label12
             // 
@@ -483,7 +483,7 @@
             // tbDentistName
             // 
             tbDentistName.Font = new Font("Segoe UI", 14F);
-            tbDentistName.Location = new Point(191, 580);
+            tbDentistName.Location = new Point(190, 580);
             tbDentistName.Name = "tbDentistName";
             tbDentistName.PlaceholderText = "Nhập tên nha sĩ";
             tbDentistName.Size = new Size(346, 39);
@@ -522,7 +522,7 @@
             Controls.Add(rjButton1);
             Controls.Add(tbDentistId);
             Controls.Add(label12);
-            Controls.Add(comboBox1);
+            Controls.Add(cbFaculty);
             Controls.Add(label11);
             Controls.Add(tbEmail);
             Controls.Add(label10);
@@ -591,7 +591,7 @@
         private Label label10;
         private TextBox tbEmail;
         private Label label11;
-        private ComboBox comboBox1;
+        private ComboBox cbFaculty;
         private Label label12;
         private TextBox tbDentistId;
         private component.RJButton rjButton1;
