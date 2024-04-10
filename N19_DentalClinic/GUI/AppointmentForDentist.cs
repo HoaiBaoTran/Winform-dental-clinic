@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -70,7 +70,6 @@ namespace N19_ProjectForm.GUI
                 dataAppointDentist.Columns[4].Name = "Triệu chứng bệnh nhân";
                 dataAppointDentist.Columns[5].Name = "Trạng thái";
                 int countRow = 1;
-                bool flagApp = true;
                 foreach (DataRow row in table.Rows)
                 {
                     // Cap nhat ma va ten nha si
@@ -136,12 +135,7 @@ namespace N19_ProjectForm.GUI
                         string[] rowAppString = new string[] { countRow.ToString(), appTime, assisstantName, patientName,symptom, state };
                         dataAppointDentist.Rows.Add(rowAppString);
                         countRow++;
-                        flagApp = false;
                     }
-                }
-                if(flagApp)
-                {
-                    MessageBox.Show("Nha sĩ không có lịch hẹn vào ngày này");
                 }
             }
         }
@@ -150,6 +144,20 @@ namespace N19_ProjectForm.GUI
         {
             clearDataGridView(dataAppointDentist);
             initTableAppointment();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DateTime yesterday = currentDate.Date.AddDays(-1);
+            currentDate = yesterday;
+            txtCurrDate.Text = DateTimeConvert.convertDMY(currentDate.ToString());
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DateTime tommorow = currentDate.Date.AddDays(+1);
+            currentDate = tommorow;
+            txtCurrDate.Text = DateTimeConvert.convertDMY(currentDate.ToString());
         }
     }
 }
