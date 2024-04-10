@@ -668,7 +668,6 @@ exec procAddMaterial N'Paracetamol 500mg', 'AD00000001', 'viên', 200
 exec procAddMaterial N'Aspirin 100mg', 'AD00000001', 'viên', 500
 exec procAddMaterial N'Ibuprofen 400mg', 'AD00000001', 'viên', 200
 exec procAddMaterial N'Naproxen 500mg', 'AD00000001', 'viên', 500
-exec procAddMaterial N'Acetaminophen 500mg', 'AD00000001', 'viên', 200
 exec procAddMaterial N'Dexamethason 0.5mg', 'AD00000001', 'viên', 500
 
 
@@ -746,8 +745,7 @@ exec procAddConsumableMaterial 'MA00000059', '2025-05-05 12:00', N'Giảm đau'
 exec procAddConsumableMaterial 'MA00000060', '2025-05-05 12:00', N'Giảm đau'
 exec procAddConsumableMaterial 'MA00000061', '2025-05-05 12:00', N'Kháng viêm'
 exec procAddConsumableMaterial 'MA00000062', '2025-05-05 12:00', N'Kháng viêm'
-exec procAddConsumableMaterial 'MA00000063', '2025-05-05 12:00', N'Chống sưng'
-exec procAddConsumableMaterial 'MA00000064', '2025-05-05 12:00', N'Chống sưng'
+exec procAddConsumableMaterial 'MA00000063', '2025-05-05 12:00', N'Kháng viêm'
 GO
 
 create proc procAddMedicine
@@ -776,8 +774,7 @@ exec procAddMedicine 'MA00000059', 2000
 exec procAddMedicine 'MA00000060', 6000
 exec procAddMedicine 'MA00000061', 4000
 exec procAddMedicine 'MA00000062', 5000
-exec procAddMedicine 'MA00000063', 1000
-exec procAddMedicine 'MA00000064', 80000
+exec procAddMedicine 'MA00000063', 80000
 go
 
 --FixedMaterial
