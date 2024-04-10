@@ -1,4 +1,4 @@
-﻿namespace N19_ProjectForm.GUI.ReceptionistView
+namespace N19_ProjectForm.GUI.ReceptionistView
 {
     partial class Receptionist
     {
@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.btnCreateAppointment = new System.Windows.Forms.Button();
-            this.btnPatientFile = new System.Windows.Forms.Button();
             this.btnDentistManagement = new System.Windows.Forms.Button();
+            this.btnPatientFiles = new System.Windows.Forms.Button();
             this.btnCreateBill = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnShowContent = new System.Windows.Forms.Panel();
@@ -47,24 +47,24 @@
             this.btnCreateAppointment.Text = "Đặt lịch hẹn ";
             this.btnCreateAppointment.UseVisualStyleBackColor = true;
             // 
-            // btnPatientFile
-            // 
-            this.btnPatientFile.Location = new System.Drawing.Point(15, 163);
-            this.btnPatientFile.Name = "btnPatientFile";
-            this.btnPatientFile.Size = new System.Drawing.Size(170, 54);
-            this.btnPatientFile.TabIndex = 1;
-            this.btnPatientFile.Text = "Hồ sơ bệnh nhân";
-            this.btnPatientFile.UseVisualStyleBackColor = true;
-            this.btnPatientFile.Click += new System.EventHandler(this.btnPatientFile_Click);
-            // 
             // btnDentistManagement
             // 
-            this.btnDentistManagement.Location = new System.Drawing.Point(15, 243);
+            this.btnDentistManagement.Location = new System.Drawing.Point(15, 163);
             this.btnDentistManagement.Name = "btnDentistManagement";
             this.btnDentistManagement.Size = new System.Drawing.Size(170, 54);
-            this.btnDentistManagement.TabIndex = 2;
+            this.btnDentistManagement.TabIndex = 1;
             this.btnDentistManagement.Text = "Quản lí nha sĩ";
             this.btnDentistManagement.UseVisualStyleBackColor = true;
+            this.btnDentistManagement.Click += new System.EventHandler(this.btnPatientFile_Click);
+            // 
+            // btnPatientFiles
+            // 
+            this.btnPatientFiles.Location = new System.Drawing.Point(15, 243);
+            this.btnPatientFiles.Name = "btnPatientFiles";
+            this.btnPatientFiles.Size = new System.Drawing.Size(170, 54);
+            this.btnPatientFiles.TabIndex = 2;
+            this.btnPatientFiles.Text = "Hồ sơ bệnh nhân";
+            this.btnPatientFiles.UseVisualStyleBackColor = true;
             // 
             // btnCreateBill
             // 
@@ -80,8 +80,8 @@
             this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.panel1.Controls.Add(this.btnCreateAppointment);
             this.panel1.Controls.Add(this.btnCreateBill);
-            this.panel1.Controls.Add(this.btnPatientFile);
             this.panel1.Controls.Add(this.btnDentistManagement);
+            this.panel1.Controls.Add(this.btnPatientFiles);
             this.panel1.Location = new System.Drawing.Point(2, -1);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(202, 672);
@@ -118,8 +118,8 @@
 
         #endregion
         private System.Windows.Forms.Button btnCreateAppointment;
-        private System.Windows.Forms.Button btnPatientFile;
         private System.Windows.Forms.Button btnDentistManagement;
+        private System.Windows.Forms.Button btnPatientFiles;
         private System.Windows.Forms.Button btnCreateBill;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel pnShowContent;
