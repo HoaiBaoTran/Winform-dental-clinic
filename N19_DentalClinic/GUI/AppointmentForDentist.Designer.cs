@@ -1,4 +1,4 @@
-﻿namespace N19_ProjectForm.GUI
+namespace N19_ProjectForm.GUI
 {
     partial class AppointmentForDentist
     {
@@ -35,8 +35,8 @@
             this.button3 = new System.Windows.Forms.Button();
             this.txtCurrDate = new System.Windows.Forms.TextBox();
             this.btnToday = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnTommorow = new System.Windows.Forms.Button();
+            this.btnYesterday = new System.Windows.Forms.Button();
             this.txtNameDentist = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtDenID = new System.Windows.Forms.TextBox();
@@ -62,8 +62,8 @@
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.txtCurrDate);
             this.groupBox1.Controls.Add(this.btnToday);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnTommorow);
+            this.groupBox1.Controls.Add(this.btnYesterday);
             this.groupBox1.Controls.Add(this.txtNameDentist);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txtDenID);
@@ -76,10 +76,12 @@
             // 
             // dataAppointDentist
             // 
+            this.dataAppointDentist.AllowUserToAddRows = false;
             this.dataAppointDentist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataAppointDentist.Location = new System.Drawing.Point(11, 159);
             this.dataAppointDentist.Name = "dataAppointDentist";
             this.dataAppointDentist.ReadOnly = true;
+            this.dataAppointDentist.RowHeadersVisible = false;
             this.dataAppointDentist.RowHeadersWidth = 51;
             this.dataAppointDentist.RowTemplate.Height = 24;
             this.dataAppointDentist.Size = new System.Drawing.Size(1243, 337);
@@ -122,29 +124,31 @@
             this.btnToday.UseVisualStyleBackColor = true;
             this.btnToday.Click += new System.EventHandler(this.btnToday_Click);
             // 
-            // button2
+            // btnTommorow
             // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button2.ForeColor = System.Drawing.Color.Black;
-            this.button2.Location = new System.Drawing.Point(89, 94);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(58, 49);
-            this.button2.TabIndex = 17;
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnTommorow.BackColor = System.Drawing.Color.White;
+            this.btnTommorow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTommorow.BackgroundImage")));
+            this.btnTommorow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnTommorow.ForeColor = System.Drawing.Color.Black;
+            this.btnTommorow.Location = new System.Drawing.Point(89, 94);
+            this.btnTommorow.Name = "btnTommorow";
+            this.btnTommorow.Size = new System.Drawing.Size(58, 49);
+            this.btnTommorow.TabIndex = 17;
+            this.btnTommorow.UseVisualStyleBackColor = false;
+            this.btnTommorow.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
+            // btnYesterday
             // 
-            this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(11, 94);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(58, 49);
-            this.button1.TabIndex = 16;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnYesterday.BackColor = System.Drawing.Color.White;
+            this.btnYesterday.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnYesterday.BackgroundImage")));
+            this.btnYesterday.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnYesterday.ForeColor = System.Drawing.Color.Black;
+            this.btnYesterday.Location = new System.Drawing.Point(11, 94);
+            this.btnYesterday.Name = "btnYesterday";
+            this.btnYesterday.Size = new System.Drawing.Size(58, 49);
+            this.btnYesterday.TabIndex = 16;
+            this.btnYesterday.UseVisualStyleBackColor = false;
+            this.btnYesterday.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtNameDentist
             // 
@@ -211,8 +215,8 @@
         private System.Windows.Forms.TextBox txtDenID;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtNameDentist;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnTommorow;
+        private System.Windows.Forms.Button btnYesterday;
         private System.Windows.Forms.Button btnToday;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox txtCurrDate;
