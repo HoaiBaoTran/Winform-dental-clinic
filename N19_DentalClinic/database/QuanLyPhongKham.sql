@@ -1,4 +1,4 @@
-﻿/*
+/*
 use master
 go
 drop database QuanLyPhongKham
@@ -102,6 +102,15 @@ CREATE TABLE Receptionist
 )
 GO
 
+CREATE TABLE Calendar_Receptionist
+(
+	RecepID VARCHAR(10) PRIMARY KEY,
+	dayWorks DATETIME NOT NULL,
+	timeStart DATETIME NOT NULL,
+	timeEnd DATETIME NOT NULL,
+	FOREIGN KEY (RecepID) REFERENCES Receptionist(RecepID)
+)
+go
 
 --function tu tao id 
 
@@ -156,6 +165,15 @@ CREATE TABLE Dentist
 );
 GO
 
+CREATE TABLE Calendar_Dentist
+(
+	DenID VARCHAR(10) PRIMARY KEY,
+	dayWorks DATETIME NOT NULL,
+	timeStart DATETIME NOT NULL,
+	timeEnd DATETIME NOT NULL,
+	FOREIGN KEY (DenID) REFERENCES Dentist(DenID)
+)
+go
 --function tu tao id 
 
 create function autoDeid()
@@ -237,6 +255,16 @@ CREATE TABLE Assisstant
   birthday DATETIME NOT NULL
 )
 GO
+
+CREATE TABLE Calendar_Assisstant
+(
+	AssiID VARCHAR(10) PRIMARY KEY,
+	dayWorks DATETIME NOT NULL,
+	timeStart DATETIME NOT NULL,
+	timeEnd DATETIME NOT NULL,
+	FOREIGN KEY (AssiID) REFERENCES Calendar_Assisstant(AssiID)
+)
+go
 
 --function tu tao id 
 
@@ -804,6 +832,27 @@ exec procAddReceptionist N'Trần Văn Dũng', N'quận 2', 'tranvd@gmail.com', 
 exec procAddReceptionist N'Hoàng Thị Trâm', N'quận 3', 'hoantm@gmail.com', '09023522126',27000000,'AD00000001', 0, '2003-01-02'
 GO
 
+create proc procAddCalendar_Receptionist
+	@RecepID VARCHAR(10),
+	@dayWorks DATETIME,
+	@timeStart DATETIME,
+	@timeEnd DATETIME
+as
+begin
+	if(@RecepID not in (select RecepID from Receptionist)) 
+		print(N'Chưa tồn tại mã Receptionist này')
+	else
+	BEGIN
+		insert into Calendar_Receptionist(RecepID,dayWorks,timeStart,timeEnd) 
+		values (@RecepID, @dayWorks,@timeStart,@timeEnd)
+	END
+end
+go
+
+exec procAddCalendar_Receptionist 'RE00000001', '2024-04-10', '2024-04-10 01:00:00', '2024-04-10 11:00:00'
+exec procAddCalendar_Receptionist 'RE00000002', '2024-04-10', '2024-04-10 01:00:00', '2024-04-10 11:00:00'
+go
+
 
 --Assisstant
 create proc procAddAssisstant
@@ -833,6 +882,26 @@ exec procAddAssisstant N'Bùi Tiến Dũng', N'Bình Định', 'btd@gmail.com', 
 exec procAddAssisstant N'Watson Holmes', 'London', 'holmes221b@gmail.com', '09023515226',900000, 1, '2003-01-02'
 GO
 
+create proc procAddCalendar_Assisstant
+	@AssID VARCHAR(10),
+	@dayWorks DATETIME,
+	@timeStart DATETIME,
+	@timeEnd DATETIME
+as
+begin
+	if(@AssID not in (select AssiID from Assisstant)) 
+		print(N'Chưa tồn tại mã Assisstant này')
+	else
+	BEGIN
+		insert into Calendar_Assisstant(AssiID,dayWorks,timeStart,timeEnd) 
+		values (@AssID, @dayWorks,@timeStart,@timeEnd)
+	END
+end
+go
+
+exec procAddCalendar_Assisstant 'AS00000001', '2024-04-11', '2024-04-10 01:00:00', '2024-04-10 11:00:00'
+exec procAddCalendar_Assisstant 'AS00000002', '2024-04-11', '2024-04-10 02:00:00', '2024-04-10 12:00:00'
+go
 
 --Faculty
 create proc procAddFaculty	
@@ -890,7 +959,26 @@ exec procAddDentist N'Phan Văn Toàn', N'Hải Phòng', 'phanvt@gmail.com', '09
 exec procAddDentist N'Hoa Yến Anh', N'Tân Biên', 'anhvippro@gmail.com', '09022915226',9400000,'FA00000003','Tien si', 'A', 'Viet Nam', 0, '2003-01-02'
 GO
 
+create proc procAddCalendar_Dentist
+	@DenID VARCHAR(10),
+	@dayWorks DATETIME,
+	@timeStart DATETIME,
+	@timeEnd DATETIME
+as
+begin
+	if(@DenID not in (select DenID from Dentist)) 
+		print(N'Chưa tồn tại mã Dentist này')
+	else
+	BEGIN
+		insert into Calendar_Dentist(DenID,dayWorks,timeStart,timeEnd) 
+		values (@DenID, @dayWorks,@timeStart,@timeEnd)
+	END
+end
+go
 
+exec procAddCalendar_Dentist 'DE00000001', '2024-04-11', '2024-04-10 01:00:00', '2024-04-10 11:00:00'
+exec procAddCalendar_Dentist 'DE00000002', '2024-04-11', '2024-04-10 02:00:00', '2024-04-10 12:00:00'
+go
 
 --Patient
 create proc procAddPatient
