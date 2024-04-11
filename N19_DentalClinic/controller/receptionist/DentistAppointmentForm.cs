@@ -16,5 +16,10 @@ namespace N19_DentalClinic.controller.receptionist
         {
             InitializeComponent();
         }
+
+        private void DentistAppointmentForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

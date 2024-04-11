@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DentistDescriptionDetail));
             label1 = new Label();
             groupBox1 = new GroupBox();
+            txtSalary = new TextBox();
+            label13 = new Label();
             btnCalendar = new Button();
             txtBirthday = new TextBox();
             label12 = new Label();
@@ -73,6 +75,8 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(txtSalary);
+            groupBox1.Controls.Add(label13);
             groupBox1.Controls.Add(btnCalendar);
             groupBox1.Controls.Add(txtBirthday);
             groupBox1.Controls.Add(label12);
@@ -104,6 +108,27 @@
             groupBox1.Size = new Size(1269, 628);
             groupBox1.TabIndex = 3;
             groupBox1.TabStop = false;
+            // 
+            // txtSalary
+            // 
+            txtSalary.AcceptsReturn = true;
+            txtSalary.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSalary.Location = new Point(793, 549);
+            txtSalary.Margin = new Padding(3, 4, 3, 4);
+            txtSalary.Name = "txtSalary";
+            txtSalary.ReadOnly = true;
+            txtSalary.Size = new Size(452, 34);
+            txtSalary.TabIndex = 27;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label13.Location = new Point(633, 549);
+            label13.Name = "label13";
+            label13.Size = new Size(80, 29);
+            label13.TabIndex = 26;
+            label13.Text = "Lương";
             // 
             // btnCalendar
             // 
@@ -144,9 +169,11 @@
             // 
             // cbRank
             // 
+            cbRank.DropDownStyle = ComboBoxStyle.DropDownList;
             cbRank.Enabled = false;
             cbRank.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbRank.FormattingEnabled = true;
+            cbRank.Items.AddRange(new object[] { "A", "B", "C", "D", "E", "F" });
             cbRank.Location = new Point(793, 141);
             cbRank.Margin = new Padding(3, 4, 3, 4);
             cbRank.Name = "cbRank";
@@ -293,6 +320,7 @@
             // 
             // cbFaculty
             // 
+            cbFaculty.DropDownStyle = ComboBoxStyle.DropDownList;
             cbFaculty.Enabled = false;
             cbFaculty.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbFaculty.FormattingEnabled = true;
@@ -385,6 +413,7 @@
             btnCreateDentist.TabIndex = 25;
             btnCreateDentist.Text = "Tạo mới";
             btnCreateDentist.UseVisualStyleBackColor = true;
+            btnCreateDentist.Click += btnCreateDentist_Click;
             // 
             // DentistDescriptionDetail
             // 
@@ -435,5 +464,7 @@
         private Button btnBack;
         private Button btnCreateDentist;
         private Button btnCalendar;
+        private TextBox txtSalary;
+        private Label label13;
     }
 }

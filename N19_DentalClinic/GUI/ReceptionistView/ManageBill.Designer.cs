@@ -252,6 +252,7 @@
             Controls.Add(btnSearch);
             Controls.Add(tbSearch);
             Controls.Add(label6);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "ManageBill";
             Text = "ManageBill";
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();

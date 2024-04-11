@@ -37,12 +37,12 @@ namespace N19_ProjectForm.GUI.ReceptionistView
             if (dataDentistTable.CurrentCell.ColumnIndex == 8)
             {
                 string DenID = dataDentistTable[1, dataDentistTable.CurrentCell.RowIndex].Value.ToString();
-                PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, DenID), panelWrapper);
+                PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, DenID,role,"view"), panelWrapper);
             }
             else if (dataDentistTable.CurrentCell.ColumnIndex == 9)
             {
                 string DenID = dataDentistTable[1, dataDentistTable.CurrentCell.RowIndex].Value.ToString();
-                PanelInteraction.openForm(this, new AppointmentForDentist(panelWrapper, DenID), panelWrapper);
+                PanelInteraction.openForm(this, new AppointmentForDentist(panelWrapper, DenID,role,"view"), panelWrapper);
             }
         }
 
@@ -138,7 +138,13 @@ namespace N19_ProjectForm.GUI.ReceptionistView
 
         private void btnCreateDentist_Click(object sender, EventArgs e)
         {
-            PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, "", 2, "create"), panelWrapper);
+            if(role == 2)
+            {
+                PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, "", 1, "create"), panelWrapper);
+            }else
+            {
+                MessageBox.Show("Bạn không đủ ủy quyền để thêm bệnh nhân");
+            }
         }
     }
 }
