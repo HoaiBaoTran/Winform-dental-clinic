@@ -29,182 +29,193 @@ namespace N19_ProjectForm.GUI
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppointmentForDentist));
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dataAppointDentist = new System.Windows.Forms.DataGridView();
-            this.button3 = new System.Windows.Forms.Button();
-            this.txtCurrDate = new System.Windows.Forms.TextBox();
-            this.btnToday = new System.Windows.Forms.Button();
-            this.btnTommorow = new System.Windows.Forms.Button();
-            this.btnYesterday = new System.Windows.Forms.Button();
-            this.txtNameDentist = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtDenID = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataAppointDentist)).BeginInit();
-            this.SuspendLayout();
+            label1 = new Label();
+            groupBox1 = new GroupBox();
+            dataAppointmentDentist = new DataGridView();
+            button3 = new Button();
+            txtCurrDate = new TextBox();
+            btnToday = new Button();
+            btnTommorow = new Button();
+            btnYesterday = new Button();
+            txtNameDentist = new TextBox();
+            label8 = new Label();
+            txtDenID = new TextBox();
+            label3 = new Label();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataAppointmentDentist).BeginInit();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(171, 46);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Lịch hẹn";
+            label1.AutoSize = true;
+            label1.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.ControlText;
+            label1.Location = new Point(12, 11);
+            label1.Name = "label1";
+            label1.Size = new Size(171, 46);
+            label1.TabIndex = 3;
+            label1.Text = "Lịch hẹn";
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dataAppointDentist);
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.txtCurrDate);
-            this.groupBox1.Controls.Add(this.btnToday);
-            this.groupBox1.Controls.Add(this.btnTommorow);
-            this.groupBox1.Controls.Add(this.btnYesterday);
-            this.groupBox1.Controls.Add(this.txtNameDentist);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.txtDenID);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(20, 71);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1269, 502);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
+            groupBox1.Controls.Add(dataAppointmentDentist);
+            groupBox1.Controls.Add(button3);
+            groupBox1.Controls.Add(txtCurrDate);
+            groupBox1.Controls.Add(btnToday);
+            groupBox1.Controls.Add(btnTommorow);
+            groupBox1.Controls.Add(btnYesterday);
+            groupBox1.Controls.Add(txtNameDentist);
+            groupBox1.Controls.Add(label8);
+            groupBox1.Controls.Add(txtDenID);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Location = new Point(20, 89);
+            groupBox1.Margin = new Padding(3, 4, 3, 4);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Padding = new Padding(3, 4, 3, 4);
+            groupBox1.Size = new Size(1269, 628);
+            groupBox1.TabIndex = 4;
+            groupBox1.TabStop = false;
+            groupBox1.Enter += groupBox1_Enter;
             // 
-            // dataAppointDentist
+            // dataAppointmentDentist
             // 
-            this.dataAppointDentist.AllowUserToAddRows = false;
-            this.dataAppointDentist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataAppointDentist.Location = new System.Drawing.Point(11, 159);
-            this.dataAppointDentist.Name = "dataAppointDentist";
-            this.dataAppointDentist.ReadOnly = true;
-            this.dataAppointDentist.RowHeadersVisible = false;
-            this.dataAppointDentist.RowHeadersWidth = 51;
-            this.dataAppointDentist.RowTemplate.Height = 24;
-            this.dataAppointDentist.Size = new System.Drawing.Size(1243, 337);
-            this.dataAppointDentist.TabIndex = 21;
+            dataAppointmentDentist.AllowUserToAddRows = false;
+            dataAppointmentDentist.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataAppointmentDentist.Location = new Point(11, 199);
+            dataAppointmentDentist.Margin = new Padding(3, 4, 3, 4);
+            dataAppointmentDentist.Name = "dataAppointmentDentist";
+            dataAppointmentDentist.ReadOnly = true;
+            dataAppointmentDentist.RowHeadersVisible = false;
+            dataAppointmentDentist.RowHeadersWidth = 51;
+            dataAppointmentDentist.RowTemplate.Height = 24;
+            dataAppointmentDentist.Size = new Size(1243, 421);
+            dataAppointmentDentist.TabIndex = 21;
             // 
             // button3
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.Location = new System.Drawing.Point(1056, 102);
-            this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.button3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button3.Size = new System.Drawing.Size(207, 46);
-            this.button3.TabIndex = 20;
-            this.button3.Text = "Chọn Ngày";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            button3.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button3.Image = (Image)resources.GetObject("button3.Image");
+            button3.ImageAlign = ContentAlignment.MiddleRight;
+            button3.Location = new Point(1056, 128);
+            button3.Margin = new Padding(3, 4, 3, 4);
+            button3.Name = "button3";
+            button3.Padding = new Padding(4, 0, 4, 0);
+            button3.RightToLeft = RightToLeft.No;
+            button3.Size = new Size(207, 58);
+            button3.TabIndex = 20;
+            button3.Text = "Chọn Ngày";
+            button3.TextAlign = ContentAlignment.MiddleLeft;
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // txtCurrDate
             // 
-            this.txtCurrDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCurrDate.Location = new System.Drawing.Point(821, 105);
-            this.txtCurrDate.Name = "txtCurrDate";
-            this.txtCurrDate.ReadOnly = true;
-            this.txtCurrDate.Size = new System.Drawing.Size(210, 38);
-            this.txtCurrDate.TabIndex = 19;
-            this.txtCurrDate.TextChanged += new System.EventHandler(this.txtCurrDate_TextChanged);
+            txtCurrDate.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtCurrDate.Location = new Point(821, 131);
+            txtCurrDate.Margin = new Padding(3, 4, 3, 4);
+            txtCurrDate.Name = "txtCurrDate";
+            txtCurrDate.ReadOnly = true;
+            txtCurrDate.Size = new Size(210, 38);
+            txtCurrDate.TabIndex = 19;
+            txtCurrDate.TextChanged += txtCurrDate_TextChanged;
             // 
             // btnToday
             // 
-            this.btnToday.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnToday.Location = new System.Drawing.Point(170, 94);
-            this.btnToday.Name = "btnToday";
-            this.btnToday.Size = new System.Drawing.Size(146, 49);
-            this.btnToday.TabIndex = 18;
-            this.btnToday.Text = "Hôm nay";
-            this.btnToday.UseVisualStyleBackColor = true;
-            this.btnToday.Click += new System.EventHandler(this.btnToday_Click);
+            btnToday.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnToday.Location = new Point(170, 118);
+            btnToday.Margin = new Padding(3, 4, 3, 4);
+            btnToday.Name = "btnToday";
+            btnToday.Size = new Size(146, 61);
+            btnToday.TabIndex = 18;
+            btnToday.Text = "Hôm nay";
+            btnToday.UseVisualStyleBackColor = true;
+            btnToday.Click += btnToday_Click;
             // 
             // btnTommorow
             // 
-            this.btnTommorow.BackColor = System.Drawing.Color.White;
-            this.btnTommorow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTommorow.BackgroundImage")));
-            this.btnTommorow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnTommorow.ForeColor = System.Drawing.Color.Black;
-            this.btnTommorow.Location = new System.Drawing.Point(89, 94);
-            this.btnTommorow.Name = "btnTommorow";
-            this.btnTommorow.Size = new System.Drawing.Size(58, 49);
-            this.btnTommorow.TabIndex = 17;
-            this.btnTommorow.UseVisualStyleBackColor = false;
-            this.btnTommorow.Click += new System.EventHandler(this.button2_Click);
+            btnTommorow.BackColor = Color.White;
+            btnTommorow.BackgroundImage = (Image)resources.GetObject("btnTommorow.BackgroundImage");
+            btnTommorow.BackgroundImageLayout = ImageLayout.Center;
+            btnTommorow.ForeColor = Color.Black;
+            btnTommorow.Location = new Point(89, 118);
+            btnTommorow.Margin = new Padding(3, 4, 3, 4);
+            btnTommorow.Name = "btnTommorow";
+            btnTommorow.Size = new Size(58, 61);
+            btnTommorow.TabIndex = 17;
+            btnTommorow.UseVisualStyleBackColor = false;
+            btnTommorow.Click += button2_Click;
             // 
             // btnYesterday
             // 
-            this.btnYesterday.BackColor = System.Drawing.Color.White;
-            this.btnYesterday.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnYesterday.BackgroundImage")));
-            this.btnYesterday.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnYesterday.ForeColor = System.Drawing.Color.Black;
-            this.btnYesterday.Location = new System.Drawing.Point(11, 94);
-            this.btnYesterday.Name = "btnYesterday";
-            this.btnYesterday.Size = new System.Drawing.Size(58, 49);
-            this.btnYesterday.TabIndex = 16;
-            this.btnYesterday.UseVisualStyleBackColor = false;
-            this.btnYesterday.Click += new System.EventHandler(this.button1_Click);
+            btnYesterday.BackColor = Color.White;
+            btnYesterday.BackgroundImage = (Image)resources.GetObject("btnYesterday.BackgroundImage");
+            btnYesterday.BackgroundImageLayout = ImageLayout.Center;
+            btnYesterday.ForeColor = Color.Black;
+            btnYesterday.Location = new Point(11, 118);
+            btnYesterday.Margin = new Padding(3, 4, 3, 4);
+            btnYesterday.Name = "btnYesterday";
+            btnYesterday.Size = new Size(58, 61);
+            btnYesterday.TabIndex = 16;
+            btnYesterday.UseVisualStyleBackColor = false;
+            btnYesterday.Click += button1_Click;
             // 
             // txtNameDentist
             // 
-            this.txtNameDentist.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNameDentist.Location = new System.Drawing.Point(808, 38);
-            this.txtNameDentist.Name = "txtNameDentist";
-            this.txtNameDentist.ReadOnly = true;
-            this.txtNameDentist.Size = new System.Drawing.Size(461, 34);
-            this.txtNameDentist.TabIndex = 15;
+            txtNameDentist.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNameDentist.Location = new Point(808, 48);
+            txtNameDentist.Margin = new Padding(3, 4, 3, 4);
+            txtNameDentist.Name = "txtNameDentist";
+            txtNameDentist.ReadOnly = true;
+            txtNameDentist.Size = new Size(461, 34);
+            txtNameDentist.TabIndex = 15;
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(654, 41);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(125, 29);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Tên nha sĩ";
+            label8.AutoSize = true;
+            label8.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.Location = new Point(654, 51);
+            label8.Name = "label8";
+            label8.Size = new Size(125, 29);
+            label8.TabIndex = 14;
+            label8.Text = "Tên nha sĩ";
             // 
             // txtDenID
             // 
-            this.txtDenID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDenID.Location = new System.Drawing.Point(144, 38);
-            this.txtDenID.Name = "txtDenID";
-            this.txtDenID.ReadOnly = true;
-            this.txtDenID.Size = new System.Drawing.Size(461, 34);
-            this.txtDenID.TabIndex = 13;
+            txtDenID.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDenID.Location = new Point(144, 48);
+            txtDenID.Margin = new Padding(3, 4, 3, 4);
+            txtDenID.Name = "txtDenID";
+            txtDenID.ReadOnly = true;
+            txtDenID.Size = new Size(461, 34);
+            txtDenID.TabIndex = 13;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 41);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 29);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Mã nha sĩ";
+            label3.AutoSize = true;
+            label3.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(6, 51);
+            label3.Name = "label3";
+            label3.Size = new Size(115, 29);
+            label3.TabIndex = 2;
+            label3.Text = "Mã nha sĩ";
             // 
             // AppointmentForDentist
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1301, 585);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "AppointmentForDentist";
-            this.Text = "AppointmentForDentist";
-            this.Load += new System.EventHandler(this.AppointmentForDentist_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataAppointDentist)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1299, 731);
+            Controls.Add(groupBox1);
+            Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "AppointmentForDentist";
+            Text = "AppointmentForDentist";
+            Load += AppointmentForDentist_Load;
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataAppointmentDentist).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -220,6 +231,6 @@ namespace N19_ProjectForm.GUI
         private System.Windows.Forms.Button btnToday;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox txtCurrDate;
-        private System.Windows.Forms.DataGridView dataAppointDentist;
+        private System.Windows.Forms.DataGridView dataAppointmentDentist;
     }
 }

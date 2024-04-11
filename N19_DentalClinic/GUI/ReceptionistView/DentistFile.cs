@@ -14,11 +14,14 @@ namespace N19_ProjectForm.GUI.ReceptionistView
     public partial class DentistFile : Form
     {
         private Panel panelWrapper;
-        DataInteraction data = new DataInteraction();  
-        public DentistFile(Panel panelWrapper)
+        DataInteraction data = new DataInteraction();
+        private int role;
+
+        public DentistFile(Panel panelWrapper, int role)
         {
             InitializeComponent();
             this.panelWrapper = panelWrapper;
+            this.role = role;
         }
 
         private void DentistFile_Load(object sender, EventArgs e)
@@ -31,10 +34,13 @@ namespace N19_ProjectForm.GUI.ReceptionistView
 
         private void dataDentistTable_MouseClick(object sender, MouseEventArgs e)
         {
-            if( dataDentistTable.CurrentCell.ColumnIndex == 8) {
+            if (dataDentistTable.CurrentCell.ColumnIndex == 8)
+            {
                 string DenID = dataDentistTable[1, dataDentistTable.CurrentCell.RowIndex].Value.ToString();
                 PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, DenID), panelWrapper);
-            }else if (dataDentistTable.CurrentCell.ColumnIndex == 9){
+            }
+            else if (dataDentistTable.CurrentCell.ColumnIndex == 9)
+            {
                 string DenID = dataDentistTable[1, dataDentistTable.CurrentCell.RowIndex].Value.ToString();
                 PanelInteraction.openForm(this, new AppointmentForDentist(panelWrapper, DenID), panelWrapper);
             }
@@ -55,7 +61,7 @@ namespace N19_ProjectForm.GUI.ReceptionistView
         public void updateDataGridView(string sql)
         {
             DataTable table = data.readData(sql);
-            if(table.Rows.Count>0)
+            if (table.Rows.Count > 0)
             {
                 dataDentistTable.ColumnCount = 10;
                 dataDentistTable.Columns[0].Name = "STT";
@@ -93,11 +99,11 @@ namespace N19_ProjectForm.GUI.ReceptionistView
             string sql = "select * from dentist";
             DataTable table = data.readData(sql);
             int selectIndex = cbKindSearch.SelectedIndex;
-            switch(selectIndex)
+            switch (selectIndex)
             {
                 // Tim theo ma nha si
                 case 0:
-                    if(table.Rows.Count >0)
+                    if (table.Rows.Count > 0)
                     {
                         bool flagId = true;
                         foreach (DataRow row in table.Rows)
@@ -110,7 +116,7 @@ namespace N19_ProjectForm.GUI.ReceptionistView
                                 flagId = false;
                             }
                         }
-                        if(flagId)
+                        if (flagId)
                         {
                             MessageBox.Show("Không có mã nha sĩ này");
                         }
@@ -118,16 +124,21 @@ namespace N19_ProjectForm.GUI.ReceptionistView
                     break;
                 // Tim theo ten nha si
                 case 1:
-                    
+
                     string sqlFindByName = "select * from dentist where name like N'%" + txtSearch.Text + "%'";
                     clearDataGridView(dataDentistTable);
                     updateDataGridView(sqlFindByName);
-                    
+
                     break;
                 default:
                     MessageBox.Show("Vui lòng chọn loại tìm kiếm");
                     break;
             }
+        }
+
+        private void btnCreateDentist_Click(object sender, EventArgs e)
+        {
+            PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, "", 2, "create"), panelWrapper);
         }
     }
 }

@@ -61,7 +61,7 @@ namespace N19_ProjectForm.GUI.ReceptionistView
 
         private void btnDentistManagement_Click(object sender, EventArgs e)
         {
-            PanelInteraction.loadForm(new DentistFile(pnShowContent), pnShowContent);
+            PanelInteraction.loadForm(new DentistFile(pnShowContent, 2), pnShowContent);
             ColorMarker.ButtonColor(btnCreateAppointment, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnDentistManagement, "DBAF09", "000000");
             ColorMarker.ButtonColor(btnPatientProfile, "0918DB", "ffffff");

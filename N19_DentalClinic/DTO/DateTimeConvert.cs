@@ -13,6 +13,13 @@ namespace N19_ProjectForm.DAO
             DateTime myDateTime = Convert.ToDateTime(day);
             return myDateTime.Date.ToString("dd/MM/yyyy");
         }
+
+        public static string convertMDY(string day)
+        {
+            DateTime myDateTime = Convert.ToDateTime(day);
+            return myDateTime.Date.ToString("MM/dd/yyyy");
+        }
+
         public static string convertHMS(string day)
         {
             DateTime myDateTime = Convert.ToDateTime(day);

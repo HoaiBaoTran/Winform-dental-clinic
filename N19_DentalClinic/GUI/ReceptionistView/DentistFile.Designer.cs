@@ -28,89 +28,133 @@ namespace N19_ProjectForm.GUI.ReceptionistView
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataDentistTable = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.cbKindSearch = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataDentistTable)).BeginInit();
-            this.SuspendLayout();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DentistFile));
+            dataDentistTable = new DataGridView();
+            label1 = new Label();
+            txtSearch = new TextBox();
+            btnSearch = new Button();
+            cbKindSearch = new ComboBox();
+            btnCreateDentist = new Button();
+            ((System.ComponentModel.ISupportInitialize)dataDentistTable).BeginInit();
+            SuspendLayout();
             // 
             // dataDentistTable
             // 
-            this.dataDentistTable.AllowUserToAddRows = false;
-            this.dataDentistTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataDentistTable.Location = new System.Drawing.Point(0, 136);
-            this.dataDentistTable.Name = "dataDentistTable";
-            this.dataDentistTable.ReadOnly = true;
-            this.dataDentistTable.RowHeadersVisible = false;
-            this.dataDentistTable.RowHeadersWidth = 51;
-            this.dataDentistTable.RowTemplate.Height = 24;
-            this.dataDentistTable.Size = new System.Drawing.Size(1301, 449);
-            this.dataDentistTable.TabIndex = 0;
-            this.dataDentistTable.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataDentistTable_MouseClick);
+            dataDentistTable.AllowUserToAddRows = false;
+            dataDentistTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataDentistTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataDentistTable.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataDentistTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataDentistTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.Padding = new Padding(2);
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataDentistTable.DefaultCellStyle = dataGridViewCellStyle2;
+            dataDentistTable.Location = new Point(44, 170);
+            dataDentistTable.Margin = new Padding(3, 4, 3, 4);
+            dataDentistTable.Name = "dataDentistTable";
+            dataDentistTable.ReadOnly = true;
+            dataDentistTable.RowHeadersVisible = false;
+            dataDentistTable.RowHeadersWidth = 51;
+            dataDentistTable.RowTemplate.Height = 24;
+            dataDentistTable.Size = new Size(1375, 667);
+            dataDentistTable.TabIndex = 0;
+            dataDentistTable.MouseClick += dataDentistTable_MouseClick;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(328, 46);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Danh sách nha sĩ";
+            label1.AutoSize = true;
+            label1.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.ControlText;
+            label1.Location = new Point(12, 11);
+            label1.Name = "label1";
+            label1.Size = new Size(328, 46);
+            label1.TabIndex = 1;
+            label1.Text = "Danh sách nha sĩ";
             // 
             // txtSearch
             // 
-            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(20, 73);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(235, 38);
-            this.txtSearch.TabIndex = 2;
+            txtSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSearch.Location = new Point(20, 91);
+            txtSearch.Margin = new Padding(3, 4, 3, 4);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(235, 38);
+            txtSearch.TabIndex = 2;
             // 
             // btnSearch
             // 
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSearch.Location = new System.Drawing.Point(525, 69);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(196, 44);
-            this.btnSearch.TabIndex = 3;
-            this.btnSearch.Text = "Tìm kiếm";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            btnSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSearch.ImageAlign = ContentAlignment.MiddleRight;
+            btnSearch.Location = new Point(525, 86);
+            btnSearch.Margin = new Padding(3, 4, 3, 4);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(196, 55);
+            btnSearch.TabIndex = 3;
+            btnSearch.Text = "Tìm kiếm";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // cbKindSearch
             // 
-            this.cbKindSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbKindSearch.FormattingEnabled = true;
-            this.cbKindSearch.Items.AddRange(new object[] {
-            "Mã nha sĩ",
-            "Tên nha sĩ"});
-            this.cbKindSearch.Location = new System.Drawing.Point(282, 72);
-            this.cbKindSearch.Name = "cbKindSearch";
-            this.cbKindSearch.Size = new System.Drawing.Size(212, 39);
-            this.cbKindSearch.TabIndex = 4;
+            cbKindSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbKindSearch.FormattingEnabled = true;
+            cbKindSearch.Items.AddRange(new object[] { "Mã nha sĩ", "Tên nha sĩ" });
+            cbKindSearch.Location = new Point(282, 90);
+            cbKindSearch.Margin = new Padding(3, 4, 3, 4);
+            cbKindSearch.Name = "cbKindSearch";
+            cbKindSearch.Size = new Size(212, 39);
+            cbKindSearch.TabIndex = 4;
+            // 
+            // btnCreateDentist
+            // 
+            btnCreateDentist.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnCreateDentist.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCreateDentist.Image = (Image)resources.GetObject("btnCreateDentist.Image");
+            btnCreateDentist.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCreateDentist.Location = new Point(1201, 75);
+            btnCreateDentist.Margin = new Padding(3, 4, 3, 4);
+            btnCreateDentist.Name = "btnCreateDentist";
+            btnCreateDentist.Size = new Size(218, 66);
+            btnCreateDentist.TabIndex = 9;
+            btnCreateDentist.Text = "Thêm nha sĩ";
+            btnCreateDentist.TextAlign = ContentAlignment.MiddleRight;
+            btnCreateDentist.UseVisualStyleBackColor = true;
+            btnCreateDentist.Click += btnCreateDentist_Click;
             // 
             // DentistFile
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1301, 585);
-            this.Controls.Add(this.cbKindSearch);
-            this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataDentistTable);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "DentistFile";
-            this.Text = "DentistFile";
-            this.Load += new System.EventHandler(this.DentistFile_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataDentistTable)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1450, 850);
+            Controls.Add(btnCreateDentist);
+            Controls.Add(cbKindSearch);
+            Controls.Add(btnSearch);
+            Controls.Add(txtSearch);
+            Controls.Add(label1);
+            Controls.Add(dataDentistTable);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "DentistFile";
+            Text = "DentistFile";
+            Load += DentistFile_Load;
+            ((System.ComponentModel.ISupportInitialize)dataDentistTable).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -120,5 +164,6 @@ namespace N19_ProjectForm.GUI.ReceptionistView
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox cbKindSearch;
+        private Button btnCreateDentist;
     }
 }
