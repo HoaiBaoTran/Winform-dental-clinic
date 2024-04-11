@@ -18,5 +18,11 @@ namespace N19_ProjectForm.DAO
             DateTime myDateTime = Convert.ToDateTime(day);
             return myDateTime.Date.ToString("hh:mm:ss");
         }
+
+        public static string convertSqlTime(string day)
+        {
+            DateTime myDateTime = Convert.ToDateTime(day);
+            return myDateTime.Date.ToString("yyyy-MM-dd hh:mm:ss");
+        }
     }
 }

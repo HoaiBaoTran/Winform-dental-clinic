@@ -55,5 +55,20 @@ namespace N19_ProjectForm.DAO
             conn.Dispose();
         }
 
+        public DataTable getDataTableDenByPat(string procName, string patID)
+        {
+            DataTable dt = new DataTable();
+            openConnection();
+            SqlCommand cmd = new SqlCommand(procName, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@PatID", SqlDbType.VarChar).Value = patID;
+            using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+            {
+                da.Fill(dt);
+            }
+            closeConnect();
+            return dt;
+        }
+
     }
 }
