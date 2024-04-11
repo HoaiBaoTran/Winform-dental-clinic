@@ -15,7 +15,8 @@ namespace N19_DentalClinic
             ApplicationConfiguration.Initialize();
             //Application.Run(new Form1());
             // -- Test ManagePatientFornm
-            Application.Run(new ManageAppointmentBookingForm());
+            //Application.Run(new ManageAppointmentBookingForm());
+            Application.Run(new ManageMedicineForm());
         }
     }
 }
