@@ -16,5 +16,10 @@ namespace N19_DentalClinic.GUI.AdminView
         {
             InitializeComponent();
         }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

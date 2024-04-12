@@ -34,24 +34,30 @@ namespace N19_DentalClinic.GUI.DentistView
             this.role = role;
         }
 
-        private void DentistPrescription_Load(object sender, EventArgs e)
+        private void updateUiOnDataChange()
         {
-            dataPrescription.Rows.Clear();
-            dataPrescription.ColumnCount = 6;
-            dataPrescription.Columns[0].Name = "STT";
-            dataPrescription.Columns[1].Name = "Mã thuốc";
-            dataPrescription.Columns[2].Name = "Tên thuốc";
-            dataPrescription.Columns[3].Name = "Số lượng";
-            dataPrescription.Columns[4].Name = "Đơn vị";
-            dataPrescription.Columns[5].Name = "Ghi chú";
-            comboBoxPatientLoad();
-
             string sql = @$"Select pd.materialID, ma.name, pd.quantity, ma.CalUnit, pd.note
                             from Prescription_Detail pd
                             join Material ma
                             on ma.materialID = pd.materialID
                             where pd.PresID = '{presId}'";
             updateDataGridView(sql);
+        }
+
+        private void DentistPrescription_Load(object sender, EventArgs e)
+        {
+            dataPrescription.Rows.Clear();
+            dataPrescription.ColumnCount = 7;
+            dataPrescription.Columns[0].Name = "STT";
+            dataPrescription.Columns[1].Name = "Mã thuốc";
+            dataPrescription.Columns[2].Name = "Tên thuốc";
+            dataPrescription.Columns[3].Name = "Số lượng";
+            dataPrescription.Columns[4].Name = "Đơn vị";
+            dataPrescription.Columns[5].Name = "Ghi chú";
+            dataPrescription.Columns[6].Name = "Xóa";
+            comboBoxPatientLoad();
+
+            updateUiOnDataChange();
 
         }
 
@@ -81,7 +87,8 @@ namespace N19_DentalClinic.GUI.DentistView
                         (string)row["name"],
                         ((int)row["quantity"]).ToString(),
                         (string)row["CalUnit"],
-                        (string)row["note"]
+                        (string)row["note"],
+                        "Xóa"
                     };
                     dataPrescription.Rows.Add(rowString);
                     countRow++;
@@ -96,12 +103,7 @@ namespace N19_DentalClinic.GUI.DentistView
             AddMedicineRow addMedicineRow = new AddMedicineRow(presId);
             if (addMedicineRow.ShowDialog() == DialogResult.OK)
             {
-                string sql = @$"Select pd.materialID, ma.name, pd.quantity, ma.CalUnit, pd.note
-                            from Prescription_Detail pd
-                            join Material ma
-                            on ma.materialID = pd.materialID
-                            where pd.PresID = '{presId}'";
-                updateDataGridView(sql);
+                updateUiOnDataChange();
             }
         }
 
@@ -174,22 +176,43 @@ namespace N19_DentalClinic.GUI.DentistView
         {
             if (dataPrescription.Rows.Count > 0)
             {
-
-                string medicineId = dataPrescription[1, dataPrescription.CurrentCell.RowIndex].Value.ToString();
-                string medicineName = dataPrescription[2, dataPrescription.CurrentCell.RowIndex].Value.ToString();
-                string quantity = dataPrescription[3, dataPrescription.CurrentCell.RowIndex].Value.ToString();
-                string calUnit = dataPrescription[4, dataPrescription.CurrentCell.RowIndex].Value.ToString();
-                string note = dataPrescription[5, dataPrescription.CurrentCell.RowIndex].Value.ToString();
-                AddMedicineRow addMedicineRow = new AddMedicineRow(presId, medicineId, medicineName, quantity, calUnit, note);
-                if (addMedicineRow.ShowDialog() == DialogResult.OK)
+                if (dataPrescription.CurrentCell.ColumnIndex == 6)
                 {
-                    string sql = @$"Select pd.materialID, ma.name, pd.quantity, ma.CalUnit, pd.note
-                            from Prescription_Detail pd
-                            join Material ma
-                            on ma.materialID = pd.materialID
-                            where pd.PresID = '{presId}'";
-                    updateDataGridView(sql);
+                    string medicineId = dataPrescription[1, dataPrescription.CurrentCell.RowIndex].Value.ToString();
+                    string medicineName = dataPrescription[2, dataPrescription.CurrentCell.RowIndex].Value.ToString();
+                    string title = "Xác nhận xóa";
+                    string message = $"Bạn có chắc muốn xóa {medicineName} với id là {medicineId}???";
+                    var confirmResult = MessageBox.Show(message, title, MessageBoxButtons.YesNo);
+
+                    if (confirmResult == DialogResult.Yes)
+                    {
+                        string sql = @$"delete from Prescription_Detail 
+                                        where PresID = '{presId}' 
+                                        and materialID = '{medicineId}'";
+                        data.changeData(sql);
+                        MessageBox.Show("Xóa thành công");
+                        updateUiOnDataChange();
+                    }
+                } 
+                else
+                {
+                    string medicineId = dataPrescription[1, dataPrescription.CurrentCell.RowIndex].Value.ToString();
+                    string medicineName = dataPrescription[2, dataPrescription.CurrentCell.RowIndex].Value.ToString();
+                    string quantity = dataPrescription[3, dataPrescription.CurrentCell.RowIndex].Value.ToString();
+                    string calUnit = dataPrescription[4, dataPrescription.CurrentCell.RowIndex].Value.ToString();
+                    string note = dataPrescription[5, dataPrescription.CurrentCell.RowIndex].Value.ToString();
+                    AddMedicineRow addMedicineRow = new AddMedicineRow(presId, medicineId, medicineName, quantity, calUnit, note);
+                    if (addMedicineRow.ShowDialog() == DialogResult.OK)
+                    {
+                        string sql = @$"Select pd.materialID, ma.name, pd.quantity, ma.CalUnit, pd.note
+                                from Prescription_Detail pd
+                                join Material ma
+                                on ma.materialID = pd.materialID
+                                where pd.PresID = '{presId}'";
+                        updateDataGridView(sql);
+                    }
                 }
+                
             }
             /*
             else if (dataPatientTable.CurrentCell.ColumnIndex == 9) // Xem thong tin benh nhan
