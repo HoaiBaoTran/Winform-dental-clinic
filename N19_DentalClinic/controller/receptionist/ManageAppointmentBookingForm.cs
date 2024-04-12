@@ -64,7 +64,7 @@ namespace N19_DentalClinic.controller.receptionist
 
         private void btnAddAppointment_Click(object sender, EventArgs e)
         {
-            AddAppointmentForm form = new AddAppointmentForm();
+            AddAppointmentForm form = new AddAppointmentForm("create", "");
             form.ShowDialog();
         }
     }

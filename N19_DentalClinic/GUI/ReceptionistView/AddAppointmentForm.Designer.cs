@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddAppointmentForm));
             label6 = new Label();
             roundPictureBox3 = new component.RoundPictureBox();
             btnExit = new component.RJButton();
@@ -37,13 +38,12 @@
             tbSignal = new TextBox();
             label2 = new Label();
             cbStatus = new ComboBox();
-            datePicker = new DateTimePicker();
-            timePicker = new DateTimePicker();
+            HMSPicker = new DateTimePicker();
             label3 = new Label();
             cbPatient = new ComboBox();
             label4 = new Label();
             tbPatientId = new TextBox();
-            btnSearch = new component.RJButton();
+            btnSearchPatId = new component.RJButton();
             btnPatientList = new component.RJButton();
             label5 = new Label();
             tbPatientName = new TextBox();
@@ -60,12 +60,14 @@
             cbFaculty = new ComboBox();
             label12 = new Label();
             tbDentistId = new TextBox();
-            rjButton1 = new component.RJButton();
+            btnSearchDenId = new component.RJButton();
             btnDentistList = new component.RJButton();
             label13 = new Label();
             tbDentistName = new TextBox();
             label14 = new Label();
             tbDentistPhoneNumber = new TextBox();
+            txtDay = new TextBox();
+            btnChooseDay = new Button();
             ((System.ComponentModel.ISupportInitialize)roundPictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)roundPictureBox2).BeginInit();
             SuspendLayout();
@@ -146,6 +148,7 @@
             btnAddAppointment.TextAlign = ContentAlignment.MiddleRight;
             btnAddAppointment.TextColor = Color.Black;
             btnAddAppointment.UseVisualStyleBackColor = false;
+            btnAddAppointment.Click += btnAddAppointment_Click;
             // 
             // label1
             // 
@@ -178,33 +181,24 @@
             // 
             // cbStatus
             // 
+            cbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cbStatus.Font = new Font("Segoe UI", 14F);
             cbStatus.FormattingEnabled = true;
-            cbStatus.Items.AddRange(new object[] { "Bệnh nhân đã đến", "Bệnh nhân chưa đến" });
+            cbStatus.Items.AddRange(new object[] { "Bệnh nhân chưa đến", "Bệnh nhân đã đến", "Cuộc hẹn kết thúc" });
             cbStatus.Location = new Point(190, 180);
             cbStatus.Name = "cbStatus";
             cbStatus.Size = new Size(312, 39);
             cbStatus.TabIndex = 32;
             // 
-            // datePicker
+            // HMSPicker
             // 
-            datePicker.CustomFormat = "dd/MM/yyyy";
-            datePicker.Font = new Font("Segoe UI", 14F);
-            datePicker.Format = DateTimePickerFormat.Custom;
-            datePicker.Location = new Point(510, 180);
-            datePicker.Name = "datePicker";
-            datePicker.Size = new Size(251, 39);
-            datePicker.TabIndex = 33;
-            // 
-            // timePicker
-            // 
-            timePicker.Font = new Font("Segoe UI", 14F);
-            timePicker.Format = DateTimePickerFormat.Time;
-            timePicker.Location = new Point(767, 180);
-            timePicker.Name = "timePicker";
-            timePicker.ShowUpDown = true;
-            timePicker.Size = new Size(245, 39);
-            timePicker.TabIndex = 34;
+            HMSPicker.Font = new Font("Segoe UI", 14F);
+            HMSPicker.Format = DateTimePickerFormat.Time;
+            HMSPicker.Location = new Point(926, 180);
+            HMSPicker.Name = "HMSPicker";
+            HMSPicker.ShowUpDown = true;
+            HMSPicker.Size = new Size(245, 39);
+            HMSPicker.TabIndex = 34;
             // 
             // label3
             // 
@@ -218,6 +212,7 @@
             // 
             // cbPatient
             // 
+            cbPatient.DropDownStyle = ComboBoxStyle.DropDownList;
             cbPatient.Font = new Font("Segoe UI", 14F);
             cbPatient.FormattingEnabled = true;
             cbPatient.Items.AddRange(new object[] { "Bệnh nhân cũ", "Bệnh nhân mới" });
@@ -225,6 +220,7 @@
             cbPatient.Name = "cbPatient";
             cbPatient.Size = new Size(251, 39);
             cbPatient.TabIndex = 36;
+            cbPatient.SelectionChangeCommitted += cbPatient_SelectionChangeCommitted;
             // 
             // label4
             // 
@@ -242,27 +238,30 @@
             tbPatientId.Location = new Point(638, 260);
             tbPatientId.Name = "tbPatientId";
             tbPatientId.PlaceholderText = "Nhập mã bệnh nhân";
+            tbPatientId.ReadOnly = true;
             tbPatientId.Size = new Size(252, 39);
             tbPatientId.TabIndex = 38;
             // 
-            // btnSearch
+            // btnSearchPatId
             // 
-            btnSearch.BackColor = Color.FromArgb(219, 175, 9);
-            btnSearch.BackgroundColor = Color.FromArgb(219, 175, 9);
-            btnSearch.BackgroundImage = Properties.Resources.search_icon;
-            btnSearch.BackgroundImageLayout = ImageLayout.Zoom;
-            btnSearch.BorderColor = Color.PaleVioletRed;
-            btnSearch.BorderRadius = 5;
-            btnSearch.BorderSize = 0;
-            btnSearch.FlatAppearance.BorderSize = 0;
-            btnSearch.FlatStyle = FlatStyle.Flat;
-            btnSearch.ForeColor = Color.White;
-            btnSearch.Location = new Point(896, 260);
-            btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(48, 39);
-            btnSearch.TabIndex = 39;
-            btnSearch.TextColor = Color.White;
-            btnSearch.UseVisualStyleBackColor = false;
+            btnSearchPatId.BackColor = Color.FromArgb(219, 175, 9);
+            btnSearchPatId.BackgroundColor = Color.FromArgb(219, 175, 9);
+            btnSearchPatId.BackgroundImage = Properties.Resources.search_icon;
+            btnSearchPatId.BackgroundImageLayout = ImageLayout.Zoom;
+            btnSearchPatId.BorderColor = Color.PaleVioletRed;
+            btnSearchPatId.BorderRadius = 5;
+            btnSearchPatId.BorderSize = 0;
+            btnSearchPatId.Enabled = false;
+            btnSearchPatId.FlatAppearance.BorderSize = 0;
+            btnSearchPatId.FlatStyle = FlatStyle.Flat;
+            btnSearchPatId.ForeColor = Color.White;
+            btnSearchPatId.Location = new Point(896, 260);
+            btnSearchPatId.Name = "btnSearchPatId";
+            btnSearchPatId.Size = new Size(50, 40);
+            btnSearchPatId.TabIndex = 39;
+            btnSearchPatId.TextColor = Color.White;
+            btnSearchPatId.UseVisualStyleBackColor = false;
+            btnSearchPatId.Click += btnSearchPatId_Click;
             // 
             // btnPatientList
             // 
@@ -271,6 +270,7 @@
             btnPatientList.BorderColor = Color.PaleVioletRed;
             btnPatientList.BorderRadius = 10;
             btnPatientList.BorderSize = 0;
+            btnPatientList.Enabled = false;
             btnPatientList.FlatAppearance.BorderSize = 0;
             btnPatientList.FlatStyle = FlatStyle.Flat;
             btnPatientList.Font = new Font("Segoe UI", 14F);
@@ -299,6 +299,7 @@
             tbPatientName.Location = new Point(190, 340);
             tbPatientName.Name = "tbPatientName";
             tbPatientName.PlaceholderText = "Nhập tên bệnh nhân";
+            tbPatientName.ReadOnly = true;
             tbPatientName.Size = new Size(345, 39);
             tbPatientName.TabIndex = 42;
             // 
@@ -315,6 +316,7 @@
             // rbMale
             // 
             rbMale.AutoSize = true;
+            rbMale.Enabled = false;
             rbMale.Font = new Font("Segoe UI", 14F);
             rbMale.Location = new Point(703, 340);
             rbMale.Name = "rbMale";
@@ -327,6 +329,7 @@
             // rbFemale
             // 
             rbFemale.AutoSize = true;
+            rbFemale.Enabled = false;
             rbFemale.Font = new Font("Segoe UI", 14F);
             rbFemale.Location = new Point(802, 340);
             rbFemale.Name = "rbFemale";
@@ -352,6 +355,7 @@
             tbPatientPhoneNumber.Location = new Point(941, 340);
             tbPatientPhoneNumber.Name = "tbPatientPhoneNumber";
             tbPatientPhoneNumber.PlaceholderText = "Nhập số điện thoại";
+            tbPatientPhoneNumber.ReadOnly = true;
             tbPatientPhoneNumber.Size = new Size(283, 39);
             tbPatientPhoneNumber.TabIndex = 47;
             // 
@@ -371,6 +375,7 @@
             tbPatientAddress.Location = new Point(190, 420);
             tbPatientAddress.Name = "tbPatientAddress";
             tbPatientAddress.PlaceholderText = "Nhập địa chỉ";
+            tbPatientAddress.ReadOnly = true;
             tbPatientAddress.Size = new Size(586, 39);
             tbPatientAddress.TabIndex = 49;
             // 
@@ -390,6 +395,7 @@
             tbEmail.Location = new Point(871, 420);
             tbEmail.Name = "tbEmail";
             tbEmail.PlaceholderText = "Nhập địa chỉ email";
+            tbEmail.ReadOnly = true;
             tbEmail.Size = new Size(353, 39);
             tbEmail.TabIndex = 51;
             // 
@@ -405,13 +411,14 @@
             // 
             // cbFaculty
             // 
+            cbFaculty.DropDownStyle = ComboBoxStyle.DropDownList;
             cbFaculty.Font = new Font("Segoe UI", 14F);
             cbFaculty.FormattingEnabled = true;
-            cbFaculty.Items.AddRange(new object[] { "Bệnh nhân cũ", "Bệnh nhân mới" });
             cbFaculty.Location = new Point(190, 500);
             cbFaculty.Name = "cbFaculty";
             cbFaculty.Size = new Size(251, 39);
             cbFaculty.TabIndex = 53;
+            cbFaculty.SelectedIndexChanged += cbFaculty_SelectedIndexChanged;
             // 
             // label12
             // 
@@ -429,27 +436,30 @@
             tbDentistId.Location = new Point(586, 502);
             tbDentistId.Name = "tbDentistId";
             tbDentistId.PlaceholderText = "Nhập mã nha sĩ";
+            tbDentistId.ReadOnly = true;
             tbDentistId.Size = new Size(306, 39);
             tbDentistId.TabIndex = 55;
             // 
-            // rjButton1
+            // btnSearchDenId
             // 
-            rjButton1.BackColor = Color.FromArgb(219, 175, 9);
-            rjButton1.BackgroundColor = Color.FromArgb(219, 175, 9);
-            rjButton1.BackgroundImage = Properties.Resources.search_icon;
-            rjButton1.BackgroundImageLayout = ImageLayout.Zoom;
-            rjButton1.BorderColor = Color.PaleVioletRed;
-            rjButton1.BorderRadius = 5;
-            rjButton1.BorderSize = 0;
-            rjButton1.FlatAppearance.BorderSize = 0;
-            rjButton1.FlatStyle = FlatStyle.Flat;
-            rjButton1.ForeColor = Color.White;
-            rjButton1.Location = new Point(898, 498);
-            rjButton1.Name = "rjButton1";
-            rjButton1.Size = new Size(48, 43);
-            rjButton1.TabIndex = 56;
-            rjButton1.TextColor = Color.White;
-            rjButton1.UseVisualStyleBackColor = false;
+            btnSearchDenId.BackColor = Color.FromArgb(219, 175, 9);
+            btnSearchDenId.BackgroundColor = Color.FromArgb(219, 175, 9);
+            btnSearchDenId.BackgroundImage = Properties.Resources.search_icon;
+            btnSearchDenId.BackgroundImageLayout = ImageLayout.Zoom;
+            btnSearchDenId.BorderColor = Color.PaleVioletRed;
+            btnSearchDenId.BorderRadius = 5;
+            btnSearchDenId.BorderSize = 0;
+            btnSearchDenId.Enabled = false;
+            btnSearchDenId.FlatAppearance.BorderSize = 0;
+            btnSearchDenId.FlatStyle = FlatStyle.Flat;
+            btnSearchDenId.ForeColor = Color.White;
+            btnSearchDenId.Location = new Point(898, 498);
+            btnSearchDenId.Name = "btnSearchDenId";
+            btnSearchDenId.Size = new Size(48, 43);
+            btnSearchDenId.TabIndex = 56;
+            btnSearchDenId.TextColor = Color.White;
+            btnSearchDenId.UseVisualStyleBackColor = false;
+            btnSearchDenId.Click += btnSearchDenId_Click;
             // 
             // btnDentistList
             // 
@@ -458,6 +468,7 @@
             btnDentistList.BorderColor = Color.PaleVioletRed;
             btnDentistList.BorderRadius = 10;
             btnDentistList.BorderSize = 0;
+            btnDentistList.Enabled = false;
             btnDentistList.FlatAppearance.BorderSize = 0;
             btnDentistList.FlatStyle = FlatStyle.Flat;
             btnDentistList.Font = new Font("Segoe UI", 14F);
@@ -486,6 +497,7 @@
             tbDentistName.Location = new Point(190, 580);
             tbDentistName.Name = "tbDentistName";
             tbDentistName.PlaceholderText = "Nhập tên nha sĩ";
+            tbDentistName.ReadOnly = true;
             tbDentistName.Size = new Size(346, 39);
             tbDentistName.TabIndex = 59;
             // 
@@ -505,8 +517,35 @@
             tbDentistPhoneNumber.Location = new Point(638, 578);
             tbDentistPhoneNumber.Name = "tbDentistPhoneNumber";
             tbDentistPhoneNumber.PlaceholderText = "Nhập số điện thoại";
+            tbDentistPhoneNumber.ReadOnly = true;
             tbDentistPhoneNumber.Size = new Size(283, 39);
             tbDentistPhoneNumber.TabIndex = 61;
+            // 
+            // txtDay
+            // 
+            txtDay.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDay.Location = new Point(508, 180);
+            txtDay.Name = "txtDay";
+            txtDay.ReadOnly = true;
+            txtDay.Size = new Size(281, 38);
+            txtDay.TabIndex = 62;
+            // 
+            // btnChooseDay
+            // 
+            btnChooseDay.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnChooseDay.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnChooseDay.Image = (Image)resources.GetObject("btnChooseDay.Image");
+            btnChooseDay.ImageAlign = ContentAlignment.MiddleRight;
+            btnChooseDay.Location = new Point(814, 177);
+            btnChooseDay.Margin = new Padding(3, 4, 3, 4);
+            btnChooseDay.Name = "btnChooseDay";
+            btnChooseDay.Padding = new Padding(4, 0, 4, 0);
+            btnChooseDay.RightToLeft = RightToLeft.No;
+            btnChooseDay.Size = new Size(55, 48);
+            btnChooseDay.TabIndex = 63;
+            btnChooseDay.TextAlign = ContentAlignment.MiddleLeft;
+            btnChooseDay.UseVisualStyleBackColor = true;
+            btnChooseDay.Click += btnChooseDay_Click;
             // 
             // AddAppointmentForm
             // 
@@ -514,12 +553,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1282, 653);
+            Controls.Add(btnChooseDay);
+            Controls.Add(txtDay);
             Controls.Add(tbDentistPhoneNumber);
             Controls.Add(label14);
             Controls.Add(tbDentistName);
             Controls.Add(label13);
             Controls.Add(btnDentistList);
-            Controls.Add(rjButton1);
+            Controls.Add(btnSearchDenId);
             Controls.Add(tbDentistId);
             Controls.Add(label12);
             Controls.Add(cbFaculty);
@@ -536,13 +577,12 @@
             Controls.Add(tbPatientName);
             Controls.Add(label5);
             Controls.Add(btnPatientList);
-            Controls.Add(btnSearch);
+            Controls.Add(btnSearchPatId);
             Controls.Add(tbPatientId);
             Controls.Add(label4);
             Controls.Add(cbPatient);
             Controls.Add(label3);
-            Controls.Add(timePicker);
-            Controls.Add(datePicker);
+            Controls.Add(HMSPicker);
             Controls.Add(cbStatus);
             Controls.Add(label2);
             Controls.Add(tbSignal);
@@ -554,6 +594,7 @@
             Controls.Add(label6);
             Name = "AddAppointmentForm";
             Text = "AddAppointmentForm";
+            Load += AddAppointmentForm_Load;
             ((System.ComponentModel.ISupportInitialize)roundPictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)roundPictureBox2).EndInit();
             ResumeLayout(false);
@@ -571,13 +612,12 @@
         private TextBox tbSignal;
         private Label label2;
         private ComboBox cbStatus;
-        private DateTimePicker datePicker;
-        private DateTimePicker timePicker;
+        private DateTimePicker HMSPicker;
         private Label label3;
         private ComboBox cbPatient;
         private Label label4;
         private TextBox tbPatientId;
-        private component.RJButton btnSearch;
+        private component.RJButton btnSearchPatId;
         private component.RJButton btnPatientList;
         private Label label5;
         private TextBox tbPatientName;
@@ -594,11 +634,13 @@
         private ComboBox cbFaculty;
         private Label label12;
         private TextBox tbDentistId;
-        private component.RJButton rjButton1;
+        private component.RJButton btnSearchDenId;
         private component.RJButton btnDentistList;
         private Label label13;
         private TextBox tbDentistName;
         private Label label14;
         private TextBox tbDentistPhoneNumber;
+        private TextBox txtDay;
+        private Button btnChooseDay;
     }
 }

@@ -17,12 +17,14 @@ namespace N19_ProjectForm.GUI.ReceptionistView
 {
     public partial class Receptionist : Form
     {
+        private int role;
         public Receptionist()
         {
             InitializeComponent();
+            this.role = 2;
         }
 
-        private void Receptionist_Load(object sender, EventArgs e)
+        public void Receptionist_Load(object sender, EventArgs e)
         {
             btnCreateAppointment.FlatAppearance.BorderSize = 0;
             btnDentistManagement.FlatAppearance.BorderSize = 0;
@@ -37,13 +39,13 @@ namespace N19_ProjectForm.GUI.ReceptionistView
             ColorMarker.ButtonColor(btnCreateBill, "0918DB", "ffffff");
             panelSidebar.BackColor = ColorTranslator.FromHtml("#323886");
 
-            PanelInteraction.loadForm(new ManageAppointment(pnShowContent), pnShowContent);
+            PanelInteraction.loadForm(new ManageAppointment(role), pnShowContent);
         }
 
 
         private void btnCreateAppointment_Click(object sender, EventArgs e)
         {
-            PanelInteraction.loadForm(new ManageAppointment(pnShowContent), pnShowContent);
+            PanelInteraction.loadForm(new ManageAppointment(role), pnShowContent);
             ColorMarker.ButtonColor(btnCreateAppointment, "DBAF09", "000000");
             ColorMarker.ButtonColor(btnDentistManagement, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnPatientProfile, "0918DB", "ffffff");
@@ -52,7 +54,7 @@ namespace N19_ProjectForm.GUI.ReceptionistView
 
         private void btnCreateBill_Click(object sender, EventArgs e)
         {
-            PanelInteraction.loadForm(new ManageBill(pnShowContent, 2), pnShowContent);
+            PanelInteraction.loadForm(new ManageBill(pnShowContent, role), pnShowContent);
             ColorMarker.ButtonColor(btnCreateAppointment, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnDentistManagement, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnPatientProfile, "0918DB", "ffffff");
@@ -61,14 +63,14 @@ namespace N19_ProjectForm.GUI.ReceptionistView
 
         private void btnDentistManagement_Click(object sender, EventArgs e)
         {
-            PanelInteraction.loadForm(new DentistFile(pnShowContent, 2), pnShowContent);
+            PanelInteraction.loadForm(new DentistFile(pnShowContent, role), pnShowContent);
             ColorMarker.ButtonColor(btnCreateAppointment, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnDentistManagement, "DBAF09", "000000");
             ColorMarker.ButtonColor(btnPatientProfile, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnCreateBill, "0918DB", "ffffff");
         }
 
-        private void btnPatientProfile_Click(object sender, EventArgs e)
+        public void btnPatientProfile_Click(object sender, EventArgs e)
         {
             PanelInteraction.loadForm(new PatientFile(pnShowContent, 2), pnShowContent);
             ColorMarker.ButtonColor(btnCreateAppointment, "0918DB", "ffffff");

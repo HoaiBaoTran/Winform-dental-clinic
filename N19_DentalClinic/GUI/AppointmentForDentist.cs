@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using N19_ProjectForm.DAO;
+using N19_ProjectForm.GUI.ReceptionistView;
 
 namespace N19_ProjectForm.GUI
 {
@@ -21,7 +22,7 @@ namespace N19_ProjectForm.GUI
         private int role;
         private string sqlTime;
         private string DenID;
-        public AppointmentForDentist(Panel panelWrapper, string denID,int role, string interaction)
+        public AppointmentForDentist(Panel panelWrapper, string denID, int role, string interaction)
         {
             InitializeComponent();
             this.panelWrapper = panelWrapper;
@@ -43,6 +44,7 @@ namespace N19_ProjectForm.GUI
             initTableAppointment();
         }
 
+        //Sử dụng sau 
         public void updateDataGridView(string sql)
         {
             Dictionary<string, string> convertState = new Dictionary<string, string>();
@@ -53,22 +55,24 @@ namespace N19_ProjectForm.GUI
             DataTable table = data.readData(sql);
             if (table.Rows.Count > 0)
             {
-                dataAppointmentDentist.ColumnCount = 6;
+                dataAppointmentDentist.ColumnCount = 8;
                 dataAppointmentDentist.Columns[0].Name = "STT";
                 dataAppointmentDentist.Columns[1].Name = "Mã lịch hẹn";
                 dataAppointmentDentist.Columns[2].Name = "Tên nha sĩ";
                 dataAppointmentDentist.Columns[3].Name = "Tên bệnh nhân";
                 dataAppointmentDentist.Columns[4].Name = "Triệu chứng";
-                dataAppointmentDentist.Columns[5].Name = "Tình trạng";      
-          
+                dataAppointmentDentist.Columns[5].Name = "Tình trạng";
+                dataAppointmentDentist.Columns[6].Name = "Chỉnh sửa";
+                dataAppointmentDentist.Columns[7].Name = "Xóa";
+
                 int countRow = 1;
                 foreach (DataRow row in table.Rows)
                 {
-                    string[] rowString = new string[] { 
-                        countRow.ToString(), 
-                        (string)row["ApID"], 
-                        (string)row["patient_name"], 
-                        (string)row["dentist_name"], 
+                    string[] rowString = new string[] {
+                        countRow.ToString(),
+                        (string)row["ApID"],
+                        (string)row["patient_name"],
+                        (string)row["dentist_name"],
                         (string)row["symptom"],
                         convertState[(string)row["stateAp"]]
                     };
@@ -102,7 +106,7 @@ namespace N19_ProjectForm.GUI
             }
             finally
             {
-                dtgv.AllowUserToAddRows = true;
+                dtgv.AllowUserToAddRows = false;
             }
         }
 
@@ -128,13 +132,15 @@ namespace N19_ProjectForm.GUI
             DataTable table = data.readData(sql);
             if (table.Rows.Count > 0)
             {
-                dataAppointmentDentist.ColumnCount = 6;
+                dataAppointmentDentist.ColumnCount = 8;
                 dataAppointmentDentist.Columns[0].Name = "STT";
                 dataAppointmentDentist.Columns[1].Name = "Giờ hẹn";
                 dataAppointmentDentist.Columns[2].Name = "Phụ tá";
                 dataAppointmentDentist.Columns[3].Name = "Bệnh nhân";
                 dataAppointmentDentist.Columns[4].Name = "Triệu chứng bệnh nhân";
                 dataAppointmentDentist.Columns[5].Name = "Trạng thái";
+                dataAppointmentDentist.Columns[6].Name = "Chỉnh sửa";
+                dataAppointmentDentist.Columns[7].Name = "Xóa";
                 int countRow = 1;
                 foreach (DataRow row in table.Rows)
                 {
@@ -142,7 +148,7 @@ namespace N19_ProjectForm.GUI
                     // Cap nhat ma va ten nha si
                     if ((bool)row["able"] == true)
                     {
-                        
+
 
                         if (tableDentist.Rows.Count > 0)
                         {
@@ -197,7 +203,16 @@ namespace N19_ProjectForm.GUI
                                 break;
                         }
 
-                        string[] rowAppString = new string[] { countRow.ToString(), appTime, assisstantName, patientName, symptom, state };
+                        string[] rowAppString = new string[] {
+                            countRow.ToString(),
+                            appTime,
+                            assisstantName,
+                            patientName,
+                            symptom,
+                            state,
+                            "Chỉnh sửa",
+                            "Xóa"
+                        };
                         dataAppointmentDentist.Rows.Add(rowAppString);
                         countRow++;
                     }
@@ -228,6 +243,28 @@ namespace N19_ProjectForm.GUI
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataAppointmentDentist_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if(role == 1)
+            {
+                if (dataAppointmentDentist.CurrentCell.ColumnIndex == 6)
+                {
+                    //Chỉnh sửa lịch hẹn
+                    //string DenID = dataDentistTable[1, dataDentistTable.CurrentCell.RowIndex].Value.ToString();
+                    //PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, DenID, role, "view"), panelWrapper);
+                }
+                else if (dataAppointmentDentist.CurrentCell.ColumnIndex == 7)
+                {
+                    //Xóa lịch hẹn
+                    //string DenID = dataDentistTable[1, dataDentistTable.CurrentCell.RowIndex].Value.ToString();
+                    //PanelInteraction.openForm(this, new AppointmentForDentist(panelWrapper, DenID, role, "view"), panelWrapper);
+                }
+            }else
+            {
+                MessageBox.Show("Bạn không đủ ủy quyền");
+            }
         }
     }
 }

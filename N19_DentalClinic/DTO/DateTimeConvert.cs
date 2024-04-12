@@ -23,13 +23,19 @@ namespace N19_ProjectForm.DAO
         public static string convertHMS(string day)
         {
             DateTime myDateTime = Convert.ToDateTime(day);
-            return myDateTime.Date.ToString("hh:mm:ss");
+            return myDateTime.ToString($"{myDateTime:HH}:{myDateTime:mm}:{myDateTime:ss}");
         }
 
         public static string convertSqlTime(string day)
         {
             DateTime myDateTime = Convert.ToDateTime(day);
             return myDateTime.Date.ToString("yyyy-MM-dd hh:mm:ss");
+        }
+
+        public static string convertSqlTimeDay(string day)
+        {
+            DateTime myDateTime = Convert.ToDateTime(day);
+            return myDateTime.Date.ToString("yyyy-MM-dd");
         }
     }
 }

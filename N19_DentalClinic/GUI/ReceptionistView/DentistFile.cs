@@ -63,7 +63,7 @@ namespace N19_ProjectForm.GUI.ReceptionistView
             DataTable table = data.readData(sql);
             if (table.Rows.Count > 0)
             {
-                dataDentistTable.ColumnCount = 10;
+                dataDentistTable.ColumnCount = 12;
                 dataDentistTable.Columns[0].Name = "STT";
                 dataDentistTable.Columns[1].Name = "Mã nha sĩ";
                 dataDentistTable.Columns[2].Name = "Họ tên";
@@ -74,6 +74,8 @@ namespace N19_ProjectForm.GUI.ReceptionistView
                 dataDentistTable.Columns[7].Name = "Giới tính";
                 dataDentistTable.Columns[8].Name = "Thông tin chi tiết";
                 dataDentistTable.Columns[9].Name = "Xem lịch hẹn";
+                dataDentistTable.Columns[10].Name = "Chỉnh sửa";
+                dataDentistTable.Columns[11].Name = "Xóa";
                 int countRow = 1;
                 foreach (DataRow row in table.Rows)
                 {
@@ -86,7 +88,17 @@ namespace N19_ProjectForm.GUI.ReceptionistView
                     {
                         gender = "Nữ";
                     }
-                    string[] rowString = new string[] { countRow.ToString(), (string)row["DenID"], (string)row["name"], DateTimeConvert.convertDMY(row["birthday"].ToString()), (string)row["address"], (string)row["phone_number"], (string)row["email"], gender, "Thông tin chi tiết", "Lịch hẹn" };
+                    string[] rowString = new string[] { 
+                        countRow.ToString(), 
+                        (string)row["DenID"], 
+                        (string)row["name"], 
+                        DateTimeConvert.convertDMY(row["birthday"].ToString()), 
+                        (string)row["address"], (string)row["phone_number"], 
+                        (string)row["email"], gender, "Thông tin chi tiết", 
+                        "Lịch hẹn",
+                        "Chỉnh sửa",
+                        "Xóa"
+                    };
                     dataDentistTable.Rows.Add(rowString);
                     countRow++;
                 }

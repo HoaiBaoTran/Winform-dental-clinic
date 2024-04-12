@@ -28,6 +28,7 @@ namespace N19_ProjectForm.GUI
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppointmentForDentist));
             label1 = new Label();
             groupBox1 = new GroupBox();
@@ -58,6 +59,7 @@ namespace N19_ProjectForm.GUI
             // 
             // groupBox1
             // 
+            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBox1.Controls.Add(dataAppointmentDentist);
             groupBox1.Controls.Add(button3);
             groupBox1.Controls.Add(txtCurrDate);
@@ -80,7 +82,19 @@ namespace N19_ProjectForm.GUI
             // dataAppointmentDentist
             // 
             dataAppointmentDentist.AllowUserToAddRows = false;
+            dataAppointmentDentist.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataAppointmentDentist.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataAppointmentDentist.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataAppointmentDentist.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.Padding = new Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataAppointmentDentist.DefaultCellStyle = dataGridViewCellStyle1;
             dataAppointmentDentist.Location = new Point(11, 199);
             dataAppointmentDentist.Margin = new Padding(3, 4, 3, 4);
             dataAppointmentDentist.Name = "dataAppointmentDentist";
@@ -90,13 +104,15 @@ namespace N19_ProjectForm.GUI
             dataAppointmentDentist.RowTemplate.Height = 24;
             dataAppointmentDentist.Size = new Size(1243, 421);
             dataAppointmentDentist.TabIndex = 21;
+            dataAppointmentDentist.CellMouseClick += dataAppointmentDentist_CellMouseClick;
             // 
             // button3
             // 
+            button3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             button3.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button3.Image = (Image)resources.GetObject("button3.Image");
             button3.ImageAlign = ContentAlignment.MiddleRight;
-            button3.Location = new Point(1056, 128);
+            button3.Location = new Point(1047, 119);
             button3.Margin = new Padding(3, 4, 3, 4);
             button3.Name = "button3";
             button3.Padding = new Padding(4, 0, 4, 0);
@@ -110,8 +126,9 @@ namespace N19_ProjectForm.GUI
             // 
             // txtCurrDate
             // 
+            txtCurrDate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtCurrDate.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtCurrDate.Location = new Point(821, 131);
+            txtCurrDate.Location = new Point(771, 137);
             txtCurrDate.Margin = new Padding(3, 4, 3, 4);
             txtCurrDate.Name = "txtCurrDate";
             txtCurrDate.ReadOnly = true;
@@ -161,16 +178,18 @@ namespace N19_ProjectForm.GUI
             // 
             // txtNameDentist
             // 
+            txtNameDentist.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtNameDentist.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNameDentist.Location = new Point(808, 48);
+            txtNameDentist.Location = new Point(821, 48);
             txtNameDentist.Margin = new Padding(3, 4, 3, 4);
             txtNameDentist.Name = "txtNameDentist";
             txtNameDentist.ReadOnly = true;
-            txtNameDentist.Size = new Size(461, 34);
+            txtNameDentist.Size = new Size(433, 34);
             txtNameDentist.TabIndex = 15;
             // 
             // label8
             // 
+            label8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label8.AutoSize = true;
             label8.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.Location = new Point(654, 51);
