@@ -8,11 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using N19_ProjectForm.DAO;
-using N19_ProjectForm.GUI.ReceptionistView;
+using N19_DentalClinic.DAO;
+using N19_DentalClinic.GUI.ReceptionistView;
 using N19_DentalClinic.library;
 
-namespace N19_ProjectForm.GUI.AdminView
+namespace N19_DentalClinic.GUI.AdminView
 {
     public partial class Admin : Form
     {

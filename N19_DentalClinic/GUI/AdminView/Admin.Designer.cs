@@ -1,4 +1,4 @@
-﻿namespace N19_ProjectForm.GUI.AdminView
+﻿namespace N19_DentalClinic.GUI.AdminView
 {
     partial class Admin
     {

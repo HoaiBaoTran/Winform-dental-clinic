@@ -1,4 +1,4 @@
-namespace N19_ProjectForm.GUI.ReceptionistView
+namespace N19_DentalClinic.GUI.ReceptionistView
 {
     partial class DentistFile
     {
@@ -30,6 +30,8 @@ namespace N19_ProjectForm.GUI.ReceptionistView
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DentistFile));
             dataDentistTable = new DataGridView();
             label1 = new Label();
@@ -43,32 +45,43 @@ namespace N19_ProjectForm.GUI.ReceptionistView
             // dataDentistTable
             // 
             dataDentistTable.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.Padding = new Padding(2);
+            dataDentistTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataDentistTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataDentistTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataDentistTable.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.ActiveCaption;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataDentistTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataDentistTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.BackColor = SystemColors.ActiveCaption;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle2.Padding = new Padding(2);
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataDentistTable.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataDentistTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataDentistTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.Padding = new Padding(2);
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dataDentistTable.DefaultCellStyle = dataGridViewCellStyle3;
             dataDentistTable.Location = new Point(44, 170);
             dataDentistTable.Margin = new Padding(3, 4, 3, 4);
             dataDentistTable.Name = "dataDentistTable";
             dataDentistTable.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(18, 219, 78);
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dataDentistTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dataDentistTable.RowHeadersVisible = false;
             dataDentistTable.RowHeadersWidth = 51;
             dataDentistTable.RowTemplate.Height = 24;

@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using N19_ProjectForm.DAO;
+using N19_DentalClinic.DAO;
 
-namespace N19_ProjectForm.GUI
+namespace N19_DentalClinic.GUI
 {
     public partial class AppointmentForDentist : Form
     {

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace N19_ProjectForm.DAO
+namespace N19_DentalClinic.DAO
 {
     class EclipseControl : Component
     {

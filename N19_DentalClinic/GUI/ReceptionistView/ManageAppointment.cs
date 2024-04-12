@@ -1,6 +1,6 @@
 ﻿
 using N19_DentalClinic.controller.receptionist;
-using N19_ProjectForm.DAO;
+using N19_DentalClinic.DAO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

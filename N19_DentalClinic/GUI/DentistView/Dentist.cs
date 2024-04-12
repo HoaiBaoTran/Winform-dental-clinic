@@ -1,3 +1,6 @@
+using N19_DentalClinic.DAO;
+using N19_DentalClinic.GUI.ReceptionistView;
+using N19_DentalClinic.library;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace N19_ProjectForm.GUI.DentistView
+namespace N19_DentalClinic.GUI.DentistView
 {
     public partial class Dentist : Form
     {
@@ -21,43 +24,47 @@ namespace N19_ProjectForm.GUI.DentistView
         {
             btnCalendar.FlatAppearance.BorderSize = 0;
             btnPrescription.FlatAppearance.BorderSize = 0;
-            btnPatientFiles.FlatAppearance.BorderSize = 0;
+            btnPatientProfile.FlatAppearance.BorderSize = 0;
             this.BackColor = ColorTranslator.FromHtml("#323886");
-
-            // Tai mau giao dien
-            /*
-            ColorMaker.ButtonColor(btnCalendar, "0918DB", "ffffff");
-            ColorMaker.ButtonColor(btnPrescription, "0918DB", "ffffff");
-            ColorMaker.ButtonColor(btnPatientFiles, "0918DB", "ffffff");
-            */
             pnSidebar.BackColor = ColorTranslator.FromHtml("#323886");
+
+         
+            ColorMarker.ButtonColor(btnPatientProfile, "DBAF09", "000000");
+            ColorMarker.ButtonColor(btnPrescription, "0918DB", "ffffff");
+            ColorMarker.ButtonColor(btnCalendar, "0918DB", "ffffff");
+
+            PanelInteraction.loadForm(new PatientFile(pnShowContent, 3), pnShowContent);
         }
 
-        private void btnPatientFiles_Click(object sender, EventArgs e)
+        private void btnPatientProfile_Click(object sender, EventArgs e)
         {
-            /*
-            ColorMaker.ButtonColor(btnPatientFiles, "DBAF09", "000000");
-            ColorMaker.ButtonColor(btnPrescription, "0918DB", "ffffff");
-            ColorMaker.ButtonColor(btnCalendar, "0918DB", "ffffff");
-            */
+            
+            ColorMarker.ButtonColor(btnPatientProfile, "DBAF09", "000000");
+            ColorMarker.ButtonColor(btnPrescription, "0918DB", "ffffff");
+            ColorMarker.ButtonColor(btnCalendar, "0918DB", "ffffff");
+
+            PanelInteraction.loadForm(new PatientFile(pnShowContent, 3), pnShowContent);
         }
 
         private void btnCalendar_Click(object sender, EventArgs e)
         {
-            /*
-            ColorMaker.ButtonColor(btnCalendar, "DBAF09", "000000");
-            ColorMaker.ButtonColor(btnPrescription, "0918DB", "ffffff");
-            ColorMaker.ButtonColor(btnPatientFiles, "0918DB", "ffffff");
-            */
+            
+            ColorMarker.ButtonColor(btnCalendar, "DBAF09", "000000");
+            ColorMarker.ButtonColor(btnPrescription, "0918DB", "ffffff");
+            ColorMarker.ButtonColor(btnPatientProfile, "0918DB", "ffffff");
+
+            PanelInteraction.loadForm(new DentistSchedule(pnShowContent, 3), pnShowContent);
         }
 
         private void btnPrescription_Click(object sender, EventArgs e)
         {
-            /*
-            ColorMaker.ButtonColor(btnPrescription, "DBAF09", "000000");
-            ColorMaker.ButtonColor(btnCalendar, "0918DB", "ffffff");
-            ColorMaker.ButtonColor(btnPatientFiles, "0918DB", "ffffff");
-            */
+            
+            ColorMarker.ButtonColor(btnPrescription, "DBAF09", "000000");
+            ColorMarker.ButtonColor(btnCalendar, "0918DB", "ffffff");
+            ColorMarker.ButtonColor(btnPatientProfile, "0918DB", "ffffff");
+
+            PanelInteraction.loadForm(new DentistPrescription(pnShowContent, 3), pnShowContent);
+
         }
     }
 }

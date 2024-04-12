@@ -1,4 +1,4 @@
-using N19_ProjectForm.DAO;
+using N19_DentalClinic.DAO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +13,7 @@ using N19_DentalClinic.controller.receptionist;
 using N19_DentalClinic.GUI.ReceptionistView;
 
 
-namespace N19_ProjectForm.GUI.ReceptionistView
+namespace N19_DentalClinic.GUI.ReceptionistView
 {
     public partial class Receptionist : Form
     {

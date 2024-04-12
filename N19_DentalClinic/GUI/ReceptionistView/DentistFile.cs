@@ -1,4 +1,4 @@
-using N19_ProjectForm.DAO;
+using N19_DentalClinic.DAO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace N19_ProjectForm.GUI.ReceptionistView
+namespace N19_DentalClinic.GUI.ReceptionistView
 {
     public partial class DentistFile : Form
     {
@@ -86,7 +86,17 @@ namespace N19_ProjectForm.GUI.ReceptionistView
                     {
                         gender = "Nữ";
                     }
-                    string[] rowString = new string[] { countRow.ToString(), (string)row["DenID"], (string)row["name"], DateTimeConvert.convertDMY(row["birthday"].ToString()), (string)row["address"], (string)row["phone_number"], (string)row["email"], gender, "Thông tin chi tiết", "Lịch hẹn" };
+                    string[] rowString = new string[] { 
+                        countRow.ToString(), 
+                        (string)row["DenID"], 
+                        (string)row["name"], 
+                        DateTimeConvert.convertDMY(row["birthday"].ToString()), 
+                        (string)row["address"], (string)row["phone_number"], 
+                        (string)row["email"], 
+                        gender, 
+                        "Thông tin chi tiết", 
+                        "Lịch hẹn" 
+                    };
                     dataDentistTable.Rows.Add(rowString);
                     countRow++;
                 }

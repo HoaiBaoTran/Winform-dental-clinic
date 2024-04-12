@@ -1,4 +1,4 @@
-namespace N19_ProjectForm.GUI
+namespace N19_DentalClinic.GUI
 {
     partial class AppointmentForDentist
     {

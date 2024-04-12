@@ -1,4 +1,4 @@
-﻿using N19_ProjectForm.DAO;
+﻿using N19_DentalClinic.DAO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace N19_ProjectForm.GUI.ReceptionistView
+namespace N19_DentalClinic.GUI.ReceptionistView
 {
     public partial class DentistDescriptionDetail : Form
     {

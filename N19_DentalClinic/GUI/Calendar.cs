@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Xml.Serialization;
-using N19_ProjectForm.DAO;
+using N19_DentalClinic.DAO;
 using Microsoft.Win32;
 
-namespace N19_ProjectForm.GUI
+namespace N19_DentalClinic.GUI
 {
     public partial class Calendar : Form
     {

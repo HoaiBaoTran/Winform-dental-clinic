@@ -1,4 +1,4 @@
-﻿using N19_ProjectForm.DAO;
+﻿using N19_DentalClinic.DAO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +14,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Xml.Linq;
 using N19_DentalClinic.library;
 
-namespace N19_ProjectForm.GUI
+namespace N19_DentalClinic.GUI
 {
     public partial class DeletePatient : Form
     {

@@ -1,4 +1,4 @@
-namespace N19_ProjectForm.GUI.ReceptionistView
+namespace N19_DentalClinic.GUI.ReceptionistView
 {
     partial class Receptionist
     {

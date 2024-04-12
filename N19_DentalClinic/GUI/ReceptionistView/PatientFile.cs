@@ -1,5 +1,5 @@
-﻿using N19_ProjectForm.DAO;
-using N19_ProjectForm.GUI.ReceptionistView;
+﻿using N19_DentalClinic.DAO;
+using N19_DentalClinic.GUI.ReceptionistView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace N19_ProjectForm.GUI
+namespace N19_DentalClinic.GUI
 {
     public partial class PatientFile : Form
     {
