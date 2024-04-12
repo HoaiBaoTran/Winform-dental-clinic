@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace N19_ProjectForm.DAO
+namespace N19_DentalClinic.DAO
 {
     public class PlanItem
     {

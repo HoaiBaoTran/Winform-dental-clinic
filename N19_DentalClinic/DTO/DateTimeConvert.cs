@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace N19_ProjectForm.DAO
+namespace N19_DentalClinic.DAO
 {
     public class DateTimeConvert
     {
@@ -13,10 +13,23 @@ namespace N19_ProjectForm.DAO
             DateTime myDateTime = Convert.ToDateTime(day);
             return myDateTime.Date.ToString("dd/MM/yyyy");
         }
+
+        public static string convertMDY(string day)
+        {
+            DateTime myDateTime = Convert.ToDateTime(day);
+            return myDateTime.Date.ToString("MM/dd/yyyy");
+        }
+
         public static string convertHMS(string day)
         {
             DateTime myDateTime = Convert.ToDateTime(day);
             return myDateTime.Date.ToString("hh:mm:ss");
+        }
+
+        public static string convertSqlTime(string day)
+        {
+            DateTime myDateTime = Convert.ToDateTime(day);
+            return myDateTime.Date.ToString("yyyy-MM-dd hh:mm:ss");
         }
     }
 }

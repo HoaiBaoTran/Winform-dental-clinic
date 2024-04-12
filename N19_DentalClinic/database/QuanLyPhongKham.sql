@@ -39,6 +39,7 @@ GO
 
 CREATE TABLE Material
 (
+  able BIT DEFAULT 1 NOT NULL,
   materialID VARCHAR(10) PRIMARY KEY,
   name NVARCHAR(50) NOT NULL,
   AdminID VARCHAR(10) NOT NULL,
@@ -66,6 +67,7 @@ GO
 
 CREATE TABLE ConsumableMaterial
 (
+  able BIT DEFAULT 1 NOT NULL,
   expiration_date DATETIME NOT NULL,
   typeConMaterial NVARCHAR(40) NOT NULL,
   materialID VARCHAR(10) PRIMARY KEY ,
@@ -75,6 +77,7 @@ GO
 
 CREATE TABLE Medicine
 (
+	able BIT DEFAULT 1 NOT NULL,
 	price INT NOT NULL,
 	materialID VARCHAR(10) PRIMARY KEY ,
 	FOREIGN KEY (materialID) REFERENCES ConsumableMaterial(materialID)
@@ -82,6 +85,7 @@ CREATE TABLE Medicine
 
 CREATE TABLE FixedMaterial
 (
+  able BIT DEFAULT 1 NOT NULL,
   materialID VARCHAR(10) PRIMARY KEY ,
   FOREIGN KEY (materialID) REFERENCES Material(materialID)
 )
@@ -89,6 +93,7 @@ GO
 
 CREATE TABLE Receptionist
 (
+  able BIT DEFAULT 1 NOT NULL,
   name NVARCHAR(50) NOT NULL,
   address NVARCHAR(80) NOT NULL,
   email NVARCHAR(50) NOT NULL,
@@ -104,6 +109,7 @@ GO
 
 CREATE TABLE Calendar_Receptionist
 (
+	able BIT DEFAULT 1 NOT NULL,
 	RecepID VARCHAR(10),
 	dayWorks DATETIME NOT NULL,
 	timeStart DATETIME NOT NULL,
@@ -128,6 +134,7 @@ GO
 
 CREATE TABLE Faculty
 (
+  able BIT DEFAULT 1 NOT NULL,
   FacID VARCHAR(10) PRIMARY KEY,
   name NVARCHAR(50) NOT NULL
 );
@@ -149,6 +156,7 @@ GO
 
 CREATE TABLE Dentist
 (
+  able BIT DEFAULT 1 NOT NULL,
   DenID VARCHAR(10) PRIMARY KEY,
   address NVARCHAR(80) NOT NULL,
   email NVARCHAR(50) NOT NULL,
@@ -167,6 +175,7 @@ GO
 
 CREATE TABLE Calendar_Dentist
 (
+	able BIT DEFAULT 1 NOT NULL,
 	DenID VARCHAR(10) ,
 	dayWorks DATETIME NOT NULL,
 	timeStart DATETIME NOT NULL,
@@ -191,6 +200,7 @@ GO
 
 CREATE TABLE Patient
 (
+  able BIT DEFAULT 1 NOT NULL,
   name NVARCHAR(50) NOT NULL,
   email NVARCHAR(50) NOT NULL,
   PatID VARCHAR(10) PRIMARY KEY,
@@ -218,6 +228,7 @@ GO
 
 CREATE TABLE Account
 (
+  able BIT DEFAULT 1 NOT NULL,
   AccountID VARCHAR(10) PRIMARY KEY,
   username NVARCHAR(50) NOT NULL UNIQUE,
   password NVARCHAR(50) NOT NULL,
@@ -245,6 +256,7 @@ GO
 
 CREATE TABLE Assisstant
 (
+  able BIT DEFAULT 1 NOT NULL,
   AssiID VARCHAR(10) PRIMARY KEY,
   name NVARCHAR(50) NOT NULL,
   phone_number NVARCHAR(15) NOT NULL,
@@ -258,11 +270,12 @@ GO
 
 CREATE TABLE Calendar_Assisstant
 (
+	able BIT DEFAULT 1 NOT NULL,
 	AssiID VARCHAR(10) ,
 	dayWorks DATETIME NOT NULL,
 	timeStart DATETIME NOT NULL,
 	timeEnd DATETIME NOT NULL,
-	FOREIGN KEY (AssiID) REFERENCES Calendar_Assisstant(AssiID)
+	FOREIGN KEY (AssiID) REFERENCES Assisstant(AssiID)
 )
 go
 
@@ -313,6 +326,7 @@ GO
 
 CREATE TABLE Bill
 (
+  able BIT DEFAULT 1 NOT NULL,
   bilID VARCHAR(10) PRIMARY KEY,
   total_price INT NOT NULL,
   payment_time DATETIME NOT NULL,
@@ -339,6 +353,7 @@ GO
 
 CREATE TABLE Service
 (
+  able BIT DEFAULT 1 NOT NULL,
   serviceID VARCHAR(10) PRIMARY KEY,
   name NVARCHAR(50) NOT NULL,
   price INT NOT NULL,
@@ -976,6 +991,8 @@ go
 exec procAddCalendar_Dentist 'DE00000001', '2024-04-11', '2024-04-10 01:00:00', '2024-04-10 11:00:00'
 exec procAddCalendar_Dentist 'DE00000002', '2024-04-11', '2024-04-10 02:00:00', '2024-04-10 12:00:00'
 go
+
+select * from Calendar_Dentist
 
 --Patient
 create proc procAddPatient

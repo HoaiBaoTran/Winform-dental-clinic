@@ -8,15 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using N19_ProjectForm.DAO;
+using N19_DentalClinic.DAO;
 
-namespace N19_ProjectForm.GUI
+namespace N19_DentalClinic.GUI
 {
     public partial class AppointmentForDentist : Form
     {
         DataInteraction data = new DataInteraction();
         DateTime currentDate = DateTime.Now;
         private Panel panelWrapper;
+        private string sqlTime;
         private string DenID;
         public AppointmentForDentist(Panel panelWrapper, string denID)
         {
@@ -28,6 +29,49 @@ namespace N19_ProjectForm.GUI
         private void AppointmentForDentist_Load(object sender, EventArgs e)
         {
             txtCurrDate.Text = DateTimeConvert.convertDMY(currentDate.ToString());
+            string sql = @$"select ApID, ap_time, p.name as patient_name, d.name as dentist_name, symptom, stateAp 
+                        from Appointment a
+                        join Patient p on p.PatID = a.PatID
+                        join Dentist d on d.DenID = a.DenID
+                        where datediff(day, ap_time, '{sqlTime}') = 0
+                        ";
+            updateDataGridView(sql);
+        }
+
+        public void updateDataGridView(string sql)
+        {
+            Dictionary<string, string> convertState = new Dictionary<string, string>();
+            convertState.Add("A", "Bệnh nhân chưa đến");
+            convertState.Add("B", "Bệnh nhân đã đến");
+            convertState.Add("C", "Cuộc hẹn kết thúc");
+
+            DataTable table = data.readData(sql);
+            if (table.Rows.Count > 0)
+            {
+                dataAppointmentDentist.ColumnCount = 6;
+                dataAppointmentDentist.Columns[0].Name = "STT";
+                dataAppointmentDentist.Columns[1].Name = "Mã lịch hẹn";
+                dataAppointmentDentist.Columns[2].Name = "Tên nha sĩ";
+                dataAppointmentDentist.Columns[3].Name = "Tên bệnh nhân";
+                dataAppointmentDentist.Columns[4].Name = "Triệu chứng";
+                dataAppointmentDentist.Columns[5].Name = "Tình trạng";
+          
+                int countRow = 1;
+                foreach (DataRow row in table.Rows)
+                {
+                    string[] rowString = new string[] { 
+                        countRow.ToString(), 
+                        (string)row["ApID"], 
+                        (string)row["patient_name"], 
+                        (string)row["dentist_name"], 
+                        (string)row["symptom"],
+                        convertState[(string)row["stateAp"]]
+                    };
+                    dataAppointmentDentist.Rows.Add(rowString);
+                    countRow++;
+                }
+            }
+            dataAppointmentDentist.AllowUserToAddRows = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -35,6 +79,7 @@ namespace N19_ProjectForm.GUI
             Calendar calendarF = new Calendar();
             calendarF.ShowDialog();
             currentDate = calendarF.GetDateSelector();
+            sqlTime = DateTimeConvert.convertSqlTime(currentDate.ToString());
             txtCurrDate.Text = DateTimeConvert.convertDMY(currentDate.ToString());
         }
 
@@ -62,13 +107,13 @@ namespace N19_ProjectForm.GUI
             DataTable table = data.readData(sql);
             if (table.Rows.Count > 0)
             {
-                dataAppointDentist.ColumnCount = 6;
-                dataAppointDentist.Columns[0].Name = "STT";
-                dataAppointDentist.Columns[1].Name = "Giờ hẹn";
-                dataAppointDentist.Columns[2].Name = "Phụ tá";
-                dataAppointDentist.Columns[3].Name = "Bệnh nhân";
-                dataAppointDentist.Columns[4].Name = "Triệu chứng bệnh nhân";
-                dataAppointDentist.Columns[5].Name = "Trạng thái";
+                dataAppointmentDentist.ColumnCount = 6;
+                dataAppointmentDentist.Columns[0].Name = "STT";
+                dataAppointmentDentist.Columns[1].Name = "Giờ hẹn";
+                dataAppointmentDentist.Columns[2].Name = "Phụ tá";
+                dataAppointmentDentist.Columns[3].Name = "Bệnh nhân";
+                dataAppointmentDentist.Columns[4].Name = "Triệu chứng bệnh nhân";
+                dataAppointmentDentist.Columns[5].Name = "Trạng thái";
                 int countRow = 1;
                 foreach (DataRow row in table.Rows)
                 {
@@ -132,8 +177,8 @@ namespace N19_ProjectForm.GUI
                                 break;
                         }
 
-                        string[] rowAppString = new string[] { countRow.ToString(), appTime, assisstantName, patientName,symptom, state };
-                        dataAppointDentist.Rows.Add(rowAppString);
+                        string[] rowAppString = new string[] { countRow.ToString(), appTime, assisstantName, patientName, symptom, state };
+                        dataAppointmentDentist.Rows.Add(rowAppString);
                         countRow++;
                     }
                 }
@@ -142,7 +187,7 @@ namespace N19_ProjectForm.GUI
 
         private void txtCurrDate_TextChanged(object sender, EventArgs e)
         {
-            clearDataGridView(dataAppointDentist);
+            clearDataGridView(dataAppointmentDentist);
             initTableAppointment();
         }
 
@@ -158,6 +203,11 @@ namespace N19_ProjectForm.GUI
             DateTime tommorow = currentDate.Date.AddDays(+1);
             currentDate = tommorow;
             txtCurrDate.Text = DateTimeConvert.convertDMY(currentDate.ToString());
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

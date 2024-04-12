@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
     Microsoft ResX Schema 
@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnCreateDentist.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="createNewPat.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAC5
-        9wAAufcBxm2HkwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAKuSURBVFhHtZY9
+        9gAAufYBFCpldwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAKuSURBVFhHtZY9
         b9RAEIbdARLQIYFoEOJDwTYhdFClQbaPQEWAAAX/AME/oAEpooZAQIKG4uA4b6JckwKSIkGIAokSBCIn
         ioMKzidxl8LM7M0lnD27trPmlR5lzzs7M/HujsfKq6BxaLdft6f80Jn16847Xzg/YNyT4BieeaH7yBf2
         5fPi6C5aZq7Kq9EjXt15AoE6QJyTDiT1+Mz8yGFyU1yT1VM7AuHcA2frCedFwDc0Pf76wHZym0+YeRA6

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
     Microsoft ResX Schema 
@@ -117,23 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnCreateDentist.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAC5
-        9wAAufcBxm2HkwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAKuSURBVFhHtZY9
-        b9RAEIbdARLQIYFoEOJDwTYhdFClQbaPQEWAAAX/AME/oAEpooZAQIKG4uA4b6JckwKSIkGIAokSBCIn
-        ioMKzidxl8LM7M0lnD27trPmlR5lzzs7M/HujsfKq6BxaLdft6f80Jn16847Xzg/YNyT4BieeaH7yBf2
-        5fPi6C5aZq7Kq9EjXt15AoE6QJyTDiT1+Mz8yGFyU1yT1VM7AuHcA2frCedFwDc0Pf76wHZym0+YeRA6
-        HxPOTFj1aiP7yL1egTg2RvvLOTKhCX6PUxhe+J//p+ADmpUFey+FGxbuEwT/wCxScm7upISbUwFb+x7P
-        F4XdFB04dhHHreVrcWe9Lbm5fJW1UeGF9m0K2xdeNZgodNrFl+fxQDjmbDS0h7aC7jlnqKTx9QWFj+WY
-        s9HhCee+DC4rXLEiIzFNAIhkxaTyyhloKSEBPJCXLBjMJifyUEYC8N14CG8APizcZAalJAAVEt/Az8TD
-        DfCOX1/0Wd40GxQ+lmPOBsmoEy1MoJt4KBncc1Nl1Ik/ygRqn5+RC3O9/PQ05Z+QCbBbcGPpShz1fpOL
-        ravd+wW+plL+CdgCzSGcmDsRX1g4zbL4TVCIWI45GwR9cL6JVUu2UfyklpJuwYyFPRwzkUkpCQh30hqv
-        2jvhR5SazKCEBCKMLb8H2EAyBlpME8Ctl8FRshPqN5CsMYdhAt2zNfcghe8LHk4njLSY9QP2XQq7KdmS
-        wbVIG/MM6kTGPedYgRZgG4UdFnYpYLCWWKAE73jGPU/gfp+YH91P4Xhh6wzGzfRiY9YqoetSGL2C6tge
-        L3SWGCdbZUXZjquE+4TdKywuXCP+oQul/o5yz/MIM8cGEpwVSSTCbid11UyEVQt7OHA+A0XkLfxtAfgp
-        R1r4DOYfQId9caPCZcqy/gKb/rc23/5JgwAAAABJRU5ErkJggg==
-</value>
-  </data>
+  <metadata name="medicineNameCol.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="totalPriceCol.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="quantityMedicineCol.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="unitMedicineCol.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="serviceNameCol.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="totalPriceServiceCol.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="quantityServiceCol.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="unitServiceCol.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

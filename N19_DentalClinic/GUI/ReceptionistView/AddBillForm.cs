@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace N19_DentalClinic.controller.receptionist
+namespace N19_DentalClinic.GUI.ReceptionistView
 {
     public partial class AddBillForm : Form
     {
