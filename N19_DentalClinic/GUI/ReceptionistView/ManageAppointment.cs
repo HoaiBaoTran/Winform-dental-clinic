@@ -42,7 +42,8 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             string sql = @"select ApID, ap_time, p.name as patient_name, d.name as dentist_name, a.able, symptom, stateAp
                 from Appointment a
                 join Patient p on  a.PatID = p.PatId
-                join Dentist d on d.DenID = a.DenID";
+                join Dentist d on d.DenID = a.DenID
+                where able = 1";
             updateDataGridView(sql);
         }
 

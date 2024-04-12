@@ -18,6 +18,7 @@ namespace N19_DentalClinic.controller.receptionist
 {
     public partial class AddAppointmentForm : Form
     {
+        Dictionary<int, string> stateApDic = new Dictionary<int, string>();
         List<string> FacultyListName = new List<string> { };
         private string ApID;
         private string interaction;
@@ -28,6 +29,9 @@ namespace N19_DentalClinic.controller.receptionist
             InitializeComponent();
             this.interaction = interaction;
             ApID = apID;
+            stateApDic.Add(0, "A");
+            stateApDic.Add(1, "B");
+            stateApDic.Add(2, "C");
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -91,12 +95,71 @@ namespace N19_DentalClinic.controller.receptionist
         private void updateEvent()
         {
             btnAddAppointment.Text = "Sửa";
+            tbSignal.ReadOnly = false;
+            cbStatus.Enabled = true;
+            btnChooseDay.Enabled = true;
+            HMSPicker.Enabled = true;
+            cbPatient.Enabled = true;
+            cbFaculty.Enabled = true;
+
+            string sqlAp = @$"select ap.apId, ap.ap_time, p.patid, d.denid, ap.symptom, ap.stateap,
+                                d.name as denName, d.phone_number as denPhoneNum
+                                p.name as patName, p.gender as patGender, p.number as patPhoneNum,
+                                p.address as patAddress, p.email as patEmail 
+                                f.name as facName
+                                join dentist d on d.denid = ap.denid
+                                join patient p on p.patid = ap.patid
+                                join faculty f on f.facid = d.facid
+                                from Appointment ap where able = 1 and apid = {ApID}";
+            DataTable tableAp = data.readData(sqlAp);
+            if(tableAp.Rows.Count > 0)
+            {
+                foreach(DataRow rowAp in tableAp.Rows)
+                {
+                    //Cuoc hen
+                    tbSignal.Text = rowAp["name"].ToString();
+                    cbStatus.Text = rowAp["status"].ToString();
+                    txtDay.Text = DateTimeConvert.convertDMY(rowAp["ap_time"].ToString());
+                    HMSPicker.Text = DateTimeConvert.convertHMS(rowAp["ap_time"].ToString());
+                    //Benh nhan
+                    cbPatient.SelectedIndex = 0;
+                    tbPatientId.Text = rowAp["patid"].ToString();
+                    tbPatientAddress.Text = rowAp["patAddress"].ToString();
+                    tbPatientName.Text = rowAp["patName"].ToString();
+                    tbPatientPhoneNumber.Text = rowAp["patPhoneNum"].ToString() ;
+                    if ((bool)rowAp["patGender"])
+                    {
+                        rbMale.Checked = true;
+                        rbFemale.Checked = false;
+                    }
+                    else
+                    {
+                        rbMale.Checked = false;
+                        rbFemale.Checked = true;
+                    }
+                    tbEmail.Text = rowAp["patEmail"].ToString();   
+
+
+                    //Nha si
+                    cbFaculty.Text = rowAp["facName"].ToString();
+                    tbDentistName.Text = rowAp["denName"].ToString();
+                    tbDentistPhoneNumber.Text = rowAp["denPhoneNum"].ToString();
+                    
+                }
+            }
+
         }
 
 
         private void viewEvent()
         {
             btnAddAppointment.Text = "Tạo mới";
+            tbSignal.ReadOnly = false;
+            cbStatus.Enabled = true;
+            btnChooseDay.Enabled = true;
+            HMSPicker.Enabled = true;
+            cbPatient.Enabled = true;
+            cbFaculty.Enabled = true;
         }
 
         private void btnSearchPatId_Click(object sender, EventArgs e)
@@ -123,7 +186,6 @@ namespace N19_DentalClinic.controller.receptionist
                         rbMale.Checked = false;
                         rbFemale.Checked = true;
                     }
-
 
                 }
             }
@@ -231,58 +293,48 @@ namespace N19_DentalClinic.controller.receptionist
 
         private void btnAddAppointment_Click(object sender, EventArgs e)
         {
-            bool flagAddAppoint = true;
             if (tbSignal.Text == "")
             {
                 MessageBox.Show("Vui lòng nhập triệu chứng");
-                flagAddAppoint = false;
             }
             else if (cbStatus.Text == "")
             {
                 MessageBox.Show("Vui lòng chọn trạng thái cuộc hẹn");
-                flagAddAppoint = false;
 
             }
             else if (txtDay.Text == "")
             {
                 MessageBox.Show("Vui lòng chọn ngày");
-                flagAddAppoint = false;
 
             }
             else if (tbPatientId.Text == "")
             {
                 MessageBox.Show("Vui lòng nhập mã bệnh nhân");
-                flagAddAppoint = false;
             }
             else if (tbDentistId.Text == "")
             {
                 MessageBox.Show("Vui lòng nhập mã nha sĩ");
-                flagAddAppoint = false;
 
-            }
-
-            //Thực hiện thêm lịch hẹn
-            if(flagAddAppoint)
+            }else 
             {
-                Dictionary<int,string> stateApDic = new Dictionary<int,string>();
-                stateApDic.Add(0, "A");
-                stateApDic.Add(1, "B");
-                stateApDic.Add(2, "C");
+                
                 string sqlApTimeDay = DateTimeConvert.convertSqlTimeDay(txtDay.Text);
                 string sqlApTimeHour = DateTimeConvert.convertHMS(HMSPicker.Text);
                 string sqlTime = sqlApTimeDay + " " + sqlApTimeHour;
-                string sqlDenID = tbDentistId.Text;
                 string sqlPatID = tbPatientId.Text;
+                string sqlDenID = tbDentistId.Text;
                 string sqlSymptom = tbSignal.Text;
                 string sqlStateAp = stateApDic[cbStatus.SelectedIndex];
 
-                string sqlAddApp = $@"exec procAddAppointment ";
+                string sqlAddApp = $@"exec procAddAppointment
+                        '{sqlTime}', 
+                        '{sqlPatID}',
+                        '{sqlDenID}',
+                        N'{sqlSymptom}',
+                        '{sqlStateAp}'";
+                data.changeData(sqlAddApp);
                 MessageBox.Show("Thêm lịch thành công");
-            }else
-            {
-                MessageBox.Show("Bạn đã không search thông tin mã nha sĩ hoặc mã bệnh nhân" + "\r\n"
-                    + "Vui lòng nhấn search để thêm lịch thành công") ;
-
+                this.Close();
             }
 
         }

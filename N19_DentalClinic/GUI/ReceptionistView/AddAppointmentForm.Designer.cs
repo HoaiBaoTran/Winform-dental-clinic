@@ -75,7 +75,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            label6.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
             label6.Location = new Point(22, 26);
             label6.Name = "label6";
             label6.Size = new Size(387, 46);
@@ -103,7 +103,7 @@
             btnExit.BorderSize = 0;
             btnExit.FlatAppearance.BorderSize = 0;
             btnExit.FlatStyle = FlatStyle.Flat;
-            btnExit.Font = new Font("Segoe UI", 11F);
+            btnExit.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
             btnExit.ForeColor = Color.White;
             btnExit.ImageAlign = ContentAlignment.MiddleLeft;
             btnExit.Location = new Point(1122, 22);
@@ -137,7 +137,7 @@
             btnAddAppointment.BorderSize = 0;
             btnAddAppointment.FlatAppearance.BorderSize = 0;
             btnAddAppointment.FlatStyle = FlatStyle.Flat;
-            btnAddAppointment.Font = new Font("Segoe UI", 11F);
+            btnAddAppointment.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
             btnAddAppointment.ForeColor = Color.Black;
             btnAddAppointment.ImageAlign = ContentAlignment.MiddleLeft;
             btnAddAppointment.Location = new Point(973, 22);
@@ -153,7 +153,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16F);
+            label1.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(22, 100);
             label1.Name = "label1";
             label1.Size = new Size(155, 37);
@@ -162,7 +162,7 @@
             // 
             // tbSignal
             // 
-            tbSignal.Font = new Font("Segoe UI", 14F);
+            tbSignal.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             tbSignal.Location = new Point(190, 100);
             tbSignal.Name = "tbSignal";
             tbSignal.PlaceholderText = "Nhập triệu chứng";
@@ -172,7 +172,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 16F);
+            label2.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(22, 180);
             label2.Name = "label2";
             label2.Size = new Size(135, 37);
@@ -182,7 +182,7 @@
             // cbStatus
             // 
             cbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbStatus.Font = new Font("Segoe UI", 14F);
+            cbStatus.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             cbStatus.FormattingEnabled = true;
             cbStatus.Items.AddRange(new object[] { "Bệnh nhân chưa đến", "Bệnh nhân đã đến", "Cuộc hẹn kết thúc" });
             cbStatus.Location = new Point(190, 180);
@@ -192,7 +192,7 @@
             // 
             // HMSPicker
             // 
-            HMSPicker.Font = new Font("Segoe UI", 14F);
+            HMSPicker.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             HMSPicker.Format = DateTimePickerFormat.Time;
             HMSPicker.Location = new Point(926, 180);
             HMSPicker.Name = "HMSPicker";
@@ -203,7 +203,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 16F);
+            label3.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             label3.Location = new Point(22, 260);
             label3.Name = "label3";
             label3.Size = new Size(142, 37);
@@ -213,7 +213,7 @@
             // cbPatient
             // 
             cbPatient.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbPatient.Font = new Font("Segoe UI", 14F);
+            cbPatient.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             cbPatient.FormattingEnabled = true;
             cbPatient.Items.AddRange(new object[] { "Bệnh nhân cũ", "Bệnh nhân mới" });
             cbPatient.Location = new Point(190, 260);
@@ -225,7 +225,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 16F);
+            label4.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             label4.Location = new Point(444, 260);
             label4.Name = "label4";
             label4.Size = new Size(188, 37);
@@ -234,7 +234,7 @@
             // 
             // tbPatientId
             // 
-            tbPatientId.Font = new Font("Segoe UI", 14F);
+            tbPatientId.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             tbPatientId.Location = new Point(638, 260);
             tbPatientId.Name = "tbPatientId";
             tbPatientId.PlaceholderText = "Nhập mã bệnh nhân";
@@ -273,7 +273,7 @@
             btnPatientList.Enabled = false;
             btnPatientList.FlatAppearance.BorderSize = 0;
             btnPatientList.FlatStyle = FlatStyle.Flat;
-            btnPatientList.Font = new Font("Segoe UI", 14F);
+            btnPatientList.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             btnPatientList.ForeColor = Color.Black;
             btnPatientList.Location = new Point(950, 260);
             btnPatientList.Name = "btnPatientList";
@@ -286,7 +286,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 16F);
+            label5.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             label5.Location = new Point(22, 340);
             label5.Name = "label5";
             label5.Size = new Size(97, 37);
@@ -295,7 +295,7 @@
             // 
             // tbPatientName
             // 
-            tbPatientName.Font = new Font("Segoe UI", 14F);
+            tbPatientName.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             tbPatientName.Location = new Point(190, 340);
             tbPatientName.Name = "tbPatientName";
             tbPatientName.PlaceholderText = "Nhập tên bệnh nhân";
@@ -306,7 +306,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 16F);
+            label7.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             label7.Location = new Point(572, 340);
             label7.Name = "label7";
             label7.Size = new Size(119, 37);
@@ -317,7 +317,7 @@
             // 
             rbMale.AutoSize = true;
             rbMale.Enabled = false;
-            rbMale.Font = new Font("Segoe UI", 14F);
+            rbMale.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             rbMale.Location = new Point(703, 340);
             rbMale.Name = "rbMale";
             rbMale.Size = new Size(86, 36);
@@ -330,7 +330,7 @@
             // 
             rbFemale.AutoSize = true;
             rbFemale.Enabled = false;
-            rbFemale.Font = new Font("Segoe UI", 14F);
+            rbFemale.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             rbFemale.Location = new Point(802, 340);
             rbFemale.Name = "rbFemale";
             rbFemale.Size = new Size(67, 36);
@@ -342,7 +342,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 16F);
+            label8.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             label8.Location = new Point(871, 340);
             label8.Name = "label8";
             label8.Size = new Size(64, 37);
@@ -351,7 +351,7 @@
             // 
             // tbPatientPhoneNumber
             // 
-            tbPatientPhoneNumber.Font = new Font("Segoe UI", 14F);
+            tbPatientPhoneNumber.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             tbPatientPhoneNumber.Location = new Point(941, 340);
             tbPatientPhoneNumber.Name = "tbPatientPhoneNumber";
             tbPatientPhoneNumber.PlaceholderText = "Nhập số điện thoại";
@@ -362,7 +362,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 16F);
+            label9.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             label9.Location = new Point(22, 420);
             label9.Name = "label9";
             label9.Size = new Size(98, 37);
@@ -371,7 +371,7 @@
             // 
             // tbPatientAddress
             // 
-            tbPatientAddress.Font = new Font("Segoe UI", 14F);
+            tbPatientAddress.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             tbPatientAddress.Location = new Point(190, 420);
             tbPatientAddress.Name = "tbPatientAddress";
             tbPatientAddress.PlaceholderText = "Nhập địa chỉ";
@@ -382,7 +382,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 16F);
+            label10.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             label10.Location = new Point(787, 420);
             label10.Name = "label10";
             label10.Size = new Size(82, 37);
@@ -391,7 +391,7 @@
             // 
             // tbEmail
             // 
-            tbEmail.Font = new Font("Segoe UI", 14F);
+            tbEmail.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             tbEmail.Location = new Point(871, 420);
             tbEmail.Name = "tbEmail";
             tbEmail.PlaceholderText = "Nhập địa chỉ email";
@@ -402,7 +402,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 16F);
+            label11.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             label11.Location = new Point(22, 500);
             label11.Name = "label11";
             label11.Size = new Size(78, 37);
@@ -412,7 +412,7 @@
             // cbFaculty
             // 
             cbFaculty.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbFaculty.Font = new Font("Segoe UI", 14F);
+            cbFaculty.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             cbFaculty.FormattingEnabled = true;
             cbFaculty.Location = new Point(190, 500);
             cbFaculty.Name = "cbFaculty";
@@ -423,7 +423,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 16F);
+            label12.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             label12.Location = new Point(449, 498);
             label12.Name = "label12";
             label12.Size = new Size(131, 37);
@@ -432,7 +432,7 @@
             // 
             // tbDentistId
             // 
-            tbDentistId.Font = new Font("Segoe UI", 14F);
+            tbDentistId.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             tbDentistId.Location = new Point(586, 502);
             tbDentistId.Name = "tbDentistId";
             tbDentistId.PlaceholderText = "Nhập mã nha sĩ";
@@ -471,7 +471,7 @@
             btnDentistList.Enabled = false;
             btnDentistList.FlatAppearance.BorderSize = 0;
             btnDentistList.FlatStyle = FlatStyle.Flat;
-            btnDentistList.Font = new Font("Segoe UI", 14F);
+            btnDentistList.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             btnDentistList.ForeColor = Color.Black;
             btnDentistList.Location = new Point(950, 500);
             btnDentistList.Name = "btnDentistList";
@@ -484,7 +484,7 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Font = new Font("Segoe UI", 16F);
+            label13.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             label13.Location = new Point(22, 580);
             label13.Name = "label13";
             label13.Size = new Size(133, 37);
@@ -493,7 +493,7 @@
             // 
             // tbDentistName
             // 
-            tbDentistName.Font = new Font("Segoe UI", 14F);
+            tbDentistName.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             tbDentistName.Location = new Point(190, 580);
             tbDentistName.Name = "tbDentistName";
             tbDentistName.PlaceholderText = "Nhập tên nha sĩ";
@@ -504,7 +504,7 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Font = new Font("Segoe UI", 16F);
+            label14.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             label14.Location = new Point(554, 580);
             label14.Name = "label14";
             label14.Size = new Size(64, 37);
@@ -513,7 +513,7 @@
             // 
             // tbDentistPhoneNumber
             // 
-            tbDentistPhoneNumber.Font = new Font("Segoe UI", 14F);
+            tbDentistPhoneNumber.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             tbDentistPhoneNumber.Location = new Point(638, 578);
             tbDentistPhoneNumber.Name = "tbDentistPhoneNumber";
             tbDentistPhoneNumber.PlaceholderText = "Nhập số điện thoại";
@@ -523,7 +523,7 @@
             // 
             // txtDay
             // 
-            txtDay.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDay.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             txtDay.Location = new Point(508, 180);
             txtDay.Name = "txtDay";
             txtDay.ReadOnly = true;
@@ -533,7 +533,7 @@
             // btnChooseDay
             // 
             btnChooseDay.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnChooseDay.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnChooseDay.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             btnChooseDay.Image = (Image)resources.GetObject("btnChooseDay.Image");
             btnChooseDay.ImageAlign = ContentAlignment.MiddleRight;
             btnChooseDay.Location = new Point(814, 177);
