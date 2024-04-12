@@ -175,17 +175,20 @@ namespace N19_DentalClinic.GUI.DentistView
             if (dataPrescription.Rows.Count > 0)
             {
 
-                if (dataPrescription.CurrentCell.RowIndex == 0)
+                string medicineId = dataPrescription[1, dataPrescription.CurrentCell.RowIndex].Value.ToString();
+                string medicineName = dataPrescription[2, dataPrescription.CurrentCell.RowIndex].Value.ToString();
+                string quantity = dataPrescription[3, dataPrescription.CurrentCell.RowIndex].Value.ToString();
+                string calUnit = dataPrescription[4, dataPrescription.CurrentCell.RowIndex].Value.ToString();
+                string note = dataPrescription[5, dataPrescription.CurrentCell.RowIndex].Value.ToString();
+                AddMedicineRow addMedicineRow = new AddMedicineRow(presId, medicineId, medicineName, quantity, calUnit, note);
+                if (addMedicineRow.ShowDialog() == DialogResult.OK)
                 {
-                    /*
-                    string patId = dataPatientTable[1, dataPatientTable.CurrentCell.RowIndex].Value.ToString();
-                    PanelInteraction.openForm(this, new HistoryCheckUp(panelWrapper, patId), panelWrapper);
-                    */
-                    MessageBox.Show("0");
-                }
-                else if (dataPrescription.CurrentCell.RowIndex == 1)
-                {
-                    MessageBox.Show("1");
+                    string sql = @$"Select pd.materialID, ma.name, pd.quantity, ma.CalUnit, pd.note
+                            from Prescription_Detail pd
+                            join Material ma
+                            on ma.materialID = pd.materialID
+                            where pd.PresID = '{presId}'";
+                    updateDataGridView(sql);
                 }
             }
             /*

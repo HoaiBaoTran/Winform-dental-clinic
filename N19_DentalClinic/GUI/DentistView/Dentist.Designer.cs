@@ -184,8 +184,10 @@
             Load += Dentist_Load;
             pnSidebar.ResumeLayout(false);
             pnSidebar.PerformLayout();
+            
             ((System.ComponentModel.ISupportInitialize)roundPictureBox1).EndInit();
             ResumeLayout(false);
+          
         }
 
         #endregion

@@ -17,10 +17,31 @@ namespace N19_DentalClinic.GUI.DentistView
         DataInteraction data = new DataInteraction();
         private string presId;
 
+        private string medicineId = string.Empty;
+        private string medicineName = string.Empty;
+        private string quantity = string.Empty;
+        private string calUnit = string.Empty;
+        private string note = string.Empty;
+        private bool isEdit = false;
+
         public AddMedicineRow(string presId)
         {
             InitializeComponent();
             this.presId = presId;
+        }
+
+        public AddMedicineRow(string presId, string medicineId, string medicineName, string quantity, string calUnit, string note)
+        {
+            InitializeComponent();
+            this.presId = presId;
+            this.medicineId = medicineId;
+            this.medicineName = medicineName;
+            this.quantity = quantity;
+            this.calUnit = calUnit;
+            this.note = note;
+            isEdit = true;
+
+            btnAddMedicine.Text = "Cập nhật";
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -50,6 +71,15 @@ namespace N19_DentalClinic.GUI.DentistView
 
             cbQuantity.DataSource = table;
             cbQuantity.ValueMember = "quantity";
+
+            if (isEdit)
+            {
+                cbMedicineId.Text = medicineId;
+                cbMedicineName.Text = medicineName;
+                cbQuantity.Text = quantity;
+                cbCalUnit.Text = calUnit;
+                tbNote.Text = note;
+            }
         }
 
         private void btnAddMedicine_Click(object sender, EventArgs e)
@@ -59,12 +89,28 @@ namespace N19_DentalClinic.GUI.DentistView
             string quantity = cbQuantity.Text;
             string note = tbNote.Text;
 
-            
-            string sql = @$"INSERT INTO Prescription_Detail(PresID, materialID, quantity, calUnit, note) values
-                            ('{presId}', '{medicineId}', " + quantity + $", N'{calUnit}', N'{note}')";
-            data.changeData(sql);
-            this.DialogResult = DialogResult.OK;
-            MessageBox.Show("Thêm thành công");
+            if (!isEdit)
+            {
+                string sql = @$"INSERT INTO Prescription_Detail(PresID, materialID, quantity, calUnit, note) values
+                                ('{presId}', '{medicineId}', " + quantity + $", N'{calUnit}', N'{note}')";
+                data.changeData(sql);
+                this.DialogResult = DialogResult.OK;
+                MessageBox.Show("Thêm thành công");
+            } 
+            else
+            {
+                string updateSql = @$"UPDATE Prescription_Detail SET
+                                    materialID = '{medicineId}',
+                                    quantity = " + quantity + @$",
+                                    calUnit = '{calUnit}',
+                                    note = '{note}'
+                                    WHERE PresID = '{presId}' AND materialID = '{medicineId}'
+                                    ";
+                MessageBox.Show(updateSql);
+                data.changeData(updateSql);
+                this.DialogResult = DialogResult.OK;
+                MessageBox.Show("Cập nhật thành công");
+            }
             
         }
 

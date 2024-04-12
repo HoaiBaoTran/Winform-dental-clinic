@@ -1,4 +1,5 @@
 using N19_DentalClinic.controller.receptionist;
+using N19_DentalClinic.GUI.AdminView;
 
 namespace N19_DentalClinic
 {
@@ -17,7 +18,8 @@ namespace N19_DentalClinic
             // -- Test ManagePatientFornm
             //Application.Run(new ManageAppointmentBookingForm());
             //Application.Run(new N19_DentalClinic.GUI.ReceptionistView.Receptionist());
-            Application.Run(new N19_DentalClinic.GUI.DentistView.Dentist());
+            //Application.Run(new N19_DentalClinic.GUI.DentistView.Dentist());
+            Application.Run(new Report());
         }
     }
 }
