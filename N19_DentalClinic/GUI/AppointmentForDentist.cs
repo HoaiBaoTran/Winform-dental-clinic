@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using N19_DentalClinic.DAO;
+using N19_DentalClinic.GUI.ReceptionistView;
 
 namespace N19_DentalClinic.GUI
 {
@@ -17,27 +18,33 @@ namespace N19_DentalClinic.GUI
         DataInteraction data = new DataInteraction();
         DateTime currentDate = DateTime.Now;
         private Panel panelWrapper;
+        private string interaction;
+        private int role;
         private string sqlTime;
         private string DenID;
-        public AppointmentForDentist(Panel panelWrapper, string denID)
+        public AppointmentForDentist(Panel panelWrapper, string denID, int role, string interaction)
         {
             InitializeComponent();
             this.panelWrapper = panelWrapper;
             DenID = denID;
+            this.role = role;
+            this.interaction = interaction;
         }
 
         private void AppointmentForDentist_Load(object sender, EventArgs e)
         {
             txtCurrDate.Text = DateTimeConvert.convertDMY(currentDate.ToString());
-            string sql = @$"select ApID, ap_time, p.name as patient_name, d.name as dentist_name, symptom, stateAp 
-                        from Appointment a
-                        join Patient p on p.PatID = a.PatID
-                        join Dentist d on d.DenID = a.DenID
-                        where datediff(day, ap_time, '{sqlTime}') = 0
-                        ";
-            updateDataGridView(sql);
+            //string sql = @$"select ApID, ap_time, p.name as patient_name, d.name as dentist_name, symptom, stateAp 
+            //            from Appointment a
+            //            join Patient p on p.PatID = a.PatID
+            //            join Dentist d on d.DenID = a.DenID
+            //            where datediff(day, ap_time, '{sqlTime}') = 0
+            //            ";
+            //updateDataGridView(sql);
+            initTableAppointment();
         }
 
+        //Sử dụng sau 
         public void updateDataGridView(string sql)
         {
             Dictionary<string, string> convertState = new Dictionary<string, string>();
@@ -48,22 +55,24 @@ namespace N19_DentalClinic.GUI
             DataTable table = data.readData(sql);
             if (table.Rows.Count > 0)
             {
-                dataAppointmentDentist.ColumnCount = 6;
+                dataAppointmentDentist.ColumnCount = 8;
                 dataAppointmentDentist.Columns[0].Name = "STT";
                 dataAppointmentDentist.Columns[1].Name = "Mã lịch hẹn";
                 dataAppointmentDentist.Columns[2].Name = "Tên nha sĩ";
                 dataAppointmentDentist.Columns[3].Name = "Tên bệnh nhân";
                 dataAppointmentDentist.Columns[4].Name = "Triệu chứng";
                 dataAppointmentDentist.Columns[5].Name = "Tình trạng";
-          
+                dataAppointmentDentist.Columns[6].Name = "Chỉnh sửa";
+                dataAppointmentDentist.Columns[7].Name = "Xóa";
+
                 int countRow = 1;
                 foreach (DataRow row in table.Rows)
                 {
-                    string[] rowString = new string[] { 
-                        countRow.ToString(), 
-                        (string)row["ApID"], 
-                        (string)row["patient_name"], 
-                        (string)row["dentist_name"], 
+                    string[] rowString = new string[] {
+                        countRow.ToString(),
+                        (string)row["ApID"],
+                        (string)row["patient_name"],
+                        (string)row["dentist_name"],
                         (string)row["symptom"],
                         convertState[(string)row["stateAp"]]
                     };
@@ -97,32 +106,49 @@ namespace N19_DentalClinic.GUI
             }
             finally
             {
-                dtgv.AllowUserToAddRows = true;
+                dtgv.AllowUserToAddRows = false;
             }
         }
 
         public void initTableAppointment()
         {
+            txtDenID.Text = DenID;
+            string sqlDentist = "select * from Dentist where denId = '" + DenID + "'";
+            DataTable tableDentist = data.readData(sqlDentist);
+            if (tableDentist.Rows.Count > 0)
+            {
+                foreach (DataRow rowDen in tableDentist.Rows)
+                {
+                    txtNameDentist.Text = (string)rowDen["name"];
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không tồn tại mã nha sĩ này");
+                return;
+            }
+
             string sql = "select * from Appointment where DenId = '" + DenID + "'";
             DataTable table = data.readData(sql);
             if (table.Rows.Count > 0)
             {
-                dataAppointmentDentist.ColumnCount = 6;
+                dataAppointmentDentist.ColumnCount = 8;
                 dataAppointmentDentist.Columns[0].Name = "STT";
                 dataAppointmentDentist.Columns[1].Name = "Giờ hẹn";
                 dataAppointmentDentist.Columns[2].Name = "Phụ tá";
                 dataAppointmentDentist.Columns[3].Name = "Bệnh nhân";
                 dataAppointmentDentist.Columns[4].Name = "Triệu chứng bệnh nhân";
                 dataAppointmentDentist.Columns[5].Name = "Trạng thái";
+                dataAppointmentDentist.Columns[6].Name = "Chỉnh sửa";
+                dataAppointmentDentist.Columns[7].Name = "Xóa";
                 int countRow = 1;
                 foreach (DataRow row in table.Rows)
                 {
+                    txtDenID.Text = (string)row["denId"];
                     // Cap nhat ma va ten nha si
                     if ((bool)row["able"] == true)
                     {
-                        txtDenID.Text = (string)row["denId"];
-                        string sqlDentist = "select * from Dentist where denId = '" + DenID + "'";
-                        DataTable tableDentist = data.readData(sqlDentist);
+
 
                         if (tableDentist.Rows.Count > 0)
                         {
@@ -177,7 +203,16 @@ namespace N19_DentalClinic.GUI
                                 break;
                         }
 
-                        string[] rowAppString = new string[] { countRow.ToString(), appTime, assisstantName, patientName, symptom, state };
+                        string[] rowAppString = new string[] {
+                            countRow.ToString(),
+                            appTime,
+                            assisstantName,
+                            patientName,
+                            symptom,
+                            state,
+                            "Chỉnh sửa",
+                            "Xóa"
+                        };
                         dataAppointmentDentist.Rows.Add(rowAppString);
                         countRow++;
                     }
@@ -208,6 +243,28 @@ namespace N19_DentalClinic.GUI
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataAppointmentDentist_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if(role == 1)
+            {
+                if (dataAppointmentDentist.CurrentCell.ColumnIndex == 6)
+                {
+                    //Chỉnh sửa lịch hẹn
+                    //string DenID = dataDentistTable[1, dataDentistTable.CurrentCell.RowIndex].Value.ToString();
+                    //PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, DenID, role, "view"), panelWrapper);
+                }
+                else if (dataAppointmentDentist.CurrentCell.ColumnIndex == 7)
+                {
+                    //Xóa lịch hẹn
+                    //string DenID = dataDentistTable[1, dataDentistTable.CurrentCell.RowIndex].Value.ToString();
+                    //PanelInteraction.openForm(this, new AppointmentForDentist(panelWrapper, DenID, role, "view"), panelWrapper);
+                }
+            }else
+            {
+                MessageBox.Show("Bạn không đủ ủy quyền");
+            }
         }
     }
 }

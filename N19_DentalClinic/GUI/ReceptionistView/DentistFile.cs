@@ -37,12 +37,12 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             if (dataDentistTable.CurrentCell.ColumnIndex == 8)
             {
                 string DenID = dataDentistTable[1, dataDentistTable.CurrentCell.RowIndex].Value.ToString();
-                PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, DenID), panelWrapper);
+                PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, DenID,role,"view"), panelWrapper);
             }
             else if (dataDentistTable.CurrentCell.ColumnIndex == 9)
             {
                 string DenID = dataDentistTable[1, dataDentistTable.CurrentCell.RowIndex].Value.ToString();
-                PanelInteraction.openForm(this, new AppointmentForDentist(panelWrapper, DenID), panelWrapper);
+                PanelInteraction.openForm(this, new AppointmentForDentist(panelWrapper, DenID,role,"view"), panelWrapper);
             }
         }
 
@@ -63,7 +63,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             DataTable table = data.readData(sql);
             if (table.Rows.Count > 0)
             {
-                dataDentistTable.ColumnCount = 10;
+                dataDentistTable.ColumnCount = 12;
                 dataDentistTable.Columns[0].Name = "STT";
                 dataDentistTable.Columns[1].Name = "Mã nha sĩ";
                 dataDentistTable.Columns[2].Name = "Họ tên";
@@ -74,6 +74,8 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                 dataDentistTable.Columns[7].Name = "Giới tính";
                 dataDentistTable.Columns[8].Name = "Thông tin chi tiết";
                 dataDentistTable.Columns[9].Name = "Xem lịch hẹn";
+                dataDentistTable.Columns[10].Name = "Chỉnh sửa";
+                dataDentistTable.Columns[11].Name = "Xóa";
                 int countRow = 1;
                 foreach (DataRow row in table.Rows)
                 {
@@ -92,10 +94,10 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                         (string)row["name"], 
                         DateTimeConvert.convertDMY(row["birthday"].ToString()), 
                         (string)row["address"], (string)row["phone_number"], 
-                        (string)row["email"], 
-                        gender, 
-                        "Thông tin chi tiết", 
-                        "Lịch hẹn" 
+                        (string)row["email"], gender, "Thông tin chi tiết", 
+                        "Lịch hẹn",
+                        "Chỉnh sửa",
+                        "Xóa"
                     };
                     dataDentistTable.Rows.Add(rowString);
                     countRow++;
@@ -148,7 +150,13 @@ namespace N19_DentalClinic.GUI.ReceptionistView
 
         private void btnCreateDentist_Click(object sender, EventArgs e)
         {
-            PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, "", 2, "create"), panelWrapper);
+            if(role == 2)
+            {
+                PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, "", 1, "create"), panelWrapper);
+            }else
+            {
+                MessageBox.Show("Bạn không đủ ủy quyền để thêm bệnh nhân");
+            }
         }
     }
 }

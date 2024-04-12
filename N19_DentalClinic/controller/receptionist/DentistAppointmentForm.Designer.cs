@@ -51,16 +51,16 @@
             label3 = new Label();
             lbName = new Label();
             dataGridView = new DataGridView();
-            label9 = new Label();
-            btnExit = new component.RJButton();
-            label2 = new Label();
-            panel2 = new Panel();
-            label6 = new Label();
             timeAppointmentCol = new DataGridViewTextBoxColumn();
             assisstanceCol = new DataGridViewTextBoxColumn();
             patientNameCol = new DataGridViewTextBoxColumn();
             patientSignalCol = new DataGridViewTextBoxColumn();
             patientStatusCol = new DataGridViewTextBoxColumn();
+            label9 = new Label();
+            btnExit = new component.RJButton();
+            label2 = new Label();
+            panel2 = new Panel();
+            label6 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)roundPictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
@@ -376,6 +376,41 @@
             dataGridView.Size = new Size(1414, 544);
             dataGridView.TabIndex = 63;
             // 
+            // timeAppointmentCol
+            // 
+            timeAppointmentCol.HeaderText = "Giờ hẹn";
+            timeAppointmentCol.MinimumWidth = 6;
+            timeAppointmentCol.Name = "timeAppointmentCol";
+            timeAppointmentCol.Width = 125;
+            // 
+            // assisstanceCol
+            // 
+            assisstanceCol.HeaderText = "Phụ tá";
+            assisstanceCol.MinimumWidth = 6;
+            assisstanceCol.Name = "assisstanceCol";
+            assisstanceCol.Width = 230;
+            // 
+            // patientNameCol
+            // 
+            patientNameCol.HeaderText = "Bệnh nhân";
+            patientNameCol.MinimumWidth = 6;
+            patientNameCol.Name = "patientNameCol";
+            patientNameCol.Width = 230;
+            // 
+            // patientSignalCol
+            // 
+            patientSignalCol.HeaderText = "Triệu chứng bệnh nhân";
+            patientSignalCol.MinimumWidth = 6;
+            patientSignalCol.Name = "patientSignalCol";
+            patientSignalCol.Width = 500;
+            // 
+            // patientStatusCol
+            // 
+            patientStatusCol.HeaderText = "Trạng thái";
+            patientStatusCol.MinimumWidth = 6;
+            patientStatusCol.Name = "patientStatusCol";
+            patientStatusCol.Width = 250;
+            // 
             // label9
             // 
             label9.AutoSize = true;
@@ -437,41 +472,6 @@
             label6.Text = "Lịch hẹn";
             label6.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // timeAppointmentCol
-            // 
-            timeAppointmentCol.HeaderText = "Giờ hẹn";
-            timeAppointmentCol.MinimumWidth = 6;
-            timeAppointmentCol.Name = "timeAppointmentCol";
-            timeAppointmentCol.Width = 125;
-            // 
-            // assisstanceCol
-            // 
-            assisstanceCol.HeaderText = "Phụ tá";
-            assisstanceCol.MinimumWidth = 6;
-            assisstanceCol.Name = "assisstanceCol";
-            assisstanceCol.Width = 230;
-            // 
-            // patientNameCol
-            // 
-            patientNameCol.HeaderText = "Bệnh nhân";
-            patientNameCol.MinimumWidth = 6;
-            patientNameCol.Name = "patientNameCol";
-            patientNameCol.Width = 230;
-            // 
-            // patientSignalCol
-            // 
-            patientSignalCol.HeaderText = "Triệu chứng bệnh nhân";
-            patientSignalCol.MinimumWidth = 6;
-            patientSignalCol.Name = "patientSignalCol";
-            patientSignalCol.Width = 500;
-            // 
-            // patientStatusCol
-            // 
-            patientStatusCol.HeaderText = "Trạng thái";
-            patientStatusCol.MinimumWidth = 6;
-            patientStatusCol.Name = "patientStatusCol";
-            patientStatusCol.Width = 250;
-            // 
             // DentistAppointmentForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -492,6 +492,7 @@
             Controls.Add(label6);
             Name = "DentistAppointmentForm";
             Text = "DentistAppointmentForm";
+            Load += DentistAppointmentForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)roundPictureBox1).EndInit();
