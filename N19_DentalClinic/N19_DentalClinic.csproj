@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Chart.js" Version="3.7.1" />
     <PackageReference Include="FirebaseAuthentication" Version="1.0.0" />
     <PackageReference Include="FirebaseAuthentication.net" Version="4.1.0" />
     <PackageReference Include="FireSharp.Serialization.JsonNet" Version="1.1.0" />
