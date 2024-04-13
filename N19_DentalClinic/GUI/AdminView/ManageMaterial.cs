@@ -131,5 +131,61 @@ namespace N19_DentalClinic.GUI.AdminView
                 updateUiOnDataChange();
             }
         }
+
+        private void dataMaterial_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (dataMaterial.Rows.Count > 0)
+            {
+                if (dataMaterial.CurrentCell.ColumnIndex == 7)
+                {
+                    string materialId = dataMaterial[1, dataMaterial.CurrentCell.RowIndex].Value.ToString();
+                    string materialName = dataMaterial[2, dataMaterial.CurrentCell.RowIndex].Value.ToString();
+                    string type = dataMaterial[3, dataMaterial.CurrentCell.RowIndex].Value.ToString();
+                    string title = "Xác nhận xóa";
+                    string message = $"Bạn có chắc muốn xóa {materialName} với id là {materialId}???";
+                    var confirmResult = MessageBox.Show(message, title, MessageBoxButtons.YesNo);
+
+                    if (confirmResult == DialogResult.Yes)
+                    {
+                        if (type == "Cố định")
+                        {
+                            string sql = @$"delete from FixedMaterial 
+                                            where materialId = '{materialId}'";
+                            data.changeData(sql);
+                            sql = @$"delete from Material 
+                                            where materialId = '{materialId}'";
+                            data.changeData(sql);
+                        } else
+                        {
+                            string sql = @$"delete from Medicine 
+                                            where materialId = '{materialId}'";
+                            data.changeData(sql);
+                            sql = @$"delete from ConsumableMaterial 
+                                            where materialId = '{materialId}'";
+                            data.changeData(sql);
+                            sql = @$"delete from Material 
+                                            where materialId = '{materialId}'";
+                            data.changeData(sql);
+                        }
+                        MessageBox.Show("Xóa thành công");
+                        updateUiOnDataChange();
+                    }
+                }
+                else
+                {
+                    string serviceId = dataMaterial[1, dataMaterial.CurrentCell.RowIndex].Value.ToString();
+                    string serviceName = dataMaterial[2, dataMaterial.CurrentCell.RowIndex].Value.ToString();
+                    string price = dataMaterial[3, dataMaterial.CurrentCell.RowIndex].Value.ToString();
+                    string calUnit = dataMaterial[4, dataMaterial.CurrentCell.RowIndex].Value.ToString();
+                    string note = dataMaterial[5, dataMaterial.CurrentCell.RowIndex].Value.ToString();
+                    AddService addService = new AddService(serviceId, serviceName, price, calUnit, note);
+                    if (addService.ShowDialog() == DialogResult.OK)
+                    {
+                        updateUiOnDataChange();
+                    }
+                }
+
+            }
+        }
     }
 }

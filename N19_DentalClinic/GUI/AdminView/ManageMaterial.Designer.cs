@@ -74,6 +74,7 @@
             dataMaterial.RowHeadersWidth = 51;
             dataMaterial.Size = new Size(1186, 623);
             dataMaterial.TabIndex = 117;
+            dataMaterial.MouseClick += dataMaterial_MouseClick;
             // 
             // btnAddMaterial
             // 
