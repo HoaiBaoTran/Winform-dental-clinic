@@ -45,7 +45,7 @@ namespace N19_DentalClinic.GUI
                 {
                     Button btn = new Button() { Width = Cons.dateButtonWidth, Height = Cons.dateButtonHeight };
                     btn.Location = new Point(oldBtn.Location.X + oldBtn.Width + Cons.margin, oldBtn.Location.Y);
-                    //btn.Click += Btn_Click;
+                    btn.Click += Btn_Click;
 
                     pnlMatrix.Controls.Add(btn);
                     matrix[i].Add(btn);
@@ -55,7 +55,27 @@ namespace N19_DentalClinic.GUI
             }
             setDefaultDate();
         }
-
+        private DateTime dateAccept;
+        private Button lastClickedButton;
+        private void Btn_Click(object? sender, EventArgs e)
+        {
+            Button clickedButton = sender as Button;
+            if (clickedButton != null)
+            {
+                if (lastClickedButton != null)
+                {
+                    lastClickedButton.BackColor = SystemColors.Window; // Màu nền mặc định của control
+                    btnHomNay.BackColor = Color.LightBlue;
+                }
+                // Lấy giá trị ngày từ thuộc tính Tag của nút
+                if (clickedButton.Tag is DateTime selectedDate)
+                {
+                    clickedButton.BackColor = Color.Green;
+                    dateAccept = selectedDate;
+                    lastClickedButton = clickedButton;
+                }
+            }
+        }
 
         int dayOfMonth(DateTime date)
         {
@@ -80,6 +100,7 @@ namespace N19_DentalClinic.GUI
                     return 30;
             }
         }
+        Button btnHomNay;
         void AddNumberIntoMatrixByDate(DateTime date)
         {
             ClearMatrix();
@@ -91,15 +112,17 @@ namespace N19_DentalClinic.GUI
                 int column = DateOfWeek.IndexOf(useDate.DayOfWeek.ToString());
                 Button btn = matrix[line][column];
                 btn.Text = i.ToString();
+                btn.Tag = useDate;
                 //Ngày hôm nay 
                 if (isEqualDate(useDate, DateTime.Now))
                 {
                     btn.BackColor = Color.LightBlue;
+                    btnHomNay = btn;
                 }
                 //Ngày được chọn 
                 if (isEqualDate(useDate, date))
                 {
-                    btn.BackColor = Color.Yellow;
+                   
                     dateSelector = useDate;
                 }
 
@@ -161,13 +184,15 @@ namespace N19_DentalClinic.GUI
             return dateSelector;
         }
 
-        private void Calendar_Load(object sender, EventArgs e)
+        public void setDateSelector(DateTime dateSelector)
         {
-
+            this.dateSelector = dateSelector;
         }
+
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
+            setDateSelector(dateAccept);
             this.Close();
         }
     }

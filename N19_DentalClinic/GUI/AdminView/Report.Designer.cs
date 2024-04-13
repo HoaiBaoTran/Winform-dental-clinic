@@ -31,13 +31,26 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            panel1 = new Panel();
+            pnEmpty = new Panel();
+            pnChange = new Panel();
+            txtDayTo = new TextBox();
+            btnDayTo = new Button();
+            txtDayFrom = new TextBox();
+            btnDayFrom = new Button();
+            label5 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            cbChart = new ComboBox();
+            cbDay = new ComboBox();
+            panel2 = new Panel();
+            btnExport = new Button();
+            btnTimKiem = new Button();
             ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)chart2).BeginInit();
+            panel1.SuspendLayout();
+            pnChange.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // chart1
@@ -46,52 +59,203 @@
             chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             chart1.Legends.Add(legend1);
-            chart1.Location = new Point(52, 89);
+            chart1.Location = new Point(195, 4);
             chart1.Margin = new Padding(3, 4, 3, 4);
             chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             series1.Legend = "Legend1";
-            series1.Name = "Series1";
+            series1.Name = "Doanh thu";
             chart1.Series.Add(series1);
-            chart1.Size = new Size(300, 375);
+            chart1.Size = new Size(758, 376);
             chart1.TabIndex = 0;
             chart1.Text = "chart1";
             // 
-            // chart2
+            // panel1
             // 
-            chartArea2.Name = "ChartArea1";
-            chart2.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            chart2.Legends.Add(legend2);
-            chart2.Location = new Point(470, 102);
-            chart2.Name = "chart2";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            chart2.Series.Add(series2);
-            chart2.Size = new Size(375, 375);
-            chart2.TabIndex = 1;
-            chart2.Text = "chart2";
+            panel1.Controls.Add(pnChange);
+            panel1.Controls.Add(pnEmpty);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(cbChart);
+            panel1.Controls.Add(cbDay);
+            panel1.Location = new Point(1, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(965, 207);
+            panel1.TabIndex = 1;
+            // 
+            // pnEmpty
+            // 
+            pnEmpty.Location = new Point(3, 129);
+            pnEmpty.Name = "pnEmpty";
+            pnEmpty.Size = new Size(959, 75);
+            pnEmpty.TabIndex = 19;
+            // 
+            // pnChange
+            // 
+            pnChange.Controls.Add(txtDayTo);
+            pnChange.Controls.Add(btnDayTo);
+            pnChange.Controls.Add(txtDayFrom);
+            pnChange.Controls.Add(btnDayFrom);
+            pnChange.Location = new Point(3, 129);
+            pnChange.Name = "pnChange";
+            pnChange.Size = new Size(959, 75);
+            pnChange.TabIndex = 18;
+            // 
+            // txtDayTo
+            // 
+            txtDayTo.Location = new Point(649, 24);
+            txtDayTo.Name = "txtDayTo";
+            txtDayTo.ReadOnly = true;
+            txtDayTo.Size = new Size(148, 27);
+            txtDayTo.TabIndex = 21;
+            // 
+            // btnDayTo
+            // 
+            btnDayTo.Location = new Point(502, 20);
+            btnDayTo.Name = "btnDayTo";
+            btnDayTo.Size = new Size(131, 35);
+            btnDayTo.TabIndex = 20;
+            btnDayTo.Text = "Ngày kết thúc";
+            btnDayTo.UseVisualStyleBackColor = true;
+            btnDayTo.Click += btnDayTo_Click_1;
+            // 
+            // txtDayFrom
+            // 
+            txtDayFrom.Location = new Point(177, 24);
+            txtDayFrom.Name = "txtDayFrom";
+            txtDayFrom.ReadOnly = true;
+            txtDayFrom.Size = new Size(148, 27);
+            txtDayFrom.TabIndex = 19;
+            // 
+            // btnDayFrom
+            // 
+            btnDayFrom.Location = new Point(31, 19);
+            btnDayFrom.Name = "btnDayFrom";
+            btnDayFrom.Size = new Size(131, 36);
+            btnDayFrom.TabIndex = 18;
+            btnDayFrom.Text = "Ngày bắt đầu";
+            btnDayFrom.UseVisualStyleBackColor = true;
+            btnDayFrom.Click += btnDayFrom_Click_1;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(446, 91);
+            label5.Name = "label5";
+            label5.Size = new Size(193, 25);
+            label5.TabIndex = 14;
+            label5.Text = "Thống kê theo biểu đồ";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(27, 95);
+            label2.Name = "label2";
+            label2.Size = new Size(127, 25);
+            label2.TabIndex = 3;
+            label2.Text = "Thống kê theo";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BorderStyle = BorderStyle.FixedSingle;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(34, 18);
+            label3.Name = "label3";
+            label3.Size = new Size(205, 30);
+            label3.TabIndex = 5;
+            label3.Text = "Thống kê doanh thu";
+            // 
+            // cbChart
+            // 
+            cbChart.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbChart.FormattingEnabled = true;
+            cbChart.Location = new Point(645, 92);
+            cbChart.Name = "cbChart";
+            cbChart.Size = new Size(185, 28);
+            cbChart.TabIndex = 4;
+            // 
+            // cbDay
+            // 
+            cbDay.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbDay.FormattingEnabled = true;
+            cbDay.Location = new Point(173, 92);
+            cbDay.Name = "cbDay";
+            cbDay.Size = new Size(185, 28);
+            cbDay.TabIndex = 3;
+            cbDay.SelectedIndexChanged += cbDay_SelectedIndexChanged;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(btnExport);
+            panel2.Controls.Add(btnTimKiem);
+            panel2.Controls.Add(chart1);
+            panel2.Location = new Point(1, 216);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(965, 384);
+            panel2.TabIndex = 2;
+            // 
+            // btnExport
+            // 
+            btnExport.Location = new Point(34, 126);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(110, 54);
+            btnExport.TabIndex = 7;
+            btnExport.Text = "Xuất file";
+            btnExport.UseVisualStyleBackColor = true;
+            btnExport.Click += btnExport_Click;
+            // 
+            // btnTimKiem
+            // 
+            btnTimKiem.Location = new Point(34, 43);
+            btnTimKiem.Name = "btnTimKiem";
+            btnTimKiem.Size = new Size(110, 54);
+            btnTimKiem.TabIndex = 6;
+            btnTimKiem.Text = "Tìm kiếm";
+            btnTimKiem.UseVisualStyleBackColor = true;
+            btnTimKiem.Click += btnTimKiem_Click;
             // 
             // Report
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(976, 621);
-            Controls.Add(chart2);
-            Controls.Add(chart1);
+            ClientSize = new Size(970, 603);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "Report";
             Text = "Form1";
+            Load += Report_Load;
             ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)chart2).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            pnChange.ResumeLayout(false);
+            pnChange.PerformLayout();
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
+        private Panel panel1;
+        private Label label3;
+        private ComboBox cbDay;
+        private Panel panel2;
+        private Button btnExport;
+        private Button btnTimKiem;
+        private ComboBox cbChart;
+        private Label label5;
+        private Label label2;
+        private Panel pnChange;
+        private TextBox txtDayTo;
+        private Button btnDayTo;
+        private TextBox txtDayFrom;
+        private Button btnDayFrom;
+        private Panel pnEmpty;
     }
 }
