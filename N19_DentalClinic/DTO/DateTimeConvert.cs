@@ -26,6 +26,13 @@ namespace N19_DentalClinic.DAO
             return myDateTime.ToString($"{myDateTime:HH}:{myDateTime:mm}:{myDateTime:ss}");
         }
 
+        public static string convertSqlTimeForDDMMYYYY(string day)
+        {
+            DateTime date = DateTime.ParseExact(day, "dd/MM/yyyy", null);
+            return date.Date.ToString("yyyy-MM-dd hh:mm:ss");
+
+        }
+
         public static string convertSqlTime(string day)
         {
             DateTime myDateTime = Convert.ToDateTime(day);

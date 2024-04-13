@@ -61,6 +61,8 @@ namespace N19_DentalClinic.GUI.AdminView
             ColorMarker.ButtonColor(btnWorkCalendar, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnMaterialManagement, "DBAF09", "000000");
             ColorMarker.ButtonColor(btnServiceManagement, "0918DB", "ffffff");
+
+            PanelInteraction.loadForm(new ManageMaterial(pnShowContent, 3), pnShowContent);
         }
 
         private void btnServiceManagement_Click(object sender, EventArgs e)

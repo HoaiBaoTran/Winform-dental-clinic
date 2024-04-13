@@ -39,7 +39,7 @@ namespace N19_DentalClinic.GUI.AdminView
             isEdit = true;
         }
 
-        private void btnAddService_Click(object sender, EventArgs e)
+        private void handleAddService()
         {
             string serviceName = tbServiceName.Text;
             string calUnit = tbCalUnit.Text;
@@ -66,6 +66,11 @@ namespace N19_DentalClinic.GUI.AdminView
             }
         }
 
+        private void btnAddService_Click(object sender, EventArgs e)
+        {
+            handleAddService();
+        }
+
         private void AddService_Load(object sender, EventArgs e)
         {
             if (isEdit)
@@ -88,6 +93,11 @@ namespace N19_DentalClinic.GUI.AdminView
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void roundPictureBox2_Click(object sender, EventArgs e)
+        {
+            handleAddService();
         }
     }
 }

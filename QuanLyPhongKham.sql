@@ -812,6 +812,19 @@ go
 exec procAddFixedMaterial 'MA00000001'
 exec procAddFixedMaterial 'MA00000002'
 exec procAddFixedMaterial 'MA00000003'
+exec procAddFixedMaterial 'MA00000004'
+exec procAddFixedMaterial 'MA00000005'
+exec procAddFixedMaterial 'MA00000006'
+exec procAddFixedMaterial 'MA00000007'
+exec procAddFixedMaterial 'MA00000008'
+exec procAddFixedMaterial 'MA00000009'
+exec procAddFixedMaterial 'MA00000010'
+exec procAddFixedMaterial 'MA00000011'
+exec procAddFixedMaterial 'MA00000012'
+exec procAddFixedMaterial 'MA00000013'
+exec procAddFixedMaterial 'MA00000014'
+exec procAddFixedMaterial 'MA00000015'
+exec procAddFixedMaterial 'MA00000016'
 GO
 
 --Receptionist

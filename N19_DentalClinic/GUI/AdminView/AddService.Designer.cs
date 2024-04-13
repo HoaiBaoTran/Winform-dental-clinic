@@ -154,11 +154,12 @@
             roundPictureBox2.BackColor = Color.FromArgb(56, 92, 67);
             roundPictureBox2.BackgroundImage = Properties.Resources.white_plus_icon;
             roundPictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox2.Location = new Point(703, 393);
+            roundPictureBox2.Location = new Point(699, 393);
             roundPictureBox2.Name = "roundPictureBox2";
             roundPictureBox2.Size = new Size(39, 47);
             roundPictureBox2.TabIndex = 50;
             roundPictureBox2.TabStop = false;
+            roundPictureBox2.Click += roundPictureBox2_Click;
             // 
             // btnAddService
             // 
@@ -174,9 +175,9 @@
             btnAddService.Font = new Font("Segoe UI", 12F);
             btnAddService.ForeColor = Color.Black;
             btnAddService.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddService.Location = new Point(694, 386);
+            btnAddService.Location = new Point(684, 386);
             btnAddService.Name = "btnAddService";
-            btnAddService.Size = new Size(138, 63);
+            btnAddService.Size = new Size(148, 63);
             btnAddService.TabIndex = 49;
             btnAddService.Text = "Tạo mới";
             btnAddService.TextAlign = ContentAlignment.MiddleRight;
