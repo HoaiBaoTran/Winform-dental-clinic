@@ -1,9 +1,11 @@
+using N19_DentalClinic.GUI.ReceptionistView;
 using N19_ProjectForm.DAO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +28,7 @@ namespace N19_ProjectForm.GUI.ReceptionistView
 
         private void DentistFile_Load(object sender, EventArgs e)
         {
-            string sql = "select * from Dentist";
+            string sql = "select * from Dentist where able = 1";
             updateDataGridView(sql);
         }
 
@@ -34,15 +36,39 @@ namespace N19_ProjectForm.GUI.ReceptionistView
 
         private void dataDentistTable_MouseClick(object sender, MouseEventArgs e)
         {
+            if (dataDentistTable.CurrentCell == null) return;
             if (dataDentistTable.CurrentCell.ColumnIndex == 8)
             {
                 string DenID = dataDentistTable[1, dataDentistTable.CurrentCell.RowIndex].Value.ToString();
-                PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, DenID,role,"view"), panelWrapper);
+                PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, DenID, role, "view"), panelWrapper);//xem thông tin chi tiết nha sĩ
             }
             else if (dataDentistTable.CurrentCell.ColumnIndex == 9)
             {
                 string DenID = dataDentistTable[1, dataDentistTable.CurrentCell.RowIndex].Value.ToString();
-                PanelInteraction.openForm(this, new AppointmentForDentist(panelWrapper, DenID,role,"view"), panelWrapper);
+                PanelInteraction.openForm(this, new AppointmentForDentist(panelWrapper, DenID, role, "view"), panelWrapper);//xem thông tin lịch hẹn 
+            }
+            else if (dataDentistTable.CurrentCell.ColumnIndex == 10)
+            {
+                if(role == 1)
+                {
+                    string DenID = dataDentistTable[1, dataDentistTable.CurrentCell.RowIndex].Value.ToString();
+                    PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, DenID, role, "update"), panelWrapper);//sửa thông tin chi tiết nha sĩ
+                }else
+                {
+                    MessageBox.Show("Bạn không đủ thẩm quyền để chỉnh sửa");
+                }
+            }
+            else if (dataDentistTable.CurrentCell.ColumnIndex == 11)
+            {
+                if(role == 1)
+                {
+                    string DenID = dataDentistTable[1, dataDentistTable.CurrentCell.RowIndex].Value.ToString();
+                    PanelInteraction.openForm(this, new DeleteDentist(panelWrapper, DenID, role, "delete"), panelWrapper);//Xóa thông tin chi tiết nha sĩ
+                }
+                else
+                {
+                    MessageBox.Show("Bạn không đủ thẩm quyền để xóa");
+                }
             }
         }
 
@@ -60,6 +86,8 @@ namespace N19_ProjectForm.GUI.ReceptionistView
 
         public void updateDataGridView(string sql)
         {
+            btnSearch.BackColor = ColorTranslator.FromHtml("#" + "DBAF09");
+            btnCreateDentist.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
             DataTable table = data.readData(sql);
             if (table.Rows.Count > 0)
             {
@@ -88,13 +116,13 @@ namespace N19_ProjectForm.GUI.ReceptionistView
                     {
                         gender = "Nữ";
                     }
-                    string[] rowString = new string[] { 
-                        countRow.ToString(), 
-                        (string)row["DenID"], 
-                        (string)row["name"], 
-                        DateTimeConvert.convertDMY(row["birthday"].ToString()), 
-                        (string)row["address"], (string)row["phone_number"], 
-                        (string)row["email"], gender, "Thông tin chi tiết", 
+                    string[] rowString = new string[] {
+                        countRow.ToString(),
+                        (string)row["DenID"],
+                        (string)row["name"],
+                        DateTimeConvert.convertDMY(row["birthday"].ToString()),
+                        (string)row["address"], (string)row["phone_number"],
+                        (string)row["email"], gender, "Thông tin chi tiết",
                         "Lịch hẹn",
                         "Chỉnh sửa",
                         "Xóa"
@@ -104,11 +132,17 @@ namespace N19_ProjectForm.GUI.ReceptionistView
                 }
             }
             dataDentistTable.AllowUserToAddRows = false;
+            dataDentistTable.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataDentistTable.Columns[0].Width = 60;
+
+
+            dataDentistTable.EnableHeadersVisualStyles = false;
+            dataDentistTable.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string sql = "select * from dentist";
+            string sql = "select * from dentist where able = 1";
             DataTable table = data.readData(sql);
             int selectIndex = cbKindSearch.SelectedIndex;
             switch (selectIndex)
@@ -122,7 +156,7 @@ namespace N19_ProjectForm.GUI.ReceptionistView
                         {
                             if (row["denID"].ToString() == txtSearch.Text)
                             {
-                                string sqlFindByID = "select * from dentist where denID = '" + txtSearch.Text + "'";
+                                string sqlFindByID = "select * from dentist where able = 1 and denID = '" + txtSearch.Text + "'";
                                 clearDataGridView(dataDentistTable);
                                 updateDataGridView(sqlFindByID);
                                 flagId = false;
@@ -137,7 +171,7 @@ namespace N19_ProjectForm.GUI.ReceptionistView
                 // Tim theo ten nha si
                 case 1:
 
-                    string sqlFindByName = "select * from dentist where name like N'%" + txtSearch.Text + "%'";
+                    string sqlFindByName = "select * from dentist where able = 1 and name like N'%" + txtSearch.Text + "%'";
                     clearDataGridView(dataDentistTable);
                     updateDataGridView(sqlFindByName);
 
@@ -150,13 +184,15 @@ namespace N19_ProjectForm.GUI.ReceptionistView
 
         private void btnCreateDentist_Click(object sender, EventArgs e)
         {
-            if(role == 2)
+            if (role == 1)
             {
-                PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, "", 1, "create"), panelWrapper);
-            }else
+                PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, "", role, "create"), panelWrapper);
+            }
+            else
             {
                 MessageBox.Show("Bạn không đủ ủy quyền để thêm bệnh nhân");
             }
         }
+
     }
 }

@@ -31,7 +31,7 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageAppointment));
-            dataAppointment = new DataGridView();
+            dataAppointmentTable = new DataGridView();
             label1 = new Label();
             button3 = new Button();
             txtCurrDate = new TextBox();
@@ -39,18 +39,18 @@
             btnTommorow = new Button();
             btnYesterday = new Button();
             btnCreateAppointment = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataAppointment).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataAppointmentTable).BeginInit();
             SuspendLayout();
             // 
-            // dataAppointment
+            // dataAppointmentTable
             // 
-            dataAppointment.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataAppointment.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataAppointment.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dataAppointment.BackgroundColor = Color.White;
-            dataAppointment.BorderStyle = BorderStyle.None;
-            dataAppointment.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
-            dataAppointment.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataAppointmentTable.AllowUserToAddRows = false;
+            dataAppointmentTable.AllowUserToDeleteRows = false;
+            dataAppointmentTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataAppointmentTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataAppointmentTable.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataAppointmentTable.BorderStyle = BorderStyle.None;
+            dataAppointmentTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = SystemColors.Window;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F);
@@ -59,10 +59,10 @@
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dataAppointment.DefaultCellStyle = dataGridViewCellStyle1;
-            dataAppointment.GridColor = Color.White;
-            dataAppointment.Location = new Point(16, 207);
-            dataAppointment.Name = "dataAppointment";
+            dataAppointmentTable.DefaultCellStyle = dataGridViewCellStyle1;
+            dataAppointmentTable.Location = new Point(16, 207);
+            dataAppointmentTable.Name = "dataAppointmentTable";
+            dataAppointmentTable.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(18, 219, 78);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F);
@@ -71,11 +71,11 @@
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataAppointment.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dataAppointment.RowHeadersWidth = 51;
-            dataAppointment.Size = new Size(1262, 482);
-            dataAppointment.TabIndex = 21;
-            dataAppointment.MouseClick += dataAppointment_MouseClick;
+            dataAppointmentTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataAppointmentTable.RowHeadersWidth = 51;
+            dataAppointmentTable.Size = new Size(1262, 482);
+            dataAppointmentTable.TabIndex = 21;
+            dataAppointmentTable.MouseClick += dataAppointmentTable_MouseClick;
             // 
             // label1
             // 
@@ -104,6 +104,7 @@
             button3.Text = "Chọn Ngày";
             button3.TextAlign = ContentAlignment.MiddleLeft;
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // txtCurrDate
             // 
@@ -115,6 +116,7 @@
             txtCurrDate.ReadOnly = true;
             txtCurrDate.Size = new Size(210, 38);
             txtCurrDate.TabIndex = 26;
+            txtCurrDate.TextChanged += txtCurrDate_TextChanged;
             // 
             // btnToday
             // 
@@ -126,6 +128,7 @@
             btnToday.TabIndex = 25;
             btnToday.Text = "Hôm nay";
             btnToday.UseVisualStyleBackColor = true;
+            btnToday.Click += btnToday_Click;
             // 
             // btnTommorow
             // 
@@ -139,6 +142,7 @@
             btnTommorow.Size = new Size(58, 61);
             btnTommorow.TabIndex = 24;
             btnTommorow.UseVisualStyleBackColor = false;
+            btnTommorow.Click += btnTommorow_Click;
             // 
             // btnYesterday
             // 
@@ -152,6 +156,7 @@
             btnYesterday.Size = new Size(58, 61);
             btnYesterday.TabIndex = 23;
             btnYesterday.UseVisualStyleBackColor = false;
+            btnYesterday.Click += btnYesterday_Click;
             // 
             // btnCreateAppointment
             // 
@@ -159,10 +164,11 @@
             btnCreateAppointment.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCreateAppointment.Image = (Image)resources.GetObject("btnCreateAppointment.Image");
             btnCreateAppointment.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCreateAppointment.Location = new Point(1036, 21);
+            btnCreateAppointment.Location = new Point(1025, 21);
             btnCreateAppointment.Margin = new Padding(3, 4, 3, 4);
             btnCreateAppointment.Name = "btnCreateAppointment";
-            btnCreateAppointment.Size = new Size(238, 66);
+            btnCreateAppointment.Padding = new Padding(6, 0, 6, 0);
+            btnCreateAppointment.Size = new Size(249, 66);
             btnCreateAppointment.TabIndex = 28;
             btnCreateAppointment.Text = "Thêm lịch hẹn";
             btnCreateAppointment.TextAlign = ContentAlignment.MiddleRight;
@@ -181,18 +187,18 @@
             Controls.Add(btnTommorow);
             Controls.Add(btnYesterday);
             Controls.Add(label1);
-            Controls.Add(dataAppointment);
+            Controls.Add(dataAppointmentTable);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ManageAppointment";
             Load += ManageAppointment_Load;
-            ((System.ComponentModel.ISupportInitialize)dataAppointment).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataAppointmentTable).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private DataGridView dataAppointment;
+        private DataGridView dataAppointmentTable;
         private Label label1;
         private Button button3;
         private TextBox txtCurrDate;

@@ -94,6 +94,28 @@ namespace N19_DentalClinic.controller.receptionist
 
         private void updateEvent()
         {
+            //status dictionary
+            Dictionary<string, string> cbstatuskeyvalue = new Dictionary<string, string>();
+            cbstatuskeyvalue.Add("A", "Bệnh nhân chưa đến");
+            cbstatuskeyvalue.Add("B", "Bệnh nhân đã đến");
+            cbstatuskeyvalue.Add("C", "Cuộc hẹn kết thúc");
+            //Them khoa vao combobox fac
+            string sqlFacultyList = "select facid, name from faculty";
+            DataTable tableFacList = data.readData(sqlFacultyList);
+            if (tableFacList.Rows.Count > 0)
+            {
+                foreach (DataRow rowfac in tableFacList.Rows)
+                {
+                    cbFaculty.Items.Add(rowfac["name"].ToString());
+                    FacultyListName.Add(rowfac["name"].ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Chưa có khoa trong dữ liệu" + "\r\n"
+                             + " Vui lòng nhập thêm dữ liệu cho khoa");
+            }
+
             btnAddAppointment.Text = "Sửa";
             tbSignal.ReadOnly = false;
             cbStatus.Enabled = true;
@@ -102,25 +124,27 @@ namespace N19_DentalClinic.controller.receptionist
             cbPatient.Enabled = true;
             cbFaculty.Enabled = true;
 
-            string sqlAp = @$"select ap.apId, ap.ap_time, p.patid, d.denid, ap.symptom, ap.stateap,
-                                d.name as denName, d.phone_number as denPhoneNum
+            string sqlAp = @$"select ap.apId, ap.ap_time, ap.patid, ap.denid, ap.symptom, ap.stateap,
+                                d.name as denName, d.phone_number as denPhoneNum,
                                 p.name as patName, p.gender as patGender, p.number as patPhoneNum,
-                                p.address as patAddress, p.email as patEmail 
+                                p.address as patAddress, p.email as patEmail ,
                                 f.name as facName
+                                from Appointment ap 
                                 join dentist d on d.denid = ap.denid
                                 join patient p on p.patid = ap.patid
                                 join faculty f on f.facid = d.facid
-                                from Appointment ap where able = 1 and apid = {ApID}";
+                                where ap.able = 1 and ap.apid = '{ApID}'";
             DataTable tableAp = data.readData(sqlAp);
             if(tableAp.Rows.Count > 0)
             {
                 foreach(DataRow rowAp in tableAp.Rows)
                 {
                     //Cuoc hen
-                    tbSignal.Text = rowAp["name"].ToString();
-                    cbStatus.Text = rowAp["status"].ToString();
+                    tbSignal.Text = rowAp["symptom"].ToString();
+                    cbStatus.Text = cbstatuskeyvalue[rowAp["stateap"].ToString()];
                     txtDay.Text = DateTimeConvert.convertDMY(rowAp["ap_time"].ToString());
                     HMSPicker.Text = DateTimeConvert.convertHMS(rowAp["ap_time"].ToString());
+
                     //Benh nhan
                     cbPatient.SelectedIndex = 0;
                     tbPatientId.Text = rowAp["patid"].ToString();
@@ -142,6 +166,7 @@ namespace N19_DentalClinic.controller.receptionist
 
                     //Nha si
                     cbFaculty.Text = rowAp["facName"].ToString();
+                    tbDentistId.Text = rowAp["denid"].ToString();
                     tbDentistName.Text = rowAp["denName"].ToString();
                     tbDentistPhoneNumber.Text = rowAp["denPhoneNum"].ToString();
                     
@@ -153,13 +178,16 @@ namespace N19_DentalClinic.controller.receptionist
 
         private void viewEvent()
         {
+            updateEvent();
             btnAddAppointment.Text = "Tạo mới";
-            tbSignal.ReadOnly = false;
-            cbStatus.Enabled = true;
-            btnChooseDay.Enabled = true;
-            HMSPicker.Enabled = true;
-            cbPatient.Enabled = true;
-            cbFaculty.Enabled = true;
+            tbSignal.ReadOnly = true;
+            cbStatus.Enabled = false;
+            btnChooseDay.Enabled = false;
+            HMSPicker.Enabled = false;
+            cbPatient.Enabled = false;
+            cbFaculty.Enabled = false;
+            tbDentistId.ReadOnly = true;
+            btnAddAppointment.Enabled = true;
         }
 
         private void btnSearchPatId_Click(object sender, EventArgs e)
@@ -315,9 +343,9 @@ namespace N19_DentalClinic.controller.receptionist
             {
                 MessageBox.Show("Vui lòng nhập mã nha sĩ");
 
-            }else 
+            } else
             {
-                
+
                 string sqlApTimeDay = DateTimeConvert.convertSqlTimeDay(txtDay.Text);
                 string sqlApTimeHour = DateTimeConvert.convertHMS(HMSPicker.Text);
                 string sqlTime = sqlApTimeDay + " " + sqlApTimeHour;
@@ -326,15 +354,30 @@ namespace N19_DentalClinic.controller.receptionist
                 string sqlSymptom = tbSignal.Text;
                 string sqlStateAp = stateApDic[cbStatus.SelectedIndex];
 
-                string sqlAddApp = $@"exec procAddAppointment
-                        '{sqlTime}', 
-                        '{sqlPatID}',
-                        '{sqlDenID}',
-                        N'{sqlSymptom}',
-                        '{sqlStateAp}'";
-                data.changeData(sqlAddApp);
-                MessageBox.Show("Thêm lịch thành công");
-                this.Close();
+                if (interaction == "create")
+                {
+                    string sqlAddApp = $@"exec procAddAppointment
+                            '{sqlTime}', 
+                            '{sqlPatID}',
+                            '{sqlDenID}',
+                            N'{sqlSymptom}',
+                            '{sqlStateAp}'";
+                    data.changeData(sqlAddApp);
+                    MessageBox.Show("Thêm lịch thành công");
+                    this.Close();
+                }else if (interaction == "update")
+                {
+                    string sqlUpdateApp = @$"update appointment 
+                        set ap_time = '{sqlTime}',
+                            patid = '{sqlPatID}',
+                            denid = '{sqlDenID}',
+                            symptom = N'{sqlSymptom}',
+                            stateap = '{sqlStateAp}'
+                        where apid = '{ApID}' and able = 1";
+                    data.changeData(sqlUpdateApp);
+                    MessageBox.Show("Thay đổi lịch thành công");
+                    this.Close();
+                }
             }
 
         }

@@ -29,304 +29,327 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PatientDecriptionDetail));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnCalendar = new System.Windows.Forms.Button();
-            this.txtDenOfPat = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtBirthday = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.rbFemale = new System.Windows.Forms.RadioButton();
-            this.rbMale = new System.Windows.Forms.RadioButton();
-            this.txtAddress = new System.Windows.Forms.TextBox();
-            this.txtPhoneNumber = new System.Windows.Forms.TextBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.txtPatID = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnCreatePatient = new System.Windows.Forms.Button();
-            this.btnBack = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
-            this.SuspendLayout();
+            groupBox1 = new GroupBox();
+            btnCalendar = new Button();
+            txtDenOfPat = new TextBox();
+            label2 = new Label();
+            txtBirthday = new TextBox();
+            label12 = new Label();
+            rbFemale = new RadioButton();
+            rbMale = new RadioButton();
+            txtAddress = new TextBox();
+            txtPhoneNumber = new TextBox();
+            txtEmail = new TextBox();
+            txtName = new TextBox();
+            txtPatID = new TextBox();
+            label11 = new Label();
+            label8 = new Label();
+            label7 = new Label();
+            label6 = new Label();
+            label4 = new Label();
+            label3 = new Label();
+            label1 = new Label();
+            btnCreatePatient = new Button();
+            btnBack = new Button();
+            groupBox1.SuspendLayout();
+            SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.btnCalendar);
-            this.groupBox1.Controls.Add(this.txtDenOfPat);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtBirthday);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.rbFemale);
-            this.groupBox1.Controls.Add(this.rbMale);
-            this.groupBox1.Controls.Add(this.txtAddress);
-            this.groupBox1.Controls.Add(this.txtPhoneNumber);
-            this.groupBox1.Controls.Add(this.txtEmail);
-            this.groupBox1.Controls.Add(this.txtName);
-            this.groupBox1.Controls.Add(this.txtPatID);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(20, 72);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1269, 568);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
+            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox1.Controls.Add(btnCalendar);
+            groupBox1.Controls.Add(txtDenOfPat);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(txtBirthday);
+            groupBox1.Controls.Add(label12);
+            groupBox1.Controls.Add(rbFemale);
+            groupBox1.Controls.Add(rbMale);
+            groupBox1.Controls.Add(txtAddress);
+            groupBox1.Controls.Add(txtPhoneNumber);
+            groupBox1.Controls.Add(txtEmail);
+            groupBox1.Controls.Add(txtName);
+            groupBox1.Controls.Add(txtPatID);
+            groupBox1.Controls.Add(label11);
+            groupBox1.Controls.Add(label8);
+            groupBox1.Controls.Add(label7);
+            groupBox1.Controls.Add(label6);
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Location = new Point(20, 90);
+            groupBox1.Margin = new Padding(3, 4, 3, 4);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Padding = new Padding(3, 4, 3, 4);
+            groupBox1.Size = new Size(1269, 550);
+            groupBox1.TabIndex = 5;
+            groupBox1.TabStop = false;
             // 
             // btnCalendar
             // 
-            this.btnCalendar.Enabled = false;
-            this.btnCalendar.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCalendar.Image = ((System.Drawing.Image)(resources.GetObject("btnCalendar.Image")));
-            this.btnCalendar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCalendar.Location = new System.Drawing.Point(589, 243);
-            this.btnCalendar.Name = "btnCalendar";
-            this.btnCalendar.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.btnCalendar.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnCalendar.Size = new System.Drawing.Size(50, 46);
-            this.btnCalendar.TabIndex = 1;
-            this.btnCalendar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCalendar.UseVisualStyleBackColor = true;
-            this.btnCalendar.Click += new System.EventHandler(this.btnCalendar_Click);
+            btnCalendar.Enabled = false;
+            btnCalendar.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCalendar.Image = (Image)resources.GetObject("btnCalendar.Image");
+            btnCalendar.ImageAlign = ContentAlignment.MiddleRight;
+            btnCalendar.Location = new Point(625, 248);
+            btnCalendar.Margin = new Padding(3, 4, 3, 4);
+            btnCalendar.Name = "btnCalendar";
+            btnCalendar.Padding = new Padding(4, 0, 4, 0);
+            btnCalendar.RightToLeft = RightToLeft.No;
+            btnCalendar.Size = new Size(50, 58);
+            btnCalendar.TabIndex = 1;
+            btnCalendar.TextAlign = ContentAlignment.MiddleLeft;
+            btnCalendar.UseVisualStyleBackColor = true;
+            btnCalendar.Click += btnCalendar_Click;
             // 
             // txtDenOfPat
             // 
-            this.txtDenOfPat.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDenOfPat.Location = new System.Drawing.Point(234, 469);
-            this.txtDenOfPat.Name = "txtDenOfPat";
-            this.txtDenOfPat.ReadOnly = true;
-            this.txtDenOfPat.Size = new System.Drawing.Size(475, 34);
-            this.txtDenOfPat.TabIndex = 26;
+            txtDenOfPat.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDenOfPat.Location = new Point(214, 482);
+            txtDenOfPat.Margin = new Padding(3, 4, 3, 4);
+            txtDenOfPat.Name = "txtDenOfPat";
+            txtDenOfPat.ReadOnly = true;
+            txtDenOfPat.Size = new Size(461, 34);
+            txtDenOfPat.TabIndex = 26;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(7, 472);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(189, 29);
-            this.label2.TabIndex = 25;
-            this.label2.Text = "Nha sĩ chăm sóc";
+            label2.AutoSize = true;
+            label2.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(7, 485);
+            label2.Name = "label2";
+            label2.Size = new Size(189, 29);
+            label2.TabIndex = 25;
+            label2.Text = "Nha sĩ chăm sóc";
+            label2.Click += label2_Click;
             // 
             // txtBirthday
             // 
-            this.txtBirthday.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBirthday.Location = new System.Drawing.Point(166, 249);
-            this.txtBirthday.Name = "txtBirthday";
-            this.txtBirthday.ReadOnly = true;
-            this.txtBirthday.Size = new System.Drawing.Size(406, 34);
-            this.txtBirthday.TabIndex = 24;
+            txtBirthday.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBirthday.Location = new Point(214, 260);
+            txtBirthday.Margin = new Padding(3, 4, 3, 4);
+            txtBirthday.Name = "txtBirthday";
+            txtBirthday.ReadOnly = true;
+            txtBirthday.Size = new Size(391, 34);
+            txtBirthday.TabIndex = 24;
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(7, 252);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(114, 29);
-            this.label12.TabIndex = 23;
-            this.label12.Text = "Năm sinh";
+            label12.AutoSize = true;
+            label12.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label12.Location = new Point(7, 262);
+            label12.Name = "label12";
+            label12.Size = new Size(114, 29);
+            label12.TabIndex = 23;
+            label12.Text = "Năm sinh";
             // 
             // rbFemale
             // 
-            this.rbFemale.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbFemale.AutoSize = true;
-            this.rbFemale.Enabled = false;
-            this.rbFemale.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbFemale.Location = new System.Drawing.Point(1016, 143);
-            this.rbFemale.Name = "rbFemale";
-            this.rbFemale.Size = new System.Drawing.Size(65, 33);
-            this.rbFemale.TabIndex = 5;
-            this.rbFemale.TabStop = true;
-            this.rbFemale.Text = "Nữ";
-            this.rbFemale.UseVisualStyleBackColor = true;
+            rbFemale.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            rbFemale.AutoSize = true;
+            rbFemale.Enabled = false;
+            rbFemale.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            rbFemale.Location = new Point(866, 160);
+            rbFemale.Margin = new Padding(3, 4, 3, 4);
+            rbFemale.Name = "rbFemale";
+            rbFemale.Size = new Size(65, 33);
+            rbFemale.TabIndex = 5;
+            rbFemale.TabStop = true;
+            rbFemale.Text = "Nữ";
+            rbFemale.UseVisualStyleBackColor = true;
             // 
             // rbMale
             // 
-            this.rbMale.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbMale.AutoSize = true;
-            this.rbMale.Enabled = false;
-            this.rbMale.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbMale.Location = new System.Drawing.Point(829, 143);
-            this.rbMale.Name = "rbMale";
-            this.rbMale.Size = new System.Drawing.Size(85, 33);
-            this.rbMale.TabIndex = 4;
-            this.rbMale.TabStop = true;
-            this.rbMale.Text = "Nam";
-            this.rbMale.UseVisualStyleBackColor = true;
+            rbMale.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            rbMale.AutoSize = true;
+            rbMale.Enabled = false;
+            rbMale.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            rbMale.Location = new Point(1032, 160);
+            rbMale.Margin = new Padding(3, 4, 3, 4);
+            rbMale.Name = "rbMale";
+            rbMale.Size = new Size(85, 33);
+            rbMale.TabIndex = 4;
+            rbMale.TabStop = true;
+            rbMale.Text = "Nam";
+            rbMale.UseVisualStyleBackColor = true;
             // 
             // txtAddress
             // 
-            this.txtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddress.Location = new System.Drawing.Point(167, 372);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.ReadOnly = true;
-            this.txtAddress.Size = new System.Drawing.Size(461, 34);
-            this.txtAddress.TabIndex = 2;
+            txtAddress.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtAddress.Location = new Point(214, 372);
+            txtAddress.Margin = new Padding(3, 4, 3, 4);
+            txtAddress.Name = "txtAddress";
+            txtAddress.ReadOnly = true;
+            txtAddress.Size = new Size(461, 34);
+            txtAddress.TabIndex = 2;
             // 
             // txtPhoneNumber
             // 
-            this.txtPhoneNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhoneNumber.Location = new System.Drawing.Point(845, 249);
-            this.txtPhoneNumber.Name = "txtPhoneNumber";
-            this.txtPhoneNumber.ReadOnly = true;
-            this.txtPhoneNumber.Size = new System.Drawing.Size(396, 34);
-            this.txtPhoneNumber.TabIndex = 6;
+            txtPhoneNumber.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtPhoneNumber.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPhoneNumber.Location = new Point(877, 257);
+            txtPhoneNumber.Margin = new Padding(3, 4, 3, 4);
+            txtPhoneNumber.Name = "txtPhoneNumber";
+            txtPhoneNumber.ReadOnly = true;
+            txtPhoneNumber.Size = new Size(385, 34);
+            txtPhoneNumber.TabIndex = 6;
             // 
             // txtEmail
             // 
-            this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(765, 38);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.ReadOnly = true;
-            this.txtEmail.Size = new System.Drawing.Size(476, 34);
-            this.txtEmail.TabIndex = 3;
+            txtEmail.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtEmail.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtEmail.Location = new Point(787, 50);
+            txtEmail.Margin = new Padding(3, 4, 3, 4);
+            txtEmail.Name = "txtEmail";
+            txtEmail.ReadOnly = true;
+            txtEmail.Size = new Size(476, 34);
+            txtEmail.TabIndex = 3;
             // 
             // txtName
             // 
-            this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(166, 140);
-            this.txtName.Name = "txtName";
-            this.txtName.ReadOnly = true;
-            this.txtName.Size = new System.Drawing.Size(461, 34);
-            this.txtName.TabIndex = 0;
+            txtName.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtName.Location = new Point(214, 161);
+            txtName.Margin = new Padding(3, 4, 3, 4);
+            txtName.Name = "txtName";
+            txtName.ReadOnly = true;
+            txtName.Size = new Size(461, 34);
+            txtName.TabIndex = 0;
             // 
             // txtPatID
             // 
-            this.txtPatID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPatID.Location = new System.Drawing.Point(176, 38);
-            this.txtPatID.Name = "txtPatID";
-            this.txtPatID.ReadOnly = true;
-            this.txtPatID.Size = new System.Drawing.Size(451, 34);
-            this.txtPatID.TabIndex = 12;
+            txtPatID.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPatID.Location = new Point(214, 50);
+            txtPatID.Margin = new Padding(3, 4, 3, 4);
+            txtPatID.Name = "txtPatID";
+            txtPatID.ReadOnly = true;
+            txtPatID.Size = new Size(461, 34);
+            txtPatID.TabIndex = 12;
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(7, 375);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(92, 29);
-            this.label11.TabIndex = 10;
-            this.label11.Text = "Địa chỉ ";
+            label11.AutoSize = true;
+            label11.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label11.Location = new Point(7, 377);
+            label11.Name = "label11";
+            label11.Size = new Size(92, 29);
+            label11.TabIndex = 10;
+            label11.Text = "Địa chỉ ";
             // 
             // label8
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(685, 252);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(154, 29);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Số điện thoại";
+            label8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label8.AutoSize = true;
+            label8.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.Location = new Point(686, 260);
+            label8.Name = "label8";
+            label8.Size = new Size(154, 29);
+            label8.TabIndex = 7;
+            label8.Text = "Số điện thoại";
             // 
             // label7
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(685, 41);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(74, 29);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "Email";
+            label7.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label7.AutoSize = true;
+            label7.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Location = new Point(686, 53);
+            label7.Name = "label7";
+            label7.Size = new Size(74, 29);
+            label7.TabIndex = 5;
+            label7.Text = "Email";
             // 
             // label6
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(685, 145);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(101, 29);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Giới tính";
+            label6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label6.AutoSize = true;
+            label6.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Location = new Point(686, 160);
+            label6.Name = "label6";
+            label6.Size = new Size(101, 29);
+            label6.TabIndex = 4;
+            label6.Text = "Giới tính";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 145);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 29);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Họ tên";
+            label4.AutoSize = true;
+            label4.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(7, 164);
+            label4.Name = "label4";
+            label4.Size = new Size(83, 29);
+            label4.TabIndex = 2;
+            label4.Text = "Họ tên";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 41);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(164, 29);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Mã bệnh nhân";
+            label3.AutoSize = true;
+            label3.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(7, 53);
+            label3.Name = "label3";
+            label3.Size = new Size(164, 29);
+            label3.TabIndex = 1;
+            label3.Text = "Mã bệnh nhân";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(12, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(384, 46);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Thông tin bệnh nhân";
+            label1.AutoSize = true;
+            label1.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.ControlText;
+            label1.Location = new Point(12, 12);
+            label1.Name = "label1";
+            label1.Size = new Size(384, 46);
+            label1.TabIndex = 4;
+            label1.Text = "Thông tin bệnh nhân";
             // 
             // btnCreatePatient
             // 
-            this.btnCreatePatient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreatePatient.Enabled = false;
-            this.btnCreatePatient.Location = new System.Drawing.Point(949, 23);
-            this.btnCreatePatient.Name = "btnCreatePatient";
-            this.btnCreatePatient.Size = new System.Drawing.Size(121, 43);
-            this.btnCreatePatient.TabIndex = 6;
-            this.btnCreatePatient.Text = "Tạo mới";
-            this.btnCreatePatient.UseVisualStyleBackColor = true;
-            this.btnCreatePatient.Click += new System.EventHandler(this.btnCreatePatient_Click);
+            btnCreatePatient.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnCreatePatient.Enabled = false;
+            btnCreatePatient.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCreatePatient.Image = (Image)resources.GetObject("btnCreatePatient.Image");
+            btnCreatePatient.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCreatePatient.Location = new Point(933, 16);
+            btnCreatePatient.Margin = new Padding(3, 4, 3, 4);
+            btnCreatePatient.Name = "btnCreatePatient";
+            btnCreatePatient.Padding = new Padding(6, 0, 6, 0);
+            btnCreatePatient.Size = new Size(177, 54);
+            btnCreatePatient.TabIndex = 6;
+            btnCreatePatient.Text = "Tạo mới";
+            btnCreatePatient.TextAlign = ContentAlignment.MiddleRight;
+            btnCreatePatient.UseVisualStyleBackColor = true;
+            btnCreatePatient.Click += btnCreatePatient_Click;
             // 
             // btnBack
             // 
-            this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBack.Location = new System.Drawing.Point(1105, 23);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(134, 43);
-            this.btnBack.TabIndex = 7;
-            this.btnBack.Text = "Trở lại";
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            btnBack.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnBack.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnBack.Image = (Image)resources.GetObject("btnBack.Image");
+            btnBack.ImageAlign = ContentAlignment.MiddleLeft;
+            btnBack.Location = new Point(1135, 16);
+            btnBack.Margin = new Padding(3, 4, 3, 4);
+            btnBack.Name = "btnBack";
+            btnBack.Padding = new Padding(6, 0, 6, 0);
+            btnBack.Size = new Size(154, 54);
+            btnBack.TabIndex = 7;
+            btnBack.Text = "Trở lại";
+            btnBack.TextAlign = ContentAlignment.MiddleRight;
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
             // 
             // PatientDecriptionDetail
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1301, 651);
-            this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.btnCreatePatient);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "PatientDecriptionDetail";
-            this.Text = "PatientDecriptionDetail";
-            this.Load += new System.EventHandler(this.PatientDecriptionDetail_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1301, 655);
+            Controls.Add(btnBack);
+            Controls.Add(btnCreatePatient);
+            Controls.Add(groupBox1);
+            Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "PatientDecriptionDetail";
+            Text = "PatientDecriptionDetail";
+            Load += PatientDecriptionDetail_Load;
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

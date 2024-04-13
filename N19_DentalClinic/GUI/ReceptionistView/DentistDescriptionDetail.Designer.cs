@@ -393,12 +393,17 @@
             // btnBack
             // 
             btnBack.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnBack.Location = new Point(1155, 15);
+            btnBack.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnBack.Image = (Image)resources.GetObject("btnBack.Image");
+            btnBack.ImageAlign = ContentAlignment.MiddleLeft;
+            btnBack.Location = new Point(1139, 15);
             btnBack.Margin = new Padding(3, 4, 3, 4);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(134, 54);
+            btnBack.Padding = new Padding(6, 0, 6, 0);
+            btnBack.Size = new Size(150, 54);
             btnBack.TabIndex = 26;
             btnBack.Text = "Trở lại";
+            btnBack.TextAlign = ContentAlignment.MiddleRight;
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
             // 
@@ -406,12 +411,17 @@
             // 
             btnCreateDentist.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnCreateDentist.Enabled = false;
-            btnCreateDentist.Location = new Point(999, 15);
+            btnCreateDentist.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCreateDentist.Image = (Image)resources.GetObject("btnCreateDentist.Image");
+            btnCreateDentist.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCreateDentist.Location = new Point(944, 15);
             btnCreateDentist.Margin = new Padding(3, 4, 3, 4);
             btnCreateDentist.Name = "btnCreateDentist";
-            btnCreateDentist.Size = new Size(121, 54);
+            btnCreateDentist.Padding = new Padding(6, 0, 6, 0);
+            btnCreateDentist.Size = new Size(176, 54);
             btnCreateDentist.TabIndex = 25;
             btnCreateDentist.Text = "Tạo mới";
+            btnCreateDentist.TextAlign = ContentAlignment.MiddleRight;
             btnCreateDentist.UseVisualStyleBackColor = true;
             btnCreateDentist.Click += btnCreateDentist_Click;
             // 

@@ -29,110 +29,131 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PatientFile));
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.cbKindSearch = new System.Windows.Forms.ComboBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.dataPatientTable = new System.Windows.Forms.DataGridView();
-            this.createNewPat = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataPatientTable)).BeginInit();
-            this.SuspendLayout();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            label1 = new Label();
+            txtSearch = new TextBox();
+            cbKindSearch = new ComboBox();
+            btnSearch = new Button();
+            dataPatientTable = new DataGridView();
+            createNewPat = new Button();
+            ((System.ComponentModel.ISupportInitialize)dataPatientTable).BeginInit();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(409, 46);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Danh sách bệnh nhân";
+            label1.AutoSize = true;
+            label1.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.ControlText;
+            label1.Location = new Point(51, 25);
+            label1.Name = "label1";
+            label1.Size = new Size(409, 46);
+            label1.TabIndex = 2;
+            label1.Text = "Danh sách bệnh nhân";
             // 
             // txtSearch
             // 
-            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(20, 73);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(235, 38);
-            this.txtSearch.TabIndex = 3;
+            txtSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSearch.Location = new Point(51, 96);
+            txtSearch.Margin = new Padding(3, 4, 3, 4);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(235, 38);
+            txtSearch.TabIndex = 3;
             // 
             // cbKindSearch
             // 
-            this.cbKindSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbKindSearch.FormattingEnabled = true;
-            this.cbKindSearch.Items.AddRange(new object[] {
-            "Mã bệnh nhân",
-            "Tên bệnh nhân"});
-            this.cbKindSearch.Location = new System.Drawing.Point(282, 72);
-            this.cbKindSearch.Name = "cbKindSearch";
-            this.cbKindSearch.Size = new System.Drawing.Size(212, 39);
-            this.cbKindSearch.TabIndex = 5;
+            cbKindSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbKindSearch.FormattingEnabled = true;
+            cbKindSearch.Items.AddRange(new object[] { "Mã bệnh nhân", "Tên bệnh nhân" });
+            cbKindSearch.Location = new Point(315, 95);
+            cbKindSearch.Margin = new Padding(3, 4, 3, 4);
+            cbKindSearch.Name = "cbKindSearch";
+            cbKindSearch.Size = new Size(212, 39);
+            cbKindSearch.TabIndex = 5;
             // 
             // btnSearch
             // 
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSearch.Location = new System.Drawing.Point(525, 69);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(196, 44);
-            this.btnSearch.TabIndex = 6;
-            this.btnSearch.Text = "Tìm kiếm";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            btnSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
+            btnSearch.Location = new Point(558, 86);
+            btnSearch.Margin = new Padding(3, 4, 3, 4);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(65, 55);
+            btnSearch.TabIndex = 6;
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // dataPatientTable
             // 
-            this.dataPatientTable.AllowUserToAddRows = false;
-            this.dataPatientTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataPatientTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataPatientTable.Location = new System.Drawing.Point(0, 136);
-            this.dataPatientTable.Name = "dataPatientTable";
-            this.dataPatientTable.ReadOnly = true;
-            this.dataPatientTable.RowHeadersVisible = false;
-            this.dataPatientTable.RowHeadersWidth = 51;
-            this.dataPatientTable.RowTemplate.Height = 24;
-            this.dataPatientTable.Size = new System.Drawing.Size(1351, 449);
-            this.dataPatientTable.TabIndex = 7;
-            this.dataPatientTable.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataPatientTable_MouseClick);
+            dataPatientTable.AllowUserToAddRows = false;
+            dataPatientTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataPatientTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataPatientTable.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataPatientTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataPatientTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.Padding = new Padding(2);
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataPatientTable.DefaultCellStyle = dataGridViewCellStyle2;
+            dataPatientTable.Location = new Point(51, 170);
+            dataPatientTable.Margin = new Padding(3, 4, 3, 4);
+            dataPatientTable.Name = "dataPatientTable";
+            dataPatientTable.ReadOnly = true;
+            dataPatientTable.RowHeadersWidth = 51;
+            dataPatientTable.RowTemplate.Height = 24;
+            dataPatientTable.Size = new Size(1270, 667);
+            dataPatientTable.TabIndex = 7;
+            dataPatientTable.MouseClick += dataPatientTable_MouseClick;
             // 
             // createNewPat
             // 
-            this.createNewPat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.createNewPat.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createNewPat.Image = ((System.Drawing.Image)(resources.GetObject("createNewPat.Image")));
-            this.createNewPat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.createNewPat.Location = new System.Drawing.Point(1022, 65);
-            this.createNewPat.Name = "createNewPat";
-            this.createNewPat.Size = new System.Drawing.Size(283, 53);
-            this.createNewPat.TabIndex = 8;
-            this.createNewPat.Text = "Thêm bệnh nhân";
-            this.createNewPat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.createNewPat.UseVisualStyleBackColor = true;
-            this.createNewPat.Click += new System.EventHandler(this.createNewPat_Click);
+            createNewPat.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            createNewPat.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            createNewPat.Image = (Image)resources.GetObject("createNewPat.Image");
+            createNewPat.ImageAlign = ContentAlignment.MiddleLeft;
+            createNewPat.Location = new Point(1038, 80);
+            createNewPat.Margin = new Padding(3, 4, 3, 4);
+            createNewPat.Name = "createNewPat";
+            createNewPat.Padding = new Padding(6, 0, 6, 0);
+            createNewPat.Size = new Size(283, 66);
+            createNewPat.TabIndex = 8;
+            createNewPat.Text = "Thêm bệnh nhân";
+            createNewPat.TextAlign = ContentAlignment.MiddleRight;
+            createNewPat.UseVisualStyleBackColor = true;
+            createNewPat.Click += createNewPat_Click;
             // 
             // PatientFile
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1350, 584);
-            this.Controls.Add(this.createNewPat);
-            this.Controls.Add(this.dataPatientTable);
-            this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.cbKindSearch);
-            this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "PatientFile";
-            this.Text = "PatientFile";
-            this.Load += new System.EventHandler(this.PatientFile_Load);
-            this.Resize += new System.EventHandler(this.PatientFile_Resize);
-            ((System.ComponentModel.ISupportInitialize)(this.dataPatientTable)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1350, 730);
+            Controls.Add(createNewPat);
+            Controls.Add(dataPatientTable);
+            Controls.Add(btnSearch);
+            Controls.Add(cbKindSearch);
+            Controls.Add(txtSearch);
+            Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "PatientFile";
+            Text = "PatientFile";
+            Load += PatientFile_Load;
+            ((System.ComponentModel.ISupportInitialize)dataPatientTable).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

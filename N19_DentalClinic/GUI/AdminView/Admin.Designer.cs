@@ -29,183 +29,203 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Admin));
-            this.pnSidebar = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnManageAss = new System.Windows.Forms.Button();
-            this.btnManageDentist = new System.Windows.Forms.Button();
-            this.btnManageRecep = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnMaterialManagement = new System.Windows.Forms.Button();
-            this.btnWorkCalendar = new System.Windows.Forms.Button();
-            this.btnServiceManagement = new System.Windows.Forms.Button();
-            this.btnStatistics = new System.Windows.Forms.Button();
-            this.pnShowContent = new System.Windows.Forms.Panel();
-            this.pnSidebar.SuspendLayout();
-            this.SuspendLayout();
+            pnSidebar = new Panel();
+            btnPatFile = new Button();
+            label2 = new Label();
+            btnManageAss = new Button();
+            btnManageDentist = new Button();
+            btnManageRecep = new Button();
+            label1 = new Label();
+            btnMaterialManagement = new Button();
+            btnWorkCalendar = new Button();
+            btnServiceManagement = new Button();
+            btnStatistics = new Button();
+            pnShowContent = new Panel();
+            pnSidebar.SuspendLayout();
+            SuspendLayout();
             // 
             // pnSidebar
             // 
-            this.pnSidebar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.pnSidebar.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.pnSidebar.Controls.Add(this.label2);
-            this.pnSidebar.Controls.Add(this.btnManageAss);
-            this.pnSidebar.Controls.Add(this.btnManageDentist);
-            this.pnSidebar.Controls.Add(this.btnManageRecep);
-            this.pnSidebar.Controls.Add(this.label1);
-            this.pnSidebar.Controls.Add(this.btnMaterialManagement);
-            this.pnSidebar.Controls.Add(this.btnWorkCalendar);
-            this.pnSidebar.Controls.Add(this.btnServiceManagement);
-            this.pnSidebar.Controls.Add(this.btnStatistics);
-            this.pnSidebar.Location = new System.Drawing.Point(2, -1);
-            this.pnSidebar.Name = "pnSidebar";
-            this.pnSidebar.Size = new System.Drawing.Size(235, 928);
-            this.pnSidebar.TabIndex = 1;
+            pnSidebar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            pnSidebar.BackColor = SystemColors.AppWorkspace;
+            pnSidebar.Controls.Add(btnPatFile);
+            pnSidebar.Controls.Add(label2);
+            pnSidebar.Controls.Add(btnManageAss);
+            pnSidebar.Controls.Add(btnManageDentist);
+            pnSidebar.Controls.Add(btnManageRecep);
+            pnSidebar.Controls.Add(label1);
+            pnSidebar.Controls.Add(btnMaterialManagement);
+            pnSidebar.Controls.Add(btnWorkCalendar);
+            pnSidebar.Controls.Add(btnServiceManagement);
+            pnSidebar.Controls.Add(btnStatistics);
+            pnSidebar.Location = new Point(2, 13);
+            pnSidebar.Margin = new Padding(3, 4, 3, 4);
+            pnSidebar.Name = "pnSidebar";
+            pnSidebar.Size = new Size(235, 1023);
+            pnSidebar.TabIndex = 1;
+            // 
+            // btnPatFile
+            // 
+            btnPatFile.FlatStyle = FlatStyle.Flat;
+            btnPatFile.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnPatFile.Location = new Point(10, 552);
+            btnPatFile.Margin = new Padding(3, 4, 3, 4);
+            btnPatFile.Name = "btnPatFile";
+            btnPatFile.Size = new Size(207, 60);
+            btnPatFile.TabIndex = 7;
+            btnPatFile.Text = "Hồ sơ bệnh nhân";
+            btnPatFile.UseVisualStyleBackColor = true;
+            btnPatFile.Click += btnPatFile_Click;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(4, 236);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(112, 32);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Quản lí";
+            label2.AutoSize = true;
+            label2.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(4, 213);
+            label2.Name = "label2";
+            label2.Size = new Size(112, 32);
+            label2.TabIndex = 0;
+            label2.Text = "Quản lí";
             // 
             // btnManageAss
             // 
-            this.btnManageAss.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManageAss.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnManageAss.Image = ((System.Drawing.Image)(resources.GetObject("btnManageAss.Image")));
-            this.btnManageAss.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnManageAss.Location = new System.Drawing.Point(10, 460);
-            this.btnManageAss.Name = "btnManageAss";
-            this.btnManageAss.Padding = new System.Windows.Forms.Padding(16, 0, 16, 0);
-            this.btnManageAss.Size = new System.Drawing.Size(207, 54);
-            this.btnManageAss.TabIndex = 6;
-            this.btnManageAss.Text = "Phụ tá";
-            this.btnManageAss.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnManageAss.UseVisualStyleBackColor = true;
-            this.btnManageAss.Click += new System.EventHandler(this.btnManageAss_Click);
+            btnManageAss.FlatStyle = FlatStyle.Flat;
+            btnManageAss.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnManageAss.Image = (Image)resources.GetObject("btnManageAss.Image");
+            btnManageAss.ImageAlign = ContentAlignment.MiddleLeft;
+            btnManageAss.Location = new Point(10, 409);
+            btnManageAss.Margin = new Padding(3, 4, 3, 4);
+            btnManageAss.Name = "btnManageAss";
+            btnManageAss.Padding = new Padding(16, 0, 16, 0);
+            btnManageAss.Size = new Size(207, 60);
+            btnManageAss.TabIndex = 6;
+            btnManageAss.Text = "Phụ tá";
+            btnManageAss.TextAlign = ContentAlignment.MiddleRight;
+            btnManageAss.UseVisualStyleBackColor = true;
+            btnManageAss.Click += btnManageAss_Click;
             // 
             // btnManageDentist
             // 
-            this.btnManageDentist.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManageDentist.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnManageDentist.Image = ((System.Drawing.Image)(resources.GetObject("btnManageDentist.Image")));
-            this.btnManageDentist.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnManageDentist.Location = new System.Drawing.Point(10, 372);
-            this.btnManageDentist.Name = "btnManageDentist";
-            this.btnManageDentist.Padding = new System.Windows.Forms.Padding(16, 0, 16, 0);
-            this.btnManageDentist.Size = new System.Drawing.Size(207, 54);
-            this.btnManageDentist.TabIndex = 5;
-            this.btnManageDentist.Text = "Nha sĩ";
-            this.btnManageDentist.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnManageDentist.UseVisualStyleBackColor = true;
-            this.btnManageDentist.Click += new System.EventHandler(this.btnManageDentist_Click);
+            btnManageDentist.FlatStyle = FlatStyle.Flat;
+            btnManageDentist.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnManageDentist.Image = (Image)resources.GetObject("btnManageDentist.Image");
+            btnManageDentist.ImageAlign = ContentAlignment.MiddleLeft;
+            btnManageDentist.Location = new Point(10, 328);
+            btnManageDentist.Margin = new Padding(3, 4, 3, 4);
+            btnManageDentist.Name = "btnManageDentist";
+            btnManageDentist.Padding = new Padding(16, 0, 16, 0);
+            btnManageDentist.Size = new Size(207, 60);
+            btnManageDentist.TabIndex = 5;
+            btnManageDentist.Text = "Nha sĩ";
+            btnManageDentist.TextAlign = ContentAlignment.MiddleRight;
+            btnManageDentist.UseVisualStyleBackColor = true;
+            btnManageDentist.Click += btnManageDentist_Click;
             // 
             // btnManageRecep
             // 
-            this.btnManageRecep.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManageRecep.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnManageRecep.Image = ((System.Drawing.Image)(resources.GetObject("btnManageRecep.Image")));
-            this.btnManageRecep.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnManageRecep.Location = new System.Drawing.Point(10, 287);
-            this.btnManageRecep.Name = "btnManageRecep";
-            this.btnManageRecep.Padding = new System.Windows.Forms.Padding(16, 0, 16, 0);
-            this.btnManageRecep.Size = new System.Drawing.Size(207, 54);
-            this.btnManageRecep.TabIndex = 4;
-            this.btnManageRecep.Text = "Lễ tân";
-            this.btnManageRecep.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnManageRecep.UseVisualStyleBackColor = true;
-            this.btnManageRecep.Click += new System.EventHandler(this.btnManageRecep_Click);
+            btnManageRecep.FlatStyle = FlatStyle.Flat;
+            btnManageRecep.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnManageRecep.Image = (Image)resources.GetObject("btnManageRecep.Image");
+            btnManageRecep.ImageAlign = ContentAlignment.MiddleLeft;
+            btnManageRecep.Location = new Point(10, 249);
+            btnManageRecep.Margin = new Padding(3, 4, 3, 4);
+            btnManageRecep.Name = "btnManageRecep";
+            btnManageRecep.Padding = new Padding(16, 0, 16, 0);
+            btnManageRecep.Size = new Size(207, 60);
+            btnManageRecep.TabIndex = 4;
+            btnManageRecep.Text = "Lễ tân";
+            btnManageRecep.TextAlign = ContentAlignment.MiddleRight;
+            btnManageRecep.UseVisualStyleBackColor = true;
+            btnManageRecep.Click += btnManageRecep_Click;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(3, 551);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(164, 32);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Chức Năng";
+            label1.AutoSize = true;
+            label1.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(4, 498);
+            label1.Name = "label1";
+            label1.Size = new Size(164, 32);
+            label1.TabIndex = 0;
+            label1.Text = "Chức Năng";
             // 
             // btnMaterialManagement
             // 
-            this.btnMaterialManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMaterialManagement.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMaterialManagement.Location = new System.Drawing.Point(10, 600);
-            this.btnMaterialManagement.Name = "btnMaterialManagement";
-            this.btnMaterialManagement.Size = new System.Drawing.Size(207, 54);
-            this.btnMaterialManagement.TabIndex = 0;
-            this.btnMaterialManagement.Text = "Quản lí vật liệu ";
-            this.btnMaterialManagement.UseVisualStyleBackColor = true;
-            this.btnMaterialManagement.Click += new System.EventHandler(this.btnMaterialManagement_Click);
+            btnMaterialManagement.FlatStyle = FlatStyle.Flat;
+            btnMaterialManagement.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnMaterialManagement.Location = new Point(10, 636);
+            btnMaterialManagement.Margin = new Padding(3, 4, 3, 4);
+            btnMaterialManagement.Name = "btnMaterialManagement";
+            btnMaterialManagement.Size = new Size(207, 60);
+            btnMaterialManagement.TabIndex = 0;
+            btnMaterialManagement.Text = "Quản lí vật liệu ";
+            btnMaterialManagement.UseVisualStyleBackColor = true;
+            btnMaterialManagement.Click += btnMaterialManagement_Click;
             // 
             // btnWorkCalendar
             // 
-            this.btnWorkCalendar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnWorkCalendar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWorkCalendar.Location = new System.Drawing.Point(10, 840);
-            this.btnWorkCalendar.Name = "btnWorkCalendar";
-            this.btnWorkCalendar.Size = new System.Drawing.Size(207, 54);
-            this.btnWorkCalendar.TabIndex = 3;
-            this.btnWorkCalendar.Text = "Xếp lịch làm việc";
-            this.btnWorkCalendar.UseVisualStyleBackColor = true;
-            this.btnWorkCalendar.Click += new System.EventHandler(this.btnWorkCalendar_Click);
+            btnWorkCalendar.FlatStyle = FlatStyle.Flat;
+            btnWorkCalendar.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnWorkCalendar.Location = new Point(10, 880);
+            btnWorkCalendar.Margin = new Padding(3, 4, 3, 4);
+            btnWorkCalendar.Name = "btnWorkCalendar";
+            btnWorkCalendar.Size = new Size(207, 60);
+            btnWorkCalendar.TabIndex = 3;
+            btnWorkCalendar.Text = "Xếp lịch làm việc";
+            btnWorkCalendar.UseVisualStyleBackColor = true;
+            btnWorkCalendar.Click += btnWorkCalendar_Click;
             // 
             // btnServiceManagement
             // 
-            this.btnServiceManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnServiceManagement.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnServiceManagement.Location = new System.Drawing.Point(10, 681);
-            this.btnServiceManagement.Name = "btnServiceManagement";
-            this.btnServiceManagement.Size = new System.Drawing.Size(207, 54);
-            this.btnServiceManagement.TabIndex = 1;
-            this.btnServiceManagement.Text = "Quản lí dịch vụ";
-            this.btnServiceManagement.UseVisualStyleBackColor = true;
-            this.btnServiceManagement.Click += new System.EventHandler(this.btnServiceManagement_Click);
+            btnServiceManagement.FlatStyle = FlatStyle.Flat;
+            btnServiceManagement.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnServiceManagement.Location = new Point(10, 715);
+            btnServiceManagement.Margin = new Padding(3, 4, 3, 4);
+            btnServiceManagement.Name = "btnServiceManagement";
+            btnServiceManagement.Size = new Size(207, 60);
+            btnServiceManagement.TabIndex = 1;
+            btnServiceManagement.Text = "Quản lí dịch vụ";
+            btnServiceManagement.UseVisualStyleBackColor = true;
+            btnServiceManagement.Click += btnServiceManagement_Click;
             // 
             // btnStatistics
             // 
-            this.btnStatistics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStatistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStatistics.Location = new System.Drawing.Point(10, 760);
-            this.btnStatistics.Name = "btnStatistics";
-            this.btnStatistics.Size = new System.Drawing.Size(207, 54);
-            this.btnStatistics.TabIndex = 2;
-            this.btnStatistics.Text = "Thống kê";
-            this.btnStatistics.UseVisualStyleBackColor = true;
-            this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
+            btnStatistics.FlatStyle = FlatStyle.Flat;
+            btnStatistics.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnStatistics.Location = new Point(10, 792);
+            btnStatistics.Margin = new Padding(3, 4, 3, 4);
+            btnStatistics.Name = "btnStatistics";
+            btnStatistics.Size = new Size(207, 60);
+            btnStatistics.TabIndex = 2;
+            btnStatistics.Text = "Thống kê";
+            btnStatistics.UseVisualStyleBackColor = true;
+            btnStatistics.Click += btnStatistics_Click;
             // 
             // pnShowContent
             // 
-            this.pnShowContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnShowContent.BackColor = System.Drawing.Color.White;
-            this.pnShowContent.Location = new System.Drawing.Point(246, 44);
-            this.pnShowContent.Margin = new System.Windows.Forms.Padding(6);
-            this.pnShowContent.Name = "pnShowContent";
-            this.pnShowContent.Size = new System.Drawing.Size(1270, 870);
-            this.pnShowContent.TabIndex = 2;
+            pnShowContent.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnShowContent.BackColor = Color.White;
+            pnShowContent.Location = new Point(246, 92);
+            pnShowContent.Margin = new Padding(6, 8, 6, 8);
+            pnShowContent.Name = "pnShowContent";
+            pnShowContent.Size = new Size(1272, 906);
+            pnShowContent.TabIndex = 2;
             // 
             // Admin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1808, 929);
-            this.Controls.Add(this.pnShowContent);
-            this.Controls.Add(this.pnSidebar);
-            this.Name = "Admin";
-            this.Text = "Admin";
-            this.Load += new System.EventHandler(this.Admin_Load);
-            this.pnSidebar.ResumeLayout(false);
-            this.pnSidebar.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1560, 1055);
+            Controls.Add(pnShowContent);
+            Controls.Add(pnSidebar);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "Admin";
+            Text = "Admin";
+            Load += Admin_Load;
+            pnSidebar.ResumeLayout(false);
+            pnSidebar.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -221,5 +241,6 @@
         private System.Windows.Forms.Button btnManageRecep;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private Button btnPatFile;
     }
 }
