@@ -77,7 +77,6 @@ namespace N19_DentalClinic.GUI
             groupBox1.Size = new Size(1269, 628);
             groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
-            groupBox1.Enter += groupBox1_Enter;
             // 
             // dataAppointmentDentist
             // 
@@ -99,7 +98,6 @@ namespace N19_DentalClinic.GUI
             dataAppointmentDentist.Margin = new Padding(3, 4, 3, 4);
             dataAppointmentDentist.Name = "dataAppointmentDentist";
             dataAppointmentDentist.ReadOnly = true;
-            dataAppointmentDentist.RowHeadersVisible = false;
             dataAppointmentDentist.RowHeadersWidth = 51;
             dataAppointmentDentist.RowTemplate.Height = 24;
             dataAppointmentDentist.Size = new Size(1243, 421);

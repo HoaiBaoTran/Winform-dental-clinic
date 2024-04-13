@@ -64,6 +64,7 @@ namespace N19_DentalClinic.GUI
 
         public void initTableAppointment()
         {
+            btnToday.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
             string sql = "select * from Appointment where patId = '" + patID + "'";
             DataTable table = data.readData(sql);
             if (table.Rows.Count > 0)
@@ -145,13 +146,12 @@ namespace N19_DentalClinic.GUI
                 }
             }
             //Căn giữa nội dung cột đầu tiên
-            dataAppointPatient.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataAppointPatient.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            //Thay đổi kích thước các ô theo datagridview
-            for (int i = 0; i < dataAppointPatient.ColumnCount; i++)
-            {
-                dataAppointPatient.Columns[i].Width = dataAppointPatient.Width / dataAppointPatient.ColumnCount;
-            }
+            dataAppointPatient.Columns[0].Width = 60;
+
+
+            dataAppointPatient.EnableHeadersVisualStyles = false;
+            dataAppointPatient.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
         }
 
         private void txtCurrDate_TextChanged(object sender, EventArgs e)

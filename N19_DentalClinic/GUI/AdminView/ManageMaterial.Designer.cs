@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageMaterial));
             dataMaterial = new DataGridView();
             btnAddMaterial = new Button();
@@ -50,27 +50,27 @@
             dataMaterial.BorderStyle = BorderStyle.None;
             dataMaterial.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
             dataMaterial.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Window;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.Padding = new Padding(4);
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dataMaterial.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.Padding = new Padding(4);
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dataMaterial.DefaultCellStyle = dataGridViewCellStyle3;
             dataMaterial.GridColor = Color.White;
             dataMaterial.Location = new Point(9, 167);
             dataMaterial.Name = "dataMaterial";
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(18, 219, 78);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.Padding = new Padding(4);
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataMaterial.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(18, 219, 78);
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.Padding = new Padding(4);
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dataMaterial.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dataMaterial.RowHeadersWidth = 51;
             dataMaterial.Size = new Size(1186, 623);
             dataMaterial.TabIndex = 117;
@@ -136,7 +136,6 @@
             // 
             // btnFixedMaterial
             // 
-            btnFixedMaterial.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             btnFixedMaterial.BackColor = Color.FromArgb(219, 175, 9);
             btnFixedMaterial.BackgroundColor = Color.FromArgb(219, 175, 9);
             btnFixedMaterial.BorderColor = Color.PaleVioletRed;
@@ -156,7 +155,6 @@
             // 
             // btnConsumableMaterial
             // 
-            btnConsumableMaterial.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             btnConsumableMaterial.BackColor = Color.FromArgb(219, 175, 9);
             btnConsumableMaterial.BackgroundColor = Color.FromArgb(219, 175, 9);
             btnConsumableMaterial.BorderColor = Color.PaleVioletRed;

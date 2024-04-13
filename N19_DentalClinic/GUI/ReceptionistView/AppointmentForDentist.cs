@@ -20,7 +20,6 @@ namespace N19_DentalClinic.GUI
         private Panel panelWrapper;
         private string interaction;
         private int role;
-        private string sqlTime;
         private string DenID;
         public AppointmentForDentist(Panel panelWrapper, string denID, int role, string interaction)
         {
@@ -34,53 +33,6 @@ namespace N19_DentalClinic.GUI
         private void AppointmentForDentist_Load(object sender, EventArgs e)
         {
             txtCurrDate.Text = DateTimeConvert.convertDMY(currentDate.ToString());
-            //string sql = @$"select ApID, ap_time, p.name as patient_name, d.name as dentist_name, symptom, stateAp 
-            //            from Appointment a
-            //            join Patient p on p.PatID = a.PatID
-            //            join Dentist d on d.DenID = a.DenID
-            //            where datediff(day, ap_time, '{sqlTime}') = 0
-            //            ";
-            //updateDataGridView(sql);
-            initTableAppointment();
-        }
-
-        //Sử dụng sau 
-        public void updateDataGridView(string sql)
-        {
-            Dictionary<string, string> convertState = new Dictionary<string, string>();
-            convertState.Add("A", "Bệnh nhân chưa đến");
-            convertState.Add("B", "Bệnh nhân đã đến");
-            convertState.Add("C", "Cuộc hẹn kết thúc");
-
-            DataTable table = data.readData(sql);
-            if (table.Rows.Count > 0)
-            {
-                dataAppointmentDentist.ColumnCount = 8;
-                dataAppointmentDentist.Columns[0].Name = "STT";
-                dataAppointmentDentist.Columns[1].Name = "Mã lịch hẹn";
-                dataAppointmentDentist.Columns[2].Name = "Tên nha sĩ";
-                dataAppointmentDentist.Columns[3].Name = "Tên bệnh nhân";
-                dataAppointmentDentist.Columns[4].Name = "Triệu chứng";
-                dataAppointmentDentist.Columns[5].Name = "Tình trạng";
-                dataAppointmentDentist.Columns[6].Name = "Chỉnh sửa";
-                dataAppointmentDentist.Columns[7].Name = "Xóa";
-
-                int countRow = 1;
-                foreach (DataRow row in table.Rows)
-                {
-                    string[] rowString = new string[] {
-                        countRow.ToString(),
-                        (string)row["ApID"],
-                        (string)row["patient_name"],
-                        (string)row["dentist_name"],
-                        (string)row["symptom"],
-                        convertState[(string)row["stateAp"]]
-                    };
-                    dataAppointmentDentist.Rows.Add(rowString);
-                    countRow++;
-                }
-            }
-            dataAppointmentDentist.AllowUserToAddRows = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -88,7 +40,6 @@ namespace N19_DentalClinic.GUI
             Calendar calendarF = new Calendar();
             calendarF.ShowDialog();
             currentDate = calendarF.GetDateSelector();
-            sqlTime = DateTimeConvert.convertSqlTime(currentDate.ToString());
             txtCurrDate.Text = DateTimeConvert.convertDMY(currentDate.ToString());
         }
 
@@ -218,6 +169,9 @@ namespace N19_DentalClinic.GUI
                     }
                 }
             }
+            dataAppointmentDentist.AllowUserToAddRows = false;
+            dataAppointmentDentist.EnableHeadersVisualStyles = false;
+            dataAppointmentDentist.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
         }
 
         private void txtCurrDate_TextChanged(object sender, EventArgs e)
@@ -240,26 +194,22 @@ namespace N19_DentalClinic.GUI
             txtCurrDate.Text = DateTimeConvert.convertDMY(currentDate.ToString());
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void dataAppointmentDentist_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if(role == 1)
+            if (dataAppointmentDentist.CurrentCell == null) return;
+            if(role < 3)
             {
                 if (dataAppointmentDentist.CurrentCell.ColumnIndex == 6)
                 {
                     //Chỉnh sửa lịch hẹn
-                    //string DenID = dataDentistTable[1, dataDentistTable.CurrentCell.RowIndex].Value.ToString();
-                    //PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, DenID, role, "view"), panelWrapper);
+                    string DenID = dataAppointmentDentist[1, dataAppointmentDentist.CurrentCell.RowIndex].Value.ToString();
+                    PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, DenID, role, "update"), panelWrapper);
                 }
                 else if (dataAppointmentDentist.CurrentCell.ColumnIndex == 7)
                 {
                     //Xóa lịch hẹn
-                    //string DenID = dataDentistTable[1, dataDentistTable.CurrentCell.RowIndex].Value.ToString();
-                    //PanelInteraction.openForm(this, new AppointmentForDentist(panelWrapper, DenID, role, "view"), panelWrapper);
+                    string DenID = dataAppointmentDentist[1, dataAppointmentDentist.CurrentCell.RowIndex].Value.ToString();
+                    PanelInteraction.openForm(this, new AppointmentForDentist(panelWrapper, DenID, role, "view"), panelWrapper);
                 }
             }else
             {

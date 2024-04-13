@@ -94,7 +94,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.ControlText;
-            label1.Location = new Point(12, 11);
+            label1.Location = new Point(44, 21);
             label1.Name = "label1";
             label1.Size = new Size(328, 46);
             label1.TabIndex = 1;
@@ -103,7 +103,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             // txtSearch
             // 
             txtSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtSearch.Location = new Point(20, 91);
+            txtSearch.Location = new Point(44, 89);
             txtSearch.Margin = new Padding(3, 4, 3, 4);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(235, 38);
@@ -112,13 +112,12 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             // btnSearch
             // 
             btnSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSearch.ImageAlign = ContentAlignment.MiddleRight;
-            btnSearch.Location = new Point(525, 86);
+            btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
+            btnSearch.Location = new Point(552, 80);
             btnSearch.Margin = new Padding(3, 4, 3, 4);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(196, 55);
+            btnSearch.Size = new Size(57, 55);
             btnSearch.TabIndex = 3;
-            btnSearch.Text = "Tìm kiếm";
             btnSearch.UseVisualStyleBackColor = true;
             btnSearch.Click += btnSearch_Click;
             // 
@@ -127,7 +126,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             cbKindSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbKindSearch.FormattingEnabled = true;
             cbKindSearch.Items.AddRange(new object[] { "Mã nha sĩ", "Tên nha sĩ" });
-            cbKindSearch.Location = new Point(282, 90);
+            cbKindSearch.Location = new Point(314, 88);
             cbKindSearch.Margin = new Padding(3, 4, 3, 4);
             cbKindSearch.Name = "cbKindSearch";
             cbKindSearch.Size = new Size(212, 39);
@@ -139,10 +138,11 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             btnCreateDentist.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCreateDentist.Image = (Image)resources.GetObject("btnCreateDentist.Image");
             btnCreateDentist.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCreateDentist.Location = new Point(1201, 75);
+            btnCreateDentist.Location = new Point(1196, 74);
             btnCreateDentist.Margin = new Padding(3, 4, 3, 4);
             btnCreateDentist.Name = "btnCreateDentist";
-            btnCreateDentist.Size = new Size(218, 66);
+            btnCreateDentist.Padding = new Padding(6, 0, 6, 0);
+            btnCreateDentist.Size = new Size(223, 66);
             btnCreateDentist.TabIndex = 9;
             btnCreateDentist.Text = "Thêm nha sĩ";
             btnCreateDentist.TextAlign = ContentAlignment.MiddleRight;

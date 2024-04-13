@@ -21,7 +21,7 @@ namespace N19_DentalClinic.GUI
         private Panel panelWrapper;
         private string patID;
         DataInteraction data = new DataInteraction();
-        public PatientDecriptionDetail(Panel panelWrapper, string patID, int role,string interactionKind)
+        public PatientDecriptionDetail(Panel panelWrapper, string patID, int role, string interactionKind)
         {
             InitializeComponent();
             this.panelWrapper = panelWrapper;
@@ -32,10 +32,12 @@ namespace N19_DentalClinic.GUI
 
         private void PatientDecriptionDetail_Load(object sender, EventArgs e)
         {
-            if(interactionKind != "create")
+            btnBack.BackColor = ColorTranslator.FromHtml("#" + "50657A");
+            btnCreatePatient.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
+            if (interactionKind != "create")
             {
 
-                string sql = "select * from patient where patID = '" + patID + "'";
+                string sql = "select * from patient where able = 1 and patID = '" + patID + "'";
                 DataTable table = data.readData(sql);
                 if (table.Columns.Count > 0)
                 {
@@ -58,9 +60,9 @@ namespace N19_DentalClinic.GUI
                         }
                         string DenOfPat = "";
                         DataTable tableDen = data.getDataTableDenByPat("GetDentistByPatID", patID);
-                        if(tableDen.Columns.Count > 0 )
+                        if (tableDen.Columns.Count > 0)
                         {
-                            foreach(DataRow rowden  in tableDen.Rows)
+                            foreach (DataRow rowden in tableDen.Rows)
                             {
                                 DenOfPat = rowden["name"].ToString();
                             }
@@ -121,18 +123,19 @@ namespace N19_DentalClinic.GUI
             {
                 case "create":
                     // Xu li them thong tin
-                    if(txtName.Text == "")
+                    if (txtName.Text == "")
                     {
                         MessageBox.Show("Vui lòng nhập tên bệnh nhân");
                     }
-                    else if(txtBirthday.Text == "")
+                    else if (txtBirthday.Text == "")
                     {
                         MessageBox.Show("Vui lòng chọn năm sinh");
-                    }else if(txtAddress.Text == "")
+                    }
+                    else if (txtAddress.Text == "")
                     {
                         MessageBox.Show("Vui lòng nhập địa chỉ");
                     }
-                    else if(txtEmail.Text == "")
+                    else if (txtEmail.Text == "")
                     {
                         MessageBox.Show("Vui lòng nhập email");
                     }
@@ -140,10 +143,11 @@ namespace N19_DentalClinic.GUI
                     {
                         MessageBox.Show("Vui lòng nhập số điện thoại");
                     }
-                    else if(rbFemale.Checked == false && rbMale.Checked == false) 
+                    else if (rbFemale.Checked == false && rbMale.Checked == false)
                     {
                         MessageBox.Show("Vui lòng nhập chọn giới tính");
-                    }else
+                    }
+                    else
                     {
                         string name = txtName.Text;
                         string birthday = txtBirthday.Text;
@@ -152,14 +156,15 @@ namespace N19_DentalClinic.GUI
                         string phone = txtPhoneNumber.Text;
                         string address = txtAddress.Text;
                         int gender;
-                        if(rbMale.Checked)
+                        if (rbMale.Checked)
                         {
                             gender = 1;
-                        }else
+                        }
+                        else
                         {
                             gender = 0;
                         }
-                        string sqlAddPatient = "exec procAddPatient N'" + name + "', N'" + address + "', '" + email + "', '" + number + "', " + gender + ", '" + DateTimeConvert.convertSqlTime(birthday.ToString()) + "'"; 
+                        string sqlAddPatient = "exec procAddPatient N'" + name + "', N'" + address + "', '" + email + "', '" + number + "', " + gender + ", '" + DateTimeConvert.convertSqlTimeDay(birthday.ToString()) + "'";
                         data.changeData(sqlAddPatient);
                         MessageBox.Show("Thêm bệnh nhân mới thành công");
                         PanelInteraction.openForm(this, new PatientFile(panelWrapper, 2), panelWrapper);
@@ -234,6 +239,11 @@ namespace N19_DentalClinic.GUI
         private void btnBack_Click(object sender, EventArgs e)
         {
             PanelInteraction.openForm(this, new PatientFile(panelWrapper, 2), panelWrapper);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

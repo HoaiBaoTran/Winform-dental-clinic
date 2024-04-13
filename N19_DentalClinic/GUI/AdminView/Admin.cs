@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using N19_DentalClinic.DAO;
 using N19_DentalClinic.GUI.ReceptionistView;
 using N19_DentalClinic.library;
+using N19_DentalClinic.GUI.AdminView;
 
 namespace N19_DentalClinic.GUI.AdminView
 {
@@ -40,21 +41,31 @@ namespace N19_DentalClinic.GUI.AdminView
             btnManageAss.FlatAppearance.BorderSize = 0;
             btnManageDentist.FlatAppearance.BorderSize = 0;
             btnManageRecep.FlatAppearance.BorderSize = 0;
+            btnPatFile.FlatAppearance.BorderSize = 0;
             btnManageBill.FlatAppearance.BorderSize = 0;
+
 
             this.BackColor = ColorTranslator.FromHtml("#323886");
 
             // Tai mau giao dien
-            ColorMarker.ButtonColor(btnStatistics, "0918DB", "ffffff");
-            ColorMarker.ButtonColor(btnWorkCalendar, "0918DB", "ffffff");
-            ColorMarker.ButtonColor(btnMaterialManagement, "0918DB", "ffffff");
-            ColorMarker.ButtonColor(btnManageBill, "0918DB", "ffffff");
-            ColorMarker.ButtonColor(btnServiceManagement, "DBAF09", "000000");
+            loadDefaultColorFunctionBtn();
             PanelInteraction.loadForm(new ManageService(pnShowContent, 3), pnShowContent);
+
             pnSidebar.BackColor = ColorTranslator.FromHtml("#323886");
             ColorMarker.ButtonColor(btnManageAss, "E88ED9", "ffffff");
             ColorMarker.ButtonColor(btnManageDentist, "5B57F4", "ffffff");
             ColorMarker.ButtonColor(btnManageRecep, "3CBFF8", "ffffff");
+        }
+
+        //Mau mac dinh cac nut chuc nang
+        private void loadDefaultColorFunctionBtn()
+        {
+            ColorMarker.ButtonColor(btnStatistics, "0918DB", "ffffff");
+            ColorMarker.ButtonColor(btnWorkCalendar, "0918DB", "ffffff");
+            ColorMarker.ButtonColor(btnMaterialManagement, "0918DB", "ffffff");
+            ColorMarker.ButtonColor(btnServiceManagement, "DBAF09", "000000");
+            ColorMarker.ButtonColor(btnPatFile, "0918DB", "ffffff");
+            ColorMarker.ButtonColor(btnManageBill, "0918DB", "ffffff");
         }
 
         private void btnServiceManagement_Click(object sender, EventArgs e)
@@ -77,6 +88,7 @@ namespace N19_DentalClinic.GUI.AdminView
             ColorMarker.ButtonColor(btnManageBill, "0918DB", "ffffff");
 
             PanelInteraction.loadForm(new ManageMaterial(pnShowContent, 3), pnShowContent);
+            ColorMarker.ButtonColor(btnPatFile, "0918DB", "ffffff");
         }
 
         private void btnManageBill_Click(object sender, EventArgs e)
@@ -84,6 +96,8 @@ namespace N19_DentalClinic.GUI.AdminView
             ColorMarker.ButtonColor(btnStatistics, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnWorkCalendar, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnMaterialManagement, "0918DB", "ffffff");
+            ColorMarker.ButtonColor(btnServiceManagement, "DBAF09", "000000");
+            ColorMarker.ButtonColor(btnPatFile, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnServiceManagement, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnManageBill, "DBAF09", "000000");
 
@@ -96,6 +110,7 @@ namespace N19_DentalClinic.GUI.AdminView
             ColorMarker.ButtonColor(btnWorkCalendar, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnMaterialManagement, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnServiceManagement, "0918DB", "ffffff");
+            ColorMarker.ButtonColor(btnPatFile, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnManageBill, "0918DB", "ffffff");
         }
 
@@ -106,21 +121,36 @@ namespace N19_DentalClinic.GUI.AdminView
             ColorMarker.ButtonColor(btnMaterialManagement, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnServiceManagement, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnManageBill, "0918DB", "ffffff");
+            ColorMarker.ButtonColor(btnPatFile, "0918DB", "ffffff");
+        }
+        private void btnPatFile_Click(object sender, EventArgs e)
+        {
+            PanelInteraction.loadForm(new PatientFile(pnShowContent, role), pnShowContent);
+            ColorMarker.ButtonColor(btnStatistics, "0918DB", "ffffff");
+            ColorMarker.ButtonColor(btnWorkCalendar, "0918DB", "ffffff");
+            ColorMarker.ButtonColor(btnPatFile, "DBAF09", "000000");
+            ColorMarker.ButtonColor(btnMaterialManagement, "0918DB", "ffffff");
+            ColorMarker.ButtonColor(btnManageBill, "0918DB", "ffffff");
+            ColorMarker.ButtonColor(btnServiceManagement, "0918DB", "ffffff");
         }
 
         private void btnManageDentist_Click(object sender, EventArgs e)
         {
-            //PanelInteraction.loadForm(new DentistFile(pnShowContent, role), pnShowContent);
+            loadDefaultColorFunctionBtn();
+            PanelInteraction.loadForm(new DentistFile(pnShowContent, role), pnShowContent);
         }
 
         private void btnManageRecep_Click(object sender, EventArgs e)
         {
-
+            loadDefaultColorFunctionBtn();
+            PanelInteraction.loadForm(new ReceptionistFile(pnShowContent, role), pnShowContent);
         }
 
         private void btnManageAss_Click(object sender, EventArgs e)
         {
-
+            loadDefaultColorFunctionBtn();
+            PanelInteraction.loadForm(new AssisstantFile(pnShowContent, role), pnShowContent);
         }
+
     }
 }

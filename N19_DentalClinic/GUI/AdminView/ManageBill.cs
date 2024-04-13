@@ -45,6 +45,9 @@ namespace N19_DentalClinic.GUI.AdminView
                 dataBill.Columns[5].Name = "Ngày thanh toán";
                 dataBill.Columns[6].Name = "Giờ thanh toán";
                 dataBill.Columns[7].Name = "Xóa";
+                dataBill.EnableHeadersVisualStyles = false;
+                dataBill.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
+                dataBill.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
 
 
                 foreach (DataRow row in table.Rows)

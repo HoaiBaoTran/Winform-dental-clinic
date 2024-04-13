@@ -44,6 +44,9 @@ namespace N19_DentalClinic.GUI.AdminView
                 dataService.Columns[4].Name = "Đơn vị tính";
                 dataService.Columns[5].Name = "Ghi chú";
                 dataService.Columns[6].Name = "Xóa";
+                dataService.EnableHeadersVisualStyles = false;
+                dataService.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
+                dataService.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
 
                 int countRow = 1;
                 foreach (DataRow row in table.Rows)

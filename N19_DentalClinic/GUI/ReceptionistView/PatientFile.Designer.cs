@@ -40,6 +40,14 @@
             createNewPat = new Button();
             ((System.ComponentModel.ISupportInitialize)dataPatientTable).BeginInit();
             SuspendLayout();
+            label1 = new Label();
+            txtSearch = new TextBox();
+            cbKindSearch = new ComboBox();
+            btnSearch = new Button();
+            dataPatientTable = new DataGridView();
+            createNewPat = new Button();
+            ((System.ComponentModel.ISupportInitialize)dataPatientTable).BeginInit();
+            SuspendLayout();
             // 
             // label1
             // 
@@ -154,7 +162,6 @@
             Name = "PatientFile";
             Text = "PatientFile";
             Load += PatientFile_Load;
-            Resize += PatientFile_Resize;
             ((System.ComponentModel.ISupportInitialize)dataPatientTable).EndInit();
             ResumeLayout(false);
             PerformLayout();

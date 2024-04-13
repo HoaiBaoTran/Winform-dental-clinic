@@ -44,6 +44,8 @@ namespace N19_DentalClinic.GUI
 
         public void updateDataGridView(string sql)
         {
+            btnSearch.BackColor = ColorTranslator.FromHtml("#" + "DBAF09");
+            createNewPat.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
             DataTable table = data.readData(sql);
             if (table.Rows.Count > 0)
             {
@@ -74,30 +76,20 @@ namespace N19_DentalClinic.GUI
                     {
                         gender = "Nữ";
                     }
-                    string[] rowString = new string[] { countRow.ToString(), (string)row["PatId"], (string)row["name"], DateTimeConvert.convertDMY(row["birthday"].ToString()), (string)row["address"], (string)row["number"], (string)row["email"], gender, "Lịch sử khám","Thông tin chi tiết", "Chỉnh sửa", "Xóa" };
+                    string[] rowString = new string[] { countRow.ToString(), (string)row["PatId"], (string)row["name"], DateTimeConvert.convertDMY(row["birthday"].ToString()), (string)row["address"], (string)row["number"], (string)row["email"], gender, "Lịch sử khám", "Thông tin chi tiết", "Chỉnh sửa", "Xóa" };
                     dataPatientTable.Rows.Add(rowString);
                     countRow++;
                 }
             }
             dataPatientTable.AllowUserToAddRows = false;
-
+            dataPatientTable.Columns[0].Width = 60;
             //Căn giữa nội dung cột đầu tiên
-            dataPatientTable.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataPatientTable.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            //Thay đổi kích thước các ô theo datagridview
-            for (int i = 0; i < dataPatientTable.ColumnCount; i++)
-            {
-                dataPatientTable.Columns[i].Width = dataPatientTable.Width / dataPatientTable.ColumnCount;
-            }
+
+            dataPatientTable.EnableHeadersVisualStyles = false;
+            dataPatientTable.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#" + "12DB4E"); 
         }
 
-        private void PatientFile_Resize(object sender, EventArgs e)
-        {
-            for (int i = 0; i < dataPatientTable.ColumnCount; i++)
-            {
-                dataPatientTable.Columns[i].Width = dataPatientTable.Width / dataPatientTable.ColumnCount;
-            }
-        }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -143,23 +135,41 @@ namespace N19_DentalClinic.GUI
 
         private void dataPatientTable_MouseClick(object sender, MouseEventArgs e)
         {
+            if (dataPatientTable.CurrentCell == null) return;
             if (dataPatientTable.CurrentCell.ColumnIndex == 8)
             {
                 string patId = dataPatientTable[1, dataPatientTable.CurrentCell.RowIndex].Value.ToString();
                 PanelInteraction.openForm(this, new HistoryCheckUp(panelWrapper, patId), panelWrapper);
-            }else if (dataPatientTable.CurrentCell.ColumnIndex == 9) // Xem thong tin benh nhan
+            }
+            else if (dataPatientTable.CurrentCell.ColumnIndex == 9) // Xem thong tin benh nhan
             {
+
                 string patId = dataPatientTable[1, dataPatientTable.CurrentCell.RowIndex].Value.ToString();
-                PanelInteraction.openForm(this, new PatientDecriptionDetail(panelWrapper, patId, 2, "view"), panelWrapper);
+                PanelInteraction.openForm(this, new PatientDecriptionDetail(panelWrapper, patId, role, "view"), panelWrapper);
             }
             else if (dataPatientTable.CurrentCell.ColumnIndex == 10) // Sửa thong tin benh nhan
             {
-                string patId = dataPatientTable[1, dataPatientTable.CurrentCell.RowIndex].Value.ToString();
-                PanelInteraction.openForm(this, new PatientDecriptionDetail(panelWrapper, patId, 2, "update"), panelWrapper);
-            }else if (dataPatientTable.CurrentCell.ColumnIndex == 11) // Xóa thong tin benh nhan
+                if (role != 3)
+                {
+                    string patId = dataPatientTable[1, dataPatientTable.CurrentCell.RowIndex].Value.ToString();
+                    PanelInteraction.openForm(this, new PatientDecriptionDetail(panelWrapper, patId, role, "update"), panelWrapper);
+                }
+                else
+                {
+                    MessageBox.Show("Bạn không đủ thẩm quyền để chỉnh sửa");
+                }
+            }
+            else if (dataPatientTable.CurrentCell.ColumnIndex == 11) // Xóa thong tin benh nhan
             {
-                string patId = dataPatientTable[1, dataPatientTable.CurrentCell.RowIndex].Value.ToString();
-                PanelInteraction.openForm(this, new DeletePatient(panelWrapper, patId, 2, "delete"), panelWrapper);
+                if (role != 3)
+                {
+                    string patId = dataPatientTable[1, dataPatientTable.CurrentCell.RowIndex].Value.ToString();
+                    PanelInteraction.openForm(this, new DeletePatient(panelWrapper, patId, role, "delete"), panelWrapper);
+                }
+                else
+                {
+                    MessageBox.Show("Bạn không đủ thẩm quyền để xóa");
+                }
             }
         }
 
@@ -167,5 +177,6 @@ namespace N19_DentalClinic.GUI
         {
             PanelInteraction.openForm(this, new PatientDecriptionDetail(panelWrapper, "", 2, "create"), panelWrapper);
         }
+
     }
 }
