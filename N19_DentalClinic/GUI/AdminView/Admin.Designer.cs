@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Admin));
             pnSidebar = new Panel();
-            roundPictureBox1 = new component.RoundPictureBox();
+            btnManageBill = new Button();
             label3 = new Label();
             lbName = new Label();
             label2 = new Label();
@@ -44,14 +44,13 @@
             btnStatistics = new Button();
             pnShowContent = new Panel();
             pnSidebar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox1).BeginInit();
             SuspendLayout();
             // 
             // pnSidebar
             // 
             pnSidebar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             pnSidebar.BackColor = SystemColors.AppWorkspace;
-            pnSidebar.Controls.Add(roundPictureBox1);
+            pnSidebar.Controls.Add(btnManageBill);
             pnSidebar.Controls.Add(label3);
             pnSidebar.Controls.Add(lbName);
             pnSidebar.Controls.Add(label2);
@@ -69,21 +68,23 @@
             pnSidebar.Size = new Size(235, 952);
             pnSidebar.TabIndex = 1;
             // 
-            // roundPictureBox1
+            // btnManageBill
             // 
-            roundPictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            roundPictureBox1.Image = Properties.Resources.luffy;
-            roundPictureBox1.Location = new Point(42, 19);
-            roundPictureBox1.Name = "roundPictureBox1";
-            roundPictureBox1.Size = new Size(154, 145);
-            roundPictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            roundPictureBox1.TabIndex = 22;
-            roundPictureBox1.TabStop = false;
+            btnManageBill.FlatStyle = FlatStyle.Flat;
+            btnManageBill.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnManageBill.Location = new Point(10, 631);
+            btnManageBill.Margin = new Padding(3, 4, 3, 4);
+            btnManageBill.Name = "btnManageBill";
+            btnManageBill.Size = new Size(207, 68);
+            btnManageBill.TabIndex = 22;
+            btnManageBill.Text = "Quản lí hóa đơn";
+            btnManageBill.UseVisualStyleBackColor = true;
+            btnManageBill.Click += btnManageBill_Click;
             // 
             // label3
             // 
             label3.BackColor = Color.White;
-            label3.Location = new Point(9, 244);
+            label3.Location = new Point(9, 92);
             label3.Name = "label3";
             label3.Size = new Size(220, 1);
             label3.TabIndex = 20;
@@ -93,7 +94,7 @@
             lbName.AutoSize = true;
             lbName.Font = new Font("Segoe UI", 18F);
             lbName.ForeColor = Color.White;
-            lbName.Location = new Point(27, 192);
+            lbName.Location = new Point(27, 40);
             lbName.Name = "lbName";
             lbName.Size = new Size(200, 41);
             lbName.TabIndex = 21;
@@ -104,7 +105,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(4, 263);
+            label2.Location = new Point(4, 116);
             label2.Name = "label2";
             label2.Size = new Size(112, 32);
             label2.TabIndex = 0;
@@ -116,7 +117,7 @@
             btnManageAss.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnManageAss.Image = (Image)resources.GetObject("btnManageAss.Image");
             btnManageAss.ImageAlign = ContentAlignment.MiddleLeft;
-            btnManageAss.Location = new Point(10, 465);
+            btnManageAss.Location = new Point(10, 313);
             btnManageAss.Margin = new Padding(3, 4, 3, 4);
             btnManageAss.Name = "btnManageAss";
             btnManageAss.Padding = new Padding(16, 0, 16, 0);
@@ -133,7 +134,7 @@
             btnManageDentist.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnManageDentist.Image = (Image)resources.GetObject("btnManageDentist.Image");
             btnManageDentist.ImageAlign = ContentAlignment.MiddleLeft;
-            btnManageDentist.Location = new Point(10, 387);
+            btnManageDentist.Location = new Point(10, 235);
             btnManageDentist.Margin = new Padding(3, 4, 3, 4);
             btnManageDentist.Name = "btnManageDentist";
             btnManageDentist.Padding = new Padding(16, 0, 16, 0);
@@ -150,7 +151,7 @@
             btnManageRecep.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnManageRecep.Image = (Image)resources.GetObject("btnManageRecep.Image");
             btnManageRecep.ImageAlign = ContentAlignment.MiddleLeft;
-            btnManageRecep.Location = new Point(10, 307);
+            btnManageRecep.Location = new Point(10, 155);
             btnManageRecep.Margin = new Padding(3, 4, 3, 4);
             btnManageRecep.Name = "btnManageRecep";
             btnManageRecep.Padding = new Padding(16, 0, 16, 0);
@@ -166,7 +167,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(3, 559);
+            label1.Location = new Point(3, 407);
             label1.Name = "label1";
             label1.Size = new Size(164, 32);
             label1.TabIndex = 0;
@@ -176,7 +177,7 @@
             // 
             btnMaterialManagement.FlatStyle = FlatStyle.Flat;
             btnMaterialManagement.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnMaterialManagement.Location = new Point(10, 695);
+            btnMaterialManagement.Location = new Point(10, 543);
             btnMaterialManagement.Margin = new Padding(3, 4, 3, 4);
             btnMaterialManagement.Name = "btnMaterialManagement";
             btnMaterialManagement.Size = new Size(207, 68);
@@ -189,7 +190,7 @@
             // 
             btnWorkCalendar.FlatStyle = FlatStyle.Flat;
             btnWorkCalendar.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnWorkCalendar.Location = new Point(9, 873);
+            btnWorkCalendar.Location = new Point(10, 810);
             btnWorkCalendar.Margin = new Padding(3, 4, 3, 4);
             btnWorkCalendar.Name = "btnWorkCalendar";
             btnWorkCalendar.Size = new Size(207, 68);
@@ -202,7 +203,7 @@
             // 
             btnServiceManagement.FlatStyle = FlatStyle.Flat;
             btnServiceManagement.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnServiceManagement.Location = new Point(9, 607);
+            btnServiceManagement.Location = new Point(9, 455);
             btnServiceManagement.Margin = new Padding(3, 4, 3, 4);
             btnServiceManagement.Name = "btnServiceManagement";
             btnServiceManagement.Size = new Size(207, 68);
@@ -215,7 +216,7 @@
             // 
             btnStatistics.FlatStyle = FlatStyle.Flat;
             btnStatistics.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnStatistics.Location = new Point(10, 787);
+            btnStatistics.Location = new Point(10, 719);
             btnStatistics.Margin = new Padding(3, 4, 3, 4);
             btnStatistics.Name = "btnStatistics";
             btnStatistics.Size = new Size(207, 68);
@@ -247,7 +248,6 @@
             Load += Admin_Load;
             pnSidebar.ResumeLayout(false);
             pnSidebar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -264,8 +264,8 @@
         private System.Windows.Forms.Button btnManageRecep;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private component.RoundPictureBox roundPictureBox1;
         private Label label3;
         private Label lbName;
+        private Button btnManageBill;
     }
 }
