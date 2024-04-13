@@ -173,13 +173,14 @@ namespace N19_DentalClinic.GUI.AdminView
                 }
                 else
                 {
-                    string serviceId = dataMaterial[1, dataMaterial.CurrentCell.RowIndex].Value.ToString();
-                    string serviceName = dataMaterial[2, dataMaterial.CurrentCell.RowIndex].Value.ToString();
-                    string price = dataMaterial[3, dataMaterial.CurrentCell.RowIndex].Value.ToString();
-                    string calUnit = dataMaterial[4, dataMaterial.CurrentCell.RowIndex].Value.ToString();
-                    string note = dataMaterial[5, dataMaterial.CurrentCell.RowIndex].Value.ToString();
-                    AddService addService = new AddService(serviceId, serviceName, price, calUnit, note);
-                    if (addService.ShowDialog() == DialogResult.OK)
+                    string materialId = dataMaterial[1, dataMaterial.CurrentCell.RowIndex].Value.ToString();
+                    string materialName = dataMaterial[2, dataMaterial.CurrentCell.RowIndex].Value.ToString();
+                    string type = dataMaterial[3, dataMaterial.CurrentCell.RowIndex].Value.ToString();
+                    string quantity = dataMaterial[4, dataMaterial.CurrentCell.RowIndex].Value.ToString();
+                    string calUnit = dataMaterial[5, dataMaterial.CurrentCell.RowIndex].Value.ToString();
+                    string expirationDate = dataMaterial[6, dataMaterial.CurrentCell.RowIndex].Value.ToString();
+                    AddMaterial addMaterial = new AddMaterial(materialId, materialName, type, quantity, calUnit, expirationDate);
+                    if (addMaterial.ShowDialog() == DialogResult.OK)
                     {
                         updateUiOnDataChange();
                     }
