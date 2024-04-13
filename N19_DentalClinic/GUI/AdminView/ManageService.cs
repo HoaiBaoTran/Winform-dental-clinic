@@ -1,4 +1,5 @@
 ﻿using N19_DentalClinic.DAO;
+using N19_DentalClinic.GUI.DentistView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,8 +28,7 @@ namespace N19_DentalClinic.GUI.AdminView
 
         private void ManageService_Load(object sender, EventArgs e)
         {
-            string sql = "select * from Service";
-            updateDataGridView(sql);
+            updateUiOnDataChange();
         }
 
         public void updateDataGridView(string sql)
@@ -69,9 +69,73 @@ namespace N19_DentalClinic.GUI.AdminView
 
         }
 
+        private void updateUiOnDataChange()
+        {
+            dataService.Rows.Clear();
+            string sql = "select * from Service";
+            updateDataGridView(sql);
+        }
+
         private void btnAddService_Click(object sender, EventArgs e)
         {
+            AddService addService = new AddService();
+            if (addService.ShowDialog() == DialogResult.OK)
+            {
+                updateUiOnDataChange();
+            }
+        }
 
+        private void dataService_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (dataService.Rows.Count > 0)
+            {
+                if (dataService.CurrentCell.ColumnIndex == 6)
+                {
+                    string serviceId = dataService[1, dataService.CurrentCell.RowIndex].Value.ToString();
+                    string serviceName = dataService[2, dataService.CurrentCell.RowIndex].Value.ToString();
+                    string title = "Xác nhận xóa";
+                    string message = $"Bạn có chắc muốn xóa {serviceName} với id là {serviceId}???";
+                    var confirmResult = MessageBox.Show(message, title, MessageBoxButtons.YesNo);
+
+                    if (confirmResult == DialogResult.Yes)
+                    {
+                        string sql = @$"delete from Service 
+                                        where serviceID = '{serviceId}'";
+                        data.changeData(sql);
+                        MessageBox.Show("Xóa thành công");
+                        updateUiOnDataChange();
+                    }
+                }
+                else
+                {
+                    string serviceId = dataService[1, dataService.CurrentCell.RowIndex].Value.ToString();
+                    string serviceName = dataService[2, dataService.CurrentCell.RowIndex].Value.ToString();
+                    string price = dataService[3, dataService.CurrentCell.RowIndex].Value.ToString();
+                    string calUnit = dataService[4, dataService.CurrentCell.RowIndex].Value.ToString();
+                    string note = dataService[5, dataService.CurrentCell.RowIndex].Value.ToString();
+                    AddService addService = new AddService(serviceId, serviceName, price, calUnit, note);
+                    if (addService.ShowDialog() == DialogResult.OK)
+                    {
+                        updateUiOnDataChange();
+                    }
+                }
+
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string serviceId = tbSearch.Text.ToString();
+            
+            if (serviceId != string.Empty)
+            {
+                string sql = $"select * from service where serviceID = '{serviceId}'";
+                dataService.Rows.Clear();
+                updateDataGridView(sql);
+            } else
+            {
+                updateUiOnDataChange();
+            }
         }
     }
 }

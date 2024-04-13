@@ -74,6 +74,7 @@
             btnSearch.TabIndex = 106;
             btnSearch.TextColor = Color.White;
             btnSearch.UseVisualStyleBackColor = false;
+            btnSearch.Click += btnSearch_Click;
             // 
             // tbSearch
             // 
@@ -129,6 +130,7 @@
             dataService.RowHeadersWidth = 51;
             dataService.Size = new Size(1186, 623);
             dataService.TabIndex = 112;
+            dataService.MouseClick += dataService_MouseClick;
             // 
             // ManageService
             // 
