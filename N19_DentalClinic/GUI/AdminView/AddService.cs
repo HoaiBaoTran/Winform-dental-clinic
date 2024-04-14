@@ -20,6 +20,7 @@ namespace N19_DentalClinic.GUI.AdminView
         private string price = string.Empty;
         private string calUnit = string.Empty;
         private string note = string.Empty;
+        private string kindService = string.Empty;
         private bool isEdit = false;
 
         public AddService()
@@ -27,7 +28,7 @@ namespace N19_DentalClinic.GUI.AdminView
             InitializeComponent();
         }
 
-        public AddService(string serviceId, string serviceName, string price, string calUnit, string note)
+        public AddService(string serviceId, string serviceName, string price, string calUnit, string note, string kindService)
         {
             InitializeComponent();
             this.serviceId = serviceId;
@@ -35,6 +36,7 @@ namespace N19_DentalClinic.GUI.AdminView
             this.price = price;
             this.calUnit = calUnit;
             this.note = note;
+            this.kindService = kindService;
 
             isEdit = true;
         }
@@ -45,12 +47,13 @@ namespace N19_DentalClinic.GUI.AdminView
             string calUnit = tbCalUnit.Text;
             string price = tbPrice.Text;
             string note = tbNote.Text;
+            string kindService = tbKindService.Text;
 
             if (!isEdit)
             {
 
-                string sql = @$"insert into Service(serviceID, name, price, CalUnit, quantity, note) values
-                               (dbo.autoSeid(), N'{serviceName}', " + price + $", N'{calUnit}', 1, N'{note}')";
+                string sql = @$"insert into Service(serviceID, name, price, CalUnit, quantity, note, kindService) values
+                               (dbo.autoSeid(), N'{serviceName}', " + price + $", N'{calUnit}', 1, N'{note}', N'{kindService}')";
                 data.changeData(sql);
                 MessageBox.Show("Thêm dịch vụ thành công");
                 this.DialogResult = DialogResult.OK;
@@ -58,7 +61,7 @@ namespace N19_DentalClinic.GUI.AdminView
             else
             {
                 string sql = @$"update Service
-                            set name = N'{serviceName}', price = " + price + $@", CalUnit = N'{calUnit}', quantity = 1, note = N'{note}'
+                            set name = N'{serviceName}', price = " + price + $@", CalUnit = N'{calUnit}', quantity = 1, note = N'{note}', kindService = N'{kindService}'
                             where serviceID = '{serviceId}'";
                 data.changeData(sql);
                 MessageBox.Show("Cập nhật dịch vụ thành công");
@@ -81,6 +84,7 @@ namespace N19_DentalClinic.GUI.AdminView
                 tbPrice.Text = price;
                 tbNote.Text = note;
                 tbCalUnit.Text = calUnit;
+                tbKindService.Text = kindService;
                 tbServiceId.ReadOnly = true;
             }
             else

@@ -3,12 +3,12 @@ use master
 go
 drop database QuanLyPhongKham
 */
-/*
+
 create database QuanLyPhongKham
 go
 use QuanLyPhongKham
 go
-*/
+
 
 -- Tao function chay function truoc khi chay bang
 
@@ -355,11 +355,12 @@ CREATE TABLE Service
 (
   able BIT DEFAULT 1 NOT NULL,
   serviceID VARCHAR(10) PRIMARY KEY,
-  name NVARCHAR(50) NOT NULL,
+  name NVARCHAR(100) NOT NULL,
   price INT NOT NULL,
   CalUnit NVARCHAR(10) NOT NULL,
   quantity INT NOT NULL,
-  note NVARCHAR(70)NOT NULL
+  note NVARCHAR(70)NOT NULL,
+  kindService NVARCHAR(60) NOT NULL
 )
 GO
 
@@ -812,19 +813,6 @@ go
 exec procAddFixedMaterial 'MA00000001'
 exec procAddFixedMaterial 'MA00000002'
 exec procAddFixedMaterial 'MA00000003'
-exec procAddFixedMaterial 'MA00000004'
-exec procAddFixedMaterial 'MA00000005'
-exec procAddFixedMaterial 'MA00000006'
-exec procAddFixedMaterial 'MA00000007'
-exec procAddFixedMaterial 'MA00000008'
-exec procAddFixedMaterial 'MA00000009'
-exec procAddFixedMaterial 'MA00000010'
-exec procAddFixedMaterial 'MA00000011'
-exec procAddFixedMaterial 'MA00000012'
-exec procAddFixedMaterial 'MA00000013'
-exec procAddFixedMaterial 'MA00000014'
-exec procAddFixedMaterial 'MA00000015'
-exec procAddFixedMaterial 'MA00000016'
 GO
 
 --Receptionist
@@ -942,8 +930,11 @@ go
 --select * from Faculty
 
 exec procAddFaculty 'Nha chu'
-exec procAddFaculty 'Phuc hinh'
-exec procAddFaculty 'Rang tre em'
+exec procAddFaculty N'Phục Hình'
+exec procAddFaculty N'Răng trẻ em'
+exec procAddFaculty N'Nhổ răng va tiểu phẩu'
+exec procAddFaculty N'Chữa răng và nội nha'
+exec procAddFaculty N'Tổng quát'
 GO
 
 
@@ -1073,26 +1064,218 @@ GO
 --Service 
 
 create proc procAddService
-	@name NVARCHAR(50),
+	@name NVARCHAR(100),
 	@price INT,
 	@CalUnit NVARCHAR(10),
 	@quantity INT,
-	@note NVARCHAR(70)
+	@note NVARCHAR(70),
+	@kindService NVARCHAR(60)
+	
 as
 begin
 	declare @SerID VARCHAR(10)
 	set @SerID = dbo.autoSeid()
-	insert into Service (serviceID,name, price,CalUnit,quantity,note) 
-	values (@SerID,@name,@price,@CalUnit,@quantity,@note)
+	insert into Service (serviceID,name, price,CalUnit,quantity,note,kindService) 
+	values (@SerID,@name,@price,@CalUnit,@quantity,@note,@kindService)
 end 
 go
 
 --select * from service
 
-exec procAddService N'Nhổ răng cửa', 50000,N'Cái',1,''
-exec procAddService N'Nhổ răng cối nhỏ',60000,N'Cái',1,'4 phim'
-exec procAddService N'Trám GIC', 100000,N'Xoang',1,''
-exec procAddService N'Thay nền', 300000,N'Hàm',1,''
+--1.Khám hồ sơ 
+exec procAddService N'Khám bệnh',5000,N'Lượt',1,'',N'Khám-hồ sơ'
+--2.Nhổ răng
+exec procAddService N'Nhổ răng cửa, răng nanh', 50000,N'Cái',1,'', N'Nhổ răng'
+exec procAddService N'Nhổ răng cối nhỏ',60000,N'Cái',1,'',N'Nhổ răng'
+exec procAddService N'Nhổ răng cối lớn trên',70000,N'Cái',1,'',N'Nhổ răng'
+exec procAddService N'Nhổ răng cối lớn dưới',90000,N'Cái',1,'',N'Nhổ răng'
+exec procAddService N'Nhổ răng cối lung lay',50000,N'Cái',1,'',N'Nhổ răng'
+exec procAddService N'Nhổ chân răng vĩnh viễn',60000,N'Cái',1,'',N'Nhổ răng'
+exec procAddService N'Khâu ổ răng',50000,N'Cái',1,'',N'Nhổ răng'
+--Tiểu phẫu thuật
+exec procAddService N'Rằng khôn mọc lệch nhổ tiểu phẩu',300000,N'Cái',1,'',N'Tiểu phẩu thuật'
+exec procAddService N'Phẫu thuật điều chỉnh xương ổ răng',200000,N'Cái',1,'',N'Tiểu phẩu thuật'
+exec procAddService N'Phẩu thuật cắt chóp',300000,N'Cái',1,'',N'Tiểu phẩu thuật'
+--3.Nha chu
+exec procAddService N'Cạo vôi răng',50000,N'2 hàm',1,'','Nha chu'
+exec procAddService N'Điều trị viêm nha chu không phẫu thuật',100000,N'Vùng hàm',1,N'Nạo túi nha chu','Nha chu'
+exec procAddService N'Phẫu thuật lật vạt làm sạch',100000,N'Lần',1,'','Nha chu'
+exec procAddService N'Cắt thắng',100000,N'Lần',1,'','Nha chu'
+exec procAddService N'Phẫu thuật nướu',500000,N'Răng',1,'','Nha chu'
+--4.Chữa răng-Nội nha
+exec procAddService N'Tái tạo thân răng', 150000, N'Xoang', 1, '', N'Chữa răng-Nội nha'
+exec procAddService N'Trám composite xoang I, III', 100000, 'Xoang', 1, '', N'Chữa răng-Nội nha'
+exec procAddService N'Trám composite xoang II, IV, V', 120000, 'Xoang', 1, '', N'Chữa răng-Nội nha'
+exec procAddService N'Trám GIC', 100000, N'Xoang', 1, '', N'Chữa răng-Nội nha'
+exec procAddService N'Trám đắp mặt, hở kẽ', 200000, N'Cái', 1, '', N'Chữa răng-Nội nha'
+exec procAddService N'Trám phòng ngừa', 80000, N'Cái', 1, '', N'Chữa răng-Nội nha'
+--Chữa tủy
+exec procAddService N'Răng cửa, răng nanh', 250000,N'Cái',1,'', N'chữa tủy'
+exec procAddService N'Răng cối nhỏ',300000,N'Cái',1,'',N'chữa tủy'
+exec procAddService N'Răng cối lớn',60000,N'Cái',1,'',N'chữa tủy'
+exec procAddService N'Chữa tủy lại(đóng thêm)',60000,N'Ống tủy',1,'',N'chữa tủy'
+--Phục hình tháo lắp
+exec procAddService N'Phục hình tháo lắp 1 răng', 100000, N'Răng', 1, N'', N'Phục hình tháo lắp'
+exec procAddService N'Phục hình tháo lắp 1 hàm toàn hàm', 1500000, N'Hàm', 1, N'', N'Phục hình tháo lắp'
+exec procAddService N'Phục hình tháo lắp 2 hàm toàn hàm', 3000000, N'Hàm', 1, N'', N'Phục hình tháo lắp'
+--Sữa chữa hàm
+exec procAddService N'Vá hàm', 100000, N'Hàm', 1, N'', N'Sửa chữa hàm'
+exec procAddService N'Thay nền', 300000, N'Hàm', 1, N'', N'Sửa chữa hàm'
+exec procAddService N'Đệm hàm nhựa nấu', 250000, N'Hàm', 1, N'', N'Sửa chữa hàm'
+exec procAddService N'Thêm, thay móc', 50000, N'Cái', 1, N'', N'Sửa chữa hàm'
+exec procAddService N'Thêm, thay răng', 50000, N'Cái', 1, N'', N'Sửa chữa hàm'
+exec procAddService N'Chữa đau', 50000, N'Lần', 1, N'', N'Sửa chữa hàm'
+exec procAddService N'Móc dẻo', 200000, N'Cái', 1, N'', N'Sửa chữa hàm'
+exec procAddService N'Hàm dẻo', 700000, N'Cái', 1, N'', N'Sửa chữa hàm'
+exec procAddService N'Hàm khung bộ ', 750000, N'Cái', 1, N'Răng tính riêng', N'Sửa chữa hàm'
+--Điều trị tiền phục hình
+exec procAddService N'Đệm hàm nhựa tự cứng (Hàm cũ)', 100000, N'Hàm', 1, N'', N'Điều trị tiền phục hình'
+exec procAddService N'Điều chỉnh khớp cắn (Hàm cũ)', 100000, N'Hàm', 1, N'', N'Điều trị tiền phục hình'
+
+--6.Phục hình cố định
+exec procAddService N'Tái tạo cùi răng (có chốt)', 150000, N'Răng', 1, N'', N'Phục hình cố định'
+exec procAddService N'Mão, cầu răng kim loại toàn diện', 350000, N'Răng', 1, N'', N'Phục hình cố định'
+exec procAddService N'Mão, cầu răng kim loại-sứ', 500000, N'Răng', 1, N'', N'Phục hình cố định'
+exec procAddService N'Sứ titan', 700000, N'', 1, N'', N'Phục hình cố định'
+exec procAddService N'Hàm khung Ti (chưa bao gồm răng)', 1500000, N'', 1, N'', N'Phục hình cố định'
+exec procAddService N'Sứ zirconia', 2500000, N'', 1, N'', N'Phục hình cố định'
+exec procAddService N'Sứ cercon', 3500000, N'', 1, N'', N'Phục hình cố định'
+exec procAddService N'Điều chỉnh, gắn lại, tháo PHCĐ', 100000, N'Răng', 1, N'', N'Phục hình cố định'
+exec procAddService N'Hàm tạm', 50000, N'Răng', 1, N'', N'Phục hình cố định'
+exec procAddService N'Mão tạm', 15000, N'Răng', 1, N'', N'Phục hình cố định'
+exec procAddService N'Cầu răng tạm', 15000, N'Răng', 1, N'', N'Phục hình cố định'
+exec procAddService N'Cùi giá đúc', 100000, N'Cái', 1, N'', N'Phục hình cố định'
+
+--7.Điều trị răng sữa
+exec procAddService N'Nhổ răng sữa(tê bôi)',20000, N'Răng',1,'',N'Điều trị răng sữa'
+exec procAddService N'Nhổ răng sữa(tê chích)',50000, N'Răng',1,'',N'Điều trị răng sữa'
+exec procAddService N'Trám răng sữa bằng GIC',50000, N'Răng',1,'',N'Điều trị răng sữa'
+exec procAddService N'Trám răng sữa bằng composite',80000, N'Răng',1,'',N'Điều trị răng sữa'
+exec procAddService N'Trám dự phòng hố rãnh mặt nhai',80000, N'Răng',1,'',N'Điều trị răng sữa'
+exec procAddService N'Đặt gel Fluor phòng ngừa',50000, N'Hàm',1,'',N'Điều trị răng sữa'
+exec procAddService N'Lấy tủy chân răng sữa',200000, N'Răng',1,'2 phim',N'Điều trị răng sữa'
+exec procAddService N'Mão nhựa răng cửa (Strip crown)',200000, N'Răng',1,'',N'Điều trị răng sữa'
+exec procAddService N'Mão kim loại làm sẵn',250000, N'Răng',1,'',N'Điều trị răng sữa'
+exec procAddService N'Bộ giữ khoảng tháo lắp',250000, N'Hàm',1,'',N'Điều trị răng sữa'
+exec procAddService N'Giữ khoảng cố định 1 bên',400000, N'Cái',1,'',N'Điều trị răng sữa'
+exec procAddService N'Bộ giữ khoảng cố định 2 bên',800000, N'Bộ',1,'',N'Điều trị răng sữa'
+exec procAddService N'Mặt phẳng nghiêng',500000, N'Cái',1,'',N'Điều trị răng sữa'
+exec procAddService N'Tấm chặn môi',500000, N'Cái',1,'',N'Điều trị răng sữa'
+exec procAddService N'Khí cụ đẩy môi (lip bumper)',1000000, N'Cái',1,'',N'Điều trị răng sữa'
+exec procAddService N'Khí cụ tháo lắp điều trị cắn chéo l răng',1000000, N'Cái',1,'',N'Điều trị răng sữa'
+exec procAddService N'Khí cụ Quad Helix',1000000, N'Cái',1,'',N'Điều trị răng sữa'
+exec procAddService N'Tiểu phẫu',250000, N'Lần',1,'', N'Điều trị răng sữa'
+
+--8.Chỉnh hình răng mặt
+--Khí cụ tháo lắp
+exec procAddService N'Khí cụ tháo lắp 1 hàm',1500000, N'Hàm',1,'',N'Chỉnh hình răng mặt'
+exec procAddService N'Khí cụ tháo lắp 2 hàm',3000000, N'Hàm',1,'',N'Chỉnh hình răng mặt'
+exec procAddService N'Làm lại khí cụ tháo lắp 1 hàm',300000, N'Hàm',1,'',N'Chỉnh hình răng mặt'
+exec procAddService N'Làm lại khí cụ tháo lắp 2 hàm',600000, N'Hàm',1,'',N'Chỉnh hình răng mặt'
+exec procAddService N'Khí cụ duy trì kết quả 1 hàm',300000, N'Hàm',1,'Khí cụ tháo lắp',N'Chỉnh hình răng mặt'
+--Khí cụ cố định
+exec procAddService N'Khí cụ cố định 1 hàm',10000000, N'Hàm',1,'',N'Chỉnh hình răng mặt'
+exec procAddService N'Khí cụ cố định 2 hàm',20000000, N'Hàm',1,'',N'Chỉnh hình răng mặt'
+exec procAddService N'Khí cụ cố định 2 hàm trên 2 năm',26000000, N'Hàm',1,'',N'Chỉnh hình răng mặt'
+exec procAddService N'Khí cụ cố định 2 hàm sử dụng mắc cài thế hệ mới',28000000, N'Hàm',1,'',N'Chỉnh hình răng mặt'
+exec procAddService N'Khí cụ cố định 2 hàm sử dụng mắc cài sứ',15000000, N'Hàm',1,'',N'Chỉnh hình răng mặt'
+
+--9.Nha công cộng
+exec procAddService N'Máng Fluor không thuốc', 100000, N'Máng', 1, N'2 hàm', N'Nha công cộng'
+
+--10.Điều trị loạn năng hệ thống nhai
+exec procAddService N'1 máng nhai', 500000, N'Máng', 1, N'', N'Điều trị loạn năng hệ thống nhai'
+exec procAddService N'Mài chỉnh khớp cắn đơn giản', 150000, N'Lần', 1, N'', N'Điều trị loạn năng hệ thống nhai'
+exec procAddService N'Mài chỉnh khớp cắn phức tạp', 300000, N'Lần', 1, N'', N'Điều trị loạn năng hệ thống nhai'
+--11.X-quang răng
+exec procAddService N'Phim quanh chóp', 30000, N'Phim', 1, N'', N'X-quang răng'
+exec procAddService N'Phim toàn cảnh', 100000, N'Phim', 1, N'', N'X-quang răng'
+
+
+--Phục hình đơn lẻ
+--{
+--Răng sứ dán
+exec procAddService N'Răng sứ dán kim loại', 1500000,N'Hàm',1,'',N'Răng sứ dán'
+exec procAddService N'Răng sứ dán Titan', 3000000,N'Hàm',1,'',N'Răng sứ dán'
+exec procAddService N'Răng sứ dán Zirco', 6000000,N'Hàm',1,'',N'Răng sứ dán'
+exec procAddService N'Răng sứ dán Bio HPP', 8000000,N'Hàm',1,'',N'Răng sứ dán'
+--Giá răng sứ bắt vít trên Multi Unit gồm 2 khoản sau cộng lại:***
+exec procAddService N'Trụ phục hình Multi Unit', 1500000,N'Hàm',1,'',N'Răng sứ dán'
+--exec procAddService N'Răng sứ(Kim loại, Titan, Zirco, Bio HPP)', 1500000,N'Hàm',1,'',N'Răng sứ dán'
+--}
+
+--Phục Hình bắt vít 
+--{
+--Hàm phủ tháo lắp
+exec procAddService N'Hàm phủ tháo lắp 2 Implant', 70000000,N'Hàm',1,N'Răng composite nền nhựa cường lực',N'Hàm phủ tháo lắp'
+exec procAddService N'Hàm phủ tháo lắp 3 Implant thanh bar', 75000000,N'Hàm',1,N'Răng composite nền nhựa cường lực',N'Hàm phủ tháo lắp'
+exec procAddService N'Hàm phủ tháo lắp 4 Implant thanh bar', 80000000,N'Hàm',1,N'Răng composite nền nhựa cường lực',N'Hàm phủ tháo lắp'
+exec procAddService N'Hàm phủ tháo lắp 5 Implant thanh bar', 90000000,N'Hàm',1,N'Răng composite nền nhựa cường lực',N'Hàm phủ tháo lắp'
+exec procAddService N'Hàm phủ tháo lắp 6 Implant thanh bar', 100000000,N'Hàm',1,N'Răng composite nền nhựa cường lực',N'Hàm phủ tháo lắp'
+exec procAddService N'Hàm phủ tháo lắp 3 Implant nút bấm', 75000000,N'Hàm',1,N'Răng composite nền nhựa cường lực',N'Hàm phủ tháo lắp'
+exec procAddService N'Hàm phủ tháo lắp 4 Implant nút bấm', 80000000,N'Hàm',1,N'Răng composite nền nhựa cường lực',N'Hàm phủ tháo lắp'
+exec procAddService N'Hàm phủ tháo lắp 5 Implant nút bấm', 90000000,N'Hàm',1,N'Răng composite nền nhựa cường lực',N'Hàm phủ tháo lắp'
+exec procAddService N'Hàm phủ tháo lắp 6 Implant nút bấm', 100000000,N'Hàm',1,N'Răng composite nền nhựa cường lực',N'Hàm phủ tháo lắp'
+
+--Hàm cố định 
+exec procAddService N'Hàm cố định bắ vítt 4 Implant Sườn Titan răng nhựa', 70000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+exec procAddService N'Hàm cố định bắt vít 4 Implant Sườn Titan răng sứa', 150000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+exec procAddService N'Hàm cố định bắt vít 4 Implant Sườn Zirco răng nhựa', 110000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+exec procAddService N'Hàm cố định bắt vít 4 Implant Sườn Zirco răng sứa', 190000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+exec procAddService N'Hàm cố định bắt vít 4 Implant Sườn Bio HPP răng nhựa', 110000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+exec procAddService N'Hàm cố định bắt vít 4 Implant Sườn Bio HPP răng sứa', 190000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+
+exec procAddService N'Hàm cố định bắt vít 5 Implant', 14000000,N'Phục hình',1,'',N'Hàm cố định bắt vít'
+
+exec procAddService N'Hàm cố định bắT vít 6 Implant Sườn Titan răng nhựa', 90000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+exec procAddService N'Hàm cố định bắt vít 6 Implant Sườn Titan răng sứa', 170000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+exec procAddService N'Hàm cố định bắt vít 6 Implant Sườn Zirco răng nhựa', 130000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+exec procAddService N'Hàm cố định bắt vít 6 Implant Sườn Zirco răng sứa', 210000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+exec procAddService N'Hàm cố định bắt vít 6 Implant Sườn Bio HPP răng nhựa', 130000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+exec procAddService N'Hàm cố định bắt vít 6 Implant Sườn Bio HPP răng sứa', 210000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+--}
+--Phục hình tạm tức thì toàn hàm
+exec procAddService N'Răng tạm toàn hàm', 20000000,N'Hàm',1,'',N'Phục hình tạm tức thì toàn hàm'
+exec procAddService N'Cylinder', 4000000,N'Hàm',1,'',N'Phục hình tạm tức thì toàn hàm'
+
+--Cấy ghép 1 trụ Implant
+exec procAddService N'OSSTEM(KOREA)', 15000000,N'1 trụ Implant',1,'',N'Cấy ghép 1 trụ Implant'
+exec procAddService N'RITTER', 20000000,N'1 trụ Implant',1,'',N'Cấy ghép 1 trụ Implant'
+exec procAddService N'SIC(SWISS/GERMANY)', 20000000,N'1 trụ Implant',1,'',N'Cấy ghép 1 trụ Implant'
+exec procAddService N'NOBEL BIOCARE (USA/SWEDEN)', 24000000,N'1 trụ Implant',1,'',N'Cấy ghép 1 trụ Implant'
+exec procAddService N'NOBEL ACTIVE/PARALLEL (USA/SWEDEN)', 29000000,N'1 trụ Implant',1,'',N'Cấy ghép 1 trụ Implant'
+exec procAddService N'STRAUMANN SLActive (SWISS)', 32000000,N'1 trụ Implant',1,'',N'Cấy ghép 1 trụ Implant'
+exec procAddService N'NOBEL TiUltra-ACTIVE/PARALLEL-(USA/SWEDEN)', 32000000,N'1 trụ Implant',1,'',N'Cấy ghép 1 trụ Implant'
+exec procAddService N'STRAUMANN BLX (SWISS)', 35000000,N'1 trụ Implant',1,'',N'Cấy ghép 1 trụ Implant'
+exec procAddService N'Implant Zygoma NOBEL (USA)', 50000000,N'1 trụ Implant',1,'',N'Cấy ghép 1 trụ Implant'
+
+-- Màng, xương tổng hợp
+exec procAddService N'Xương khử khoáng', 5000000, N'Đơn vị', 1, N'', N'Màng, xương tổng hợp'
+exec procAddService N'Màng Collagen 15x20mm', 4000000, N'Đơn vị', 1, N'', N'Màng, xương tổng hợp'
+exec procAddService N'Màng Collagen 20x30mm', 5000000, N'Đơn vị', 1, N'', N'Màng, xương tổng hợp'
+exec procAddService N'Màng Collagen 30x40mm', 7000000, N'Đơn vị', 1, N'', N'Màng, xương tổng hợp'
+exec procAddService N'Màng Titan, PTFE', 6000000, N'Đơn vị', 1, N'', N'Màng, xương tổng hợp'
+exec procAddService N'Vít (Tack) neo xương, màng', 600000, N'Con', 1, N'', N'Màng, xương tổng hợp'
+
+-- Màng, xương tự thân
+exec procAddService N'Ghép xương tự thân', 6000000, N'Đơn vị *', 1, N'', N'Màng, xương tự thân'
+exec procAddService N'Mô liên kết', 5000000, N'Đơn vị *', 1, N'', N'Màng, xương tự thân'
+exec procAddService N'Màng PRP (tự thân)', 5000000, N'Đơn vị', 1, N'', N'Màng, xương tự thân'
+exec procAddService N'Ghép xương mào chậu', 20000000, N'', 1, N'', N'Màng, xương tự thân'
+
+-- Nâng xoang
+exec procAddService N'Nâng xoang kín', 4000000, N'Đơn vị', 1, N'Không bao gồm xương và màng', N'Nâng xoang'
+exec procAddService N'Nâng xoang hở', 6000000, N'Đơn vị', 1, N'Không bao gồm xương và màng', N'Nâng xoang'
+
+-- Chụp CT CONE BEAM
+exec procAddService N'Chụp CT Cone Beam 1 hàm', 550000, N'Đơn vị *', 1, N'', N'Chụp CT CONE BEAM'
+exec procAddService N'Chụp CT Cone Beam 2 hàm', 900000, N'Đơn vị *', 1, N'', N'Chụp CT CONE BEAM'
+
+--Máng Hướng Dẫn / in Sọ Mặt
+exec procAddService N'Máng hướng dẫn', 3300000, N'Răng', 1, N'', N'Máng Hướng Dẫn / in Sọ Mặt'
+exec procAddService N'In sọ mặt', 700000, N'Đơn vị', 1, N'', N'Máng Hướng Dẫn / in Sọ Mặt'
+
+
 GO
 
 --Bill 
@@ -1432,3 +1615,12 @@ end
 exec GetDentistByPatID 'PA00000001' 
 GO
 */
+DROP TABLE IF EXISTS Prescription
+CREATE TABLE Prescription
+(
+	PresID VARCHAR(10) PRIMARY KEY, 
+	PatID VARCHAR(10) REFERENCES PATIENT(PatID),
+	DenID VARCHAR(10) REFERENCES DENTIST(DenID),
+	totalPrice INT NOT NULL
+)
+GO

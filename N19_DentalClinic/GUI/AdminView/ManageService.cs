@@ -36,14 +36,16 @@ namespace N19_DentalClinic.GUI.AdminView
             DataTable table = data.readData(sql);
             if (table.Rows.Count > 0)
             {
-                dataService.ColumnCount = 7;
+                dataService.ColumnCount = 9;
                 dataService.Columns[0].Name = "STT";
                 dataService.Columns[1].Name = "Mã dịch vụ";
                 dataService.Columns[2].Name = "Tên dịch vụ";
                 dataService.Columns[3].Name = "Giá tiền";
                 dataService.Columns[4].Name = "Đơn vị tính";
                 dataService.Columns[5].Name = "Ghi chú";
-                dataService.Columns[6].Name = "Xóa";
+                dataService.Columns[6].Name = "Loại dịch vụ";
+                dataService.Columns[7].Name = "Chỉnh sửa";
+                dataService.Columns[8].Name = "Xóa";
                 dataService.EnableHeadersVisualStyles = false;
                 dataService.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
                 dataService.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
@@ -59,7 +61,10 @@ namespace N19_DentalClinic.GUI.AdminView
                         ((int)row["price"]).ToString(),
                         (string)row["calUnit"],
                         (string)row["note"],
-                        "Xóa" };
+                        (string)row["kindService"],
+                        "Chỉnh sửa",
+                        "Xóa" 
+                    };
                     dataService.Rows.Add(rowString);
                     countRow++;
                 }
@@ -92,7 +97,7 @@ namespace N19_DentalClinic.GUI.AdminView
         {
             if (dataService.Rows.Count > 0)
             {
-                if (dataService.CurrentCell.ColumnIndex == 6)
+                if (dataService.CurrentCell.ColumnIndex == 8)
                 {
                     string serviceId = dataService[1, dataService.CurrentCell.RowIndex].Value.ToString();
                     string serviceName = dataService[2, dataService.CurrentCell.RowIndex].Value.ToString();
@@ -109,14 +114,15 @@ namespace N19_DentalClinic.GUI.AdminView
                         updateUiOnDataChange();
                     }
                 }
-                else
+                else if (dataService.CurrentCell.ColumnIndex == 7)
                 {
                     string serviceId = dataService[1, dataService.CurrentCell.RowIndex].Value.ToString();
                     string serviceName = dataService[2, dataService.CurrentCell.RowIndex].Value.ToString();
                     string price = dataService[3, dataService.CurrentCell.RowIndex].Value.ToString();
                     string calUnit = dataService[4, dataService.CurrentCell.RowIndex].Value.ToString();
                     string note = dataService[5, dataService.CurrentCell.RowIndex].Value.ToString();
-                    AddService addService = new AddService(serviceId, serviceName, price, calUnit, note);
+                    string kindService = dataService[6, dataService.CurrentCell.RowIndex].Value.ToString();
+                    AddService addService = new AddService(serviceId, serviceName, price, calUnit, note, kindService);
                     if (addService.ShowDialog() == DialogResult.OK)
                     {
                         updateUiOnDataChange();

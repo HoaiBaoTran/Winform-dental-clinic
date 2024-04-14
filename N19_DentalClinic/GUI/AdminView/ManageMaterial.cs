@@ -36,7 +36,7 @@ namespace N19_DentalClinic.GUI.AdminView
             int countRow = startRow;
             if (table.Rows.Count > 0)
             {
-                dataMaterial.ColumnCount = 8;
+                dataMaterial.ColumnCount = 9;
                 dataMaterial.Columns[0].Name = "STT";
                 dataMaterial.Columns[1].Name = "Mã vật liệu";
                 dataMaterial.Columns[2].Name = "Tên vật liệu";
@@ -44,7 +44,8 @@ namespace N19_DentalClinic.GUI.AdminView
                 dataMaterial.Columns[4].Name = "Số lượng";
                 dataMaterial.Columns[5].Name = "Đơn vị tính";
                 dataMaterial.Columns[6].Name = "Ngày hết hạn";
-                dataMaterial.Columns[7].Name = "Xóa";
+                dataMaterial.Columns[7].Name = "Chỉnh sửa";
+                dataMaterial.Columns[8].Name = "Xóa";
                 dataMaterial.EnableHeadersVisualStyles = false;
                 dataMaterial.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
                 dataMaterial.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
@@ -64,6 +65,7 @@ namespace N19_DentalClinic.GUI.AdminView
                         ((int)row["quantity"]).ToString(),
                         (string)row["calUnit"],
                         expiration,
+                        "Chỉnh sửa",
                         "Xóa" };
                     dataMaterial.Rows.Add(rowString);
                     countRow++;
@@ -138,7 +140,7 @@ namespace N19_DentalClinic.GUI.AdminView
         {
             if (dataMaterial.Rows.Count > 0)
             {
-                if (dataMaterial.CurrentCell.ColumnIndex == 7)
+                if (dataMaterial.CurrentCell.ColumnIndex == 8)
                 {
                     string materialId = dataMaterial[1, dataMaterial.CurrentCell.RowIndex].Value.ToString();
                     string materialName = dataMaterial[2, dataMaterial.CurrentCell.RowIndex].Value.ToString();
@@ -173,7 +175,7 @@ namespace N19_DentalClinic.GUI.AdminView
                         updateUiOnDataChange();
                     }
                 }
-                else
+                else if (dataMaterial.CurrentCell.ColumnIndex == 7)
                 {
                     string materialId = dataMaterial[1, dataMaterial.CurrentCell.RowIndex].Value.ToString();
                     string materialName = dataMaterial[2, dataMaterial.CurrentCell.RowIndex].Value.ToString();
