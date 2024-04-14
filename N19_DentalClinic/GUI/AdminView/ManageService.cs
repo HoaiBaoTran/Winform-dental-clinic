@@ -33,6 +33,7 @@ namespace N19_DentalClinic.GUI.AdminView
 
         public void updateDataGridView(string sql)
         {
+            btnSearch.BackColor = ColorTranslator.FromHtml("#" + "DBAF09");
             DataTable table = data.readData(sql);
             if (table.Rows.Count > 0)
             {

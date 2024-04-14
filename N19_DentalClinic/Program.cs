@@ -14,13 +14,13 @@ namespace N19_DentalClinic
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            //Application.Run(new Form1());
+            Application.Run(new Form1());
             // -- Test ManagePatientFornm
             //Application.Run(new ManageAppointmentBookingForm());
             //Application.Run(new N19_DentalClinic.GUI.ReceptionistView.Receptionist());
-            //Application.Run(new N19_DentalClinic.GUI.DentistView.Dentist());
+            //Application.Run(new N19_DentalClinic.GUI.DentistView.Dentist("DE00000001"));
             //Application.Run(new Report());
-            Application.Run(new Admin());
+            //Application.Run(new Admin());
         }
     }
 }

@@ -206,5 +206,16 @@ namespace N19_DentalClinic.GUI.ReceptionistView
 
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            clearDataGridView(dataAppointmentTable);
+            string sql = $@"select ApID, ap_time, p.name as patient_name, d.name as dentist_name, a.able, symptom, stateAp
+                from Appointment a
+                join Patient p on  a.PatID = p.PatId
+                join Dentist d on d.DenID = a.DenID
+                where a.able = 1 ";
+            updateDataGridView();
+        }
     }
 }

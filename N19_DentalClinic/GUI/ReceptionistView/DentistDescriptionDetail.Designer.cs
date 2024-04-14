@@ -59,6 +59,7 @@
             label2 = new Label();
             btnBack = new Button();
             btnCreateDentist = new Button();
+            btnCalendarWork = new Button();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -75,6 +76,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBox1.Controls.Add(txtSalary);
             groupBox1.Controls.Add(label13);
             groupBox1.Controls.Add(btnCalendar);
@@ -112,6 +114,7 @@
             // txtSalary
             // 
             txtSalary.AcceptsReturn = true;
+            txtSalary.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtSalary.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSalary.Location = new Point(793, 549);
             txtSalary.Margin = new Padding(3, 4, 3, 4);
@@ -122,6 +125,7 @@
             // 
             // label13
             // 
+            label13.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label13.AutoSize = true;
             label13.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label13.Location = new Point(633, 549);
@@ -132,6 +136,7 @@
             // 
             // btnCalendar
             // 
+            btnCalendar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnCalendar.Enabled = false;
             btnCalendar.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCalendar.Image = (Image)resources.GetObject("btnCalendar.Image");
@@ -149,6 +154,7 @@
             // 
             // txtBirthday
             // 
+            txtBirthday.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtBirthday.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBirthday.Location = new Point(793, 444);
             txtBirthday.Margin = new Padding(3, 4, 3, 4);
@@ -159,6 +165,7 @@
             // 
             // label12
             // 
+            label12.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label12.AutoSize = true;
             label12.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label12.Location = new Point(633, 448);
@@ -169,6 +176,7 @@
             // 
             // cbRank
             // 
+            cbRank.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             cbRank.DropDownStyle = ComboBoxStyle.DropDownList;
             cbRank.Enabled = false;
             cbRank.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -210,6 +218,7 @@
             // 
             // txtAddress
             // 
+            txtAddress.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtAddress.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAddress.Location = new Point(793, 348);
             txtAddress.Margin = new Padding(3, 4, 3, 4);
@@ -220,6 +229,7 @@
             // 
             // txtNation
             // 
+            txtNation.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtNation.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNation.Location = new Point(793, 236);
             txtNation.Margin = new Padding(3, 4, 3, 4);
@@ -230,6 +240,7 @@
             // 
             // txtPhoneNumber
             // 
+            txtPhoneNumber.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtPhoneNumber.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPhoneNumber.Location = new Point(793, 48);
             txtPhoneNumber.Margin = new Padding(3, 4, 3, 4);
@@ -280,6 +291,7 @@
             // 
             // label11
             // 
+            label11.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label11.AutoSize = true;
             label11.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label11.Location = new Point(633, 351);
@@ -290,6 +302,7 @@
             // 
             // label10
             // 
+            label10.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label10.AutoSize = true;
             label10.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label10.Location = new Point(633, 242);
@@ -300,6 +313,7 @@
             // 
             // label9
             // 
+            label9.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label9.AutoSize = true;
             label9.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.Location = new Point(633, 145);
@@ -310,6 +324,7 @@
             // 
             // label8
             // 
+            label8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label8.AutoSize = true;
             label8.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.Location = new Point(633, 51);
@@ -425,11 +440,30 @@
             btnCreateDentist.UseVisualStyleBackColor = true;
             btnCreateDentist.Click += btnCreateDentist_Click;
             // 
+            // btnCalendarWork
+            // 
+            btnCalendarWork.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnCalendarWork.BackColor = Color.FromArgb(91, 85, 229);
+            btnCalendarWork.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCalendarWork.Image = (Image)resources.GetObject("btnCalendarWork.Image");
+            btnCalendarWork.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCalendarWork.Location = new Point(701, 15);
+            btnCalendarWork.Margin = new Padding(3, 4, 3, 4);
+            btnCalendarWork.Name = "btnCalendarWork";
+            btnCalendarWork.Padding = new Padding(6, 0, 6, 0);
+            btnCalendarWork.Size = new Size(224, 54);
+            btnCalendarWork.TabIndex = 33;
+            btnCalendarWork.Text = "Lịch làm việc";
+            btnCalendarWork.TextAlign = ContentAlignment.MiddleRight;
+            btnCalendarWork.UseVisualStyleBackColor = false;
+            btnCalendarWork.Click += btnCalendarWork_Click;
+            // 
             // DentistDescriptionDetail
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1301, 731);
+            Controls.Add(btnCalendarWork);
             Controls.Add(btnBack);
             Controls.Add(btnCreateDentist);
             Controls.Add(groupBox1);
@@ -476,5 +510,6 @@
         private Button btnCalendar;
         private TextBox txtSalary;
         private Label label13;
+        private Button btnCalendarWork;
     }
 }

@@ -11,8 +11,8 @@ namespace N19_DentalClinic.DAO
     internal class DataInteraction
     {
         // Chuoi lien ket
-        //string stringConnection = @"Data Source=DESKTOP-H3R0OEQ;Initial Catalog=QuanLyPhongKham;Integrated Security=True";
-        string stringConnection = @"Data Source=DESKTOP-MJ8P9VM\HOAIBAO;Initial Catalog=QuanLyPhongKham;Integrated Security=True";
+        string stringConnection = @"Data Source=DESKTOP-MJ8P9VM\HOAIBAO;Initial Catalog=QuanLyPhongKham;Integrated Security=True;";
+        //string stringConnection = @"Data Source=DESKTOP-MJ8P9VM\HOAIBAO;Initial Catalog=QuanLyPhongKham;Integrated Security=True";
         SqlConnection conn = null;
         // Mo ket noi
 

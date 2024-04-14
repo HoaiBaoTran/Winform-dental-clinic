@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HistoryCheckUp));
             label1 = new Label();
             groupBox1 = new GroupBox();
@@ -41,6 +42,7 @@
             label8 = new Label();
             txtPatID = new TextBox();
             label3 = new Label();
+            btnBack = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataAppointPatient).BeginInit();
             SuspendLayout();
@@ -83,15 +85,25 @@
             dataAppointPatient.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataAppointPatient.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataAppointPatient.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataAppointPatient.BackgroundColor = Color.White;
             dataAppointPatient.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataAppointPatient.Location = new Point(11, 199);
             dataAppointPatient.Margin = new Padding(3, 4, 3, 4);
             dataAppointPatient.Name = "dataAppointPatient";
             dataAppointPatient.ReadOnly = true;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(18, 219, 78);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataAppointPatient.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataAppointPatient.RowHeadersWidth = 51;
             dataAppointPatient.RowTemplate.Height = 24;
             dataAppointPatient.Size = new Size(1226, 421);
             dataAppointPatient.TabIndex = 21;
+            dataAppointPatient.CellFormatting += dataAppointPatient_CellFormatting;
             // 
             // btnChooseDay
             // 
@@ -205,11 +217,30 @@
             label3.TabIndex = 2;
             label3.Text = "Mã bệnh nhân";
             // 
+            // btnBack
+            // 
+            btnBack.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnBack.BackColor = Color.FromArgb(80, 101, 122);
+            btnBack.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnBack.Image = (Image)resources.GetObject("btnBack.Image");
+            btnBack.ImageAlign = ContentAlignment.MiddleLeft;
+            btnBack.Location = new Point(1122, 27);
+            btnBack.Margin = new Padding(3, 4, 3, 4);
+            btnBack.Name = "btnBack";
+            btnBack.Padding = new Padding(6, 0, 6, 0);
+            btnBack.Size = new Size(150, 54);
+            btnBack.TabIndex = 28;
+            btnBack.Text = "Trở lại";
+            btnBack.TextAlign = ContentAlignment.MiddleRight;
+            btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
+            // 
             // HistoryCheckUp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1301, 731);
+            Controls.Add(btnBack);
             Controls.Add(groupBox1);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
@@ -239,5 +270,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtPatID;
         private System.Windows.Forms.Label label3;
+        private Button btnBack;
     }
 }

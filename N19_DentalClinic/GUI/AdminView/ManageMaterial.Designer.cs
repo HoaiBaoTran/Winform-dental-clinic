@@ -78,12 +78,12 @@
             // 
             // btnAddMaterial
             // 
-            btnAddMaterial.Anchor = AnchorStyles.Right;
+            btnAddMaterial.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnAddMaterial.BackColor = Color.FromArgb(18, 219, 78);
             btnAddMaterial.Font = new Font("Microsoft Sans Serif", 12F);
             btnAddMaterial.Image = (Image)resources.GetObject("btnAddMaterial.Image");
             btnAddMaterial.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddMaterial.Location = new Point(1022, 43);
+            btnAddMaterial.Location = new Point(1024, 61);
             btnAddMaterial.Margin = new Padding(3, 4, 3, 4);
             btnAddMaterial.Name = "btnAddMaterial";
             btnAddMaterial.Size = new Size(171, 57);
@@ -97,7 +97,6 @@
             // 
             btnSearch.BackColor = Color.FromArgb(219, 175, 9);
             btnSearch.BackgroundColor = Color.FromArgb(219, 175, 9);
-            btnSearch.BackgroundImage = Properties.Resources.search_icon;
             btnSearch.BackgroundImageLayout = ImageLayout.Zoom;
             btnSearch.BorderColor = Color.PaleVioletRed;
             btnSearch.BorderRadius = 5;
@@ -105,9 +104,10 @@
             btnSearch.FlatAppearance.BorderSize = 0;
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.ForeColor = Color.White;
-            btnSearch.Location = new Point(313, 66);
+            btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
+            btnSearch.Location = new Point(334, 55);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(64, 34);
+            btnSearch.Size = new Size(60, 52);
             btnSearch.TabIndex = 115;
             btnSearch.TextColor = Color.White;
             btnSearch.UseVisualStyleBackColor = false;
@@ -116,21 +116,21 @@
             // tbSearch
             // 
             tbSearch.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            tbSearch.Font = new Font("Segoe UI", 12F);
-            tbSearch.Location = new Point(14, 66);
+            tbSearch.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbSearch.Location = new Point(14, 64);
             tbSearch.Name = "tbSearch";
             tbSearch.PlaceholderText = "Tìm kiếm vật liệu";
-            tbSearch.Size = new Size(293, 34);
+            tbSearch.Size = new Size(293, 43);
             tbSearch.TabIndex = 114;
             // 
             // label6
             // 
             label6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.Location = new Point(14, 11);
             label6.Name = "label6";
-            label6.Size = new Size(238, 41);
+            label6.Size = new Size(293, 46);
             label6.TabIndex = 113;
             label6.Text = "Quản lý vật liệu";
             // 
@@ -144,7 +144,7 @@
             btnFixedMaterial.FlatAppearance.BorderSize = 0;
             btnFixedMaterial.FlatStyle = FlatStyle.Flat;
             btnFixedMaterial.ForeColor = Color.White;
-            btnFixedMaterial.Location = new Point(14, 112);
+            btnFixedMaterial.Location = new Point(11, 123);
             btnFixedMaterial.Name = "btnFixedMaterial";
             btnFixedMaterial.Size = new Size(106, 38);
             btnFixedMaterial.TabIndex = 119;
@@ -163,7 +163,7 @@
             btnConsumableMaterial.FlatAppearance.BorderSize = 0;
             btnConsumableMaterial.FlatStyle = FlatStyle.Flat;
             btnConsumableMaterial.ForeColor = Color.White;
-            btnConsumableMaterial.Location = new Point(159, 112);
+            btnConsumableMaterial.Location = new Point(156, 123);
             btnConsumableMaterial.Name = "btnConsumableMaterial";
             btnConsumableMaterial.Size = new Size(109, 38);
             btnConsumableMaterial.TabIndex = 120;

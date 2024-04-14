@@ -43,7 +43,7 @@ namespace N19_DentalClinic.GUI.AdminView
 
         public void updateDataGridView(string sql)
         {
-            btnSearch.BackColor = ColorTranslator.FromHtml("#" + "DBAF09");
+            btnSearch.BackColor = ColorTranslator.FromHtml("#" + "DBf09");
             btnCreateReptionist.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
             DataTable table = data.readData(sql);
             if (table.Rows.Count > 0)
@@ -143,7 +143,7 @@ namespace N19_DentalClinic.GUI.AdminView
         {
             if (role == 1)
             {
-                PanelInteraction.openForm(this, new ReceptionDescriptionDetail(panelWrapper, "", 1, "create"), panelWrapper);
+                PanelInteraction.openForm(this, new ReceptionDescriptionDetail(panelWrapper, "", role, "create"), panelWrapper);
             }
             else
             {

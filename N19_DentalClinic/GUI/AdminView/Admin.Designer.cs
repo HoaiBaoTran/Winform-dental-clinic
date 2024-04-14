@@ -221,10 +221,10 @@
             // 
             pnShowContent.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnShowContent.BackColor = Color.White;
-            pnShowContent.Location = new Point(246, 29);
+            pnShowContent.Location = new Point(246, 48);
             pnShowContent.Margin = new Padding(6, 8, 6, 8);
             pnShowContent.Name = "pnShowContent";
-            pnShowContent.Size = new Size(1421, 917);
+            pnShowContent.Size = new Size(1421, 898);
             pnShowContent.TabIndex = 2;
             // 
             // Admin

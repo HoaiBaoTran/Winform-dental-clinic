@@ -4,6 +4,8 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace N19_DentalClinic.DAO
 {
@@ -51,6 +53,32 @@ namespace N19_DentalClinic.DAO
         public static string convertSqlTimeDay(string day) { 
             DateTime myDateTime = DateTime.ParseExact(day, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             return myDateTime.Date.ToString("yyyy-MM-dd");
+        }
+
+        //Kiem tra thoi gian tuong lai
+        public static bool isFuture(string myday)
+        {
+            DateTime myDateTimeDay = Convert.ToDateTime(convertSqlTimeDay(myday));
+            int result = DateTime.Compare(myDateTimeDay, DateTime.Now);
+            if (result > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+        //Kiem tra thoi gian qua khu
+
+        public static bool isPast(string myday)
+        {
+            DateTime myDateTimeDay = Convert.ToDateTime(convertSqlTimeDay(myday));
+            int result = DateTime.Compare(myDateTimeDay, DateTime.Now);
+            if (result < 0)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

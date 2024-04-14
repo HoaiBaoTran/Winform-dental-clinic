@@ -1,4 +1,5 @@
 ﻿using N19_DentalClinic.DAO;
+using N19_DentalClinic.GUI.ReceptionistView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,11 +19,14 @@ namespace N19_DentalClinic.GUI
         DateTime currentDate = DateTime.Now;
         private Panel panelWrapper;
         private string patID;
-        public HistoryCheckUp(Panel panelWrapper, string patID)
+        private int role;
+
+        public HistoryCheckUp(Panel panelWrapper, string patID, int role)
         {
             InitializeComponent();
             this.panelWrapper = panelWrapper;
             this.patID = patID;
+            this.role = role;
         }
 
         private void btnYesterday_Click(object sender, EventArgs e)
@@ -175,6 +179,33 @@ namespace N19_DentalClinic.GUI
             calendarF.ShowDialog();
             currentDate = calendarF.GetDateSelector();
             txtCurrDate.Text = DateTimeConvert.convertDMY(currentDate.ToString());
+        }
+
+        private void dataAppointPatient_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 5 && e.Value != null)
+            {
+                string stateAP = e.Value.ToString();
+                if (stateAP == "Bệnh nhân chưa đến")
+                {
+                    e.CellStyle.BackColor = ColorTranslator.FromHtml("#" + "DBAF09");
+                }
+                else if (stateAP == "Bệnh nhân đã đến")
+                {
+                    e.CellStyle.BackColor = ColorTranslator.FromHtml("#" + "0918DB");
+                    dataAppointPatient.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.ForeColor = ColorTranslator.FromHtml("#" + "ffffff");
+                }
+                else
+                {
+                    e.CellStyle.BackColor = ColorTranslator.FromHtml("#" + "FA3326");
+                    dataAppointPatient.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.ForeColor = ColorTranslator.FromHtml("#" + "ffffff");
+                }
+            }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            PanelInteraction.openForm(this, new PatientFile(panelWrapper, role), panelWrapper);
         }
     }
 }

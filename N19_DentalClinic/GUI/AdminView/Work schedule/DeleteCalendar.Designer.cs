@@ -1,6 +1,6 @@
-﻿namespace N19_DentalClinic.GUI.ReceptionistView
+﻿namespace N19_DentalClinic.GUI.AdminView.Work_schedule
 {
-    partial class DeleteAppointment
+    partial class DeleteCalendar
     {
         /// <summary>
         /// Required designer variable.
@@ -31,67 +31,57 @@
             label1 = new Label();
             btnDelete = new Button();
             btnBack = new Button();
-            groupBox1 = new GroupBox();
-            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(26, 51);
+            label1.Location = new Point(25, 35);
             label1.Name = "label1";
-            label1.Size = new Size(569, 46);
-            label1.TabIndex = 1;
-            label1.Text = "Bạn có muốn xóa lịch hẹn này ";
+            label1.Size = new Size(563, 138);
+            label1.TabIndex = 10;
+            label1.Text = "Bạn có muốn xóa lịch làm việc\r\n\r\ncủa nhân sự này ";
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(410, 296);
+            btnDelete.BackColor = Color.FromArgb(250, 51, 38);
+            btnDelete.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDelete.Location = new Point(424, 304);
             btnDelete.Margin = new Padding(3, 4, 3, 4);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(144, 88);
-            btnDelete.TabIndex = 2;
+            btnDelete.TabIndex = 11;
             btnDelete.Text = "Đồng ý";
-            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(586, 296);
+            btnBack.BackColor = Color.FromArgb(80, 101, 122);
+            btnBack.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnBack.Location = new Point(607, 304);
             btnBack.Margin = new Padding(3, 4, 3, 4);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(158, 88);
-            btnBack.TabIndex = 3;
+            btnBack.TabIndex = 12;
             btnBack.Text = "Hủy ";
-            btnBack.UseVisualStyleBackColor = true;
+            btnBack.UseVisualStyleBackColor = false;
             btnBack.Click += btnBack_Click;
             // 
-            // groupBox1
-            // 
-            groupBox1.BackColor = Color.White;
-            groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(btnBack);
-            groupBox1.Controls.Add(btnDelete);
-            groupBox1.ForeColor = SystemColors.ActiveCaptionText;
-            groupBox1.Location = new Point(12, 8);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(780, 430);
-            groupBox1.TabIndex = 14;
-            groupBox1.TabStop = false;
-            // 
-            // DeleteAppointment
+            // DeleteCalendar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(groupBox1);
+            Controls.Add(btnBack);
+            Controls.Add(btnDelete);
+            Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "DeleteAppointment";
-            Load += DeleteAppointment_Load;
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            Name = "DeleteCalendar";
+            Text = "DeleteCalendar";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -99,6 +89,5 @@
         private Label label1;
         private Button btnDelete;
         private Button btnBack;
-        private GroupBox groupBox1;
     }
 }

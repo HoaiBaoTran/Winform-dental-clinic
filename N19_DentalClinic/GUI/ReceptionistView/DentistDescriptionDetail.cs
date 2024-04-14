@@ -1,5 +1,6 @@
 ﻿using N19_DentalClinic.DAO;
 using N19_DentalClinic.DTO;
+using N19_DentalClinic.GUI.Work_schedule;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,7 +23,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
 
         public DentistDescriptionDetail(Panel panelWrapper, string denID, int role, string interactionKind)
         {
-            InitializeComponent();          
+            InitializeComponent();
             this.panelWrapper = panelWrapper;
             this.DenID = denID;
             this.role = role;
@@ -31,6 +32,8 @@ namespace N19_DentalClinic.GUI.ReceptionistView
 
         private void DentistDescriptionDetail_Load(object sender, EventArgs e)
         {
+            btnCreateDentist.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
+            btnBack.BackColor = ColorTranslator.FromHtml("#" + "50657A");
             string sqlFacload = "select name from Faculty where able = 1";
             DataTable tableFacLoad = data.readData(sqlFacload);
             foreach (DataRow rowFacLoad in tableFacLoad.Rows)
@@ -80,6 +83,10 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                         }
                         cbRank.Text = (string)row["rank"];
                         txtBirthday.Text = DateTimeConvert.convertDMY(row["birthday"].ToString());
+                        if (role == 1)
+                        {
+                            txtSalary.Text = int.Parse(row["salary"].ToString()).ToString("#,##0");
+                        }
                     }
                 }
                 else
@@ -169,6 +176,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
 
         private void btnCreateDentist_Click(object sender, EventArgs e)
         {
+
             if (role == 1)
             {
                 string errorMess = "";
@@ -187,114 +195,9 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                         {
                             errorMess = "Vui lòng chọn năm sinh";
                         }
-                        else if (txtAddress.Text == "")
+                        else if (DateTimeConvert.isFuture(txtBirthday.Text))
                         {
-                            errorMess = "Vui lòng nhập địa chỉ";
-                        }
-                        else if (txtEmail.Text == "")
-                        {
-                            errorMess = "Vui lòng nhập email";
-                        }
-                        else if (CheckFieldInfo.checkEmail(txtEmail.Text) == false) 
-                        {
-                            errorMess = "Email không hợp lệ";
-                        }
-                        else if (txtPhoneNumber.Text == "")
-                        {
-                            errorMess = "Vui lòng nhập số điện thoại";
-                        }
-                        else if (CheckFieldInfo.checkPhoneNumber(txtPhoneNumber.Text) == false)
-                        {
-                            errorMess = "Số điện thoại không hợp lệ hoặc dưới 10 số";
-                        }
-                        else if (rbFemale.Checked == false && rbMale.Checked == false)
-                        {
-                            errorMess = "Vui lòng nhập chọn giới tính";
-                        }else if (txtTitle.Text == "") 
-                        {
-                            errorMess = "Vui lòng nhập học vị";
-                        }else if(txtNation.Text == "")
-                        {
-                            errorMess = "Vui lòng nhập quốc tịch";
-                        }else if(cbFaculty.Text == "")
-                        {
-                            errorMess = "Vui lòng chọn Khoa";
-                        }else if(cbRank.Text == "")
-                        {
-                            errorMess = "Vui lòng chọn bậc hạng";
-                        }else if(txtSalary.Text == "")
-                        {
-                            errorMess = "Vui lòng nhập lương";
-                        }else if(CheckFieldInfo.checkInteger(txtSalary.Text) == false)
-                        {
-                            errorMess = "Lương phải là số nguyên";
-                        }
-
-                        if(errorMess != "")
-                        {
-                                MessageBox.Show(errorMess);
-                        }
-                        else
-                        {
-                            string name = txtName.Text;
-                            string birthday = txtBirthday.Text;
-                            string email = txtEmail.Text;
-                            string number = txtPhoneNumber.Text;
-                            string address = txtAddress.Text;
-                            int gender;
-                            string title = txtTitle.Text;
-                            string rank = cbRank.Text;
-                            string nation = txtNation.Text;
-                            int salary = Int32.Parse(txtSalary.Text);
-                            if (rbMale.Checked)
-                            {
-                                gender = 1;
-                            }
-                            else
-                            {
-                                gender = 0;
-                            }
-                            string facID = "";
-                            string sqlFal = "select * from Faculty where able = 1 and name = '" + cbFaculty.Text + "'";
-                            DataTable tableFal = data.readData(sqlFal);
-                            if(tableFal.Rows.Count > 0)
-                            {
-                                foreach(DataRow rowfal in tableFal.Rows)
-                                {
-                                    facID = rowfal["facId"].ToString();
-                                }
-                            }else
-                            {
-                                MessageBox.Show("Không tồn tại khoa này");
-                                return;
-                            }
-                            string sqlAddDentist = "exec procAddDentist N'" 
-                                + name 
-                                + "', N'" + address 
-                                + "', '" + email 
-                                + "', '" + number 
-                                + "', " + salary
-                                + ", '" + facID
-                                + "', N'" + title
-                                + "', '" + rank
-                                + "', N'" + nation
-                                + "', " + gender 
-                                + ", '" + DateTimeConvert.convertSqlTimeDay(birthday.ToString()) 
-                                + "'";
-                            data.changeData(sqlAddDentist);
-                            MessageBox.Show("Thêm nha sĩ mới thành công");
-                            PanelInteraction.openForm(this, new DentistFile(panelWrapper, 2), panelWrapper);
-                        }
-                        break;
-                    case "update":
-                        errorMess = "";
-                        if (txtName.Text == "")
-                        {
-                            errorMess = "Vui lòng nhập tên nha sĩ";
-                        }
-                        else if (txtBirthday.Text == "")
-                        {
-                            errorMess = "Vui lòng chọn năm sinh";
+                            errorMess = "Năm sinh không thể ở tương lai";
                         }
                         else if (txtAddress.Text == "")
                         {
@@ -312,9 +215,9 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                         {
                             errorMess = "Vui lòng nhập số điện thoại";
                         }
-                        else if (CheckFieldInfo.checkPhoneNumber(txtPhoneNumber.Text))
+                        else if (CheckFieldInfo.checkPhoneNumber(txtPhoneNumber.Text) == false)
                         {
-                            errorMess = "Số điện thoại không hợp lệ hoặc dưới 10 số";
+                            errorMess = "Số điện thoại không hợp lệ";
                         }
                         else if (rbFemale.Checked == false && rbMale.Checked == false)
                         {
@@ -344,45 +247,168 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                         {
                             errorMess = "Lương phải là số nguyên";
                         }
+
                         if (errorMess != "")
                         {
                             MessageBox.Show(errorMess);
-                        }else
+                        }
+                        else
                         {
-                                string name = txtName.Text;
-                                string birthday = txtBirthday.Text;
-                                string email = txtEmail.Text;
-                                string number = txtPhoneNumber.Text;
-                                string address = txtAddress.Text;
-                                int gender;
-                                string title = txtTitle.Text;
-                                string rank = cbRank.Text;
-                                string nation = txtNation.Text;
-                                int salary = salary = Int32.Parse(txtSalary.Text);
-                                if (rbMale.Checked)
+                            string name = txtName.Text;
+                            string birthday = txtBirthday.Text;
+                            string email = txtEmail.Text;
+                            string number = txtPhoneNumber.Text;
+                            string address = txtAddress.Text;
+                            int gender;
+                            string title = txtTitle.Text;
+                            string rank = cbRank.Text;
+                            string nation = txtNation.Text;
+                            int salary = int.Parse(txtSalary.Text);
+                            if (rbMale.Checked)
+                            {
+                                gender = 1;
+                            }
+                            else
+                            {
+                                gender = 0;
+                            }
+                            string facID = "";
+                            string sqlFal = "select * from Faculty where able = 1 and name = N'" + cbFaculty.Text + "'";
+                            DataTable tableFal = data.readData(sqlFal);
+                            if (tableFal.Rows.Count > 0)
+                            {
+                                foreach (DataRow rowfal in tableFal.Rows)
                                 {
-                                    gender = 1;
+                                    facID = rowfal["facId"].ToString();
                                 }
-                                else
+                            }
+                            else
+                            {
+                                MessageBox.Show("Không tồn tại khoa này");
+                                return;
+                            }
+                            string sqlAddDentist = "exec procAddDentist N'"
+                                + name
+                                + "', N'" + address
+                                + "', '" + email
+                                + "', '" + number
+                                + "', " + salary
+                                + ", '" + facID
+                                + "', N'" + title
+                                + "', '" + rank
+                                + "', N'" + nation
+                                + "', " + gender
+                                + ", '" + DateTimeConvert.convertSqlTimeDay(birthday.ToString())
+                                + "'";
+                            data.changeData(sqlAddDentist);
+                            MessageBox.Show("Thêm nha sĩ mới thành công");
+                            PanelInteraction.openForm(this, new DentistFile(panelWrapper, role), panelWrapper);
+                        }
+                        break;
+                    case "update":
+                        errorMess = "";
+                        if (txtName.Text == "")
+                        {
+                            errorMess = "Vui lòng nhập tên nha sĩ";
+                        }
+                        else if (txtBirthday.Text == "")
+                        {
+                            errorMess = "Vui lòng chọn năm sinh";
+                        }
+                        else if (DateTimeConvert.isFuture(txtBirthday.Text))
+                        {
+                            MessageBox.Show("Năm sinh không thể ở tương lai");
+                        }
+                        else if (txtAddress.Text == "")
+                        {
+                            errorMess = "Vui lòng nhập địa chỉ";
+                        }
+                        else if (txtEmail.Text == "")
+                        {
+                            errorMess = "Vui lòng nhập email";
+                        }
+                        else if (CheckFieldInfo.checkEmail(txtEmail.Text) == false)
+                        {
+                            errorMess = "Email không hợp lệ";
+                        }
+                        else if (txtPhoneNumber.Text == "")
+                        {
+                            errorMess = "Vui lòng nhập số điện thoại";
+                        }
+                        else if (CheckFieldInfo.checkPhoneNumber(txtPhoneNumber.Text) == false)
+                        {
+                            errorMess = "Số điện thoại không hợp lệ";
+                        }
+                        else if (rbFemale.Checked == false && rbMale.Checked == false)
+                        {
+                            errorMess = "Vui lòng nhập chọn giới tính";
+                        }
+                        else if (txtTitle.Text == "")
+                        {
+                            errorMess = "Vui lòng nhập học vị";
+                        }
+                        else if (txtNation.Text == "")
+                        {
+                            errorMess = "Vui lòng nhập quốc tịch";
+                        }
+                        else if (cbFaculty.Text == "")
+                        {
+                            errorMess = "Vui lòng chọn Khoa";
+                        }
+                        else if (cbRank.Text == "")
+                        {
+                            errorMess = "Vui lòng chọn bậc hạng";
+                        }
+                        else if (txtSalary.Text == "")
+                        {
+                            errorMess = "Vui lòng nhập lương";
+                        }
+                        else if (CheckFieldInfo.checkInteger(txtSalary.Text) == false)
+                        {
+                            errorMess = "Lương phải là số nguyên";
+                        }
+
+                        if (errorMess != "")
+                        {
+                            MessageBox.Show(errorMess);
+                            return;
+                        }
+                        else
+                        {
+                            string name = txtName.Text;
+                            string birthday = txtBirthday.Text;
+                            string email = txtEmail.Text;
+                            string number = txtPhoneNumber.Text;
+                            string address = txtAddress.Text;
+                            int gender;
+                            string title = txtTitle.Text;
+                            string rank = cbRank.Text;
+                            string nation = txtNation.Text;
+                            int salary = salary = int.Parse(txtSalary.Text);
+                            if (rbMale.Checked)
+                            {
+                                gender = 1;
+                            }
+                            else
+                            {
+                                gender = 0;
+                            }
+                            string facID = "";
+                            string sqlFal = "select * from Faculty where able = 1 and name = N'" + cbFaculty.Text + "'";
+                            DataTable tableFal = data.readData(sqlFal);
+                            if (tableFal.Rows.Count > 0)
+                            {
+                                foreach (DataRow rowfal in tableFal.Rows)
                                 {
-                                    gender = 0;
+                                    facID = rowfal["facId"].ToString();
                                 }
-                                string facID = "";
-                                string sqlFal = "select * from Faculty where able = 1 and name = '" + cbFaculty.Text + "'";
-                                DataTable tableFal = data.readData(sqlFal);
-                                if (tableFal.Rows.Count > 0)
-                                {
-                                    foreach (DataRow rowfal in tableFal.Rows)
-                                    {
-                                        facID = rowfal["facId"].ToString();
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Không tồn tại khoa này");
-                                    return;
-                                }
-                                string sqlUpdateDentist = $@"update dentist set 
+                            }
+                            else
+                            {
+                                MessageBox.Show("Không tồn tại khoa này");
+                                return;
+                            }
+                            string sqlUpdateDentist = $@"update dentist set 
                                 name = N'{name}',
                                 address = N'{address}',
                                 birthday = '{DateTimeConvert.convertSqlTimeDay(birthday.ToString())}',
@@ -397,17 +423,23 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                                 where denid = '{DenID}' and able = 1";
                             data.changeData(sqlUpdateDentist);
                             MessageBox.Show("Sửa thông tin nha sĩ thành công");
-                            PanelInteraction.openForm(this, new PatientFile(panelWrapper, 2), panelWrapper);
-                            }
+                            PanelInteraction.openForm(this, new DentistFile(panelWrapper, role), panelWrapper);
+                        }
                         break;
                     default:
                         MessageBox.Show("Bạn chỉ thêm/sửa được thông tin ở phần thêm/sửa nha sĩ");
                         break;
                 }
-            }else 
-            { 
+            }
+            else
+            {
                 MessageBox.Show("Không có ủy quyền để thêm nha sĩ");
             }
+        }
+
+        private void btnCalendarWork_Click(object sender, EventArgs e)
+        {
+            PanelInteraction.openForm(this, new MainSchedule(DenID, panelWrapper,role), panelWrapper);
         }
     }
 }

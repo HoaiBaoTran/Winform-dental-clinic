@@ -36,6 +36,8 @@ namespace N19_DentalClinic.GUI.AdminView
 
         private void ReceptionDescriptionDetail_Load(object sender, EventArgs e)
         {
+            btnCreateRecep.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
+            btnBack.BackColor = ColorTranslator.FromHtml("#" + "50657A");
             //Tai danh sach lễ tân len
             if (interactionKind != "create")
             {
@@ -61,6 +63,10 @@ namespace N19_DentalClinic.GUI.AdminView
                             rbMale.Checked = false;
                         }
                         txtBirthday.Text = DateTimeConvert.convertDMY(row["birthday"].ToString());
+                        if (role == 1)
+                        {
+                            txtSalary.Text = int.Parse(row["salary"].ToString()).ToString("#,##0");
+                        }
                     }
                 }
                 else
@@ -155,6 +161,10 @@ namespace N19_DentalClinic.GUI.AdminView
                         {
                             errorMess = "Vui lòng chọn năm sinh";
                         }
+                        else if (DateTimeConvert.isFuture(txtBirthday.Text))
+                        {
+                            errorMess = "Năm sinh không thể ở tương lai";
+                        }
                         else if (txtAddress.Text == "")
                         {
                             errorMess = "Vui lòng nhập địa chỉ";
@@ -173,7 +183,7 @@ namespace N19_DentalClinic.GUI.AdminView
                         }
                         else if (CheckFieldInfo.checkPhoneNumber(txtPhoneNumber.Text) == false)
                         {
-                            errorMess = "Số điện thoại không hợp lệ hoặc dưới 10 số";
+                            errorMess = "Số điện thoại không hợp lệ";
                         }
                         else if (rbFemale.Checked == false && rbMale.Checked == false)
                         {
@@ -200,7 +210,7 @@ namespace N19_DentalClinic.GUI.AdminView
                             string number = txtPhoneNumber.Text;
                             string address = txtAddress.Text;
                             int gender;
-                            int salary = Int32.Parse(txtSalary.Text);
+                            int salary = int.Parse(txtSalary.Text);
                             if (rbMale.Checked)
                             {
                                 gender = 1;
@@ -209,7 +219,7 @@ namespace N19_DentalClinic.GUI.AdminView
                             {
                                 gender = 0;
                             }
-                            string sqlAddRecep = "exec procAddRecep N'"
+                            string sqlAddRecep = "exec procAddReceptionist N'"
                                 + name
                                 + "', N'" + address
                                 + "', '" + email
@@ -221,7 +231,7 @@ namespace N19_DentalClinic.GUI.AdminView
                                 + "'";
                             data.changeData(sqlAddRecep);
                             MessageBox.Show("Thêm lễ tân mới thành công");
-                            PanelInteraction.openForm(this, new ReceptionistFile(panelWrapper, 2), panelWrapper);
+                            PanelInteraction.openForm(this, new ReceptionistFile(panelWrapper, role), panelWrapper);
                         }
                         break;
                     case "update":
@@ -234,6 +244,10 @@ namespace N19_DentalClinic.GUI.AdminView
                         {
                             errorMess = "Vui lòng chọn năm sinh";
                         }
+                        else if (DateTimeConvert.isFuture(txtBirthday.Text))
+                        {
+                            MessageBox.Show("Năm sinh không thể ở tương lai");
+                        }
                         else if (txtAddress.Text == "")
                         {
                             errorMess = "Vui lòng nhập địa chỉ";
@@ -252,7 +266,7 @@ namespace N19_DentalClinic.GUI.AdminView
                         }
                         else if (CheckFieldInfo.checkPhoneNumber(txtPhoneNumber.Text) == false)
                         {
-                            errorMess = "Số điện thoại không hợp lệ hoặc dưới 10 số";
+                            errorMess = "Số điện thoại không hợp lệ";
                         }
                         else if (rbFemale.Checked == false && rbMale.Checked == false)
                         {
@@ -279,7 +293,7 @@ namespace N19_DentalClinic.GUI.AdminView
                             string number = txtPhoneNumber.Text;
                             string address = txtAddress.Text;
                             int gender;
-                            int salary = Int32.Parse(txtSalary.Text);
+                            int salary = int.Parse(txtSalary.Text);
                             if (rbMale.Checked)
                             {
                                 gender = 1;
@@ -289,15 +303,15 @@ namespace N19_DentalClinic.GUI.AdminView
                                 gender = 0;
                             }
                             string sqlUpdateReceptionist = $@"update receptionist set 
-                                name = '{name}',
-                                address = '{address}',
-                                birthday = '{DateTimeConvert.convertSqlTimeDay(birthday.ToString())}',
+                                name = N'{name}',
+                                address = N'{address}',
+                                birthday = '{DateTimeConvert.convertSqlTimeDay(birthday)}',
                                 phone_number = '{number}',
                                 email = '{email}',
                                 salary = {salary},
                                 adminid = 'AD00000001',
                                 gender = {gender}
-                                where assiId = '{RecepID}' and able = 1";
+                                where RecepId = '{RecepID}' and able = 1";
                             data.changeData(sqlUpdateReceptionist);
                             MessageBox.Show("Sửa thông tin lễ tân thành công");
                             PanelInteraction.openForm(this, new ReceptionistFile(panelWrapper, role), panelWrapper);
@@ -312,6 +326,11 @@ namespace N19_DentalClinic.GUI.AdminView
             {
                 MessageBox.Show("Không có ủy quyền để thêm lễ tân");
             }
+        }
+
+        private void btnCalendar_Click_1(object sender, EventArgs e)
+        {
+            btnCalendar_Click(sender, e);
         }
     }
 }

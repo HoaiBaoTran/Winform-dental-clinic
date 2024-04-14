@@ -135,9 +135,9 @@ namespace N19_DentalClinic.controller.receptionist
                                 join faculty f on f.facid = d.facid
                                 where ap.able = 1 and ap.apid = '{ApID}'";
             DataTable tableAp = data.readData(sqlAp);
-            if(tableAp.Rows.Count > 0)
+            if (tableAp.Rows.Count > 0)
             {
-                foreach(DataRow rowAp in tableAp.Rows)
+                foreach (DataRow rowAp in tableAp.Rows)
                 {
                     //Cuoc hen
                     tbSignal.Text = rowAp["symptom"].ToString();
@@ -150,7 +150,7 @@ namespace N19_DentalClinic.controller.receptionist
                     tbPatientId.Text = rowAp["patid"].ToString();
                     tbPatientAddress.Text = rowAp["patAddress"].ToString();
                     tbPatientName.Text = rowAp["patName"].ToString();
-                    tbPatientPhoneNumber.Text = rowAp["patPhoneNum"].ToString() ;
+                    tbPatientPhoneNumber.Text = rowAp["patPhoneNum"].ToString();
                     if ((bool)rowAp["patGender"])
                     {
                         rbMale.Checked = true;
@@ -161,7 +161,7 @@ namespace N19_DentalClinic.controller.receptionist
                         rbMale.Checked = false;
                         rbFemale.Checked = true;
                     }
-                    tbEmail.Text = rowAp["patEmail"].ToString();   
+                    tbEmail.Text = rowAp["patEmail"].ToString();
 
 
                     //Nha si
@@ -169,7 +169,7 @@ namespace N19_DentalClinic.controller.receptionist
                     tbDentistId.Text = rowAp["denid"].ToString();
                     tbDentistName.Text = rowAp["denName"].ToString();
                     tbDentistPhoneNumber.Text = rowAp["denPhoneNum"].ToString();
-                    
+
                 }
             }
 
@@ -328,12 +328,14 @@ namespace N19_DentalClinic.controller.receptionist
             else if (cbStatus.Text == "")
             {
                 MessageBox.Show("Vui lòng chọn trạng thái cuộc hẹn");
-
             }
             else if (txtDay.Text == "")
             {
                 MessageBox.Show("Vui lòng chọn ngày");
-
+            }
+            else if (DateTimeConvert.isPast(txtDay.Text))
+            {
+                MessageBox.Show("Ngày hẹn không thể ở quá khứ");
             }
             else if (tbPatientId.Text == "")
             {
@@ -343,7 +345,8 @@ namespace N19_DentalClinic.controller.receptionist
             {
                 MessageBox.Show("Vui lòng nhập mã nha sĩ");
 
-            } else
+            }
+            else
             {
 
                 string sqlApTimeDay = DateTimeConvert.convertSqlTimeDay(txtDay.Text);
@@ -365,7 +368,8 @@ namespace N19_DentalClinic.controller.receptionist
                     data.changeData(sqlAddApp);
                     MessageBox.Show("Thêm lịch thành công");
                     this.Close();
-                }else if (interaction == "update")
+                }
+                else if (interaction == "update")
                 {
                     string sqlUpdateApp = @$"update appointment 
                         set ap_time = '{sqlTime}',
@@ -389,6 +393,27 @@ namespace N19_DentalClinic.controller.receptionist
             DateTime currentDate = calendarF.GetDateSelector();
             string sqlTime = DateTimeConvert.convertSqlTime(currentDate.ToString());
             txtDay.Text = DateTimeConvert.convertDMY(currentDate.ToString());
+        }
+
+        private void tbPatientId_TextChanged(object sender, EventArgs e)
+        {
+            tbPatientName.Text = "";
+            tbPatientPhoneNumber.Text = "";
+            tbPatientAddress.Text = "";
+            tbEmail.Text = "";
+            rbMale.Checked = false;
+            rbFemale.Checked = false;
+        }
+
+        private void tbDentistId_TextChanged(object sender, EventArgs e)
+        {
+            tbDentistName.Text = "";
+            tbDentistPhoneNumber.Text = "";
+        }
+
+        private void btnPatientList_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -136,7 +136,7 @@
             roundPictureBox3.BackColor = Color.FromArgb(219, 175, 9);
             roundPictureBox3.BackgroundImage = Properties.Resources.reload_icon;
             roundPictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox3.Location = new Point(1313, 19);
+            roundPictureBox3.Location = new Point(1282, 59);
             roundPictureBox3.Name = "roundPictureBox3";
             roundPictureBox3.Size = new Size(39, 41);
             roundPictureBox3.TabIndex = 32;
@@ -156,7 +156,7 @@
             btnReload.Font = new Font("Segoe UI", 11F);
             btnReload.ForeColor = Color.White;
             btnReload.ImageAlign = ContentAlignment.MiddleLeft;
-            btnReload.Location = new Point(1303, 12);
+            btnReload.Location = new Point(1272, 52);
             btnReload.Name = "btnReload";
             btnReload.Size = new Size(117, 56);
             btnReload.TabIndex = 31;
@@ -171,7 +171,7 @@
             roundPictureBox2.BackColor = Color.FromArgb(56, 92, 67);
             roundPictureBox2.BackgroundImage = Properties.Resources.white_plus_icon;
             roundPictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox2.Location = new Point(1122, 17);
+            roundPictureBox2.Location = new Point(1091, 57);
             roundPictureBox2.Name = "roundPictureBox2";
             roundPictureBox2.Size = new Size(39, 41);
             roundPictureBox2.TabIndex = 30;
@@ -191,7 +191,7 @@
             btnAddDentist.Font = new Font("Segoe UI", 11F);
             btnAddDentist.ForeColor = Color.Black;
             btnAddDentist.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddDentist.Location = new Point(1115, 11);
+            btnAddDentist.Location = new Point(1084, 51);
             btnAddDentist.Name = "btnAddDentist";
             btnAddDentist.Size = new Size(182, 56);
             btnAddDentist.TabIndex = 29;
@@ -255,6 +255,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "ManageBill";
             Text = "ManageBill";
+            Load += ManageBill_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)roundPictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)roundPictureBox2).EndInit();

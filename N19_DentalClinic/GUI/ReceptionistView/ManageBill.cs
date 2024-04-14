@@ -28,5 +28,10 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             AddBillForm addBillForm = new AddBillForm();
             addBillForm.ShowDialog();
         }
+
+        private void ManageBill_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
