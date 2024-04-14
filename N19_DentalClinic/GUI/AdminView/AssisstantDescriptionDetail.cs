@@ -64,6 +64,10 @@ namespace N19_DentalClinic.GUI.AdminView
                             rbMale.Checked = false;
                         }
                         txtBirthday.Text = DateTimeConvert.convertDMY(row["birthday"].ToString());
+                        if (role == 1)
+                        {
+                            txtSalary.Text = int.Parse(row["salary"].ToString()).ToString("#,##0");
+                        }
                     }
                 }
                 else
@@ -159,6 +163,10 @@ namespace N19_DentalClinic.GUI.AdminView
                         {
                             errorMess = "Vui lòng chọn năm sinh";
                         }
+                        else if (DateTimeConvert.isFuture(txtBirthday.Text))
+                        {
+                            errorMess = "Năm sinh không thể ở tương lai";
+                        }
                         else if (txtAddress.Text == "")
                         {
                             errorMess = "Vui lòng nhập địa chỉ";
@@ -177,7 +185,7 @@ namespace N19_DentalClinic.GUI.AdminView
                         }
                         else if (CheckFieldInfo.checkPhoneNumber(txtPhoneNumber.Text) == false)
                         {
-                            errorMess = "Số điện thoại không hợp lệ hoặc dưới 10 số";
+                            errorMess = "Số điện thoại không hợp lệ";
                         }
                         else if (rbFemale.Checked == false && rbMale.Checked == false)
                         {
@@ -204,7 +212,7 @@ namespace N19_DentalClinic.GUI.AdminView
                             string number = txtPhoneNumber.Text;
                             string address = txtAddress.Text;
                             int gender;
-                            int salary = Int32.Parse(txtSalary.Text);
+                            int salary = int.Parse(txtSalary.Text);
                             if (rbMale.Checked)
                             {
                                 gender = 1;
@@ -224,11 +232,11 @@ namespace N19_DentalClinic.GUI.AdminView
                                 + "'";
                             data.changeData(sqlAddAss);
                             MessageBox.Show("Thêm phụ tá mới thành công");
-                            PanelInteraction.openForm(this, new AssisstantFile(panelWrapper, 2), panelWrapper);
+                            PanelInteraction.openForm(this, new AssisstantFile(panelWrapper, role), panelWrapper);
                         }
                         break;
                     case "update":
-                        errorMess = ""; 
+                        errorMess = "";
                         if (txtName.Text == "")
                         {
                             errorMess = "Vui lòng nhập tên phụ tá";
@@ -236,6 +244,10 @@ namespace N19_DentalClinic.GUI.AdminView
                         else if (txtBirthday.Text == "")
                         {
                             errorMess = "Vui lòng chọn năm sinh";
+                        }
+                        else if (DateTimeConvert.isFuture(txtBirthday.Text))
+                        {
+                            MessageBox.Show("Năm sinh không thể ở tương lai");
                         }
                         else if (txtAddress.Text == "")
                         {
@@ -255,7 +267,7 @@ namespace N19_DentalClinic.GUI.AdminView
                         }
                         else if (CheckFieldInfo.checkPhoneNumber(txtPhoneNumber.Text) == false)
                         {
-                            errorMess = "Số điện thoại không hợp lệ hoặc dưới 10 số";
+                            errorMess = "Số điện thoại không hợp lệ";
                         }
                         else if (rbFemale.Checked == false && rbMale.Checked == false)
                         {
@@ -282,7 +294,7 @@ namespace N19_DentalClinic.GUI.AdminView
                             string number = txtPhoneNumber.Text;
                             string address = txtAddress.Text;
                             int gender;
-                            int salary = Int32.Parse(txtSalary.Text);
+                            int salary = int.Parse(txtSalary.Text);
                             if (rbMale.Checked)
                             {
                                 gender = 1;
@@ -292,8 +304,8 @@ namespace N19_DentalClinic.GUI.AdminView
                                 gender = 0;
                             }
                             string sqlUpdateAssisstant = $@"update assisstant set 
-                                name = '{name}',
-                                address = '{address}',
+                                name = N'{name}',
+                                address = N'{address}',
                                 birthday = '{DateTimeConvert.convertSqlTimeDay(birthday.ToString())}',
                                 phone_number = '{number}',
                                 email = '{email}',
@@ -302,7 +314,7 @@ namespace N19_DentalClinic.GUI.AdminView
                                 where assiId = '{AssID}' and able = 1";
                             data.changeData(sqlUpdateAssisstant);
                             MessageBox.Show("Sửa thông tin phụ tá thành công");
-                            PanelInteraction.openForm(this, new AssisstantFile(panelWrapper, 2), panelWrapper);
+                            PanelInteraction.openForm(this, new AssisstantFile(panelWrapper, role), panelWrapper);
                         }
                         break;
                     default:
@@ -312,8 +324,18 @@ namespace N19_DentalClinic.GUI.AdminView
             }
             else
             {
-                MessageBox.Show("Không có ủy quyền để thêm phụ tá");
+                MessageBox.Show("Không có ủy quyền để thêm/sửa phụ tá");
             }
+        }
+
+        private void btnCalendar_Click_1(object sender, EventArgs e)
+        {
+            btnCalendar_Click(sender, e);
+        }
+
+        private void btnCalendarWork_Click(object sender, EventArgs e)
+        {
+            PanelInteraction.openForm(this, new ListCalendarOfDay(panelWrapper, AssID, role), panelWrapper);
         }
     }
 }

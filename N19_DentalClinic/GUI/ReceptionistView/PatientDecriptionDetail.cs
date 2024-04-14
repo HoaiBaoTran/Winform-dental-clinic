@@ -1,4 +1,5 @@
 ﻿using N19_DentalClinic.DAO;
+using N19_DentalClinic.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -131,6 +132,10 @@ namespace N19_DentalClinic.GUI
                     {
                         MessageBox.Show("Vui lòng chọn năm sinh");
                     }
+                    else if (DateTimeConvert.isFuture(txtBirthday.Text))
+                    {
+                        MessageBox.Show("Năm sinh không thể ở tương lai");
+                    }
                     else if (txtAddress.Text == "")
                     {
                         MessageBox.Show("Vui lòng nhập địa chỉ");
@@ -139,9 +144,17 @@ namespace N19_DentalClinic.GUI
                     {
                         MessageBox.Show("Vui lòng nhập email");
                     }
+                    else if (CheckFieldInfo.checkEmail(txtEmail.Text) == false)
+                    {
+                        MessageBox.Show("Email không hợp lệ");
+                    }
                     else if (txtPhoneNumber.Text == "")
                     {
                         MessageBox.Show("Vui lòng nhập số điện thoại");
+                    }
+                    else if (CheckFieldInfo.checkPhoneNumber(txtPhoneNumber.Text) == false)
+                    {
+                        MessageBox.Show("Số điện thoại không hợp lệ");
                     }
                     else if (rbFemale.Checked == false && rbMale.Checked == false)
                     {
@@ -164,10 +177,11 @@ namespace N19_DentalClinic.GUI
                         {
                             gender = 0;
                         }
-                        string sqlAddPatient = "exec procAddPatient N'" + name + "', N'" + address + "', '" + email + "', '" + number + "', " + gender + ", '" + DateTimeConvert.convertSqlTimeDay(birthday.ToString()) + "'";
+                        string sqlAddPatient = "exec procAddPatient N'" + name + "', N'" + address + "', '" + email + "', '" + number + "', " + gender + ", '" +
+                            DateTimeConvert.convertSqlTimeDay(birthday.ToString()) + "'";
                         data.changeData(sqlAddPatient);
                         MessageBox.Show("Thêm bệnh nhân mới thành công");
-                        PanelInteraction.openForm(this, new PatientFile(panelWrapper, 2), panelWrapper);
+                        PanelInteraction.openForm(this, new PatientFile(panelWrapper, role), panelWrapper);
                     }
                     break;
                 case "update":
@@ -179,6 +193,10 @@ namespace N19_DentalClinic.GUI
                     {
                         MessageBox.Show("Vui lòng chọn năm sinh");
                     }
+                    else if (DateTimeConvert.isFuture(txtBirthday.Text))
+                    {
+                        MessageBox.Show("Năm sinh không thể ở tương lai");
+                    }
                     else if (txtAddress.Text == "")
                     {
                         MessageBox.Show("Vui lòng nhập địa chỉ");
@@ -187,9 +205,17 @@ namespace N19_DentalClinic.GUI
                     {
                         MessageBox.Show("Vui lòng nhập email");
                     }
+                    else if (CheckFieldInfo.checkEmail(txtEmail.Text) == false)
+                    {
+                        MessageBox.Show("Email không hợp lệ");
+                    }
                     else if (txtPhoneNumber.Text == "")
                     {
                         MessageBox.Show("Vui lòng nhập số điện thoại");
+                    }
+                    else if (CheckFieldInfo.checkPhoneNumber(txtPhoneNumber.Text) == false)
+                    {
+                        MessageBox.Show("Số điện thoại không hợp lệ");
                     }
                     else if (rbFemale.Checked == false && rbMale.Checked == false)
                     {
@@ -215,11 +241,11 @@ namespace N19_DentalClinic.GUI
                         }
                         string sqlUpdatePatient = "update Patient set name = N'" + name + "', address = N'" + address +
                             "', email = '" + email + "', number = '" + number + "',gender = " + gender + ", birthday = '" +
-                            DateTimeConvert.convertSqlTime(birthday.ToString()) + "' "
+                            DateTimeConvert.convertSqlTimeDay(birthday.ToString()) + "' "
                             + "where patId = '" + patId + "'";
                         data.changeData(sqlUpdatePatient);
                         MessageBox.Show("Sửa thông tin bệnh nhân thành công");
-                        PanelInteraction.openForm(this, new PatientFile(panelWrapper, 2), panelWrapper);
+                        PanelInteraction.openForm(this, new PatientFile(panelWrapper, role), panelWrapper);
                     }
                     break;
                 default:
@@ -238,7 +264,7 @@ namespace N19_DentalClinic.GUI
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            PanelInteraction.openForm(this, new PatientFile(panelWrapper, 2), panelWrapper);
+            PanelInteraction.openForm(this, new PatientFile(panelWrapper, role), panelWrapper);
         }
 
         private void label2_Click(object sender, EventArgs e)

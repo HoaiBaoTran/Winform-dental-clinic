@@ -139,7 +139,7 @@ namespace N19_DentalClinic.GUI
             if (dataPatientTable.CurrentCell.ColumnIndex == 8)
             {
                 string patId = dataPatientTable[1, dataPatientTable.CurrentCell.RowIndex].Value.ToString();
-                PanelInteraction.openForm(this, new HistoryCheckUp(panelWrapper, patId), panelWrapper);
+                PanelInteraction.openForm(this, new HistoryCheckUp(panelWrapper, patId,role), panelWrapper);
             }
             else if (dataPatientTable.CurrentCell.ColumnIndex == 9) // Xem thong tin benh nhan
             {
@@ -175,7 +175,13 @@ namespace N19_DentalClinic.GUI
 
         private void createNewPat_Click(object sender, EventArgs e)
         {
-            PanelInteraction.openForm(this, new PatientDecriptionDetail(panelWrapper, "", 2, "create"), panelWrapper);
+            if(role != 3)
+            {
+                PanelInteraction.openForm(this, new PatientDecriptionDetail(panelWrapper, "", role, "create"), panelWrapper);
+            }else
+            {
+                MessageBox.Show("Bạn không đủ thẩm quyền để thêm bệnh nhân");
+            }
         }
 
     }

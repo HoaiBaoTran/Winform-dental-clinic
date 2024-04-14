@@ -218,17 +218,17 @@ namespace N19_DentalClinic.GUI.DentistView
             else if (dataPatientTable.CurrentCell.ColumnIndex == 9) // Xem thong tin benh nhan
             {
                 string patId = dataPatientTable[1, dataPatientTable.CurrentCell.RowIndex].Value.ToString();
-                PanelInteraction.openForm(this, new PatientDecriptionDetail(panelWrapper, patId, 2, "view"), panelWrapper);
+                PanelInteraction.openForm(this, new PatientDecriptionDetail(panelWrapper, patId, role, "view"), panelWrapper);
             }
             else if (dataPatientTable.CurrentCell.ColumnIndex == 10) // Sửa thong tin benh nhan
             {
                 string patId = dataPatientTable[1, dataPatientTable.CurrentCell.RowIndex].Value.ToString();
-                PanelInteraction.openForm(this, new PatientDecriptionDetail(panelWrapper, patId, 2, "update"), panelWrapper);
+                PanelInteraction.openForm(this, new PatientDecriptionDetail(panelWrapper, patId, role, "update"), panelWrapper);
             }
             else if (dataPatientTable.CurrentCell.ColumnIndex == 11) // Xóa thong tin benh nhan
             {
                 string patId = dataPatientTable[1, dataPatientTable.CurrentCell.RowIndex].Value.ToString();
-                PanelInteraction.openForm(this, new DeletePatient(panelWrapper, patId, 2, "delete"), panelWrapper);
+                PanelInteraction.openForm(this, new DeletePatient(panelWrapper, patId, role, "delete"), panelWrapper);
             }
             */
         }

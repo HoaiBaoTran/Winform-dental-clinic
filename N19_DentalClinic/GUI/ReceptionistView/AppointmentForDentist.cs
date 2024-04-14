@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -83,15 +85,13 @@ namespace N19_DentalClinic.GUI
             DataTable table = data.readData(sql);
             if (table.Rows.Count > 0)
             {
-                dataAppointmentDentist.ColumnCount = 8;
+                dataAppointmentDentist.ColumnCount = 6;
                 dataAppointmentDentist.Columns[0].Name = "STT";
                 dataAppointmentDentist.Columns[1].Name = "Giờ hẹn";
                 dataAppointmentDentist.Columns[2].Name = "Phụ tá";
                 dataAppointmentDentist.Columns[3].Name = "Bệnh nhân";
                 dataAppointmentDentist.Columns[4].Name = "Triệu chứng bệnh nhân";
                 dataAppointmentDentist.Columns[5].Name = "Trạng thái";
-                dataAppointmentDentist.Columns[6].Name = "Chỉnh sửa";
-                dataAppointmentDentist.Columns[7].Name = "Xóa";
                 int countRow = 1;
                 foreach (DataRow row in table.Rows)
                 {
@@ -160,9 +160,7 @@ namespace N19_DentalClinic.GUI
                             assisstantName,
                             patientName,
                             symptom,
-                            state,
-                            "Chỉnh sửa",
-                            "Xóa"
+                            state
                         };
                         dataAppointmentDentist.Rows.Add(rowAppString);
                         countRow++;
@@ -172,6 +170,7 @@ namespace N19_DentalClinic.GUI
             dataAppointmentDentist.AllowUserToAddRows = false;
             dataAppointmentDentist.EnableHeadersVisualStyles = false;
             dataAppointmentDentist.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
+            btnToday.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
         }
 
         private void txtCurrDate_TextChanged(object sender, EventArgs e)
@@ -194,26 +193,36 @@ namespace N19_DentalClinic.GUI
             txtCurrDate.Text = DateTimeConvert.convertDMY(currentDate.ToString());
         }
 
-        private void dataAppointmentDentist_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
-            if (dataAppointmentDentist.CurrentCell == null) return;
-            if(role < 3)
+
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            PanelInteraction.openForm(this, new DentistFile(panelWrapper, role), panelWrapper);
+        }
+
+        private void dataAppointmentDentist_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if(e.ColumnIndex == 5 && e.Value != null)
             {
-                if (dataAppointmentDentist.CurrentCell.ColumnIndex == 6)
+                string stateAP = e.Value.ToString();
+                if(stateAP == "Bệnh nhân chưa đến")
                 {
-                    //Chỉnh sửa lịch hẹn
-                    string DenID = dataAppointmentDentist[1, dataAppointmentDentist.CurrentCell.RowIndex].Value.ToString();
-                    PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, DenID, role, "update"), panelWrapper);
+                    e.CellStyle.BackColor = ColorTranslator.FromHtml("#" + "DBAF09");
                 }
-                else if (dataAppointmentDentist.CurrentCell.ColumnIndex == 7)
+                else if(stateAP == "Bệnh nhân đã đến")
                 {
-                    //Xóa lịch hẹn
-                    string DenID = dataAppointmentDentist[1, dataAppointmentDentist.CurrentCell.RowIndex].Value.ToString();
-                    PanelInteraction.openForm(this, new AppointmentForDentist(panelWrapper, DenID, role, "view"), panelWrapper);
+                    e.CellStyle.BackColor = ColorTranslator.FromHtml("#" + "0918DB");
+                    dataAppointmentDentist.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.ForeColor = ColorTranslator.FromHtml("#" + "ffffff");
                 }
-            }else
-            {
-                MessageBox.Show("Bạn không đủ ủy quyền");
+                else
+                {
+                    e.CellStyle.BackColor = ColorTranslator.FromHtml("#" + "FA3326");
+                    dataAppointmentDentist.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.ForeColor = ColorTranslator.FromHtml("#" + "ffffff");
+                }
             }
         }
     }

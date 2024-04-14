@@ -39,6 +39,7 @@
             btnTommorow = new Button();
             btnYesterday = new Button();
             btnCreateAppointment = new Button();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataAppointmentTable).BeginInit();
             SuspendLayout();
             // 
@@ -49,6 +50,7 @@
             dataAppointmentTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataAppointmentTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataAppointmentTable.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataAppointmentTable.BackgroundColor = Color.White;
             dataAppointmentTable.BorderStyle = BorderStyle.None;
             dataAppointmentTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -175,11 +177,30 @@
             btnCreateAppointment.UseVisualStyleBackColor = true;
             btnCreateAppointment.Click += btnCreateAppointment_Click;
             // 
+            // button1
+            // 
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button1.BackColor = Color.FromArgb(125, 124, 143);
+            button1.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.Image = (Image)resources.GetObject("button1.Image");
+            button1.ImageAlign = ContentAlignment.MiddleLeft;
+            button1.Location = new Point(848, 21);
+            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Name = "button1";
+            button1.Padding = new Padding(6, 0, 6, 0);
+            button1.Size = new Size(153, 66);
+            button1.TabIndex = 29;
+            button1.Text = "Tải lại";
+            button1.TextAlign = ContentAlignment.MiddleRight;
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
             // ManageAppointment
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1299, 731);
+            Controls.Add(button1);
             Controls.Add(btnCreateAppointment);
             Controls.Add(button3);
             Controls.Add(txtCurrDate);
@@ -206,5 +227,6 @@
         private Button btnTommorow;
         private Button btnYesterday;
         private Button btnCreateAppointment;
+        private Button button1;
     }
 }

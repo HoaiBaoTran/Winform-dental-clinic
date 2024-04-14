@@ -46,12 +46,12 @@ namespace N19_DentalClinic.GUI
                             + "where patId = '" + patID + "'";
             data.changeData(sqlUpdatePatient);
             MessageBox.Show("Xóa thông tin bệnh nhân thành công");
-            PanelInteraction.openForm(this, new PatientFile(panelWrapper, 2), panelWrapper);
+            PanelInteraction.openForm(this, new PatientFile(panelWrapper, role), panelWrapper);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            PanelInteraction.openForm(this, new PatientFile(panelWrapper, 2), panelWrapper);
+            PanelInteraction.openForm(this, new PatientFile(panelWrapper, role), panelWrapper);
         }
     }
 }

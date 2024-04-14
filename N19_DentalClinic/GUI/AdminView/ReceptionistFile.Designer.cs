@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReceptionistFile));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             btnCreateReptionist = new Button();
             cbKindSearch = new ComboBox();
             btnSearch = new Button();
@@ -107,6 +108,7 @@
             dataReceptionistTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataReceptionistTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataReceptionistTable.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataReceptionistTable.BackgroundColor = Color.White;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.ActiveCaption;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
@@ -130,6 +132,14 @@
             dataReceptionistTable.Margin = new Padding(3, 4, 3, 4);
             dataReceptionistTable.Name = "dataReceptionistTable";
             dataReceptionistTable.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(18, 219, 78);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataReceptionistTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataReceptionistTable.RowHeadersWidth = 51;
             dataReceptionistTable.RowTemplate.Height = 24;
             dataReceptionistTable.Size = new Size(1375, 667);

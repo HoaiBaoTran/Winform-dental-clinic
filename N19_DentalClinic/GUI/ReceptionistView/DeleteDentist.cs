@@ -46,7 +46,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                                 + " where denid = '" + denId + "'";
                 data.changeData(sqlUpdateDentist);
                 MessageBox.Show("Xóa thông tin nha sĩ thành công");
-                PanelInteraction.openForm(this, new DentistFile(panelWrapper, 2), panelWrapper);
+                PanelInteraction.openForm(this, new DentistFile(panelWrapper, role), panelWrapper);
 
             }else
             {
@@ -56,7 +56,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            PanelInteraction.openForm(this, new DentistFile(panelWrapper, 2), panelWrapper);
+            PanelInteraction.openForm(this, new DentistFile(panelWrapper, role), panelWrapper);
         }
     }
 }

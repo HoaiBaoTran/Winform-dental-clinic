@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace N19_DentalClinic.DTO
 {
@@ -11,14 +12,8 @@ namespace N19_DentalClinic.DTO
     {
         public static bool checkPhoneNumber(string phoneNumber)
         {
-            int n;
-            bool isNumeric = int.TryParse(phoneNumber, out n);
-            if(!isNumeric)
-            {
-                return false;
-            }
-            if(phoneNumber.Length <10) { return false; }
-            return true;
+            const string pattern = @"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$";
+            return Regex.IsMatch(phoneNumber, pattern);
         }
 
         public static bool checkEmail(string email)
@@ -38,7 +33,7 @@ namespace N19_DentalClinic.DTO
         public static bool checkInteger(string number)
         {
             int numberCheck;
-            if (Int32.TryParse(number, out numberCheck))
+            if (int.TryParse(number, out numberCheck))
             {
                 return true;
             }

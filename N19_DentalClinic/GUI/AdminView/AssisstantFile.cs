@@ -1,6 +1,5 @@
 ﻿using N19_DentalClinic.GUI.ReceptionistView;
 using N19_DentalClinic.DAO;
-using N19_DentalClinic.GUI.ReceptionistView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

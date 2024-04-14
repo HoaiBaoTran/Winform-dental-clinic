@@ -189,7 +189,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             }
             else
             {
-                MessageBox.Show("Bạn không đủ ủy quyền để thêm bệnh nhân");
+                MessageBox.Show("Bạn không đủ ủy quyền để thêm nha sĩ");
             }
         }
 

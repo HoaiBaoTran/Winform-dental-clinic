@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             pnSidebar = new Panel();
+            btnAppoitmentForDentist = new Button();
             lbRoleText = new Label();
             roundPictureBox1 = new component.RoundPictureBox();
             label4 = new Label();
@@ -46,6 +47,7 @@
             // pnSidebar
             // 
             pnSidebar.BackColor = SystemColors.AppWorkspace;
+            pnSidebar.Controls.Add(btnAppoitmentForDentist);
             pnSidebar.Controls.Add(lbRoleText);
             pnSidebar.Controls.Add(roundPictureBox1);
             pnSidebar.Controls.Add(label4);
@@ -60,6 +62,19 @@
             pnSidebar.Name = "pnSidebar";
             pnSidebar.Size = new Size(235, 953);
             pnSidebar.TabIndex = 2;
+            // 
+            // btnAppoitmentForDentist
+            // 
+            btnAppoitmentForDentist.FlatStyle = FlatStyle.Flat;
+            btnAppoitmentForDentist.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAppoitmentForDentist.Location = new Point(10, 589);
+            btnAppoitmentForDentist.Margin = new Padding(3, 4, 3, 4);
+            btnAppoitmentForDentist.Name = "btnAppoitmentForDentist";
+            btnAppoitmentForDentist.Size = new Size(207, 68);
+            btnAppoitmentForDentist.TabIndex = 20;
+            btnAppoitmentForDentist.Text = "Lịch hẹn";
+            btnAppoitmentForDentist.UseVisualStyleBackColor = true;
+            btnAppoitmentForDentist.Click += btnAppoitmentForDentist_Click;
             // 
             // lbRoleText
             // 
@@ -125,7 +140,7 @@
             // 
             btnPrescription.FlatStyle = FlatStyle.Flat;
             btnPrescription.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnPrescription.Location = new Point(10, 597);
+            btnPrescription.Location = new Point(10, 687);
             btnPrescription.Margin = new Padding(3, 4, 3, 4);
             btnPrescription.Name = "btnPrescription";
             btnPrescription.Size = new Size(207, 68);
@@ -164,10 +179,10 @@
             // 
             pnShowContent.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnShowContent.BackColor = Color.White;
-            pnShowContent.Location = new Point(243, 133);
+            pnShowContent.Location = new Point(243, 74);
             pnShowContent.Margin = new Padding(3, 4, 3, 4);
             pnShowContent.Name = "pnShowContent";
-            pnShowContent.Size = new Size(1418, 807);
+            pnShowContent.Size = new Size(1418, 866);
             pnShowContent.TabIndex = 3;
             // 
             // Dentist
@@ -184,10 +199,8 @@
             Load += Dentist_Load;
             pnSidebar.ResumeLayout(false);
             pnSidebar.PerformLayout();
-            
             ((System.ComponentModel.ISupportInitialize)roundPictureBox1).EndInit();
             ResumeLayout(false);
-          
         }
 
         #endregion
@@ -203,5 +216,6 @@
         private Label label3;
         private Label lbName;
         private Label lbRoleText;
+        private Button btnAppoitmentForDentist;
     }
 }

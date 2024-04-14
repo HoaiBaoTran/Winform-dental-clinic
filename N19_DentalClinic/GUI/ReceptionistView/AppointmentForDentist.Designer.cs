@@ -29,6 +29,7 @@ namespace N19_DentalClinic.GUI
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppointmentForDentist));
             label1 = new Label();
             groupBox1 = new GroupBox();
@@ -42,6 +43,7 @@ namespace N19_DentalClinic.GUI
             label8 = new Label();
             txtDenID = new TextBox();
             label3 = new Label();
+            btnBack = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataAppointmentDentist).BeginInit();
             SuspendLayout();
@@ -77,6 +79,7 @@ namespace N19_DentalClinic.GUI
             groupBox1.Size = new Size(1269, 628);
             groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
+            groupBox1.Enter += groupBox1_Enter;
             // 
             // dataAppointmentDentist
             // 
@@ -84,10 +87,11 @@ namespace N19_DentalClinic.GUI
             dataAppointmentDentist.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataAppointmentDentist.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataAppointmentDentist.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataAppointmentDentist.BackgroundColor = Color.White;
             dataAppointmentDentist.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.Window;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
             dataGridViewCellStyle1.Padding = new Padding(2);
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
@@ -98,11 +102,19 @@ namespace N19_DentalClinic.GUI
             dataAppointmentDentist.Margin = new Padding(3, 4, 3, 4);
             dataAppointmentDentist.Name = "dataAppointmentDentist";
             dataAppointmentDentist.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(18, 219, 78);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataAppointmentDentist.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataAppointmentDentist.RowHeadersWidth = 51;
             dataAppointmentDentist.RowTemplate.Height = 24;
             dataAppointmentDentist.Size = new Size(1243, 421);
             dataAppointmentDentist.TabIndex = 21;
-            dataAppointmentDentist.CellMouseClick += dataAppointmentDentist_CellMouseClick;
+            dataAppointmentDentist.CellFormatting += dataAppointmentDentist_CellFormatting;
             // 
             // button3
             // 
@@ -216,11 +228,30 @@ namespace N19_DentalClinic.GUI
             label3.TabIndex = 2;
             label3.Text = "Mã nha sĩ";
             // 
+            // btnBack
+            // 
+            btnBack.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnBack.BackColor = Color.FromArgb(80, 101, 122);
+            btnBack.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnBack.Image = (Image)resources.GetObject("btnBack.Image");
+            btnBack.ImageAlign = ContentAlignment.MiddleLeft;
+            btnBack.Location = new Point(1124, 13);
+            btnBack.Margin = new Padding(3, 4, 3, 4);
+            btnBack.Name = "btnBack";
+            btnBack.Padding = new Padding(6, 0, 6, 0);
+            btnBack.Size = new Size(150, 54);
+            btnBack.TabIndex = 27;
+            btnBack.Text = "Trở lại";
+            btnBack.TextAlign = ContentAlignment.MiddleRight;
+            btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
+            // 
             // AppointmentForDentist
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1299, 731);
+            Controls.Add(btnBack);
             Controls.Add(groupBox1);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
@@ -249,5 +280,6 @@ namespace N19_DentalClinic.GUI
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox txtCurrDate;
         private System.Windows.Forms.DataGridView dataAppointmentDentist;
+        private Button btnBack;
     }
 }

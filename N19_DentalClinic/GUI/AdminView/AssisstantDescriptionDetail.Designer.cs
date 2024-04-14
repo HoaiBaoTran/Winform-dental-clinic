@@ -51,6 +51,7 @@
             txtRecepId = new TextBox();
             label3 = new Label();
             label4 = new Label();
+            btnCalendarWork = new Button();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -101,6 +102,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBox1.Controls.Add(txtSalary);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(rbFemale);
@@ -128,6 +130,7 @@
             // txtSalary
             // 
             txtSalary.AcceptsReturn = true;
+            txtSalary.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtSalary.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSalary.Location = new Point(781, 335);
             txtSalary.Margin = new Padding(3, 4, 3, 4);
@@ -138,6 +141,7 @@
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.Location = new Point(641, 340);
@@ -148,6 +152,7 @@
             // 
             // rbFemale
             // 
+            rbFemale.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             rbFemale.AutoSize = true;
             rbFemale.Enabled = false;
             rbFemale.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -162,6 +167,7 @@
             // 
             // rbMale
             // 
+            rbMale.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             rbMale.AutoSize = true;
             rbMale.Enabled = false;
             rbMale.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -176,6 +182,7 @@
             // 
             // label10
             // 
+            label10.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label10.AutoSize = true;
             label10.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label10.Location = new Point(641, 235);
@@ -186,6 +193,7 @@
             // 
             // txtAddress
             // 
+            txtAddress.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtAddress.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAddress.Location = new Point(779, 148);
             txtAddress.Margin = new Padding(3, 4, 3, 4);
@@ -196,6 +204,7 @@
             // 
             // txtPhoneNumber
             // 
+            txtPhoneNumber.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtPhoneNumber.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPhoneNumber.Location = new Point(788, 48);
             txtPhoneNumber.Margin = new Padding(3, 4, 3, 4);
@@ -206,6 +215,7 @@
             // 
             // label5
             // 
+            label5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.Location = new Point(641, 148);
@@ -216,6 +226,7 @@
             // 
             // label9
             // 
+            label9.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label9.AutoSize = true;
             label9.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.Location = new Point(628, 54);
@@ -239,6 +250,7 @@
             btnCalendar.TabIndex = 39;
             btnCalendar.TextAlign = ContentAlignment.MiddleLeft;
             btnCalendar.UseVisualStyleBackColor = true;
+            btnCalendar.Click += btnCalendar_Click_1;
             // 
             // txtBirthday
             // 
@@ -320,11 +332,30 @@
             label4.TabIndex = 33;
             label4.Text = "Họ tên";
             // 
+            // btnCalendarWork
+            // 
+            btnCalendarWork.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnCalendarWork.BackColor = Color.FromArgb(91, 85, 229);
+            btnCalendarWork.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCalendarWork.Image = (Image)resources.GetObject("btnCalendarWork.Image");
+            btnCalendarWork.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCalendarWork.Location = new Point(699, 16);
+            btnCalendarWork.Margin = new Padding(3, 4, 3, 4);
+            btnCalendarWork.Name = "btnCalendarWork";
+            btnCalendarWork.Padding = new Padding(6, 0, 6, 0);
+            btnCalendarWork.Size = new Size(224, 54);
+            btnCalendarWork.TabIndex = 32;
+            btnCalendarWork.Text = "Lịch làm việc";
+            btnCalendarWork.TextAlign = ContentAlignment.MiddleRight;
+            btnCalendarWork.UseVisualStyleBackColor = false;
+            btnCalendarWork.Click += btnCalendarWork_Click;
+            // 
             // AssisstantDescriptionDetail
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1301, 535);
+            Controls.Add(btnCalendarWork);
             Controls.Add(groupBox1);
             Controls.Add(btnBack);
             Controls.Add(btnCreateAss);
@@ -363,5 +394,6 @@
         private RadioButton rbFemale;
         private Label label2;
         private TextBox txtSalary;
+        private Button btnCalendarWork;
     }
 }

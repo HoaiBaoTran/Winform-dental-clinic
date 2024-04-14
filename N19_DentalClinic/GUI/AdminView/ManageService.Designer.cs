@@ -42,15 +42,16 @@
             // 
             // btnAddService
             // 
-            btnAddService.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAddService.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnAddService.BackColor = Color.FromArgb(18, 219, 78);
             btnAddService.Font = new Font("Microsoft Sans Serif", 12F);
             btnAddService.Image = (Image)resources.GetObject("btnAddService.Image");
             btnAddService.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddService.Location = new Point(1022, 91);
+            btnAddService.Location = new Point(1005, 91);
             btnAddService.Margin = new Padding(3, 4, 3, 4);
             btnAddService.Name = "btnAddService";
-            btnAddService.Size = new Size(171, 57);
+            btnAddService.Padding = new Padding(6, 0, 6, 0);
+            btnAddService.Size = new Size(188, 57);
             btnAddService.TabIndex = 111;
             btnAddService.Text = "Thêm dịch vụ";
             btnAddService.TextAlign = ContentAlignment.MiddleRight;
@@ -59,9 +60,8 @@
             // 
             // btnSearch
             // 
-            btnSearch.BackColor = Color.FromArgb(219, 175, 9);
-            btnSearch.BackgroundColor = Color.FromArgb(219, 175, 9);
-            btnSearch.BackgroundImage = Properties.Resources.search_icon;
+            btnSearch.BackColor = Color.White;
+            btnSearch.BackgroundColor = Color.White;
             btnSearch.BackgroundImageLayout = ImageLayout.Zoom;
             btnSearch.BorderColor = Color.PaleVioletRed;
             btnSearch.BorderRadius = 5;
@@ -69,9 +69,10 @@
             btnSearch.FlatAppearance.BorderSize = 0;
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.ForeColor = Color.White;
-            btnSearch.Location = new Point(311, 64);
+            btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
+            btnSearch.Location = new Point(340, 91);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(64, 34);
+            btnSearch.Size = new Size(63, 55);
             btnSearch.TabIndex = 106;
             btnSearch.TextColor = Color.White;
             btnSearch.UseVisualStyleBackColor = false;
@@ -80,21 +81,21 @@
             // tbSearch
             // 
             tbSearch.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            tbSearch.Font = new Font("Segoe UI", 12F);
-            tbSearch.Location = new Point(12, 64);
+            tbSearch.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbSearch.Location = new Point(23, 91);
             tbSearch.Name = "tbSearch";
             tbSearch.PlaceholderText = "Tìm kiếm dịch vụ";
-            tbSearch.Size = new Size(293, 34);
+            tbSearch.Size = new Size(293, 43);
             tbSearch.TabIndex = 105;
             // 
             // label6
             // 
             label6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(12, 9);
+            label6.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Location = new Point(23, 9);
             label6.Name = "label6";
-            label6.Size = new Size(236, 41);
+            label6.Size = new Size(294, 46);
             label6.TabIndex = 104;
             label6.Text = "Quản lý dịch vụ";
             // 
@@ -126,7 +127,7 @@
             dataService.DefaultCellStyle = dataGridViewCellStyle2;
             dataService.EnableHeadersVisualStyles = false;
             dataService.GridColor = Color.White;
-            dataService.Location = new Point(7, 165);
+            dataService.Location = new Point(23, 165);
             dataService.Name = "dataService";
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(18, 219, 78);
@@ -138,7 +139,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dataService.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataService.RowHeadersWidth = 51;
-            dataService.Size = new Size(1186, 623);
+            dataService.Size = new Size(1170, 623);
             dataService.TabIndex = 112;
             dataService.MouseClick += dataService_MouseClick;
             // 

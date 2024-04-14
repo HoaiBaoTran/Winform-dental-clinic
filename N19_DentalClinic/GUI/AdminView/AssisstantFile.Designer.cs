@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AssisstantFile));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             btnCreateDentist = new Button();
             cbKindSearch = new ComboBox();
             btnSearch = new Button();
@@ -106,6 +107,7 @@
             dataAssisstantTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataAssisstantTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataAssisstantTable.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataAssisstantTable.BackgroundColor = Color.White;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.ActiveCaption;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
@@ -129,6 +131,14 @@
             dataAssisstantTable.Margin = new Padding(3, 4, 3, 4);
             dataAssisstantTable.Name = "dataAssisstantTable";
             dataAssisstantTable.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(18, 219, 78);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataAssisstantTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataAssisstantTable.RowHeadersWidth = 51;
             dataAssisstantTable.RowTemplate.Height = 24;
             dataAssisstantTable.Size = new Size(1375, 667);
