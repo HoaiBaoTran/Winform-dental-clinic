@@ -42,12 +42,12 @@
             // 
             // btnAddService
             // 
-            btnAddService.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAddService.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnAddService.BackColor = Color.FromArgb(18, 219, 78);
             btnAddService.Font = new Font("Microsoft Sans Serif", 12F);
             btnAddService.Image = (Image)resources.GetObject("btnAddService.Image");
             btnAddService.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddService.Location = new Point(1022, 91);
+            btnAddService.Location = new Point(1022, 86);
             btnAddService.Margin = new Padding(3, 4, 3, 4);
             btnAddService.Name = "btnAddService";
             btnAddService.Size = new Size(171, 57);
