@@ -246,6 +246,7 @@
             cbFunction.Name = "cbFunction";
             cbFunction.Size = new Size(260, 39);
             cbFunction.TabIndex = 84;
+            cbFunction.SelectedIndexChanged += cbFunction_SelectedIndexChanged;
             // 
             // label7
             // 

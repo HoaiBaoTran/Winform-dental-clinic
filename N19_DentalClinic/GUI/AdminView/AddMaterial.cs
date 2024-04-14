@@ -86,6 +86,12 @@ namespace N19_DentalClinic.GUI.AdminView
                 return;
             }
 
+            if (!int.TryParse(price, out _))
+            {
+                MessageBox.Show("Giá tiền phải là số");
+                return;
+            }
+
             if (!isEdit)
             {
                 string newMaterialID = autoIncrementID();
@@ -180,6 +186,47 @@ namespace N19_DentalClinic.GUI.AdminView
                 tbMaterialId.ReadOnly = true;
                 cbType.Enabled = false;
 
+                if (cbType.SelectedIndex == 0)
+                {
+                    tbPrice.Enabled = false;
+                    tbPrice.BackColor = Color.Gray;
+                    dateTimePicker.Enabled = false;
+                    dateTimePicker.CalendarMonthBackground = Color.Gray;
+                    dateTimePicker.CalendarTitleBackColor = Color.Gray;
+                }
+                else
+                {
+
+                    dateTimePicker.Enabled = true;
+                    dateTimePicker.CalendarMonthBackground = Color.White;
+                    dateTimePicker.CalendarTitleBackColor = Color.White;
+                }
+
+                string sql =  $@"select cm.typeConMaterial, me.price
+                                from ConsumableMaterial cm
+                                join Medicine me on me.materialID = cm.materialID
+                                where cm.materialId = '{oldMaterialId}'";
+
+                DataTable table = data.readData(sql);
+                if (table.Rows.Count > 0)
+                {
+                    DataRow row = table.Rows[0];
+                    tbPrice.Text = ((int)row["price"]).ToString();
+                    cbFunction.Text = (string)row["typeConMaterial"];
+                }
+                else
+                {
+                    sql = $@"select cm.typeConMaterial
+                                from ConsumableMaterial cm
+                                where cm.materialId = '{oldMaterialId}'";
+                    table = data.readData(sql);
+                    if (table.Rows.Count > 0)
+                    {
+                        DataRow row = table.Rows[0];
+                        cbFunction.Text = (string)row["typeConMaterial"];
+                    }
+                }
+
             }
             else
             {
@@ -199,18 +246,31 @@ namespace N19_DentalClinic.GUI.AdminView
         {
             if (cbType.SelectedIndex == 0)
             {
-                tbPrice.Enabled = false;
-                tbPrice.BackColor = Color.Gray;
+               
                 dateTimePicker.Enabled = false;
                 dateTimePicker.CalendarMonthBackground = Color.Gray;
                 dateTimePicker.CalendarTitleBackColor = Color.Gray;
-            } else
+            }
+            else
             {
-                tbPrice.Enabled = true;
-                tbPrice.BackColor = Color.White;
+               
                 dateTimePicker.Enabled = true;
                 dateTimePicker.CalendarMonthBackground = Color.White;
                 dateTimePicker.CalendarTitleBackColor = Color.White;
+            }
+        }
+
+        private void cbFunction_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbType.SelectedIndex == 1 && (cbFunction.Text == "Kháng sinh" || cbFunction.Text == "Kháng viêm" || cbFunction.Text == "Giảm đau"))
+            {
+                tbPrice.Enabled = true;
+                tbPrice.BackColor = Color.White;
+            }
+            else
+            {
+                tbPrice.Enabled = false;
+                tbPrice.BackColor = Color.Gray;
             }
         }
     }
