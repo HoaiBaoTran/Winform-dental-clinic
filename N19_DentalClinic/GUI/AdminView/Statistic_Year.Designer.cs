@@ -74,6 +74,7 @@
             nmYear2.Size = new Size(150, 27);
             nmYear2.TabIndex = 7;
             nmYear2.Value = new decimal(new int[] { 2000, 0, 0, 0 });
+            nmYear2.ValueChanged += nmYear2_ValueChanged;
             // 
             // Statistic_Year
             // 

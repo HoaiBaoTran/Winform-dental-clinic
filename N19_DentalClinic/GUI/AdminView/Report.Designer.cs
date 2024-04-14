@@ -33,12 +33,12 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             panel1 = new Panel();
-            pnEmpty = new Panel();
             pnChange = new Panel();
             txtDayTo = new TextBox();
             btnDayTo = new Button();
             txtDayFrom = new TextBox();
             btnDayFrom = new Button();
+            pnEmpty = new Panel();
             label5 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -55,24 +55,31 @@
             // 
             // chart1
             // 
+            chart1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             chartArea1.Name = "ChartArea1";
             chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             chart1.Legends.Add(legend1);
-            chart1.Location = new Point(195, 4);
-            chart1.Margin = new Padding(3, 4, 3, 4);
+            chart1.Location = new Point(180, 19);
+            chart1.Margin = new Padding(4);
             chart1.Name = "chart1";
+            series1.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
             series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Color = Color.FromArgb(91, 85, 229);
+            series1.Font = new Font("Cambria Math", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            series1.LabelBorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
             series1.Legend = "Legend1";
             series1.Name = "Doanh thu";
+            series1.ShadowColor = Color.White;
             chart1.Series.Add(series1);
-            chart1.Size = new Size(758, 376);
+            chart1.Size = new Size(783, 361);
             chart1.TabIndex = 0;
             chart1.Text = "chart1";
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.BackColor = Color.Transparent;
             panel1.Controls.Add(pnChange);
             panel1.Controls.Add(pnEmpty);
             panel1.Controls.Add(label5);
@@ -85,15 +92,9 @@
             panel1.Size = new Size(965, 207);
             panel1.TabIndex = 1;
             // 
-            // pnEmpty
-            // 
-            pnEmpty.Location = new Point(3, 129);
-            pnEmpty.Name = "pnEmpty";
-            pnEmpty.Size = new Size(959, 75);
-            pnEmpty.TabIndex = 19;
-            // 
             // pnChange
             // 
+            pnChange.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnChange.Controls.Add(txtDayTo);
             pnChange.Controls.Add(btnDayTo);
             pnChange.Controls.Add(txtDayFrom);
@@ -138,6 +139,13 @@
             btnDayFrom.Text = "Ngày bắt đầu";
             btnDayFrom.UseVisualStyleBackColor = true;
             btnDayFrom.Click += btnDayFrom_Click_1;
+            // 
+            // pnEmpty
+            // 
+            pnEmpty.Location = new Point(3, 129);
+            pnEmpty.Name = "pnEmpty";
+            pnEmpty.Size = new Size(959, 75);
+            pnEmpty.TabIndex = 19;
             // 
             // label5
             // 
@@ -191,32 +199,36 @@
             // 
             // panel2
             // 
+            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel2.BackColor = Color.FromArgb(128, 255, 255);
             panel2.Controls.Add(btnExport);
             panel2.Controls.Add(btnTimKiem);
             panel2.Controls.Add(chart1);
-            panel2.Location = new Point(1, 216);
+            panel2.Location = new Point(-6, 216);
             panel2.Name = "panel2";
-            panel2.Size = new Size(965, 384);
+            panel2.Size = new Size(972, 390);
             panel2.TabIndex = 2;
             // 
             // btnExport
             // 
-            btnExport.Location = new Point(34, 126);
+            btnExport.BackColor = Color.FromArgb(56, 92, 67);
+            btnExport.Location = new Point(27, 126);
             btnExport.Name = "btnExport";
-            btnExport.Size = new Size(110, 54);
+            btnExport.Size = new Size(117, 54);
             btnExport.TabIndex = 7;
             btnExport.Text = "Xuất file";
-            btnExport.UseVisualStyleBackColor = true;
+            btnExport.UseVisualStyleBackColor = false;
             btnExport.Click += btnExport_Click;
             // 
             // btnTimKiem
             // 
-            btnTimKiem.Location = new Point(34, 43);
+            btnTimKiem.BackColor = Color.FromArgb(189, 175, 9);
+            btnTimKiem.Location = new Point(27, 43);
             btnTimKiem.Name = "btnTimKiem";
-            btnTimKiem.Size = new Size(110, 54);
+            btnTimKiem.Size = new Size(117, 54);
             btnTimKiem.TabIndex = 6;
             btnTimKiem.Text = "Tìm kiếm";
-            btnTimKiem.UseVisualStyleBackColor = true;
+            btnTimKiem.UseVisualStyleBackColor = false;
             btnTimKiem.Click += btnTimKiem_Click;
             // 
             // Report

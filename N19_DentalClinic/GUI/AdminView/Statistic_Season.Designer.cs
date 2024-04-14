@@ -42,6 +42,7 @@
             cbSea2.Name = "cbSea2";
             cbSea2.Size = new Size(148, 28);
             cbSea2.TabIndex = 11;
+            cbSea2.SelectedIndexChanged += cbSea2_SelectedIndexChanged;
             // 
             // cbSea1
             // 
@@ -51,6 +52,7 @@
             cbSea1.Name = "cbSea1";
             cbSea1.Size = new Size(148, 28);
             cbSea1.TabIndex = 10;
+            cbSea1.SelectedIndexChanged += cbSea1_SelectedIndexChanged;
             // 
             // button2
             // 

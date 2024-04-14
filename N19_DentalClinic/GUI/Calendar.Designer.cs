@@ -57,6 +57,7 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.Controls.Add(panel3);
             panel1.Controls.Add(panel2);
             panel1.Location = new Point(16, 19);
@@ -77,13 +78,14 @@
             // 
             // btnToDay
             // 
-            btnToDay.Location = new Point(810, 0);
+            btnToDay.BackColor = Color.FromArgb(128, 128, 255);
+            btnToDay.Location = new Point(691, 3);
             btnToDay.Margin = new Padding(4, 5, 4, 5);
             btnToDay.Name = "btnToDay";
             btnToDay.Size = new Size(100, 35);
             btnToDay.TabIndex = 1;
             btnToDay.Text = "Hôm nay";
-            btnToDay.UseVisualStyleBackColor = true;
+            btnToDay.UseVisualStyleBackColor = false;
             btnToDay.Click += btnToDay_Click;
             // 
             // dtpkDate
@@ -108,13 +110,14 @@
             // 
             // btnAccept
             // 
-            btnAccept.Location = new Point(872, 426);
+            btnAccept.BackColor = Color.Olive;
+            btnAccept.Location = new Point(866, 105);
             btnAccept.Margin = new Padding(4, 5, 4, 5);
             btnAccept.Name = "btnAccept";
-            btnAccept.Size = new Size(100, 35);
+            btnAccept.Size = new Size(100, 56);
             btnAccept.TabIndex = 2;
             btnAccept.Text = "Xác nhận";
-            btnAccept.UseVisualStyleBackColor = true;
+            btnAccept.UseVisualStyleBackColor = false;
             btnAccept.Click += btnAccept_Click;
             // 
             // pnlMatrix

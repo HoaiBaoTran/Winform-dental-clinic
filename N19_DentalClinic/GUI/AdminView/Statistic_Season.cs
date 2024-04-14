@@ -12,6 +12,8 @@ namespace N19_DentalClinic.GUI.AdminView
 {
     public partial class Statistic_Season : UserControl
     {
+        public static int quarterFrom = 1;
+        public static int quarterTo = 1;
         public Statistic_Season()
         {
             InitializeComponent();
@@ -29,6 +31,16 @@ namespace N19_DentalClinic.GUI.AdminView
             cbSea2.Items.Add("Quý 3");
             cbSea2.Items.Add("Quý 4");
 
+        }
+        
+        private void cbSea1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            quarterFrom = (int)cbSea1.SelectedIndex + 1;
+        }
+
+        private void cbSea2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            quarterTo = (int)cbSea2.SelectedIndex + 1;
         }
     }
 }

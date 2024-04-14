@@ -45,5 +45,18 @@ namespace N19_DentalClinic.GUI.AdminView
             cbMonth2.Items.Add("Tháng 11");
             cbMonth2.Items.Add("Tháng 12");
         }
+
+        public static int monthFrom;
+        public static int monthTo; 
+
+        private void cbMonth1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            monthFrom = cbMonth1.SelectedIndex + 1;
+        }
+
+        private void cbMonth2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            monthTo = cbMonth2.SelectedIndex + 1;
+        }
     }
 }

@@ -60,6 +60,7 @@
             cbMonth1.Name = "cbMonth1";
             cbMonth1.Size = new Size(148, 28);
             cbMonth1.TabIndex = 2;
+            cbMonth1.SelectedIndexChanged += cbMonth1_SelectedIndexChanged;
             // 
             // cbMonth2
             // 
@@ -69,6 +70,7 @@
             cbMonth2.Name = "cbMonth2";
             cbMonth2.Size = new Size(148, 28);
             cbMonth2.TabIndex = 3;
+            cbMonth2.SelectedIndexChanged += cbMonth2_SelectedIndexChanged;
             // 
             // Statistic_Month
             // 

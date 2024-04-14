@@ -57,24 +57,42 @@ namespace N19_DentalClinic.GUI
         }
         private DateTime dateAccept;
         private Button lastClickedButton;
+        private Button btnClickDTPK;
         private void Btn_Click(object? sender, EventArgs e)
         {
             Button clickedButton = sender as Button;
-            if (clickedButton != null)
+            if (!string.IsNullOrEmpty(clickedButton.Text))
             {
-                if (lastClickedButton != null)
+                setBtn_Click(clickedButton);
+                btnClickDTPK = clickedButton;
+            }
+            else
+            {
+                MessageBox.Show("Không thể chọn","Thông báo");
+                return;
+            }
+        }
+
+        private void setBtn_Click(Button clickedButton)
+        {          
+            if (lastClickedButton != null && lastClickedButton.Tag is DateTime today)
+            {
+                if (today.Date != DateTime.Today)
                 {
                     lastClickedButton.BackColor = SystemColors.Window; // Màu nền mặc định của control
-                    btnHomNay.BackColor = Color.LightBlue;
-                }
-                // Lấy giá trị ngày từ thuộc tính Tag của nút
-                if (clickedButton.Tag is DateTime selectedDate)
-                {
-                    clickedButton.BackColor = Color.Green;
-                    dateAccept = selectedDate;
-                    lastClickedButton = clickedButton;
                 }
             }
+            // Lấy giá trị ngày từ thuộc tính Tag của nút
+            if (clickedButton.Tag is DateTime selectedDate)
+            {
+                if (selectedDate.Date != DateTime.Today)
+                {
+                    clickedButton.BackColor = Color.Green;
+                }
+                dateAccept = selectedDate;
+                lastClickedButton = clickedButton;
+                dtpkDate.Value = dateAccept;
+            }               
         }
 
         int dayOfMonth(DateTime date)
@@ -122,8 +140,8 @@ namespace N19_DentalClinic.GUI
                 //Ngày được chọn 
                 if (isEqualDate(useDate, date))
                 {
-                   
-                    dateSelector = useDate;
+                    btn.BackColor = Color.Green;
+                    dateAccept = useDate;
                 }
 
                 if (column >= 6)
@@ -158,11 +176,14 @@ namespace N19_DentalClinic.GUI
             dtpkDate.Value = DateTime.Now;
             dateSelector = dtpkDate.Value;
         }
+
         // Chọn ngày trên DateTimePicKer 
         private void dtpkDate_ValueChanged(object sender, EventArgs e)
         {
             AddNumberIntoMatrixByDate((sender as DateTimePicker).Value);
+            
         }
+        
         //Button Tháng trước
         private void btnPreviours_Click(object sender, EventArgs e)
         {
@@ -177,6 +198,7 @@ namespace N19_DentalClinic.GUI
         private void btnToDay_Click(object sender, EventArgs e)
         {
             setDefaultDate();
+            dateAccept = DateTime.Now;          
         }
 
         public DateTime GetDateSelector()
