@@ -53,12 +53,13 @@ namespace N19_DentalClinic.GUI.AdminView
                 int countRow = 1;
                 foreach (DataRow row in table.Rows)
                 {
-
+                    int price = ((int)row["price"]);
+                    string formattedTotalRevenue = price.ToString("#,##0");
                     string[] rowString = new string[] {
                         countRow.ToString(),
                         (string)row["serviceID"],
                         (string)row["name"],
-                        ((int)row["price"]).ToString(),
+                        formattedTotalRevenue,
                         (string)row["calUnit"],
                         (string)row["note"],
                         (string)row["kindService"],
@@ -107,7 +108,9 @@ namespace N19_DentalClinic.GUI.AdminView
 
                     if (confirmResult == DialogResult.Yes)
                     {
-                        string sql = @$"delete from Service 
+                        string sql = $@"delete from Bill_Service where serviceID = '{serviceId}'";
+                        data.changeData(sql);
+                        sql = @$"delete from Service 
                                         where serviceID = '{serviceId}'";
                         data.changeData(sql);
                         MessageBox.Show("Xóa thành công");

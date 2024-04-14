@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -52,13 +53,15 @@ namespace N19_DentalClinic.GUI.AdminView
 
                 foreach (DataRow row in table.Rows)
                 {
+                    int price = ((int)row["total_price"]);
+                    string formattedTotalRevenue = price.ToString("#,##0");
                     string expiration = string.Empty;
                     string[] rowString = new string[] {
                         countRow.ToString(),
                         (string)row["billID"],
                         (string)row["patient_name"],
                         (string)row["receptionist_name"],
-                        ((int)row["total_price"]).ToString(),
+                        formattedTotalRevenue,
                         DateTimeConvert.convertDMY(row["payment_time"].ToString()),
                         DateTimeConvert.convertHMS(row["payment_time"].ToString()),
                         "Xóa" };
