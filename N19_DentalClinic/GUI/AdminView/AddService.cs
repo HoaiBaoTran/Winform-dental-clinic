@@ -41,6 +41,25 @@ namespace N19_DentalClinic.GUI.AdminView
             isEdit = true;
         }
 
+        private string autoIncrementID()
+        {
+            string sql = @$"select top 1 serviceID from service order by serviceID desc";
+            DataTable table = data.readData(sql);
+            if (table.Rows.Count > 0)
+            {
+                DataRow row = table.Rows[0];
+                serviceId = (string)row["serviceID"];
+            }
+
+            serviceId = serviceId.Substring(2, 8);
+            int id = Convert.ToInt32(serviceId);
+            int newID = id + 1;
+            string newIDString = Convert.ToString(newID);
+            string temp = "SE00000000";
+            string newServiceID = temp.Substring(0, 10 - newIDString.Length) + newIDString;
+            return newServiceID;
+        }
+
         private void handleAddService()
         {
             string serviceName = tbServiceName.Text;
@@ -51,9 +70,9 @@ namespace N19_DentalClinic.GUI.AdminView
 
             if (!isEdit)
             {
-
+                string newServiceID = autoIncrementID();
                 string sql = @$"insert into Service(serviceID, name, price, CalUnit, quantity, note, kindService) values
-                               (dbo.autoSeid(), N'{serviceName}', " + price + $", N'{calUnit}', 1, N'{note}', N'{kindService}')";
+                               ('{newServiceID}', N'{serviceName}', " + price + $", N'{calUnit}', 1, N'{note}', N'{kindService}')";
                 data.changeData(sql);
                 MessageBox.Show("Thêm dịch vụ thành công");
                 this.DialogResult = DialogResult.OK;

@@ -125,7 +125,7 @@ namespace N19_DentalClinic.GUI.AdminView
                     string calUnit = dataService[4, dataService.CurrentCell.RowIndex].Value.ToString();
                     string note = dataService[5, dataService.CurrentCell.RowIndex].Value.ToString();
                     string kindService = dataService[6, dataService.CurrentCell.RowIndex].Value.ToString();
-                    AddService addService = new AddService(serviceId, serviceName, price, calUnit, note, kindService);
+                    AddService addService = new AddService(serviceId, serviceName, price.Replace(",", ""), calUnit, note, kindService);
                     if (addService.ShowDialog() == DialogResult.OK)
                     {
                         updateUiOnDataChange();
