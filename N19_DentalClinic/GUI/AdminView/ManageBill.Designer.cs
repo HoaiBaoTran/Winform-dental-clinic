@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageBill));
             dataBill = new DataGridView();
             btnSearch = new component.RJButton();
             tbSearch = new TextBox();
             label6 = new Label();
+            btnAddBill = new Button();
             ((System.ComponentModel.ISupportInitialize)dataBill).BeginInit();
             SuspendLayout();
             // 
@@ -46,27 +48,27 @@
             dataBill.BorderStyle = BorderStyle.None;
             dataBill.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
             dataBill.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F);
-            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.Padding = new Padding(4);
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dataBill.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.Padding = new Padding(4);
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataBill.DefaultCellStyle = dataGridViewCellStyle1;
             dataBill.GridColor = Color.White;
             dataBill.Location = new Point(9, 167);
             dataBill.Name = "dataBill";
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(18, 219, 78);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.Padding = new Padding(4);
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dataBill.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(18, 219, 78);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new Padding(4);
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataBill.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataBill.RowHeadersWidth = 51;
             dataBill.Size = new Size(1186, 623);
             dataBill.TabIndex = 125;
@@ -111,11 +113,29 @@
             label6.TabIndex = 121;
             label6.Text = "Quản lý hóa đơn";
             // 
+            // btnAddBill
+            // 
+            btnAddBill.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAddBill.BackColor = Color.FromArgb(18, 219, 78);
+            btnAddBill.Font = new Font("Microsoft Sans Serif", 12F);
+            btnAddBill.Image = (Image)resources.GetObject("btnAddBill.Image");
+            btnAddBill.ImageAlign = ContentAlignment.MiddleLeft;
+            btnAddBill.Location = new Point(1005, 89);
+            btnAddBill.Margin = new Padding(3, 4, 3, 4);
+            btnAddBill.Name = "btnAddBill";
+            btnAddBill.Size = new Size(188, 57);
+            btnAddBill.TabIndex = 126;
+            btnAddBill.Text = "Thêm hóa đơn";
+            btnAddBill.TextAlign = ContentAlignment.MiddleRight;
+            btnAddBill.UseVisualStyleBackColor = false;
+            btnAddBill.Click += btnAddBill_Click;
+            // 
             // ManageBill
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1205, 800);
+            Controls.Add(btnAddBill);
             Controls.Add(dataBill);
             Controls.Add(btnSearch);
             Controls.Add(tbSearch);
@@ -135,5 +155,6 @@
         private component.RJButton btnSearch;
         private TextBox tbSearch;
         private Label label6;
+        private Button btnAddBill;
     }
 }

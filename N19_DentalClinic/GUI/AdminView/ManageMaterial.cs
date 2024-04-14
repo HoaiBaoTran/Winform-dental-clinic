@@ -124,7 +124,43 @@ namespace N19_DentalClinic.GUI.AdminView
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            updateUiOnDataChange();
+            string materialIDSearch = tbSearch.Text;
+            if (materialIDSearch != string.Empty)
+            {
+                dataMaterial.Rows.Clear();
+                string fixedMaterialsql = @$"select fm.materialID, name, quantity, CalUnit 
+                                from FixedMaterial fm
+                                join Material ma on ma.materialID = fm.materialID
+                                where fm.materialID = '{materialIDSearch}'";
+                DataTable table =  data.readData(fixedMaterialsql);
+                if (table.Rows.Count > 0)
+                {
+                    updateDataGridView(fixedMaterialsql, "Cố định", false, 1);
+                    return;
+                }
+                else
+                {
+                    string consumablesql = @$"select cm.materialID, name, quantity, CalUnit, expiration_date, typeConMaterial
+                                            from Material ma
+                                            join ConsumableMaterial cm on ma.materialID = cm.materialID
+                                            where ma.materialID = '{materialIDSearch}'";
+                    table = data.readData(consumablesql);
+                    if (table.Rows.Count > 0)
+                    {
+                        updateDataGridView(consumablesql, "Tiêu hao", true, 1);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Id không tồn tại");
+                        return;
+                    }
+                }
+
+            }
+            else
+            {
+                updateUiOnDataChange();
+            }
         }
 
         private void btnAddMaterial_Click(object sender, EventArgs e)

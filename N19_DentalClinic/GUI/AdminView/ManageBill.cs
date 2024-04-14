@@ -37,15 +37,17 @@ namespace N19_DentalClinic.GUI.AdminView
             int countRow = 1;
             if (table.Rows.Count > 0)
             {
-                dataBill.ColumnCount = 8;
+                dataBill.ColumnCount = 9;
                 dataBill.Columns[0].Name = "STT";
                 dataBill.Columns[1].Name = "Mã hóa đơn";
-                dataBill.Columns[2].Name = "Tên bệnh nhân";
-                dataBill.Columns[3].Name = "Tên lễ tân";
-                dataBill.Columns[4].Name = "Tổng giá";
-                dataBill.Columns[5].Name = "Ngày thanh toán";
-                dataBill.Columns[6].Name = "Giờ thanh toán";
-                dataBill.Columns[7].Name = "Xóa";
+                dataBill.Columns[2].Name = "Ngày lập";
+                dataBill.Columns[3].Name = "Thời gian thanh toán";
+                dataBill.Columns[4].Name = "Tổng tiền";
+                dataBill.Columns[5].Name = "Tên bệnh nhân";
+                dataBill.Columns[6].Name = "Tên lễ tân";
+                dataBill.Columns[7].Name = "Chi tiết";
+                dataBill.Columns[8].Name = "Xóa";
+
                 dataBill.EnableHeadersVisualStyles = false;
                 dataBill.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
                 dataBill.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
@@ -59,11 +61,12 @@ namespace N19_DentalClinic.GUI.AdminView
                     string[] rowString = new string[] {
                         countRow.ToString(),
                         (string)row["billID"],
-                        (string)row["patient_name"],
-                        (string)row["receptionist_name"],
-                        formattedTotalRevenue,
                         DateTimeConvert.convertDMY(row["payment_time"].ToString()),
                         DateTimeConvert.convertHMS(row["payment_time"].ToString()),
+                        formattedTotalRevenue,
+                        (string)row["patient_name"],
+                        (string)row["receptionist_name"],
+                        "Chi tiết",
                         "Xóa" };
                     dataBill.Rows.Add(rowString);
                     countRow++;
@@ -81,13 +84,45 @@ namespace N19_DentalClinic.GUI.AdminView
         {
 
             dataBill.Rows.Clear();
-            string sql = @"select b.bilID as billID, b.total_price, b.payment_time, p.name as patient_name, r.name as receptionist_name
+            string sql = @"select b.bilID as billID, b.total_price, b.payment_time, p.PatID as patient_ID, p.name as patient_name, r.name as receptionist_name
                         from Bill b
                         join Patient p on p.PatID = b.PatID
                         join Bill_Recep br on br.bilID = b.bilID
                         join Receptionist r on r.RecepID = br.RecepID";
             updateDataGridView(sql);
 
+        }
+
+        private void btnAddBill_Click(object sender, EventArgs e)
+        {
+            string bilId = autoIncrementID();
+            string sql = $"Insert into Bill(bilID, PatID, total_price, payment_time) values ('{bilId}', 'PA00000001', 0, '2024-04-14 12:00:00')";
+            data.changeData(sql);
+            AddBill addBill = new AddBill(bilId);
+            if (addBill.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+        }
+
+        private string autoIncrementID()
+        {
+            string sql = @$"select top 1 bilID from bill order by bilID desc";
+            DataTable table = data.readData(sql);
+            string bilId = string.Empty;
+            if (table.Rows.Count > 0)
+            {
+                DataRow row = table.Rows[0];
+                bilId = (string)row["bilID"];
+            }
+
+            bilId = bilId.Substring(2, 8);
+            int id = Convert.ToInt32(bilId);
+            int newID = id + 1;
+            string newIDString = Convert.ToString(newID);
+            string temp = "BI00000000";
+            string newServiceID = temp.Substring(0, 10 - newIDString.Length) + newIDString;
+            return newServiceID;
         }
     }
 }

@@ -382,6 +382,7 @@ CREATE TABLE Bill_Service
 (
   BilId VARCHAR(10) NOT NULL,
   ServiceID VARCHAR(10) NOT NULL,
+  quantity int NOT NULL,
   PRIMARY KEY (BilId, ServiceID),
   FOREIGN KEY (BilId) REFERENCES Bill(BilId),
   FOREIGN KEY (ServiceID) REFERENCES Service(ServiceID)
@@ -1311,7 +1312,8 @@ GO
 --Bill_Service
 create proc procAddBill_Service
 	@serviceID VARCHAR(10),
-	@bilID VARCHAR(10)
+	@bilID VARCHAR(10),
+	@quantity INT
 as
 begin
 	if(@serviceID not in (select serviceID from Service)) 
@@ -1320,20 +1322,20 @@ begin
 		print(N'Chưa tồn tại mã Bill này')
 	else
 	begin
-		insert into Bill_Service (serviceID, bilID)
-		values (@serviceID,@bilID)
+		insert into Bill_Service (serviceID, bilID, quantity)
+		values (@serviceID,@bilID,@quantity)
 	end
 end 
 go
 
 --select * from Bill_Service
 
-exec procAddBill_Service 'SE00000001','BI00000001'
-exec procAddBill_Service 'SE00000002','BI00000001'
-exec procAddBill_Service 'SE00000001','BI00000002'
-exec procAddBill_Service 'SE00000003','BI00000003'
-exec procAddBill_Service 'SE00000004','BI00000003'
-exec procAddBill_Service 'SE00000003','BI00000004'
+exec procAddBill_Service 'SE00000001','BI00000001', 1
+exec procAddBill_Service 'SE00000002','BI00000001', 1
+exec procAddBill_Service 'SE00000001','BI00000002', 1
+exec procAddBill_Service 'SE00000003','BI00000003', 1
+exec procAddBill_Service 'SE00000004','BI00000003', 1
+exec procAddBill_Service 'SE00000003','BI00000004', 1
 GO
 
 --Bill_Recep
