@@ -57,6 +57,7 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.Controls.Add(panel3);
             panel1.Controls.Add(panel2);
             panel1.Location = new Point(16, 19);
@@ -77,13 +78,14 @@
             // 
             // btnToDay
             // 
-            btnToDay.Location = new Point(810, 0);
+            btnToDay.BackColor = Color.FromArgb(128, 128, 255);
+            btnToDay.Location = new Point(691, 3);
             btnToDay.Margin = new Padding(4, 5, 4, 5);
             btnToDay.Name = "btnToDay";
             btnToDay.Size = new Size(100, 35);
             btnToDay.TabIndex = 1;
             btnToDay.Text = "Hôm nay";
-            btnToDay.UseVisualStyleBackColor = true;
+            btnToDay.UseVisualStyleBackColor = false;
             btnToDay.Click += btnToDay_Click;
             // 
             // dtpkDate
@@ -108,13 +110,14 @@
             // 
             // btnAccept
             // 
-            btnAccept.Location = new Point(872, 426);
+            btnAccept.BackColor = Color.Olive;
+            btnAccept.Location = new Point(866, 105);
             btnAccept.Margin = new Padding(4, 5, 4, 5);
             btnAccept.Name = "btnAccept";
-            btnAccept.Size = new Size(100, 35);
+            btnAccept.Size = new Size(100, 56);
             btnAccept.TabIndex = 2;
             btnAccept.Text = "Xác nhận";
-            btnAccept.UseVisualStyleBackColor = true;
+            btnAccept.UseVisualStyleBackColor = false;
             btnAccept.Click += btnAccept_Click;
             // 
             // pnlMatrix
@@ -122,7 +125,7 @@
             pnlMatrix.Location = new Point(117, 85);
             pnlMatrix.Margin = new Padding(4, 5, 4, 5);
             pnlMatrix.Name = "pnlMatrix";
-            pnlMatrix.Size = new Size(735, 391);
+            pnlMatrix.Size = new Size(725, 391);
             pnlMatrix.TabIndex = 1;
             // 
             // panel4
@@ -144,7 +147,7 @@
             // 
             // btnNext
             // 
-            btnNext.Location = new Point(868, 5);
+            btnNext.Location = new Point(862, 5);
             btnNext.Margin = new Padding(4, 5, 4, 5);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(100, 61);
@@ -166,7 +169,7 @@
             // 
             // btnSunday
             // 
-            btnSunday.Location = new Point(746, 5);
+            btnSunday.Location = new Point(738, 5);
             btnSunday.Margin = new Padding(4, 5, 4, 5);
             btnSunday.Name = "btnSunday";
             btnSunday.Size = new Size(100, 61);
@@ -176,7 +179,7 @@
             // 
             // btnSaturday
             // 
-            btnSaturday.Location = new Point(640, 5);
+            btnSaturday.Location = new Point(634, 5);
             btnSaturday.Margin = new Padding(4, 5, 4, 5);
             btnSaturday.Name = "btnSaturday";
             btnSaturday.Size = new Size(100, 61);
@@ -186,7 +189,7 @@
             // 
             // btnFriday
             // 
-            btnFriday.Location = new Point(534, 5);
+            btnFriday.Location = new Point(530, 5);
             btnFriday.Margin = new Padding(4, 5, 4, 5);
             btnFriday.Name = "btnFriday";
             btnFriday.Size = new Size(100, 61);
@@ -196,7 +199,7 @@
             // 
             // btnThusday
             // 
-            btnThusday.Location = new Point(429, 5);
+            btnThusday.Location = new Point(425, 5);
             btnThusday.Margin = new Padding(4, 5, 4, 5);
             btnThusday.Name = "btnThusday";
             btnThusday.Size = new Size(100, 61);
@@ -206,7 +209,7 @@
             // 
             // btnWednesday
             // 
-            btnWednesday.Location = new Point(323, 5);
+            btnWednesday.Location = new Point(321, 5);
             btnWednesday.Margin = new Padding(4, 5, 4, 5);
             btnWednesday.Name = "btnWednesday";
             btnWednesday.Size = new Size(100, 61);
@@ -216,7 +219,7 @@
             // 
             // btnTuesday
             // 
-            btnTuesday.Location = new Point(217, 5);
+            btnTuesday.Location = new Point(216, 5);
             btnTuesday.Margin = new Padding(4, 5, 4, 5);
             btnTuesday.Name = "btnTuesday";
             btnTuesday.Size = new Size(100, 61);
@@ -254,7 +257,6 @@
             Name = "Calendar";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Lập lịch công việc";
-            Load += Calendar_Load;
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel2.ResumeLayout(false);
