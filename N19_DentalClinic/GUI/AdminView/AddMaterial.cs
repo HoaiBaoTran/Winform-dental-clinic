@@ -80,7 +80,8 @@ namespace N19_DentalClinic.GUI.AdminView
                 expirationDate == string.Empty ||
                 time == string.Empty ||
                 quantity == string.Empty ||
-                price == string.Empty) {
+                price == string.Empty)
+            {
                 MessageBox.Show("Vui lòng điền hết thông tin");
                 return;
             }
@@ -107,11 +108,11 @@ namespace N19_DentalClinic.GUI.AdminView
                 }
                 else if (type == "Tiêu hao")
                 {
-                    
+
 
                     string insertedConsumableMaterialsql = @$"insert into ConsumableMaterial(materialID, expiration_date, typeConmaterial, able) values 
                                                         ('{materialIdInserted}', '{time}', N'{functionType}',1)";
-     
+
                     data.changeData(insertedConsumableMaterialsql);
 
                     if (functionType == "Kháng sinh" || functionType == "Kháng viêm" || functionType == "Giảm đau")
@@ -131,18 +132,18 @@ namespace N19_DentalClinic.GUI.AdminView
                 if (type == "Tiêu hao")
                 {
                     sql = "update Medicine set price = " + price + $" where materialId = '{materialId}'";
-                    
+
                     data.changeData(sql);
 
                     sql = @$"update ConsumableMaterial set
                                 expiration_date = N'{time}', typeConMaterial = N'{functionType}' where materialId = '{materialId}'";
-                   
+
                     data.changeData(sql);
                 }
 
                 sql = @$"update Material set
                                 name = N'{materialName}', CalUnit = N'{calUnit}', quantity = " + quantity + $" where materialId = '{materialId}'";
-             
+
                 data.changeData(sql);
                 MessageBox.Show("Cập nhật vật liệu thành công");
                 this.DialogResult = DialogResult.OK;
@@ -192,6 +193,25 @@ namespace N19_DentalClinic.GUI.AdminView
         private void roundPictureBox2_Click(object sender, EventArgs e)
         {
             handleAddMaterial();
+        }
+
+        private void cbType_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cbType.SelectedIndex == 0)
+            {
+                tbPrice.Enabled = false;
+                tbPrice.BackColor = Color.Gray;
+                dateTimePicker.Enabled = false;
+                dateTimePicker.CalendarMonthBackground = Color.Gray;
+                dateTimePicker.CalendarTitleBackColor = Color.Gray;
+            } else
+            {
+                tbPrice.Enabled = true;
+                tbPrice.BackColor = Color.White;
+                dateTimePicker.Enabled = true;
+                dateTimePicker.CalendarMonthBackground = Color.White;
+                dateTimePicker.CalendarTitleBackColor = Color.White;
+            }
         }
     }
 }

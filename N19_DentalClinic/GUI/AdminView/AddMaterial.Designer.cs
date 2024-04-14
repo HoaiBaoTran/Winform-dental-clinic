@@ -225,6 +225,7 @@
             cbType.Name = "cbType";
             cbType.Size = new Size(262, 39);
             cbType.TabIndex = 81;
+            cbType.SelectedValueChanged += cbType_SelectedValueChanged;
             // 
             // dateTimePicker
             // 

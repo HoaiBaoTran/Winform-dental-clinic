@@ -74,6 +74,13 @@ namespace N19_DentalClinic.GUI.AdminView
                 return;
             }
 
+
+            if (!int.TryParse(price, out _))
+            {
+                MessageBox.Show("Giá tiền phải là số");
+                return;
+            }
+
             if (!isEdit)
             {
                 string newServiceID = autoIncrementID();
