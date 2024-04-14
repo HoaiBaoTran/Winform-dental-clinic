@@ -68,6 +68,12 @@ namespace N19_DentalClinic.GUI.AdminView
             string note = tbNote.Text;
             string kindService = tbKindService.Text;
 
+            if (serviceName == string.Empty || calUnit == string.Empty || price == string.Empty || kindService == string.Empty)
+            {
+                MessageBox.Show("Vui lòng điền hết thông tin (có thể bỏ qua ghi chú)");
+                return;
+            }
+
             if (!isEdit)
             {
                 string newServiceID = autoIncrementID();

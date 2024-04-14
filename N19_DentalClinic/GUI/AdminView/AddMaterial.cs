@@ -43,6 +43,25 @@ namespace N19_DentalClinic.GUI.AdminView
             isEdit = true;
         }
 
+        private string autoIncrementID()
+        {
+            string sql = @$"select top 1 materialID from material order by materialID desc";
+            DataTable table = data.readData(sql);
+            if (table.Rows.Count > 0)
+            {
+                DataRow row = table.Rows[0];
+                oldMaterialId = (string)row["materialID"];
+            }
+
+            oldMaterialId = oldMaterialId.Substring(2, 8);
+            int id = Convert.ToInt32(oldMaterialId);
+            int newID = id + 1;
+            string newIDString = Convert.ToString(newID);
+            string temp = "MA00000000";
+            string newServiceID = temp.Substring(0, 10 - newIDString.Length) + newIDString;
+            return newServiceID;
+        }
+
         private void handleAddMaterial()
         {
             string materialName = tbMaterialName.Text;
@@ -54,10 +73,23 @@ namespace N19_DentalClinic.GUI.AdminView
             string quantity = tbQuantity.Text;
             string price = tbPrice.Text;
 
+            if (materialName == string.Empty ||
+                calUnit == string.Empty ||
+                type == string.Empty ||
+                functionType == string.Empty ||
+                expirationDate == string.Empty ||
+                time == string.Empty ||
+                quantity == string.Empty ||
+                price == string.Empty) {
+                MessageBox.Show("Vui lòng điền hết thông tin");
+                return;
+            }
+
             if (!isEdit)
             {
+                string newMaterialID = autoIncrementID();
                 string sql = @$"insert into material(materialID, name, AdminID, CalUnit, quantity, able) values
-                                (dbo.autoMaid(), N'{materialName}', 'AD00000001', N'{calUnit}', " + quantity + ", 1)";
+                                ('{newMaterialID}', N'{materialName}', 'AD00000001', N'{calUnit}', " + quantity + ", 1)";
                 data.changeData(sql);
 
                 string sqlSelect = @"SELECT TOP 1 materialID FROM material ORDER BY materialID DESC";
@@ -138,9 +170,11 @@ namespace N19_DentalClinic.GUI.AdminView
                 tbQuantity.Text = oldQuantity;
                 tbCalUnit.Text = oldCalUnit;
                 cbType.Text = oldType;
-
-                DateTime date = DateTime.ParseExact(oldExpirationDate, "dd/MM/yyyy", null);
-                dateTimePicker.Value = date;
+                if (oldExpirationDate != string.Empty)
+                {
+                    DateTime date = DateTime.ParseExact(oldExpirationDate, "dd/MM/yyyy", null);
+                    dateTimePicker.Value = date;
+                }
 
                 tbMaterialId.ReadOnly = true;
                 cbType.Enabled = false;
