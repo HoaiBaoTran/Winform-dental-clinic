@@ -173,6 +173,7 @@
             txtNamePassword.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNamePassword.Location = new Point(55, 194);
             txtNamePassword.Name = "txtNamePassword";
+            txtNamePassword.PasswordChar = '*';
             txtNamePassword.Size = new Size(441, 38);
             txtNamePassword.TabIndex = 6;
             // 

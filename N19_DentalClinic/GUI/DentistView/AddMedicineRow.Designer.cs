@@ -94,6 +94,7 @@
             roundPictureBox2.Size = new Size(39, 47);
             roundPictureBox2.TabIndex = 31;
             roundPictureBox2.TabStop = false;
+            roundPictureBox2.Click += roundPictureBox2_Click;
             // 
             // btnAddMedicine
             // 

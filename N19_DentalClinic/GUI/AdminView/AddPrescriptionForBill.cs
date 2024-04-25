@@ -3,17 +3,17 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace N19_DentalClinic.GUI.DentistView
+namespace N19_DentalClinic.GUI.AdminView
 {
-    public partial class AddMedicineRow : Form
+    public partial class AddPrescriptionForBill : Form
     {
+
         DataInteraction data = new DataInteraction();
         private string presId;
 
@@ -24,13 +24,13 @@ namespace N19_DentalClinic.GUI.DentistView
         private string note = string.Empty;
         private bool isEdit = false;
 
-        public AddMedicineRow(string presId)
+        public AddPrescriptionForBill(string presId)
         {
             InitializeComponent();
             this.presId = presId;
         }
 
-        public AddMedicineRow(string presId, string medicineId, string medicineName, string quantity, string calUnit, string note)
+        public AddPrescriptionForBill(string presId, string medicineId, string medicineName, string quantity, string calUnit, string note)
         {
             InitializeComponent();
             this.presId = presId;
@@ -44,12 +44,58 @@ namespace N19_DentalClinic.GUI.DentistView
             btnAddMedicine.Text = "Cập nhật";
         }
 
+        private void btnAddMedicine_Click(object sender, EventArgs e)
+        {
+            handleAddPrescription();
+        }
+
+        private void roundPictureBox2_Click(object sender, EventArgs e)
+        {
+            handleAddPrescription();
+        }
+
+        private void handleAddPrescription()
+        {
+            string medicineId = cbMedicineId.GetItemText(cbMedicineId.SelectedItem);
+            string calUnit = cbCalUnit.GetItemText(cbCalUnit.SelectedItem);
+            string quantity = cbQuantity.Text;
+            string note = tbNote.Text;
+
+            if (!isEdit)
+            {
+                string sql = @$"INSERT INTO Prescription_Detail(PresID, materialID, quantity, calUnit, note) values
+                                ('{presId}', '{medicineId}', " + quantity + $", N'{calUnit}', N'{note}')";
+                data.changeData(sql);
+                this.DialogResult = DialogResult.OK;
+                MessageBox.Show("Thêm thành công");
+            }
+            else
+            {
+                string updateSql = @$"UPDATE Prescription_Detail SET
+                                    materialID = '{medicineId}',
+                                    quantity = " + quantity + @$",
+                                    calUnit = '{calUnit}',
+                                    note = '{note}'
+                                    WHERE PresID = '{presId}' AND materialID = '{medicineId}'
+                                    ";
+                MessageBox.Show(updateSql);
+                data.changeData(updateSql);
+                this.DialogResult = DialogResult.OK;
+                MessageBox.Show("Cập nhật thành công");
+            }
+        }
+
+        private void roundPictureBox3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void AddMedicineRow_Load(object sender, EventArgs e)
+        private void AddPrescriptionForBill_Load(object sender, EventArgs e)
         {
             comnboBoxMaterialLoad();
         }
@@ -79,48 +125,6 @@ namespace N19_DentalClinic.GUI.DentistView
                 cbQuantity.Text = quantity;
                 cbCalUnit.Text = calUnit;
                 tbNote.Text = note;
-            }
-        }
-
-        private void btnAddMedicine_Click(object sender, EventArgs e)
-        {
-            handleAddMedicineRow();
-
-        }
-
-        private void roundPictureBox2_Click(object sender, EventArgs e)
-        {
-            handleAddMedicineRow();
-        }
-
-        private void handleAddMedicineRow()
-        {
-            string medicineId = cbMedicineId.GetItemText(cbMedicineId.SelectedItem);
-            string calUnit = cbCalUnit.GetItemText(cbCalUnit.SelectedItem);
-            string quantity = cbQuantity.Text;
-            string note = tbNote.Text;
-
-            if (!isEdit)
-            {
-                string sql = @$"INSERT INTO Prescription_Detail(PresID, materialID, quantity, calUnit, note) values
-                                ('{presId}', '{medicineId}', " + quantity + $", N'{calUnit}', N'{note}')";
-                data.changeData(sql);
-                this.DialogResult = DialogResult.OK;
-                MessageBox.Show("Thêm thành công");
-            }
-            else
-            {
-                string updateSql = @$"UPDATE Prescription_Detail SET
-                                    materialID = '{medicineId}',
-                                    quantity = " + quantity + @$",
-                                    calUnit = '{calUnit}',
-                                    note = '{note}'
-                                    WHERE PresID = '{presId}' AND materialID = '{medicineId}'
-                                    ";
-                MessageBox.Show(updateSql);
-                data.changeData(updateSql);
-                this.DialogResult = DialogResult.OK;
-                MessageBox.Show("Cập nhật thành công");
             }
         }
     }

@@ -1,16 +1,38 @@
-﻿/*
+﻿/*	
 use master
 go
 drop database QuanLyPhongKham
 */
-/*
 create database QuanLyPhongKham
 go
 use QuanLyPhongKham
 go
-*/
 
--- Tao function chay function truoc khi chay bang
+
+CREATE TABLE Account
+(
+  able BIT DEFAULT 1 NOT NULL,
+  AccountID VARCHAR(10) PRIMARY KEY,
+  username NVARCHAR(50) NOT NULL UNIQUE,
+  password NVARCHAR(50) NOT NULL,
+  role CHAR(1) NOT NULL CHECK (role in ('A','B','C')), -- A la Quan li, B Le tan, C la Nha si
+);
+GO
+
+--function tu tao id 
+
+create function autoAcid()
+returns VARCHAR(10)
+as 
+begin
+	declare @ID VARCHAR(10)
+	declare @QUAN INT 
+	SELECT @QUAN = COUNT(AccountID) + 1 from Account 
+	SELECT @ID = 'AC' + RIGHT(REPLICATE(0,8), 8 - LEN(CAST (@QUAN AS VARCHAR(8)))) +  CAST(@QUAN AS VARCHAR(8))
+	RETURN @ID
+END
+GO
+
 
 CREATE TABLE Admin
 (
@@ -18,9 +40,11 @@ CREATE TABLE Admin
   name NVARCHAR(50) NOT NULL,
   address NVARCHAR(80) NOT NULL,
   phone_number NVARCHAR(15) NOT NULL,
-  email NVARCHAR(30) NOT NULL,
+  email NVARCHAR(30) NOT NULL UNIQUE,
   gender BIT NOT NULL,
-  birthday DATETIME NOT NULL
+  birthday DATETIME NOT NULL,
+  AccountID VARCHAR(10) NOT NULL,
+  FOREIGN KEY (AccountID) REFERENCES Account(AccountID)
 )
 GO
 
@@ -96,14 +120,14 @@ CREATE TABLE Receptionist
   able BIT DEFAULT 1 NOT NULL,
   name NVARCHAR(50) NOT NULL,
   address NVARCHAR(80) NOT NULL,
-  email NVARCHAR(50) NOT NULL,
+  email NVARCHAR(50) NOT NULL UNIQUE,
   phone_number NVARCHAR(15) NOT NULL,
   RecepID VARCHAR(10) PRIMARY KEY,
   salary INT NOT NULL,
-  AdminID VARCHAR(10) NOT NULL,
   gender BIT NOT NULL,
   birthday DATETIME NOT NULL,
-  FOREIGN KEY (AdminID) REFERENCES Admin(AdminID)
+  AccountID VARCHAR(10) NOT NULL,
+  FOREIGN KEY (AccountID) REFERENCES Account(AccountID)
 )
 GO
 
@@ -117,6 +141,7 @@ CREATE TABLE Calendar_Receptionist
 	FOREIGN KEY (RecepID) REFERENCES Receptionist(RecepID)
 )
 go
+
 
 --function tu tao id 
 
@@ -159,7 +184,7 @@ CREATE TABLE Dentist
   able BIT DEFAULT 1 NOT NULL,
   DenID VARCHAR(10) PRIMARY KEY,
   address NVARCHAR(80) NOT NULL,
-  email NVARCHAR(50) NOT NULL,
+  email NVARCHAR(50) NOT NULL UNIQUE,
   phone_number NVARCHAR(15) NOT NULL,
   name NVARCHAR(50) NOT NULL,
   title NVARCHAR(15) NOT NULL,
@@ -169,7 +194,9 @@ CREATE TABLE Dentist
   FacID VARCHAR(10) NOT NULL,
   gender BIT NOT NULL,
   birthday DATETIME NOT NULL,
-  FOREIGN KEY (FacID) REFERENCES Faculty(FacID)
+  AccountID VARCHAR(10) NOT NULL,
+  FOREIGN KEY (FacID) REFERENCES Faculty(FacID),
+  FOREIGN KEY (AccountID) REFERENCES Account(AccountID)
 );
 GO
 
@@ -226,31 +253,6 @@ END
 GO
 
 
-CREATE TABLE Account
-(
-  able BIT DEFAULT 1 NOT NULL,
-  AccountID VARCHAR(10) PRIMARY KEY,
-  username NVARCHAR(50) NOT NULL UNIQUE,
-  password NVARCHAR(50) NOT NULL,
-  role CHAR(1) NOT NULL CHECK (role in ('A','B','C')), -- A la Quan li, B Le tan, C la Nha si
-  AdminID VARCHAR(10) NOT NULL,
-  FOREIGN KEY (AdminID) REFERENCES Admin(AdminID)
-);
-GO
-
---function tu tao id 
-
-create function autoAcid()
-returns VARCHAR(10)
-as 
-begin
-	declare @ID VARCHAR(10)
-	declare @QUAN INT 
-	SELECT @QUAN = COUNT(AccountID) + 1 from Account 
-	SELECT @ID = 'AC' + RIGHT(REPLICATE(0,8), 8 - LEN(CAST (@QUAN AS VARCHAR(8)))) +  CAST(@QUAN AS VARCHAR(8))
-	RETURN @ID
-END
-GO
 
 
 
@@ -300,11 +302,14 @@ CREATE TABLE Appointment
   ap_time DATETIME NOT NULL,
   PatID VARCHAR(10) NOT NULL,
   DenID VARCHAR(10) NOT NULL,
+  AssiID VARCHAR(10) NOT NULL,
   able BIT DEFAULT 1 NOT NULL,
   symptom NVARCHAR(150) NOT NULL,
   stateAp CHAR(1) CHECK (stateAp IN ('A', 'B', 'C')) NOT NULL,
+  note NVARCHAR(170) NOT NULL,
   FOREIGN KEY (PatID) REFERENCES Patient(PatID),
-  FOREIGN KEY (DenID) REFERENCES Dentist(DenID)
+  FOREIGN KEY (DenID) REFERENCES Dentist(DenID),
+  FOREIGN KEY (AssiID) REFERENCES Assisstant(AssiID)
 );
 GO
 
@@ -355,11 +360,12 @@ CREATE TABLE Service
 (
   able BIT DEFAULT 1 NOT NULL,
   serviceID VARCHAR(10) PRIMARY KEY,
-  name NVARCHAR(50) NOT NULL,
+  name NVARCHAR(100) NOT NULL,
   price INT NOT NULL,
   CalUnit NVARCHAR(10) NOT NULL,
   quantity INT NOT NULL,
-  note NVARCHAR(70)NOT NULL
+  note NVARCHAR(70)NOT NULL,								
+  kindService NVARCHAR(60) NOT NULL
 )
 GO
 
@@ -381,6 +387,7 @@ CREATE TABLE Bill_Service
 (
   BilId VARCHAR(10) NOT NULL,
   ServiceID VARCHAR(10) NOT NULL,
+  quantity int NOT NULL,
   PRIMARY KEY (BilId, ServiceID),
   FOREIGN KEY (BilId) REFERENCES Bill(BilId),
   FOREIGN KEY (ServiceID) REFERENCES Service(ServiceID)
@@ -500,7 +507,7 @@ AS
 BEGIN
 	IF  NOT EXISTS(
 		SELECT * FROM inserted
-		WHERE inserted.AdminID IN (SELECT AdminID FROM Admin)
+		WHERE inserted.AccountID IN (SELECT AccountID FROM Account)
 	)
 	BEGIN
 		RAISERROR('Khoa ngoai chua ton tai', 16, 1)
@@ -532,6 +539,36 @@ GO
 
 --STORE PROCEDURE
 --Them du lieu
+--Account
+create proc procAddAccount
+	@username NVARCHAR(50),
+	@password NVARCHAR(50),
+	@role CHAR(1)
+as
+begin
+	begin 
+		declare @AccID VARCHAR(10)
+		set @AccID = dbo.autoAcid()
+		insert into Account(AccountID, username, password,role)
+		values (@AccID,@username,@password,@role)
+	end
+end 
+go
+
+--select * from Account
+
+exec procAddAccount 'admin','123456','A'
+exec procAddAccount 'recep1','23456432','B'
+exec procAddAccount 'recep2','645343','B'
+exec procAddAccount 'dentist1','12421424','C'
+exec procAddAccount 'dentist2','124241321','C'
+exec procAddAccount 'dentist3','124241321','C'
+exec procAddAccount 'dentist4','124241321','C'
+exec procAddAccount 'dentist5','124241321','C'
+exec procAddAccount 'dentist6','124241321','C'
+GO
+
+
 -- Admin
 create proc procAddAdmin
 	@name NVARCHAR(50),
@@ -539,50 +576,25 @@ create proc procAddAdmin
 	@phone_number VARCHAR(15),
 	@email VARCHAR(30),
 	@gender bit,
-	@birthday DATETIME 
+	@birthday DATETIME,
+	@AccountID VARCHAR(10)	
 as
 begin
+	if(@AccountID not in (select AccountID from Account)) 
+		print(N'Chưa tồn tại mã Account này')
+	else
+	begin
 	declare @AdminID VARCHAR(10)
 	set @AdminID = dbo.autoADid()
-	insert into admin(AdminID, name, address, phone_number, email, gender, birthday) 
-	values (@AdminID, @name, @address, @phone_number, @email, @gender, @birthday)
-	
+	insert into admin(AdminID, name, address, phone_number, email, gender, birthday,accountID) 
+	values (@AdminID, @name, @address, @phone_number, @email, @gender, @birthday,@AccountID)
+	end
 end
 go
 --select * from admin
 
-exec procAddAdmin N'Nguyễn Văn Lâm', N'quận 7', '0901827394', 'nguyenval@gmail.com', 1, '2003-02-01'
+exec procAddAdmin N'Nguyễn Văn Lâm', N'quận 7', '0901827394', 'nguyenval@gmail.com', 1, '2003-02-01','AC00000001'
 go
-
-
---Account
-create proc procAddAccount
-	@username NVARCHAR(50),
-	@password NVARCHAR(50),
-	@role CHAR(1),
-	@AdminID VARCHAR(10) 
-as
-begin
-	if(@adminID not in (select AdminID from Admin)) 
-		print(N'Chưa tồn tại mã Admin này')
-	else
-	begin 
-		declare @AccID VARCHAR(10)
-		set @AccID = dbo.autoAcid()
-		insert into Account(AccountID, username, password,role,AdminID)
-		values (@AccID,@username,@password,@role,@AdminID)
-	end
-end 
-go
-
---select * from Account
-
-exec procAddAccount 'adminDayNeds','123456789','A','AD00000001'
-exec procAddAccount 'recep1','23456432','B','AD00000001'
-exec procAddAccount 'recep2','645343','B','AD00000001'
-exec procAddAccount 'nhasi1','12421424','C','AD00000001'
-exec procAddAccount 'nhasi2','124241321','C','AD00000001'
-GO
 
 --Material
 
@@ -834,27 +846,27 @@ create proc procAddReceptionist
 	@email NVARCHAR(50),
 	@phone_number NVARCHAR(15),
 	@salary INT,
-	@AdminID VARCHAR(10) ,
 	@gender BIT ,
-	@birthday DATETIME 
+	@birthday DATETIME,
+	@AccountID VARCHAR(10)
 as
 begin
-	if(@AdminID not in (select AdminID from Admin)) 
-		print(N'Chưa tồn tại mã Admin này')
+	if(@AccountID not in (select AccountID from Account)) 
+		print(N'Chưa tồn tại mã Account này')
 	else
 	begin 
 		declare @RecepID VARCHAR(10)
 		set @RecepID = dbo.autoReid()
-		insert into Receptionist(RecepID,name,address,email,phone_number,salary,adminId, gender, birthday) 
-		values (@RecepID,@name,@address,@email,@phone_number,@salary,@adminID,@gender,@birthday)
+		insert into Receptionist(RecepID,name,address,email,phone_number,salary, gender, birthday, AccountID) 
+		values (@RecepID,@name,@address,@email,@phone_number,@salary,@gender,@birthday,@AccountID)
 	end
 end 
 go
 
 --select * from Receptionist
 
-exec procAddReceptionist N'Trần Văn Dũng', N'quận 2', 'tranvd@gmail.com', '0902837463',25000000,'AD00000001', 1, '2003-01-02'
-exec procAddReceptionist N'Hoàng Thị Trâm', N'quận 3', 'hoantm@gmail.com', '09023522126',27000000,'AD00000001', 0, '2003-01-02'
+exec procAddReceptionist N'Trần Văn Dũng', N'quận 2', 'tranvd@gmail.com', '0902837463',25000000, 1, '2003-01-02','AC00000002'
+exec procAddReceptionist N'Hoàng Thị Trâm', N'quận 3', 'hoantm@gmail.com', '09023522126',27000000, 0, '2003-01-02','AC00000003'
 GO
 
 create proc procAddCalendar_Receptionist
@@ -942,8 +954,11 @@ go
 --select * from Faculty
 
 exec procAddFaculty 'Nha chu'
-exec procAddFaculty 'Phuc hinh'
-exec procAddFaculty 'Rang tre em'
+exec procAddFaculty N'Phục Hình'
+exec procAddFaculty N'Răng trẻ em'
+exec procAddFaculty N'Nhổ răng va tiểu phẩu'
+exec procAddFaculty N'Chữa răng và nội nha'
+exec procAddFaculty N'Tổng quát'
 GO
 
 
@@ -959,29 +974,32 @@ create proc procAddDentist
 	@rank NVARCHAR(20),
 	@nation NVARCHAR(20),
 	@gender BIT,
-	@birthday DATETIME 
+	@birthday DATETIME ,
+	@AccountID VARCHAR(10)
 as
 begin
 	if(@FacID not in (select FacID from Faculty)) 
 		print(N'Chưa tồn tại mã Faculty này')
+	else if(@AccountID not in (select AccountID from Account)) 
+		print(N'Chưa tồn tại mã Account này')
 	else
 	begin 
 		declare @DenID VARCHAR(10)
 		set @DenID = dbo.autoDeid()
-		insert into Dentist(DenID,name,address,email,phone_number,salary,FacID,title,rank,nation, gender, birthday) 
-		values (@DenID,@name,@address,@email,@phone_number,@salary,@FacID,@title,@rank,@nation,@gender,@birthday)
+		insert into Dentist(DenID,name,address,email,phone_number,salary,FacID,title,rank,nation, gender, birthday,AccountID) 
+		values (@DenID,@name,@address,@email,@phone_number,@salary,@FacID,@title,@rank,@nation,@gender,@birthday,@AccountID)
 	end
 end 
 go
 
 --select * from Dentist
 
-exec procAddDentist N'Lâm Đình Kiêm', N'Tây Ninh', 'lamvak@gmail.com', '09023511284',9000000,'FA00000001','Thac si', 'A', 'Viet Nam', 1, '2003-01-02'
-exec procAddDentist N'Hoa Hồ Quốc Đại', N'Kiên Giang', 'hoadai@gmail.com', '09092815226',8700000,'FA00000001','Tien si', 'B', 'Viet Nam', 1, '2003-01-02'
-exec procAddDentist N'Bùi Xuân Huấn', N'Trá Vinh', 'buixhuan@gmail.com', '09062715226',8000000,'FA00000002','Thac si', 'C', 'Viet Nam', 1, '2003-01-02'
-exec procAddDentist N'Linh Văn Sơn', N'Thanh Hoá', 'linhnui@gmail.com', '09028365226',8000000,'FA00000002','Tien si', 'C', 'Viet Nam', 1, '2003-01-02'
-exec procAddDentist N'Phan Văn Toàn', N'Hải Phòng', 'phanvt@gmail.com', '09024635226',9300000,'FA00000003','Thac si', 'A', 'Viet Nam', 1, '2003-01-02'
-exec procAddDentist N'Hoa Yến Anh', N'Tân Biên', 'anhvippro@gmail.com', '09022915226',9400000,'FA00000003','Tien si', 'A', 'Viet Nam', 0, '2003-01-02'
+exec procAddDentist N'Lâm Đình Kiêm', N'Tây Ninh', 'lamvak@gmail.com', '09023511284',9000000,'FA00000001','Thac si', 'A', 'Viet Nam', 1, '2003-01-02','AC00000004'
+exec procAddDentist N'Hoa Hồ Quốc Đại', N'Kiên Giang', 'hoadai@gmail.com', '09092815226',8700000,'FA00000001','Tien si', 'B', 'Viet Nam', 1, '2003-01-02','AC00000005'
+exec procAddDentist N'Bùi Xuân Huấn', N'Trá Vinh', 'buixhuan@gmail.com', '09062715226',8000000,'FA00000002','Thac si', 'C', 'Viet Nam', 1, '2003-01-02','AC00000006'
+exec procAddDentist N'Linh Văn Sơn', N'Thanh Hoá', 'linhnui@gmail.com', '09028365226',8000000,'FA00000002','Tien si', 'C', 'Viet Nam', 1, '2003-01-02','AC00000007'
+exec procAddDentist N'Tạ Triết', N'An Giang', 'tatriet16@gmail.com', '09024635226',9300000,'FA00000003','Thac si', 'A', 'Viet Nam', 1, '2003-01-02','AC00000008'
+exec procAddDentist N'Hoa Yến Anh', N'Tân Biên', 'anhvippro@gmail.com', '09022915226',9400000,'FA00000003','Tien si', 'A', 'Viet Nam', 0, '2003-01-02','AC00000009'
 GO
 
 create proc procAddCalendar_Dentist
@@ -1001,7 +1019,7 @@ begin
 end
 go
 
-exec procAddCalendar_Dentist 'DE00000001', '2024-04-11', '2024-04-10 01:00:00', '2024-04-10 11:00:00'
+exec procAddCalendar_Dentist 'DE00000001', '2024-04-11', '01:00:00', '2024-04-10 11:00:00'
 exec procAddCalendar_Dentist 'DE00000002', '2024-04-11', '2024-04-10 02:00:00', '2024-04-10 12:00:00'
 go
 
@@ -1039,33 +1057,37 @@ create proc procAddAppointment
 	@ap_time DATETIME,
 	@PatID VARCHAR(10),
 	@DenID VARCHAR(10),
+	@AssiID VARCHAR(10),
 	@symptom NVARCHAR(150),
-	@stateAp CHAR(1)
+	@stateAp CHAR(1),
+	@note NVARCHAR(170)
 as
 begin
 	if(@PatID not in (select patID from Patient)) 
 		print(N'Chưa tồn tại mã Patient này')
 	else if(@DenID not in (select DenID from Dentist)) 
 		print(N'Chưa tồn tại mã Dentist này')
+	else if(@AssiID not in (select AssiID from Assisstant)) 
+		print(N'Chưa tồn tại mã Assisstant này')
 	else 
 	begin
 		declare @ApID VARCHAR(10)
 		set @ApID = dbo.autoApid()
 		set @ap_time = convert(datetime, @ap_time, 103)
-		insert into Appointment(ApID,ap_time,PatID,DenID,symptom,stateAp)
-		values (@ApID,@ap_time,@PatID,@DenID,@symptom,@stateAp)
+		insert into Appointment(ApID,ap_time,PatID,DenID,AssiID,symptom,stateAp,note)
+		values (@ApID,@ap_time,@PatID,@DenID,@AssiID,@symptom,@stateAp,@note)
 	end
 end 
 go
 --select * from Appointment
 
-exec procAddAppointment '2024-03-05 12:00','PA00000001','DE00000001',N'đau răng cửa', 'B'
-exec procAddAppointment '2024-03-06 12:00','PA00000001','DE00000001',N'đau răng cửa', 'B'
-exec procAddAppointment '2024-03-05 11:00','PA00000002','DE00000002',N'mất răng hàm', 'A'
-exec procAddAppointment '2024-03-05 10:00','PA00000003','DE00000003',N'ê buốc răng', 'C'
-exec procAddAppointment '2024-03-06 13:00','PA00000004','DE00000004',N'đau ở chỗ răng khôn', 'A'
-exec procAddAppointment '2024-03-06 15:00','PA00000005','DE00000005',N'lệch răng nghiêm trọng', 'B'
-exec procAddAppointment '2024-03-06 16:00','PA00000006','DE00000006',N'lâu lâu bị nhói', 'C'
+exec procAddAppointment '2024-03-05 12:00','PA00000001','DE00000001','AS00000001',N'đau răng cửa', 'B', N'bệnh nhân đang gấp'
+exec procAddAppointment '2024-03-06 12:00','PA00000001','DE00000001','AS00000001',N'đau răng cửa', 'B', N'bệnh nhân khám lại'
+exec procAddAppointment '2024-03-05 11:00','PA00000002','DE00000002','AS00000001',N'mất răng hàm', 'A', ''
+exec procAddAppointment '2024-03-05 10:00','PA00000003','DE00000003','AS00000001',N'ê buốc răng', 'C' , ''
+exec procAddAppointment '2024-03-06 13:00','PA00000004','DE00000004','AS00000001',N'đau ở chỗ răng khôn', 'A', ''
+exec procAddAppointment '2024-03-06 15:00','PA00000005','DE00000005','AS00000001',N'lệch răng nghiêm trọng', 'B', ''
+exec procAddAppointment '2024-03-06 16:00','PA00000006','DE00000006','AS00000001',N'lâu lâu bị nhói', 'C', ''
 GO
 
 
@@ -1073,26 +1095,218 @@ GO
 --Service 
 
 create proc procAddService
-	@name NVARCHAR(50),
+	@name NVARCHAR(100),
 	@price INT,
 	@CalUnit NVARCHAR(10),
 	@quantity INT,
-	@note NVARCHAR(70)
+	@note NVARCHAR(70),
+	@kindService NVARCHAR(60)
+	
 as
 begin
 	declare @SerID VARCHAR(10)
 	set @SerID = dbo.autoSeid()
-	insert into Service (serviceID,name, price,CalUnit,quantity,note) 
-	values (@SerID,@name,@price,@CalUnit,@quantity,@note)
+	insert into Service (serviceID,name, price,CalUnit,quantity,note,kindService) 
+	values (@SerID,@name,@price,@CalUnit,@quantity,@note,@kindService)
 end 
 go
 
 --select * from service
 
-exec procAddService N'Nhổ răng cửa', 50000,N'Cái',1,''
-exec procAddService N'Nhổ răng cối nhỏ',60000,N'Cái',1,'4 phim'
-exec procAddService N'Trám GIC', 100000,N'Xoang',1,''
-exec procAddService N'Thay nền', 300000,N'Hàm',1,''
+--1.Khám hồ sơ 
+exec procAddService N'Khám bệnh',5000,N'Lượt',1,'',N'Khám-hồ sơ'
+--2.Nhổ răng
+exec procAddService N'Nhổ răng cửa, răng nanh', 50000,N'Cái',1,'', N'Nhổ răng'
+exec procAddService N'Nhổ răng cối nhỏ',60000,N'Cái',1,'',N'Nhổ răng'
+exec procAddService N'Nhổ răng cối lớn trên',70000,N'Cái',1,'',N'Nhổ răng'
+exec procAddService N'Nhổ răng cối lớn dưới',90000,N'Cái',1,'',N'Nhổ răng'
+exec procAddService N'Nhổ răng cối lung lay',50000,N'Cái',1,'',N'Nhổ răng'
+exec procAddService N'Nhổ chân răng vĩnh viễn',60000,N'Cái',1,'',N'Nhổ răng'
+exec procAddService N'Khâu ổ răng',50000,N'Cái',1,'',N'Nhổ răng'
+--Tiểu phẫu thuật
+exec procAddService N'Rằng khôn mọc lệch nhổ tiểu phẩu',300000,N'Cái',1,'',N'Tiểu phẩu thuật'
+exec procAddService N'Phẫu thuật điều chỉnh xương ổ răng',200000,N'Cái',1,'',N'Tiểu phẩu thuật'
+exec procAddService N'Phẩu thuật cắt chóp',300000,N'Cái',1,'',N'Tiểu phẩu thuật'
+--3.Nha chu
+exec procAddService N'Cạo vôi răng',50000,N'2 hàm',1,'','Nha chu'
+exec procAddService N'Điều trị viêm nha chu không phẫu thuật',100000,N'Vùng hàm',1,N'Nạo túi nha chu','Nha chu'
+exec procAddService N'Phẫu thuật lật vạt làm sạch',100000,N'Lần',1,'','Nha chu'
+exec procAddService N'Cắt thắng',100000,N'Lần',1,'','Nha chu'
+exec procAddService N'Phẫu thuật nướu',500000,N'Răng',1,'','Nha chu'
+--4.Chữa răng-Nội nha
+exec procAddService N'Tái tạo thân răng', 150000, N'Xoang', 1, '', N'Chữa răng-Nội nha'
+exec procAddService N'Trám composite xoang I, III', 100000, 'Xoang', 1, '', N'Chữa răng-Nội nha'
+exec procAddService N'Trám composite xoang II, IV, V', 120000, 'Xoang', 1, '', N'Chữa răng-Nội nha'
+exec procAddService N'Trám GIC', 100000, N'Xoang', 1, '', N'Chữa răng-Nội nha'
+exec procAddService N'Trám đắp mặt, hở kẽ', 200000, N'Cái', 1, '', N'Chữa răng-Nội nha'
+exec procAddService N'Trám phòng ngừa', 80000, N'Cái', 1, '', N'Chữa răng-Nội nha'
+--Chữa tủy
+exec procAddService N'Răng cửa, răng nanh', 250000,N'Cái',1,'', N'chữa tủy'
+exec procAddService N'Răng cối nhỏ',300000,N'Cái',1,'',N'chữa tủy'
+exec procAddService N'Răng cối lớn',60000,N'Cái',1,'',N'chữa tủy'
+exec procAddService N'Chữa tủy lại(đóng thêm)',60000,N'Ống tủy',1,'',N'chữa tủy'
+--Phục hình tháo lắp
+exec procAddService N'Phục hình tháo lắp 1 răng', 100000, N'Răng', 1, N'', N'Phục hình tháo lắp'
+exec procAddService N'Phục hình tháo lắp 1 hàm toàn hàm', 1500000, N'Hàm', 1, N'', N'Phục hình tháo lắp'
+exec procAddService N'Phục hình tháo lắp 2 hàm toàn hàm', 3000000, N'Hàm', 1, N'', N'Phục hình tháo lắp'
+--Sữa chữa hàm
+exec procAddService N'Vá hàm', 100000, N'Hàm', 1, N'', N'Sửa chữa hàm'
+exec procAddService N'Thay nền', 300000, N'Hàm', 1, N'', N'Sửa chữa hàm'
+exec procAddService N'Đệm hàm nhựa nấu', 250000, N'Hàm', 1, N'', N'Sửa chữa hàm'
+exec procAddService N'Thêm, thay móc', 50000, N'Cái', 1, N'', N'Sửa chữa hàm'
+exec procAddService N'Thêm, thay răng', 50000, N'Cái', 1, N'', N'Sửa chữa hàm'
+exec procAddService N'Chữa đau', 50000, N'Lần', 1, N'', N'Sửa chữa hàm'
+exec procAddService N'Móc dẻo', 200000, N'Cái', 1, N'', N'Sửa chữa hàm'
+exec procAddService N'Hàm dẻo', 700000, N'Cái', 1, N'', N'Sửa chữa hàm'
+exec procAddService N'Hàm khung bộ ', 750000, N'Cái', 1, N'Răng tính riêng', N'Sửa chữa hàm'
+--Điều trị tiền phục hình
+exec procAddService N'Đệm hàm nhựa tự cứng (Hàm cũ)', 100000, N'Hàm', 1, N'', N'Điều trị tiền phục hình'
+exec procAddService N'Điều chỉnh khớp cắn (Hàm cũ)', 100000, N'Hàm', 1, N'', N'Điều trị tiền phục hình'
+
+--6.Phục hình cố định
+exec procAddService N'Tái tạo cùi răng (có chốt)', 150000, N'Răng', 1, N'', N'Phục hình cố định'
+exec procAddService N'Mão, cầu răng kim loại toàn diện', 350000, N'Răng', 1, N'', N'Phục hình cố định'
+exec procAddService N'Mão, cầu răng kim loại-sứ', 500000, N'Răng', 1, N'', N'Phục hình cố định'
+exec procAddService N'Sứ titan', 700000, N'', 1, N'', N'Phục hình cố định'
+exec procAddService N'Hàm khung Ti (chưa bao gồm răng)', 1500000, N'', 1, N'', N'Phục hình cố định'
+exec procAddService N'Sứ zirconia', 2500000, N'', 1, N'', N'Phục hình cố định'
+exec procAddService N'Sứ cercon', 3500000, N'', 1, N'', N'Phục hình cố định'
+exec procAddService N'Điều chỉnh, gắn lại, tháo PHCĐ', 100000, N'Răng', 1, N'', N'Phục hình cố định'
+exec procAddService N'Hàm tạm', 50000, N'Răng', 1, N'', N'Phục hình cố định'
+exec procAddService N'Mão tạm', 15000, N'Răng', 1, N'', N'Phục hình cố định'
+exec procAddService N'Cầu răng tạm', 15000, N'Răng', 1, N'', N'Phục hình cố định'
+exec procAddService N'Cùi giá đúc', 100000, N'Cái', 1, N'', N'Phục hình cố định'
+
+--7.Điều trị răng sữa
+exec procAddService N'Nhổ răng sữa(tê bôi)',20000, N'Răng',1,'',N'Điều trị răng sữa'
+exec procAddService N'Nhổ răng sữa(tê chích)',50000, N'Răng',1,'',N'Điều trị răng sữa'
+exec procAddService N'Trám răng sữa bằng GIC',50000, N'Răng',1,'',N'Điều trị răng sữa'
+exec procAddService N'Trám răng sữa bằng composite',80000, N'Răng',1,'',N'Điều trị răng sữa'
+exec procAddService N'Trám dự phòng hố rãnh mặt nhai',80000, N'Răng',1,'',N'Điều trị răng sữa'
+exec procAddService N'Đặt gel Fluor phòng ngừa',50000, N'Hàm',1,'',N'Điều trị răng sữa'
+exec procAddService N'Lấy tủy chân răng sữa',200000, N'Răng',1,'2 phim',N'Điều trị răng sữa'
+exec procAddService N'Mão nhựa răng cửa (Strip crown)',200000, N'Răng',1,'',N'Điều trị răng sữa'
+exec procAddService N'Mão kim loại làm sẵn',250000, N'Răng',1,'',N'Điều trị răng sữa'
+exec procAddService N'Bộ giữ khoảng tháo lắp',250000, N'Hàm',1,'',N'Điều trị răng sữa'
+exec procAddService N'Giữ khoảng cố định 1 bên',400000, N'Cái',1,'',N'Điều trị răng sữa'
+exec procAddService N'Bộ giữ khoảng cố định 2 bên',800000, N'Bộ',1,'',N'Điều trị răng sữa'
+exec procAddService N'Mặt phẳng nghiêng',500000, N'Cái',1,'',N'Điều trị răng sữa'
+exec procAddService N'Tấm chặn môi',500000, N'Cái',1,'',N'Điều trị răng sữa'
+exec procAddService N'Khí cụ đẩy môi (lip bumper)',1000000, N'Cái',1,'',N'Điều trị răng sữa'
+exec procAddService N'Khí cụ tháo lắp điều trị cắn chéo l răng',1000000, N'Cái',1,'',N'Điều trị răng sữa'
+exec procAddService N'Khí cụ Quad Helix',1000000, N'Cái',1,'',N'Điều trị răng sữa'
+exec procAddService N'Tiểu phẫu',250000, N'Lần',1,'', N'Điều trị răng sữa'
+
+--8.Chỉnh hình răng mặt
+--Khí cụ tháo lắp
+exec procAddService N'Khí cụ tháo lắp 1 hàm',1500000, N'Hàm',1,'',N'Chỉnh hình răng mặt'
+exec procAddService N'Khí cụ tháo lắp 2 hàm',3000000, N'Hàm',1,'',N'Chỉnh hình răng mặt'
+exec procAddService N'Làm lại khí cụ tháo lắp 1 hàm',300000, N'Hàm',1,'',N'Chỉnh hình răng mặt'
+exec procAddService N'Làm lại khí cụ tháo lắp 2 hàm',600000, N'Hàm',1,'',N'Chỉnh hình răng mặt'
+exec procAddService N'Khí cụ duy trì kết quả 1 hàm',300000, N'Hàm',1,'Khí cụ tháo lắp',N'Chỉnh hình răng mặt'
+--Khí cụ cố định
+exec procAddService N'Khí cụ cố định 1 hàm',10000000, N'Hàm',1,'',N'Chỉnh hình răng mặt'
+exec procAddService N'Khí cụ cố định 2 hàm',20000000, N'Hàm',1,'',N'Chỉnh hình răng mặt'
+exec procAddService N'Khí cụ cố định 2 hàm trên 2 năm',26000000, N'Hàm',1,'',N'Chỉnh hình răng mặt'
+exec procAddService N'Khí cụ cố định 2 hàm sử dụng mắc cài thế hệ mới',28000000, N'Hàm',1,'',N'Chỉnh hình răng mặt'
+exec procAddService N'Khí cụ cố định 2 hàm sử dụng mắc cài sứ',15000000, N'Hàm',1,'',N'Chỉnh hình răng mặt'
+
+--9.Nha công cộng
+exec procAddService N'Máng Fluor không thuốc', 100000, N'Máng', 1, N'2 hàm', N'Nha công cộng'
+
+--10.Điều trị loạn năng hệ thống nhai
+exec procAddService N'1 máng nhai', 500000, N'Máng', 1, N'', N'Điều trị loạn năng hệ thống nhai'
+exec procAddService N'Mài chỉnh khớp cắn đơn giản', 150000, N'Lần', 1, N'', N'Điều trị loạn năng hệ thống nhai'
+exec procAddService N'Mài chỉnh khớp cắn phức tạp', 300000, N'Lần', 1, N'', N'Điều trị loạn năng hệ thống nhai'
+--11.X-quang răng
+exec procAddService N'Phim quanh chóp', 30000, N'Phim', 1, N'', N'X-quang răng'
+exec procAddService N'Phim toàn cảnh', 100000, N'Phim', 1, N'', N'X-quang răng'
+
+
+--Phục hình đơn lẻ
+--{
+--Răng sứ dán
+exec procAddService N'Răng sứ dán kim loại', 1500000,N'Hàm',1,'',N'Răng sứ dán'
+exec procAddService N'Răng sứ dán Titan', 3000000,N'Hàm',1,'',N'Răng sứ dán'
+exec procAddService N'Răng sứ dán Zirco', 6000000,N'Hàm',1,'',N'Răng sứ dán'
+exec procAddService N'Răng sứ dán Bio HPP', 8000000,N'Hàm',1,'',N'Răng sứ dán'
+--Giá răng sứ bắt vít trên Multi Unit gồm 2 khoản sau cộng lại:***
+exec procAddService N'Trụ phục hình Multi Unit', 1500000,N'Hàm',1,'',N'Răng sứ dán'
+--exec procAddService N'Răng sứ(Kim loại, Titan, Zirco, Bio HPP)', 1500000,N'Hàm',1,'',N'Răng sứ dán'
+--}
+
+--Phục Hình bắt vít 
+--{
+--Hàm phủ tháo lắp
+exec procAddService N'Hàm phủ tháo lắp 2 Implant', 70000000,N'Hàm',1,N'Răng composite nền nhựa cường lực',N'Hàm phủ tháo lắp'
+exec procAddService N'Hàm phủ tháo lắp 3 Implant thanh bar', 75000000,N'Hàm',1,N'Răng composite nền nhựa cường lực',N'Hàm phủ tháo lắp'
+exec procAddService N'Hàm phủ tháo lắp 4 Implant thanh bar', 80000000,N'Hàm',1,N'Răng composite nền nhựa cường lực',N'Hàm phủ tháo lắp'
+exec procAddService N'Hàm phủ tháo lắp 5 Implant thanh bar', 90000000,N'Hàm',1,N'Răng composite nền nhựa cường lực',N'Hàm phủ tháo lắp'
+exec procAddService N'Hàm phủ tháo lắp 6 Implant thanh bar', 100000000,N'Hàm',1,N'Răng composite nền nhựa cường lực',N'Hàm phủ tháo lắp'
+exec procAddService N'Hàm phủ tháo lắp 3 Implant nút bấm', 75000000,N'Hàm',1,N'Răng composite nền nhựa cường lực',N'Hàm phủ tháo lắp'
+exec procAddService N'Hàm phủ tháo lắp 4 Implant nút bấm', 80000000,N'Hàm',1,N'Răng composite nền nhựa cường lực',N'Hàm phủ tháo lắp'
+exec procAddService N'Hàm phủ tháo lắp 5 Implant nút bấm', 90000000,N'Hàm',1,N'Răng composite nền nhựa cường lực',N'Hàm phủ tháo lắp'
+exec procAddService N'Hàm phủ tháo lắp 6 Implant nút bấm', 100000000,N'Hàm',1,N'Răng composite nền nhựa cường lực',N'Hàm phủ tháo lắp'
+
+--Hàm cố định 
+exec procAddService N'Hàm cố định bắ vítt 4 Implant Sườn Titan răng nhựa', 70000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+exec procAddService N'Hàm cố định bắt vít 4 Implant Sườn Titan răng sứa', 150000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+exec procAddService N'Hàm cố định bắt vít 4 Implant Sườn Zirco răng nhựa', 110000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+exec procAddService N'Hàm cố định bắt vít 4 Implant Sườn Zirco răng sứa', 190000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+exec procAddService N'Hàm cố định bắt vít 4 Implant Sườn Bio HPP răng nhựa', 110000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+exec procAddService N'Hàm cố định bắt vít 4 Implant Sườn Bio HPP răng sứa', 190000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+
+exec procAddService N'Hàm cố định bắt vít 5 Implant', 14000000,N'Phục hình',1,'',N'Hàm cố định bắt vít'
+
+exec procAddService N'Hàm cố định bắT vít 6 Implant Sườn Titan răng nhựa', 90000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+exec procAddService N'Hàm cố định bắt vít 6 Implant Sườn Titan răng sứa', 170000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+exec procAddService N'Hàm cố định bắt vít 6 Implant Sườn Zirco răng nhựa', 130000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+exec procAddService N'Hàm cố định bắt vít 6 Implant Sườn Zirco răng sứa', 210000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+exec procAddService N'Hàm cố định bắt vít 6 Implant Sườn Bio HPP răng nhựa', 130000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+exec procAddService N'Hàm cố định bắt vít 6 Implant Sườn Bio HPP răng sứa', 210000000,N'Hàm',1,'HYBRID',N'Hàm cố định bắt vít'
+--}
+--Phục hình tạm tức thì toàn hàm
+exec procAddService N'Răng tạm toàn hàm', 20000000,N'Hàm',1,'',N'Phục hình tạm tức thì toàn hàm'
+exec procAddService N'Cylinder', 4000000,N'Hàm',1,'',N'Phục hình tạm tức thì toàn hàm'
+
+--Cấy ghép 1 trụ Implant
+exec procAddService N'OSSTEM(KOREA)', 15000000,N'1 trụ Implant',1,'',N'Cấy ghép 1 trụ Implant'
+exec procAddService N'RITTER', 20000000,N'1 trụ Implant',1,'',N'Cấy ghép 1 trụ Implant'
+exec procAddService N'SIC(SWISS/GERMANY)', 20000000,N'1 trụ Implant',1,'',N'Cấy ghép 1 trụ Implant'
+exec procAddService N'NOBEL BIOCARE (USA/SWEDEN)', 24000000,N'1 trụ Implant',1,'',N'Cấy ghép 1 trụ Implant'
+exec procAddService N'NOBEL ACTIVE/PARALLEL (USA/SWEDEN)', 29000000,N'1 trụ Implant',1,'',N'Cấy ghép 1 trụ Implant'
+exec procAddService N'STRAUMANN SLActive (SWISS)', 32000000,N'1 trụ Implant',1,'',N'Cấy ghép 1 trụ Implant'
+exec procAddService N'NOBEL TiUltra-ACTIVE/PARALLEL-(USA/SWEDEN)', 32000000,N'1 trụ Implant',1,'',N'Cấy ghép 1 trụ Implant'
+exec procAddService N'STRAUMANN BLX (SWISS)', 35000000,N'1 trụ Implant',1,'',N'Cấy ghép 1 trụ Implant'
+exec procAddService N'Implant Zygoma NOBEL (USA)', 50000000,N'1 trụ Implant',1,'',N'Cấy ghép 1 trụ Implant'
+
+-- Màng, xương tổng hợp
+exec procAddService N'Xương khử khoáng', 5000000, N'Đơn vị', 1, N'', N'Màng, xương tổng hợp'
+exec procAddService N'Màng Collagen 15x20mm', 4000000, N'Đơn vị', 1, N'', N'Màng, xương tổng hợp'
+exec procAddService N'Màng Collagen 20x30mm', 5000000, N'Đơn vị', 1, N'', N'Màng, xương tổng hợp'
+exec procAddService N'Màng Collagen 30x40mm', 7000000, N'Đơn vị', 1, N'', N'Màng, xương tổng hợp'
+exec procAddService N'Màng Titan, PTFE', 6000000, N'Đơn vị', 1, N'', N'Màng, xương tổng hợp'
+exec procAddService N'Vít (Tack) neo xương, màng', 600000, N'Con', 1, N'', N'Màng, xương tổng hợp'
+
+-- Màng, xương tự thân
+exec procAddService N'Ghép xương tự thân', 6000000, N'Đơn vị *', 1, N'', N'Màng, xương tự thân'
+exec procAddService N'Mô liên kết', 5000000, N'Đơn vị *', 1, N'', N'Màng, xương tự thân'
+exec procAddService N'Màng PRP (tự thân)', 5000000, N'Đơn vị', 1, N'', N'Màng, xương tự thân'
+exec procAddService N'Ghép xương mào chậu', 20000000, N'', 1, N'', N'Màng, xương tự thân'
+
+-- Nâng xoang
+exec procAddService N'Nâng xoang kín', 4000000, N'Đơn vị', 1, N'Không bao gồm xương và màng', N'Nâng xoang'
+exec procAddService N'Nâng xoang hở', 6000000, N'Đơn vị', 1, N'Không bao gồm xương và màng', N'Nâng xoang'
+
+-- Chụp CT CONE BEAM
+exec procAddService N'Chụp CT Cone Beam 1 hàm', 550000, N'Đơn vị *', 1, N'', N'Chụp CT CONE BEAM'
+exec procAddService N'Chụp CT Cone Beam 2 hàm', 900000, N'Đơn vị *', 1, N'', N'Chụp CT CONE BEAM'
+
+--Máng Hướng Dẫn / in Sọ Mặt
+exec procAddService N'Máng hướng dẫn', 3300000, N'Răng', 1, N'', N'Máng Hướng Dẫn / in Sọ Mặt'
+exec procAddService N'In sọ mặt', 700000, N'Đơn vị', 1, N'', N'Máng Hướng Dẫn / in Sọ Mặt'
+
+
 GO
 
 --Bill 
@@ -1128,7 +1342,8 @@ GO
 --Bill_Service
 create proc procAddBill_Service
 	@serviceID VARCHAR(10),
-	@bilID VARCHAR(10)
+	@bilID VARCHAR(10),
+	@quantity INT
 as
 begin
 	if(@serviceID not in (select serviceID from Service)) 
@@ -1137,20 +1352,20 @@ begin
 		print(N'Chưa tồn tại mã Bill này')
 	else
 	begin
-		insert into Bill_Service (serviceID, bilID)
-		values (@serviceID,@bilID)
+		insert into Bill_Service (serviceID, bilID, quantity)
+		values (@serviceID,@bilID, @quantity)
 	end
 end 
 go
 
 --select * from Bill_Service
 
-exec procAddBill_Service 'SE00000001','BI00000001'
-exec procAddBill_Service 'SE00000002','BI00000001'
-exec procAddBill_Service 'SE00000001','BI00000002'
-exec procAddBill_Service 'SE00000003','BI00000003'
-exec procAddBill_Service 'SE00000004','BI00000003'
-exec procAddBill_Service 'SE00000003','BI00000004'
+exec procAddBill_Service 'SE00000001','BI00000001', 1
+exec procAddBill_Service 'SE00000002','BI00000001', 1
+exec procAddBill_Service 'SE00000001','BI00000002', 1
+exec procAddBill_Service 'SE00000003','BI00000003', 1
+exec procAddBill_Service 'SE00000004','BI00000003', 1
+exec procAddBill_Service 'SE00000003','BI00000004', 1
 GO
 
 --Bill_Recep
@@ -1263,6 +1478,7 @@ exec procAddAssiss_Recep 'AS00000004','RE00000002'
 exec procAddAssiss_Recep 'AS00000005','RE00000002'
 exec procAddAssiss_Recep 'AS00000006','RE00000002'
 GO
+
 
 --chuc nang truy van
 
@@ -1432,3 +1648,6 @@ end
 exec GetDentistByPatID 'PA00000001' 
 GO
 */
+
+select * from account
+select * from dentist

@@ -9,6 +9,13 @@ CREATE TABLE Prescription
 )
 GO
 
+CREATE TABLE Bill_Prescription
+(
+	BilID VARCHAR(10) REFERENCES Bill(bilId),
+	PresID VARCHAR(10) REFERENCES Prescription(PresID)
+)
+GO
+
 
 DROP FUNCTION IF EXISTS autoPresid
 DROP TABLE IF EXISTS Prescription_Detail
@@ -39,6 +46,12 @@ INSERT INTO Prescription(PresID, PatID, DenID, totalPrice) values (dbo.autoPresi
 INSERT INTO Prescription(PresID, PatID, DenID, totalPrice) values (dbo.autoPresid(), 'PA00000002', 'DE00000001', 250000)
 INSERT INTO Prescription(PresID, PatID, DenID, totalPrice) values (dbo.autoPresid(), 'PA00000003', 'DE00000002', 350000)
 INSERT INTO Prescription(PresID, PatID, DenID, totalPrice) values (dbo.autoPresid(), 'PA00000004', 'DE00000002', 400000)
+
+INSERT INTO Bill_Prescription(BilID, PresID) values 
+('BI00000001', 'PR00000001'),
+('BI00000002', 'PR00000002'),
+('BI00000003', 'PR00000003'),
+('BI00000004', 'PR00000004')
 
 
 INSERT INTO Prescription_Detail(PresID, materialID, quantity, calUnit, note) values

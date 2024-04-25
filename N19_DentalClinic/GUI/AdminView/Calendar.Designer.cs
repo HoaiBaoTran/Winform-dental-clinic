@@ -310,7 +310,6 @@
             Name = "Calendar";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Lập lịch công việc";
-            Load += Calendar_Load;
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();

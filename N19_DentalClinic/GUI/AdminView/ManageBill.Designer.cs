@@ -35,6 +35,7 @@
             btnSearch = new component.RJButton();
             tbSearch = new TextBox();
             label6 = new Label();
+            btnAddBill = new Button();
             ((System.ComponentModel.ISupportInitialize)dataBill).BeginInit();
             SuspendLayout();
             // 
@@ -112,11 +113,29 @@
             label6.TabIndex = 121;
             label6.Text = "Quản lý hóa đơn";
             // 
+            // btnAddBill
+            // 
+            btnAddBill.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAddBill.BackColor = Color.FromArgb(18, 219, 78);
+            btnAddBill.Font = new Font("Microsoft Sans Serif", 12F);
+            btnAddBill.Image = (Image)resources.GetObject("btnAddBill.Image");
+            btnAddBill.ImageAlign = ContentAlignment.MiddleLeft;
+            btnAddBill.Location = new Point(1005, 89);
+            btnAddBill.Margin = new Padding(3, 4, 3, 4);
+            btnAddBill.Name = "btnAddBill";
+            btnAddBill.Size = new Size(188, 57);
+            btnAddBill.TabIndex = 126;
+            btnAddBill.Text = "Thêm hóa đơn";
+            btnAddBill.TextAlign = ContentAlignment.MiddleRight;
+            btnAddBill.UseVisualStyleBackColor = false;
+            btnAddBill.Click += btnAddBill_Click;
+            // 
             // ManageBill
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1205, 800);
+            Controls.Add(btnAddBill);
             Controls.Add(dataBill);
             Controls.Add(btnSearch);
             Controls.Add(tbSearch);
@@ -136,5 +155,6 @@
         private component.RJButton btnSearch;
         private TextBox tbSearch;
         private Label label6;
+        private Button btnAddBill;
     }
 }

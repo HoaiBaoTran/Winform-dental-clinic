@@ -115,6 +115,8 @@ namespace N19_DentalClinic.GUI.AdminView
             ColorMarker.ButtonColor(btnServiceManagement, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnPatFile, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnManageBill, "0918DB", "ffffff");
+
+            PanelInteraction.loadForm(new Report(), pnShowContent);
         }
 
         private void btnWorkCalendar_Click(object sender, EventArgs e)
