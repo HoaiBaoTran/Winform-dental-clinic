@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using N19_DentalClinic.GUI.Work_schedule;
 
 namespace N19_DentalClinic.GUI.AdminView
 {
@@ -36,6 +37,7 @@ namespace N19_DentalClinic.GUI.AdminView
 
         private void ReceptionDescriptionDetail_Load(object sender, EventArgs e)
         {
+            
             btnCreateRecep.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
             btnBack.BackColor = ColorTranslator.FromHtml("#" + "50657A");
             //Tai danh sach lễ tân len
@@ -88,6 +90,7 @@ namespace N19_DentalClinic.GUI.AdminView
                     rbMale.Enabled = true;
                     btnCalendar.Enabled = true;
                     txtSalary.ReadOnly = false;
+                    btnCalendarWork.Enabled = false;
 
 
                     break;
@@ -104,6 +107,7 @@ namespace N19_DentalClinic.GUI.AdminView
                     rbMale.Enabled = true;
                     btnCalendar.Enabled = true;
                     txtSalary.ReadOnly = false;
+                    btnCalendarWork.Enabled = false;
 
                     break;
                 case "delete":
@@ -177,6 +181,10 @@ namespace N19_DentalClinic.GUI.AdminView
                         {
                             errorMess = "Email không hợp lệ";
                         }
+                        else if(data.isExistEmailInsert(txtEmail.Text))
+                        {
+                            errorMess = "Đã tồn tại email";
+                        }
                         else if (txtPhoneNumber.Text == "")
                         {
                             errorMess = "Vui lòng nhập số điện thoại";
@@ -204,6 +212,25 @@ namespace N19_DentalClinic.GUI.AdminView
                         }
                         else
                         {
+                            //them tai khoan le tan
+                            int quantityAc = 0;
+                            string sqlCountUser = "select count(*) as quantity from account";
+                            DataTable tableCountUser = data.readData(sqlCountUser);
+                            if(tableCountUser.Rows.Count > 0)
+                            {
+                                foreach(DataRow rowAccount in tableCountUser.Rows )
+                                {
+                                    quantityAc = int.Parse(rowAccount["quantity"].ToString());
+                                    break;
+                                }
+                            }
+                            quantityAc++;
+                            string newUsername = "recep" + quantityAc.ToString();
+                            string newPassword = "123456"; 
+                            string sqlAddAccountForRecep = $"exec procAddAccount '{newUsername}', '{newPassword}', 'B'";
+                            data.changeData(sqlAddAccountForRecep);
+
+                            //Thong tin le tan
                             string name = txtName.Text;
                             string birthday = txtBirthday.Text;
                             string email = txtEmail.Text;
@@ -219,22 +246,32 @@ namespace N19_DentalClinic.GUI.AdminView
                             {
                                 gender = 0;
                             }
+                            string lenZeroInNewAcc = "00000000".Substring(0, 8 - quantityAc.ToString().Length);
                             string sqlAddRecep = "exec procAddReceptionist N'"
                                 + name
                                 + "', N'" + address
                                 + "', '" + email
                                 + "', '" + number
                                 + "', " + salary
-                                + ", " + "'AD00000001'"
                                 + ", " + gender
                                 + ", '" + DateTimeConvert.convertSqlTimeDay(birthday.ToString())
-                                + "'";
+                                + "', '" + "AC" + lenZeroInNewAcc + quantityAc.ToString() + "'";
                             data.changeData(sqlAddRecep);
                             MessageBox.Show("Thêm lễ tân mới thành công");
                             PanelInteraction.openForm(this, new ReceptionistFile(panelWrapper, role), panelWrapper);
                         }
                         break;
                     case "update":
+                        string oldEmail = "";
+                        string sqlEmail = "select email from receptionist where recepid = '" + RecepID + "'";
+                        DataTable tableEmail = data.readData(sqlEmail);
+                        if(tableEmail.Rows.Count > 0 )
+                        {
+                            foreach(DataRow email in tableEmail.Rows)
+                            {
+                                oldEmail = email["email"].ToString();
+                            }
+                        }
                         errorMess = "";
                         if (txtName.Text == "")
                         {
@@ -259,6 +296,10 @@ namespace N19_DentalClinic.GUI.AdminView
                         else if (CheckFieldInfo.checkEmail(txtEmail.Text) == false)
                         {
                             errorMess = "Email không hợp lệ";
+                        }
+                        else if (data.isExistEmailUpdate(txtEmail.Text, oldEmail))
+                        {
+                            errorMess = "Đã tồn tại email";
                         }
                         else if (txtPhoneNumber.Text == "")
                         {
@@ -309,7 +350,6 @@ namespace N19_DentalClinic.GUI.AdminView
                                 phone_number = '{number}',
                                 email = '{email}',
                                 salary = {salary},
-                                adminid = 'AD00000001',
                                 gender = {gender}
                                 where RecepId = '{RecepID}' and able = 1";
                             data.changeData(sqlUpdateReceptionist);
@@ -331,6 +371,11 @@ namespace N19_DentalClinic.GUI.AdminView
         private void btnCalendar_Click_1(object sender, EventArgs e)
         {
             btnCalendar_Click(sender, e);
+        }
+
+        private void btnCalendarWork_Click(object sender, EventArgs e)
+        {
+            PanelInteraction.openForm(this, new MainSchedule(RecepID, panelWrapper, role), panelWrapper);
         }
     }
 }

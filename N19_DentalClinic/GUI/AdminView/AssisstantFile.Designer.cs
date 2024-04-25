@@ -60,34 +60,37 @@
             // 
             // cbKindSearch
             // 
+            cbKindSearch.DropDownStyle = ComboBoxStyle.DropDownList;
             cbKindSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbKindSearch.FormattingEnabled = true;
             cbKindSearch.Items.AddRange(new object[] { "Mã phụ tá", "Tên phụ tá" });
-            cbKindSearch.Location = new Point(320, 96);
+            cbKindSearch.Location = new Point(54, 96);
             cbKindSearch.Margin = new Padding(3, 4, 3, 4);
             cbKindSearch.Name = "cbKindSearch";
-            cbKindSearch.Size = new Size(212, 39);
+            cbKindSearch.Size = new Size(263, 39);
             cbKindSearch.TabIndex = 14;
             // 
             // btnSearch
             // 
+            btnSearch.BackColor = Color.FromArgb(219, 175, 9);
             btnSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
-            btnSearch.Location = new Point(564, 87);
+            btnSearch.Location = new Point(628, 87);
             btnSearch.Margin = new Padding(3, 4, 3, 4);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(66, 55);
             btnSearch.TabIndex = 13;
-            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.UseVisualStyleBackColor = false;
             btnSearch.Click += btnSearch_Click;
             // 
             // txtSearch
             // 
             txtSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtSearch.Location = new Point(54, 96);
+            txtSearch.Location = new Point(323, 96);
             txtSearch.Margin = new Padding(3, 4, 3, 4);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(235, 38);
+            txtSearch.PlaceholderText = "Tìm kiếm phụ tá";
+            txtSearch.Size = new Size(289, 38);
             txtSearch.TabIndex = 12;
             // 
             // label1

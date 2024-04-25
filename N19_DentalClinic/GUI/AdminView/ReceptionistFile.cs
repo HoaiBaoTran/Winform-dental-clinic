@@ -43,7 +43,6 @@ namespace N19_DentalClinic.GUI.AdminView
 
         public void updateDataGridView(string sql)
         {
-            btnSearch.BackColor = ColorTranslator.FromHtml("#" + "DBf09");
             btnCreateReptionist.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
             DataTable table = data.readData(sql);
             if (table.Rows.Count > 0)
@@ -156,8 +155,8 @@ namespace N19_DentalClinic.GUI.AdminView
             if (dataReceptionistTable.CurrentCell == null) return;
             if (dataReceptionistTable.CurrentCell.ColumnIndex == 8)
             {
-                string AssID = dataReceptionistTable[1, dataReceptionistTable.CurrentCell.RowIndex].Value.ToString();
-                PanelInteraction.openForm(this, new ReceptionDescriptionDetail(panelWrapper, AssID, role, "view"), panelWrapper);//sửa thông tin chi tiết phụ tá
+                string RecepID = dataReceptionistTable[1, dataReceptionistTable.CurrentCell.RowIndex].Value.ToString();
+                PanelInteraction.openForm(this, new ReceptionDescriptionDetail(panelWrapper, RecepID, role, "view"), panelWrapper);//sửa thông tin chi tiết phụ tá
             }
             else if (dataReceptionistTable.CurrentCell.ColumnIndex == 9)
             {

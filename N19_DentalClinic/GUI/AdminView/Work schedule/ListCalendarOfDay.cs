@@ -90,18 +90,19 @@ namespace N19_DentalClinic.GUI.AdminView
 
         private void initTableAppointment()
         {
+            //Hien thi ma nhan vien va ten nhan vien
             string dataFindName;
             if (EmployID.Contains("DE"))
             {
-                dataFindName = $@"select name from Dentist WHERE DenID = '{EmployID}'";
+                dataFindName = $@"select name from Dentist WHERE able = 1 and DenID = '{EmployID}'";
             }
             else if (EmployID.Contains("AS"))
             {
-                dataFindName = $@"select name from Assisstant WHERE assiid = '{EmployID}'";
+                dataFindName = $@"select name from Assisstant WHERE able = 1 and assiid = '{EmployID}'";
             }
             else
             {
-                dataFindName = $@"select name from Receptionist WHERE recepid = '{EmployID}'";
+                dataFindName = $@"select name from Receptionist WHERE able = 1 and recepid = '{EmployID}'";
             }
             DataTable tableFindName = data.readData(dataFindName);
             if (tableFindName.Rows.Count > 0)
@@ -117,18 +118,21 @@ namespace N19_DentalClinic.GUI.AdminView
             }
             txtEmplyID.Text = EmployID;
 
+
+            // Thong tin lich lam viec cua nhan vien
+
             string sqlCalendarOfEmployee;
             if (EmployID.Contains("DE"))
             {
-                sqlCalendarOfEmployee = $@"select * from Calendar_Dentist WHERE DenID = '{EmployID}'";
-            }
+                sqlCalendarOfEmployee = $@"select * from Calendar_Dentist WHERE able = 1 and DenID = '{EmployID}'";
+            }       
             else if (EmployID.Contains("AS"))
             {
-                sqlCalendarOfEmployee = $@"select * from Calendar_Assisstant WHERE assiid = '{EmployID}'";
+                sqlCalendarOfEmployee = $@"select * from Calendar_Assisstant WHERE able = 1 and assiid = '{EmployID}'";
             }
             else
             {
-                sqlCalendarOfEmployee = $@"select * from Calendar_Receptionist WHERE recepid = '{EmployID}'";
+                sqlCalendarOfEmployee = $@"select * from Calendar_Receptionist WHERE able = 1 and recepid = '{EmployID}'";
             }
             DataTable tableCalendar = data.readData(sqlCalendarOfEmployee);
             dataCalendarEmployee.ColumnCount = 6;
@@ -143,33 +147,36 @@ namespace N19_DentalClinic.GUI.AdminView
             {
                 foreach (DataRow dr in tableCalendar.Rows)
                 {
-                    string EmID;
-                    if (EmployID.Contains("DE"))
+                    if(txtCurrDate.Text == DateTimeConvert.convertDMY(dr["dayWorks"].ToString()))
                     {
-                        EmID = dr["denid"].ToString();
+                        string EmID;
+                        if (EmployID.Contains("DE"))
+                        {
+                            EmID = dr["denid"].ToString();
+                        }
+                        else if (EmployID.Contains("AS"))
+                        {
+                            EmID = dr["assiid"].ToString();
+                        }
+                        else
+                        {
+                            EmID = dr["recepid"].ToString();
+                        }
+                        string currday = DateTimeConvert.convertDMY(currentDate.ToString());
+                        string startTime = DateTimeConvert.convertHMS(dr["timeStart"].ToString());
+                        string endTime = DateTimeConvert.convertHMS(dr["timeEnd"].ToString());
+                        string[] rowString = new string[]
+                        {
+                            countRow.ToString(),
+                            EmID,
+                            startTime.ToString(),
+                            endTime.ToString(),
+                            "Chỉnh sửa",
+                            "Xóa"
+                        };
+                        dataCalendarEmployee.Rows.Add(rowString);
+                        countRow++;
                     }
-                    else if (EmployID.Contains("AS"))
-                    {
-                        EmID = dr["assiid"].ToString();
-                    }
-                    else
-                    {
-                        EmID = dr["recepid"].ToString();
-                    }
-                    string currday = DateTimeConvert.convertDMY(currentDate.ToString());
-                    string startTime = DateTimeConvert.convertHMS(dr["timeStart"].ToString());
-                    string endTime = DateTimeConvert.convertHMS(dr["timeEnd"].ToString());
-                    string[] rowString = new string[]
-                    {
-                        countRow.ToString(),
-                        currday.ToString(),
-                        startTime.ToString(),
-                        endTime.ToString(),
-                        "Chỉnh sửa",
-                        "Xóa"
-                    };
-                    dataCalendarEmployee.Rows.Add(rowString);
-                    countRow++;
                 }
             }
 
@@ -188,16 +195,19 @@ namespace N19_DentalClinic.GUI.AdminView
             if (dataCalendarEmployee.CurrentCell == null) return;
             if (dataCalendarEmployee.CurrentCell.ColumnIndex == 4)
             {
-                string CurrId = dataCalendarEmployee[1, dataCalendarEmployee.CurrentCell.RowIndex].Value.ToString();
-                PanelInteraction.openForm(this, new AddCalendarToEmployee(CurrId , panelWrapper, role, "update"), panelWrapper);//Chỉnh sửa
+                string currday = txtCurrDate.Text;
+                string startT = dataCalendarEmployee[2, dataCalendarEmployee.CurrentCell.RowIndex].Value.ToString();
+                string endT = dataCalendarEmployee[3, dataCalendarEmployee.CurrentCell.RowIndex].Value.ToString();
+                AddCalendarToEmployee addEvent = new AddCalendarToEmployee(EmployID, panelWrapper, role, "update", currday, startT, endT); // Tao moi thi thoi gian de trong 
+                addEvent.Show();
+                //PanelInteraction.openForm(this, new AddCalendarToEmployee(EmployID, panelWrapper, role, "update", currday, startT, endT), panelWrapper);//Chỉnh sửa
             }
             else if (dataCalendarEmployee.CurrentCell.ColumnIndex == 5)
             {
-                string CurrId = dataCalendarEmployee[1, dataCalendarEmployee.CurrentCell.RowIndex].Value.ToString();
-                string currday = txtCurrDate.ToString();
+                string currday = txtCurrDate.Text;
                 string startT = dataCalendarEmployee[2, dataCalendarEmployee.CurrentCell.RowIndex].Value.ToString();
                 string endT = dataCalendarEmployee[3, dataCalendarEmployee.CurrentCell.RowIndex].Value.ToString();
-                PanelInteraction.openForm(this, new DeleteCalendar(CurrId, role, panelWrapper, currday,startT,endT), panelWrapper);//Xóa
+                PanelInteraction.openForm(this, new DeleteCalendar(EmployID, role, panelWrapper, currday,startT,endT), panelWrapper);//Xóa
             }
         }
     }

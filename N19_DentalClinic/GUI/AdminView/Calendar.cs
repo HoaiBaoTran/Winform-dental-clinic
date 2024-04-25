@@ -20,7 +20,7 @@ namespace N19_DentalClinic.GUI
         #region Properties
         private List<List<Button>> matrix;
         private DateTime dateSelector = DateTime.Today;
-        
+
         #endregion
 
         private List<String> DateOfWeek = new List<string>() {"Monday", "Tuesday", "Wednesday", "Thursday"
@@ -45,7 +45,7 @@ namespace N19_DentalClinic.GUI
                 {
                     Button btn = new Button() { Width = Cons.dateButtonWidth, Height = Cons.dateButtonHeight };
                     btn.Location = new Point(oldBtn.Location.X + oldBtn.Width + Cons.margin, oldBtn.Location.Y);
-                    //btn.Click += Btn_Click;
+                    btn.Click += Btn_Click;
 
                     pnlMatrix.Controls.Add(btn);
                     matrix[i].Add(btn);
@@ -55,7 +55,45 @@ namespace N19_DentalClinic.GUI
             }
             setDefaultDate();
         }
+        private DateTime dateAccept;
+        private Button lastClickedButton;
+        private Button btnClickDTPK;
+        private void Btn_Click(object? sender, EventArgs e)
+        {
+            Button clickedButton = sender as Button;
+            if (!string.IsNullOrEmpty(clickedButton.Text))
+            {
+                setBtn_Click(clickedButton);
+                btnClickDTPK = clickedButton;
+            }
+            else
+            {
+                MessageBox.Show("Không thể chọn", "Thông báo");
+                return;
+            }
+        }
 
+        private void setBtn_Click(Button clickedButton)
+        {
+            if (lastClickedButton != null && lastClickedButton.Tag is DateTime today)
+            {
+                if (today.Date != DateTime.Today)
+                {
+                    lastClickedButton.BackColor = SystemColors.Window; // Màu nền mặc định của control
+                }
+            }
+            // Lấy giá trị ngày từ thuộc tính Tag của nút
+            if (clickedButton.Tag is DateTime selectedDate)
+            {
+                if (selectedDate.Date != DateTime.Today)
+                {
+                    clickedButton.BackColor = Color.Green;
+                }
+                dateAccept = selectedDate;
+                lastClickedButton = clickedButton;
+                dtpkDate.Value = dateAccept;
+            }
+        }
 
         int dayOfMonth(DateTime date)
         {
@@ -80,6 +118,7 @@ namespace N19_DentalClinic.GUI
                     return 30;
             }
         }
+        Button btnHomNay;
         void AddNumberIntoMatrixByDate(DateTime date)
         {
             ClearMatrix();
@@ -91,16 +130,18 @@ namespace N19_DentalClinic.GUI
                 int column = DateOfWeek.IndexOf(useDate.DayOfWeek.ToString());
                 Button btn = matrix[line][column];
                 btn.Text = i.ToString();
+                btn.Tag = useDate;
                 //Ngày hôm nay 
                 if (isEqualDate(useDate, DateTime.Now))
                 {
                     btn.BackColor = Color.LightBlue;
+                    btnHomNay = btn;
                 }
                 //Ngày được chọn 
                 if (isEqualDate(useDate, date))
                 {
-                    btn.BackColor = Color.Yellow;
-                    dateSelector = useDate;
+                    btn.BackColor = Color.Green;
+                    dateAccept = useDate;
                 }
 
                 if (column >= 6)
@@ -135,11 +176,15 @@ namespace N19_DentalClinic.GUI
             dtpkDate.Value = DateTime.Now;
             dateSelector = dtpkDate.Value;
         }
+
         // Chọn ngày trên DateTimePicKer 
         private void dtpkDate_ValueChanged(object sender, EventArgs e)
         {
             AddNumberIntoMatrixByDate((sender as DateTimePicker).Value);
+            lbMonth.Text = dtpkDate.Value.Month.ToString();
+            lbYear.Text = dtpkDate.Value.Year.ToString();
         }
+
         //Button Tháng trước
         private void btnPreviours_Click(object sender, EventArgs e)
         {
@@ -154,6 +199,7 @@ namespace N19_DentalClinic.GUI
         private void btnToDay_Click(object sender, EventArgs e)
         {
             setDefaultDate();
+            dateAccept = DateTime.Now;
         }
 
         public DateTime GetDateSelector()
@@ -161,14 +207,27 @@ namespace N19_DentalClinic.GUI
             return dateSelector;
         }
 
-        private void Calendar_Load(object sender, EventArgs e)
+        public void setDateSelector(DateTime dateSelector)
+        {
+            this.dateSelector = dateSelector;
+        }
+
+
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+            setDateSelector(dateAccept);
+            this.Close();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void btnAccept_Click(object sender, EventArgs e)
+        private void Calendar_Load(object sender, EventArgs e)
         {
-            this.Close();
+            lbMonth.Text = dtpkDate.Value.Month.ToString();
+            lbYear.Text = dtpkDate.Value.Year.ToString();
         }
     }
 }

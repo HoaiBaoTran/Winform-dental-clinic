@@ -28,9 +28,9 @@ namespace N19_DentalClinic.GUI.AdminView.Work_schedule
             this.EmployID = EmployID;
             this.role = role;
             this.panelWrapper = panelWrapper;
-            this.currday = currday;
-            this.startTime = startTime;
-            this.endTime = endTime;
+            this.currday = currday;// Format: dd/MM/yyyy
+            this.startTime = startTime;// Format hh:mm:ss
+            this.endTime = endTime;// Format hh:mm:ss
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -40,24 +40,24 @@ namespace N19_DentalClinic.GUI.AdminView.Work_schedule
             {
                 sqlDelEmployee = @$"update calendar_dentist set able = 0
                     where denid = '{EmployID}' and
-                          dayWorks = '{DateTimeConvert.convertSqlTimeDay(currday)}' and 
-                          timeStart = '{startTime}' and
-                          timeEnd = '{endTime}'";
+                          CONVERT(varchar(10), dayWorks, 103) = '{currday}' and 
+                          CONVERT(varchar(8), timeStart, 108) = '{startTime}' and
+                          CONVERT(varchar(8), timeEnd, 108) = '{endTime}'";
             }else if(EmployID.Contains("AS"))
             {
                 sqlDelEmployee = @$"update calendar_assisstant set able = 0
                     where assiid = '{EmployID}' and
-                          dayWorks = '{DateTimeConvert.convertSqlTimeDay(currday)}' and
-                          timeStart = '{startTime}' and
-                          timeEnd = '{endTime}'";
+                          CONVERT(varchar(10), dayWorks, 103) = '{currday}' and 
+                          CONVERT(varchar(8), timeStart, 108) = '{startTime}' and
+                          CONVERT(varchar(8), timeEnd, 108) = '{endTime}'";
             }
             else
             {
                 sqlDelEmployee = @$"update calendar_receptionist set able = 0
                     where recepid = '{EmployID}' and
-                          dayWorks = '{DateTimeConvert.convertSqlTimeDay(currday)}' and
-                          timeStart = '{startTime}' and
-                          timeEnd = '{endTime}'";
+                          CONVERT(varchar(10), dayWorks, 103) = '{currday}' and 
+                          CONVERT(varchar(8), timeStart, 108) = '{startTime}' and
+                          CONVERT(varchar(8), timeEnd, 108) = '{endTime}'";
             }
             data.changeData(sqlDelEmployee);
             MessageBox.Show("Xóa lịch làm việc thành công");

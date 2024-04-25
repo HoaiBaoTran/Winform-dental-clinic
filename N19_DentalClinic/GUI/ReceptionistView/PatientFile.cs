@@ -38,7 +38,7 @@ namespace N19_DentalClinic.GUI
             }
             finally
             {
-                dtgv.AllowUserToAddRows = true;
+                dtgv.AllowUserToAddRows = false;
             }
         }
 

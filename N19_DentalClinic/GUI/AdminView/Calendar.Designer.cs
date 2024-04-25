@@ -31,6 +31,10 @@
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
             panel3 = new Panel();
+            lbYear = new Label();
+            lbMonth = new Label();
+            label2 = new Label();
+            label1 = new Label();
             btnToDay = new Button();
             dtpkDate = new DateTimePicker();
             panel2 = new Panel();
@@ -57,6 +61,7 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.Controls.Add(panel3);
             panel1.Controls.Add(panel2);
             panel1.Location = new Point(16, 19);
@@ -67,6 +72,10 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(lbYear);
+            panel3.Controls.Add(lbMonth);
+            panel3.Controls.Add(label2);
+            panel3.Controls.Add(label1);
             panel3.Controls.Add(btnToDay);
             panel3.Controls.Add(dtpkDate);
             panel3.Location = new Point(4, 5);
@@ -75,20 +84,62 @@
             panel3.Size = new Size(980, 42);
             panel3.TabIndex = 1;
             // 
+            // lbYear
+            // 
+            lbYear.AutoSize = true;
+            lbYear.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbYear.Location = new Point(251, 6);
+            lbYear.Name = "lbYear";
+            lbYear.Size = new Size(69, 29);
+            lbYear.TabIndex = 5;
+            lbYear.Text = "2024";
+            // 
+            // lbMonth
+            // 
+            lbMonth.AutoSize = true;
+            lbMonth.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbMonth.Location = new Point(97, 6);
+            lbMonth.Name = "lbMonth";
+            lbMonth.Size = new Size(41, 29);
+            lbMonth.TabIndex = 4;
+            lbMonth.Text = "12";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(174, 6);
+            label2.Name = "label2";
+            label2.Size = new Size(67, 29);
+            label2.TabIndex = 3;
+            label2.Text = "Năm";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(4, 5);
+            label1.Name = "label1";
+            label1.Size = new Size(87, 29);
+            label1.TabIndex = 2;
+            label1.Text = "Tháng";
+            label1.Click += label1_Click;
+            // 
             // btnToDay
             // 
-            btnToDay.Location = new Point(810, 0);
+            btnToDay.BackColor = Color.FromArgb(128, 128, 255);
+            btnToDay.Location = new Point(866, 0);
             btnToDay.Margin = new Padding(4, 5, 4, 5);
             btnToDay.Name = "btnToDay";
-            btnToDay.Size = new Size(100, 35);
+            btnToDay.Size = new Size(100, 43);
             btnToDay.TabIndex = 1;
             btnToDay.Text = "Hôm nay";
-            btnToDay.UseVisualStyleBackColor = true;
+            btnToDay.UseVisualStyleBackColor = false;
             btnToDay.Click += btnToDay_Click;
             // 
             // dtpkDate
             // 
-            dtpkDate.Location = new Point(383, 5);
+            dtpkDate.Location = new Point(577, 5);
             dtpkDate.Margin = new Padding(4, 5, 4, 5);
             dtpkDate.Name = "dtpkDate";
             dtpkDate.Size = new Size(265, 27);
@@ -108,13 +159,15 @@
             // 
             // btnAccept
             // 
-            btnAccept.Location = new Point(872, 426);
+            btnAccept.BackColor = Color.Olive;
+            btnAccept.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAccept.Location = new Point(856, 386);
             btnAccept.Margin = new Padding(4, 5, 4, 5);
             btnAccept.Name = "btnAccept";
-            btnAccept.Size = new Size(100, 35);
+            btnAccept.Size = new Size(110, 76);
             btnAccept.TabIndex = 2;
             btnAccept.Text = "Xác nhận";
-            btnAccept.UseVisualStyleBackColor = true;
+            btnAccept.UseVisualStyleBackColor = false;
             btnAccept.Click += btnAccept_Click;
             // 
             // pnlMatrix
@@ -122,7 +175,7 @@
             pnlMatrix.Location = new Point(117, 85);
             pnlMatrix.Margin = new Padding(4, 5, 4, 5);
             pnlMatrix.Name = "pnlMatrix";
-            pnlMatrix.Size = new Size(735, 391);
+            pnlMatrix.Size = new Size(725, 391);
             pnlMatrix.TabIndex = 1;
             // 
             // panel4
@@ -144,7 +197,7 @@
             // 
             // btnNext
             // 
-            btnNext.Location = new Point(868, 5);
+            btnNext.Location = new Point(862, 5);
             btnNext.Margin = new Padding(4, 5, 4, 5);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(100, 61);
@@ -166,7 +219,7 @@
             // 
             // btnSunday
             // 
-            btnSunday.Location = new Point(746, 5);
+            btnSunday.Location = new Point(738, 5);
             btnSunday.Margin = new Padding(4, 5, 4, 5);
             btnSunday.Name = "btnSunday";
             btnSunday.Size = new Size(100, 61);
@@ -176,7 +229,7 @@
             // 
             // btnSaturday
             // 
-            btnSaturday.Location = new Point(640, 5);
+            btnSaturday.Location = new Point(634, 5);
             btnSaturday.Margin = new Padding(4, 5, 4, 5);
             btnSaturday.Name = "btnSaturday";
             btnSaturday.Size = new Size(100, 61);
@@ -186,7 +239,7 @@
             // 
             // btnFriday
             // 
-            btnFriday.Location = new Point(534, 5);
+            btnFriday.Location = new Point(530, 5);
             btnFriday.Margin = new Padding(4, 5, 4, 5);
             btnFriday.Name = "btnFriday";
             btnFriday.Size = new Size(100, 61);
@@ -196,7 +249,7 @@
             // 
             // btnThusday
             // 
-            btnThusday.Location = new Point(429, 5);
+            btnThusday.Location = new Point(425, 5);
             btnThusday.Margin = new Padding(4, 5, 4, 5);
             btnThusday.Name = "btnThusday";
             btnThusday.Size = new Size(100, 61);
@@ -206,7 +259,7 @@
             // 
             // btnWednesday
             // 
-            btnWednesday.Location = new Point(323, 5);
+            btnWednesday.Location = new Point(321, 5);
             btnWednesday.Margin = new Padding(4, 5, 4, 5);
             btnWednesday.Name = "btnWednesday";
             btnWednesday.Size = new Size(100, 61);
@@ -216,7 +269,7 @@
             // 
             // btnTuesday
             // 
-            btnTuesday.Location = new Point(217, 5);
+            btnTuesday.Location = new Point(216, 5);
             btnTuesday.Margin = new Padding(4, 5, 4, 5);
             btnTuesday.Name = "btnTuesday";
             btnTuesday.Size = new Size(100, 61);
@@ -250,13 +303,17 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1020, 569);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4, 5, 4, 5);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Calendar";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Lập lịch công việc";
             Load += Calendar_Load;
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             panel2.ResumeLayout(false);
             panel4.ResumeLayout(false);
             ResumeLayout(false);
@@ -284,5 +341,9 @@
         private System.Windows.Forms.NotifyIcon Notify;
         private System.Windows.Forms.Button btnAccept;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private Label lbMonth;
+        private Label label2;
+        private Label label1;
+        private Label lbYear;
     }
 }

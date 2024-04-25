@@ -40,9 +40,13 @@ namespace N19_DentalClinic.GUI.AdminView
         {
             if (role == 1)
             {
-                string sqlUpdateRecep = "update receptionist set able = " + 0
+                string sqlDeleteRecep = "update receptionist set able = " + 0
                                 + " where recepid = '" + RecepId + "'";
-                data.changeData(sqlUpdateRecep);
+                data.changeData(sqlDeleteRecep);
+                string sqlDeleteAccountRecep = $@"
+                       update account set able = 0 where accountId = 
+                        (select accountid from receptionist where recepid = '{RecepId}')";
+                data.changeData(sqlDeleteAccountRecep);
                 MessageBox.Show("Xóa thông tin lễ tân thành công");
                 PanelInteraction.openForm(this, new ReceptionistFile(panelWrapper, role), panelWrapper);
             }

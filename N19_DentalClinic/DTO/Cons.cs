@@ -10,8 +10,8 @@ namespace N19_DentalClinic.DAO
     {
         public static int DayOfWeek = 7;
         public static int DayofColumn = 6;
-        public static int dateButtonWidth = 75;
-        public static int dateButtonHeight = 42;
+        public static int dateButtonWidth = 100;
+        public static int dateButtonHeight = 62;
         public static int margin = 4;
     }
 }

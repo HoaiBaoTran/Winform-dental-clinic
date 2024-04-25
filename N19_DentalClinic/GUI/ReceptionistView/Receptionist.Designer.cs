@@ -28,27 +28,31 @@ namespace N19_DentalClinic.GUI.ReceptionistView
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Receptionist));
             btnCreateAppointment = new Button();
             btnDentistManagement = new Button();
             btnPatientProfile = new Button();
             btnCreateBill = new Button();
             panelSidebar = new Panel();
             label5 = new Label();
-            roundPictureBox1 = new N19_DentalClinic.component.RoundPictureBox();
+            roundPictureBox1 = new component.RoundPictureBox();
             label4 = new Label();
             lbRole = new Label();
             lbRoleText = new Label();
             label3 = new Label();
-            lbName = new Label();
+            lbNameReceptionist = new Label();
             pnShowContent = new Panel();
             eclipseControl1 = new DAO.EclipseControl();
+            label1 = new Label();
+            backToLogin = new component.RJButton();
+            btnAssisstantManagement = new Button();
             panelSidebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)roundPictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btnCreateAppointment
             // 
-            btnCreateAppointment.Location = new Point(15, 357);
+            btnCreateAppointment.Location = new Point(15, 313);
             btnCreateAppointment.Margin = new Padding(3, 4, 3, 4);
             btnCreateAppointment.Name = "btnCreateAppointment";
             btnCreateAppointment.Size = new Size(170, 68);
@@ -59,7 +63,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             // 
             // btnDentistManagement
             // 
-            btnDentistManagement.Location = new Point(15, 452);
+            btnDentistManagement.Location = new Point(15, 408);
             btnDentistManagement.Margin = new Padding(3, 4, 3, 4);
             btnDentistManagement.Name = "btnDentistManagement";
             btnDentistManagement.Size = new Size(170, 68);
@@ -70,7 +74,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             // 
             // btnPatientProfile
             // 
-            btnPatientProfile.Location = new Point(15, 552);
+            btnPatientProfile.Location = new Point(15, 576);
             btnPatientProfile.Margin = new Padding(3, 4, 3, 4);
             btnPatientProfile.Name = "btnPatientProfile";
             btnPatientProfile.Size = new Size(170, 68);
@@ -81,7 +85,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             // 
             // btnCreateBill
             // 
-            btnCreateBill.Location = new Point(15, 647);
+            btnCreateBill.Location = new Point(15, 671);
             btnCreateBill.Margin = new Padding(3, 4, 3, 4);
             btnCreateBill.Name = "btnCreateBill";
             btnCreateBill.Size = new Size(170, 68);
@@ -93,13 +97,13 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             // panelSidebar
             // 
             panelSidebar.BackColor = SystemColors.AppWorkspace;
+            panelSidebar.Controls.Add(btnAssisstantManagement);
             panelSidebar.Controls.Add(label5);
             panelSidebar.Controls.Add(roundPictureBox1);
             panelSidebar.Controls.Add(label4);
             panelSidebar.Controls.Add(lbRole);
             panelSidebar.Controls.Add(lbRoleText);
             panelSidebar.Controls.Add(label3);
-            panelSidebar.Controls.Add(lbName);
             panelSidebar.Controls.Add(btnCreateAppointment);
             panelSidebar.Controls.Add(btnCreateBill);
             panelSidebar.Controls.Add(btnDentistManagement);
@@ -115,7 +119,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(0, 319);
+            label5.Location = new Point(0, 275);
             label5.Name = "label5";
             label5.Size = new Size(112, 28);
             label5.TabIndex = 14;
@@ -124,7 +128,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             // roundPictureBox1
             // 
             roundPictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            roundPictureBox1.Image = N19_DentalClinic.Properties.Resources.luffy;
+            roundPictureBox1.Image = Properties.Resources.luffy;
             roundPictureBox1.Location = new Point(31, 26);
             roundPictureBox1.Name = "roundPictureBox1";
             roundPictureBox1.Size = new Size(154, 145);
@@ -135,7 +139,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             // label4
             // 
             label4.BackColor = Color.White;
-            label4.Location = new Point(-2, 308);
+            label4.Location = new Point(-2, 264);
             label4.Name = "label4";
             label4.Size = new Size(220, 1);
             label4.TabIndex = 13;
@@ -145,7 +149,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             lbRole.AutoSize = true;
             lbRole.Font = new Font("Segoe UI", 12F);
             lbRole.ForeColor = Color.White;
-            lbRole.Location = new Point(119, 267);
+            lbRole.Location = new Point(108, 223);
             lbRole.Name = "lbRole";
             lbRole.Size = new Size(64, 28);
             lbRole.TabIndex = 12;
@@ -156,7 +160,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             lbRoleText.AutoSize = true;
             lbRoleText.Font = new Font("Segoe UI", 12F);
             lbRoleText.ForeColor = Color.White;
-            lbRoleText.Location = new Point(40, 267);
+            lbRoleText.Location = new Point(29, 223);
             lbRoleText.Name = "lbRoleText";
             lbRoleText.Size = new Size(73, 28);
             lbRoleText.TabIndex = 11;
@@ -165,21 +169,22 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             // label3
             // 
             label3.BackColor = Color.White;
-            label3.Location = new Point(-2, 251);
+            label3.Location = new Point(-2, 207);
             label3.Name = "label3";
             label3.Size = new Size(220, 1);
             label3.TabIndex = 8;
             // 
-            // lbName
+            // lbNameReceptionist
             // 
-            lbName.AutoSize = true;
-            lbName.Font = new Font("Segoe UI", 18F);
-            lbName.ForeColor = Color.White;
-            lbName.Location = new Point(16, 199);
-            lbName.Name = "lbName";
-            lbName.Size = new Size(200, 41);
-            lbName.TabIndex = 9;
-            lbName.Text = "Trần Hoài Bảo";
+            lbNameReceptionist.AutoSize = true;
+            lbNameReceptionist.Font = new Font("Segoe UI", 18F);
+            lbNameReceptionist.ForeColor = Color.White;
+            lbNameReceptionist.Location = new Point(357, 25);
+            lbNameReceptionist.Name = "lbNameReceptionist";
+            lbNameReceptionist.Size = new Size(182, 41);
+            lbNameReceptionist.TabIndex = 9;
+            lbNameReceptionist.Text = "Lễ Tân Trang";
+            lbNameReceptionist.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // pnShowContent
             // 
@@ -196,14 +201,61 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             eclipseControl1.CornerRadius = 32;
             eclipseControl1.TargetControl = panelSidebar;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(218, 25);
+            label1.Name = "label1";
+            label1.Size = new Size(118, 41);
+            label1.TabIndex = 10;
+            label1.Text = "Họ Tên:";
+            // 
+            // backToLogin
+            // 
+            backToLogin.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            backToLogin.BackColor = Color.FromArgb(165, 85, 80);
+            backToLogin.BackgroundColor = Color.FromArgb(165, 85, 80);
+            backToLogin.BorderColor = Color.PaleVioletRed;
+            backToLogin.BorderRadius = 0;
+            backToLogin.BorderSize = 0;
+            backToLogin.FlatAppearance.BorderSize = 0;
+            backToLogin.FlatStyle = FlatStyle.Flat;
+            backToLogin.ForeColor = Color.White;
+            backToLogin.Image = (Image)resources.GetObject("backToLogin.Image");
+            backToLogin.Location = new Point(1586, 19);
+            backToLogin.Name = "backToLogin";
+            backToLogin.Size = new Size(67, 67);
+            backToLogin.TabIndex = 11;
+            backToLogin.TextColor = Color.White;
+            backToLogin.UseVisualStyleBackColor = false;
+            backToLogin.Click += backToLogin_Click;
+            // 
+            // btnAssisstantManagement
+            // 
+            btnAssisstantManagement.Location = new Point(15, 491);
+            btnAssisstantManagement.Margin = new Padding(3, 4, 3, 4);
+            btnAssisstantManagement.Name = "btnAssisstantManagement";
+            btnAssisstantManagement.Size = new Size(170, 68);
+            btnAssisstantManagement.TabIndex = 15;
+            btnAssisstantManagement.Text = "Quản lí phụ tá";
+            btnAssisstantManagement.UseVisualStyleBackColor = true;
+            btnAssisstantManagement.Click += btnAssisstantManagement_Click;
+            // 
             // Receptionist
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveBorder;
             ClientSize = new Size(1682, 953);
+            ControlBox = false;
+            Controls.Add(backToLogin);
+            Controls.Add(label1);
             Controls.Add(pnShowContent);
             Controls.Add(panelSidebar);
+            Controls.Add(lbNameReceptionist);
             Margin = new Padding(3, 4, 3, 4);
             Name = "Receptionist";
             Text = " ";
@@ -212,6 +264,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             panelSidebar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)roundPictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -228,6 +281,9 @@ namespace N19_DentalClinic.GUI.ReceptionistView
         private Label lbRole;
         private Label lbRoleText;
         private Label label3;
-        private Label lbName;
+        private Label lbNameReceptionist;
+        private Label label1;
+        private component.RJButton backToLogin;
+        private Button btnAssisstantManagement;
     }
 }

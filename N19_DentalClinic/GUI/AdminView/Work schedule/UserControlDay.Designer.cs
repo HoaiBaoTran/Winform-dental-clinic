@@ -38,7 +38,7 @@
             BorderStyle = BorderStyle.FixedSingle;
             Margin = new Padding(1);
             Name = "UserControlDay";
-            Size = new Size(180, 744);
+            Size = new Size(180, 700);
             Load += UserControlDay_Load;
             ResumeLayout(false);
         }

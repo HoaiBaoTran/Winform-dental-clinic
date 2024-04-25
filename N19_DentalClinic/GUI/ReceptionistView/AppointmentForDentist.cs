@@ -65,6 +65,10 @@ namespace N19_DentalClinic.GUI
 
         public void initTableAppointment()
         {
+            if(role == 3)
+            {
+                btnBack.Hide();
+            }
             txtDenID.Text = DenID;
             string sqlDentist = "select * from Dentist where denId = '" + DenID + "'";
             DataTable tableDentist = data.readData(sqlDentist);

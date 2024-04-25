@@ -28,23 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddService));
             label5 = new Label();
             label4 = new Label();
-            tbNote = new TextBox();
+            tbKindService = new TextBox();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            roundPictureBox3 = new component.RoundPictureBox();
             btnExit = new component.RJButton();
-            roundPictureBox2 = new component.RoundPictureBox();
             btnAddService = new component.RJButton();
             label6 = new Label();
             tbServiceId = new TextBox();
             tbServiceName = new TextBox();
             tbCalUnit = new TextBox();
             tbPrice = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox2).BeginInit();
+            tbNote = new TextBox();
+            label7 = new Label();
             SuspendLayout();
             // 
             // label5
@@ -69,15 +68,15 @@
             label4.TabIndex = 58;
             label4.Text = "Đơn vị tính";
             // 
-            // tbNote
+            // tbKindService
             // 
-            tbNote.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            tbNote.Font = new Font("Segoe UI", 14F);
-            tbNote.Location = new Point(220, 312);
-            tbNote.Name = "tbNote";
-            tbNote.PlaceholderText = "Nhập ghi chú ";
-            tbNote.Size = new Size(741, 39);
-            tbNote.TabIndex = 57;
+            tbKindService.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tbKindService.Font = new Font("Segoe UI", 14F);
+            tbKindService.Location = new Point(220, 312);
+            tbKindService.Name = "tbKindService";
+            tbKindService.PlaceholderText = "Nhập loại dịch vụ";
+            tbKindService.Size = new Size(741, 39);
+            tbKindService.TabIndex = 57;
             // 
             // label3
             // 
@@ -86,9 +85,9 @@
             label3.Font = new Font("Segoe UI", 16F);
             label3.Location = new Point(26, 312);
             label3.Name = "label3";
-            label3.Size = new Size(107, 37);
+            label3.Size = new Size(159, 37);
             label3.TabIndex = 56;
-            label3.Text = "Ghi chú";
+            label3.Text = "Loại dịch vụ";
             // 
             // label2
             // 
@@ -112,54 +111,31 @@
             label1.TabIndex = 53;
             label1.Text = "Mã dịch vụ";
             // 
-            // roundPictureBox3
-            // 
-            roundPictureBox3.Anchor = AnchorStyles.Right;
-            roundPictureBox3.BackColor = Color.White;
-            roundPictureBox3.BackgroundImage = Properties.Resources.back_icon;
-            roundPictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox3.Location = new Point(863, 395);
-            roundPictureBox3.Name = "roundPictureBox3";
-            roundPictureBox3.Size = new Size(39, 45);
-            roundPictureBox3.TabIndex = 52;
-            roundPictureBox3.TabStop = false;
-            // 
             // btnExit
             // 
             btnExit.Anchor = AnchorStyles.Right;
-            btnExit.BackColor = Color.DarkGray;
-            btnExit.BackgroundColor = Color.DarkGray;
+            btnExit.BackColor = Color.FromArgb(80, 101, 122);
+            btnExit.BackgroundColor = Color.FromArgb(80, 101, 122);
             btnExit.BackgroundImageLayout = ImageLayout.Zoom;
             btnExit.BorderColor = Color.PaleVioletRed;
             btnExit.BorderRadius = 0;
             btnExit.BorderSize = 0;
             btnExit.FlatAppearance.BorderSize = 0;
             btnExit.FlatStyle = FlatStyle.Flat;
-            btnExit.Font = new Font("Segoe UI", 12F);
+            btnExit.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnExit.ForeColor = Color.White;
+            btnExit.Image = (Image)resources.GetObject("btnExit.Image");
             btnExit.ImageAlign = ContentAlignment.MiddleLeft;
-            btnExit.Location = new Point(859, 386);
+            btnExit.Location = new Point(841, 484);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(102, 63);
+            btnExit.Padding = new Padding(6, 0, 6, 0);
+            btnExit.Size = new Size(129, 63);
             btnExit.TabIndex = 51;
             btnExit.Text = "Hủy";
             btnExit.TextAlign = ContentAlignment.MiddleRight;
             btnExit.TextColor = Color.White;
             btnExit.UseVisualStyleBackColor = false;
             btnExit.Click += btnExit_Click;
-            // 
-            // roundPictureBox2
-            // 
-            roundPictureBox2.Anchor = AnchorStyles.Right;
-            roundPictureBox2.BackColor = Color.FromArgb(56, 92, 67);
-            roundPictureBox2.BackgroundImage = Properties.Resources.white_plus_icon;
-            roundPictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox2.Location = new Point(699, 393);
-            roundPictureBox2.Name = "roundPictureBox2";
-            roundPictureBox2.Size = new Size(39, 47);
-            roundPictureBox2.TabIndex = 50;
-            roundPictureBox2.TabStop = false;
-            roundPictureBox2.Click += roundPictureBox2_Click;
             // 
             // btnAddService
             // 
@@ -172,12 +148,14 @@
             btnAddService.BorderSize = 0;
             btnAddService.FlatAppearance.BorderSize = 0;
             btnAddService.FlatStyle = FlatStyle.Flat;
-            btnAddService.Font = new Font("Segoe UI", 12F);
+            btnAddService.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnAddService.ForeColor = Color.Black;
+            btnAddService.Image = (Image)resources.GetObject("btnAddService.Image");
             btnAddService.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddService.Location = new Point(684, 386);
+            btnAddService.Location = new Point(661, 484);
             btnAddService.Name = "btnAddService";
-            btnAddService.Size = new Size(148, 63);
+            btnAddService.Padding = new Padding(6, 0, 6, 0);
+            btnAddService.Size = new Size(159, 63);
             btnAddService.TabIndex = 49;
             btnAddService.Text = "Tạo mới";
             btnAddService.TextAlign = ContentAlignment.MiddleRight;
@@ -228,31 +206,50 @@
             tbPrice.Size = new Size(318, 39);
             tbPrice.TabIndex = 66;
             // 
+            // tbNote
+            // 
+            tbNote.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tbNote.Font = new Font("Segoe UI", 14F);
+            tbNote.Location = new Point(220, 389);
+            tbNote.Name = "tbNote";
+            tbNote.PlaceholderText = "Nhập ghi chú ";
+            tbNote.Size = new Size(741, 39);
+            tbNote.TabIndex = 68;
+            // 
+            // label7
+            // 
+            label7.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 16F);
+            label7.Location = new Point(26, 387);
+            label7.Name = "label7";
+            label7.Size = new Size(107, 37);
+            label7.TabIndex = 67;
+            label7.Text = "Ghi chú";
+            // 
             // AddService
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(982, 473);
+            ClientSize = new Size(982, 559);
+            Controls.Add(tbNote);
+            Controls.Add(label7);
             Controls.Add(tbPrice);
             Controls.Add(tbCalUnit);
             Controls.Add(tbServiceName);
             Controls.Add(tbServiceId);
             Controls.Add(label5);
             Controls.Add(label4);
-            Controls.Add(tbNote);
+            Controls.Add(tbKindService);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(roundPictureBox3);
             Controls.Add(btnExit);
-            Controls.Add(roundPictureBox2);
             Controls.Add(btnAddService);
             Controls.Add(label6);
             Name = "AddService";
             Load += AddService_Load;
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -263,18 +260,18 @@
         private ComboBox cbCalUnit;
         private Label label5;
         private Label label4;
-        private TextBox tbNote;
+        private TextBox tbKindService;
         private Label label3;
         private Label label2;
         private Label label1;
-        private component.RoundPictureBox roundPictureBox3;
         private component.RJButton btnExit;
-        private component.RoundPictureBox roundPictureBox2;
         private component.RJButton btnAddService;
         private Label label6;
         private TextBox tbServiceId;
         private TextBox tbServiceName;
         private TextBox tbCalUnit;
         private TextBox tbPrice;
+        private TextBox tbNote;
+        private Label label7;
     }
 }

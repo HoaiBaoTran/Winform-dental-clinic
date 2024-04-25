@@ -349,6 +349,7 @@
             btnCalendarWork.Text = "Lịch làm việc";
             btnCalendarWork.TextAlign = ContentAlignment.MiddleRight;
             btnCalendarWork.UseVisualStyleBackColor = false;
+            btnCalendarWork.Click += btnCalendarWork_Click;
             // 
             // ReceptionDescriptionDetail
             // 

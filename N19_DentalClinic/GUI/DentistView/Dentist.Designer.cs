@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dentist));
             pnSidebar = new Panel();
             btnAppoitmentForDentist = new Button();
             lbRoleText = new Label();
@@ -35,11 +36,13 @@
             label4 = new Label();
             lbRole = new Label();
             label3 = new Label();
-            lbName = new Label();
             btnPrescription = new Button();
             btnCalendar = new Button();
             btnPatientProfile = new Button();
             pnShowContent = new Panel();
+            label1 = new Label();
+            lbNameDentist = new Label();
+            backToLogin = new component.RJButton();
             pnSidebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)roundPictureBox1).BeginInit();
             SuspendLayout();
@@ -53,7 +56,6 @@
             pnSidebar.Controls.Add(label4);
             pnSidebar.Controls.Add(lbRole);
             pnSidebar.Controls.Add(label3);
-            pnSidebar.Controls.Add(lbName);
             pnSidebar.Controls.Add(btnPrescription);
             pnSidebar.Controls.Add(btnCalendar);
             pnSidebar.Controls.Add(btnPatientProfile);
@@ -125,17 +127,6 @@
             label3.Size = new Size(220, 1);
             label3.TabIndex = 14;
             // 
-            // lbName
-            // 
-            lbName.AutoSize = true;
-            lbName.Font = new Font("Segoe UI", 18F);
-            lbName.ForeColor = Color.White;
-            lbName.Location = new Point(24, 218);
-            lbName.Name = "lbName";
-            lbName.Size = new Size(200, 41);
-            lbName.TabIndex = 15;
-            lbName.Text = "Trần Hoài Bảo";
-            // 
             // btnPrescription
             // 
             btnPrescription.FlatStyle = FlatStyle.Flat;
@@ -185,12 +176,60 @@
             pnShowContent.Size = new Size(1418, 866);
             pnShowContent.TabIndex = 3;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(246, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(118, 41);
+            label1.TabIndex = 12;
+            label1.Text = "Họ Tên:";
+            // 
+            // lbNameDentist
+            // 
+            lbNameDentist.AutoSize = true;
+            lbNameDentist.Font = new Font("Segoe UI", 18F);
+            lbNameDentist.ForeColor = Color.White;
+            lbNameDentist.Location = new Point(385, 9);
+            lbNameDentist.Name = "lbNameDentist";
+            lbNameDentist.Size = new Size(162, 41);
+            lbNameDentist.TabIndex = 11;
+            lbNameDentist.Text = "Nha Sĩ Kun";
+            lbNameDentist.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // backToLogin
+            // 
+            backToLogin.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            backToLogin.BackColor = Color.FromArgb(165, 85, 80);
+            backToLogin.BackgroundColor = Color.FromArgb(165, 85, 80);
+            backToLogin.BorderColor = Color.PaleVioletRed;
+            backToLogin.BorderRadius = 0;
+            backToLogin.BorderSize = 0;
+            backToLogin.FlatAppearance.BorderSize = 0;
+            backToLogin.FlatStyle = FlatStyle.Flat;
+            backToLogin.ForeColor = Color.White;
+            backToLogin.Image = (Image)resources.GetObject("backToLogin.Image");
+            backToLogin.Location = new Point(1598, 12);
+            backToLogin.Name = "backToLogin";
+            backToLogin.Size = new Size(63, 58);
+            backToLogin.TabIndex = 13;
+            backToLogin.TextColor = Color.White;
+            backToLogin.UseVisualStyleBackColor = false;
+            backToLogin.Click += backToLogin_Click;
+            // 
             // Dentist
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveBorder;
             ClientSize = new Size(1682, 953);
+            ControlBox = false;
+            Controls.Add(backToLogin);
+            Controls.Add(label1);
+            Controls.Add(lbNameDentist);
             Controls.Add(pnShowContent);
             Controls.Add(pnSidebar);
             Margin = new Padding(3, 4, 3, 4);
@@ -201,6 +240,7 @@
             pnSidebar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)roundPictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -214,8 +254,10 @@
         private Label label4;
         private Label lbRole;
         private Label label3;
-        private Label lbName;
         private Label lbRoleText;
         private Button btnAppoitmentForDentist;
+        private Label label1;
+        private Label lbNameDentist;
+        private component.RJButton backToLogin;
     }
 }

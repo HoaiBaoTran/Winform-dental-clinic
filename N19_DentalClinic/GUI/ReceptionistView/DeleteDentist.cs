@@ -45,6 +45,11 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                 string sqlUpdateDentist = "update dentist set able = " + 0
                                 + " where denid = '" + denId + "'";
                 data.changeData(sqlUpdateDentist);
+                string sqlDeleteAccountDentist = $@"
+                       update account set able = 0 where accountId = 
+                        (select accountid from dentist where denid = '{denId}')";
+                MessageBox.Show(sqlDeleteAccountDentist);
+                data.changeData(sqlDeleteAccountDentist);
                 MessageBox.Show("Xóa thông tin nha sĩ thành công");
                 PanelInteraction.openForm(this, new DentistFile(panelWrapper, role), panelWrapper);
 

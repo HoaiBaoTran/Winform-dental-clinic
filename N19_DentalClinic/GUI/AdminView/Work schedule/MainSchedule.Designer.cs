@@ -47,6 +47,9 @@
             btnYesterday = new Button();
             btnTommorow = new Button();
             button1 = new Button();
+            btnBack = new Button();
+            label11 = new Label();
+            txtName = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -126,7 +129,7 @@
             daycontainer.Location = new Point(10, 198);
             daycontainer.Margin = new Padding(0);
             daycontainer.Name = "daycontainer";
-            daycontainer.Size = new Size(1277, 678);
+            daycontainer.Size = new Size(1277, 700);
             daycontainer.TabIndex = 0;
             // 
             // btnAdd
@@ -136,7 +139,7 @@
             btnAdd.Font = new Font("Microsoft Sans Serif", 12F);
             btnAdd.Image = (Image)resources.GetObject("btnAdd.Image");
             btnAdd.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAdd.Location = new Point(1011, 28);
+            btnAdd.Location = new Point(873, 79);
             btnAdd.Margin = new Padding(0);
             btnAdd.Name = "btnAdd";
             btnAdd.Padding = new Padding(6, 0, 6, 0);
@@ -152,7 +155,7 @@
             nowWeek.BackColor = Color.FromArgb(7, 127, 250);
             nowWeek.FlatStyle = FlatStyle.Flat;
             nowWeek.Font = new Font("Microsoft Sans Serif", 12F);
-            nowWeek.Location = new Point(1161, 29);
+            nowWeek.Location = new Point(1023, 80);
             nowWeek.Margin = new Padding(0);
             nowWeek.Name = "nowWeek";
             nowWeek.Size = new Size(126, 62);
@@ -165,7 +168,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Microsoft Sans Serif", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(448, 103);
+            label8.Location = new Point(10, 23);
             label8.Name = "label8";
             label8.Size = new Size(227, 39);
             label8.TabIndex = 20;
@@ -175,7 +178,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Microsoft Sans Serif", 12F);
-            label9.Location = new Point(182, 45);
+            label9.Location = new Point(700, 18);
             label9.Name = "label9";
             label9.Size = new Size(42, 25);
             label9.TabIndex = 21;
@@ -185,7 +188,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Microsoft Sans Serif", 12F);
-            label10.Location = new Point(394, 45);
+            label10.Location = new Point(928, 18);
             label10.Name = "label10";
             label10.Size = new Size(54, 25);
             label10.TabIndex = 22;
@@ -194,21 +197,23 @@
             // dateFrom
             // 
             dateFrom.CalendarFont = new Font("Cambria Math", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dateFrom.CustomFormat = "dd/MM/yyyy";
             dateFrom.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dateFrom.Format = DateTimePickerFormat.Short;
-            dateFrom.Location = new Point(234, 42);
+            dateFrom.Format = DateTimePickerFormat.Custom;
+            dateFrom.Location = new Point(748, 15);
             dateFrom.Margin = new Padding(3, 4, 3, 4);
             dateFrom.Name = "dateFrom";
-            dateFrom.Size = new Size(147, 30);
+            dateFrom.Size = new Size(154, 30);
             dateFrom.TabIndex = 23;
             dateFrom.ValueChanged += dateFrom_ValueChanged;
             // 
             // dateTo
             // 
             dateTo.CalendarFont = new Font("Cambria Math", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dateTo.CustomFormat = "dd/MM/yyyy";
             dateTo.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dateTo.Format = DateTimePickerFormat.Short;
-            dateTo.Location = new Point(460, 42);
+            dateTo.Format = DateTimePickerFormat.Custom;
+            dateTo.Location = new Point(988, 15);
             dateTo.Margin = new Padding(3, 4, 3, 4);
             dateTo.Name = "dateTo";
             dateTo.Size = new Size(151, 30);
@@ -221,7 +226,7 @@
             btnYesterday.BackgroundImage = (Image)resources.GetObject("btnYesterday.BackgroundImage");
             btnYesterday.BackgroundImageLayout = ImageLayout.Center;
             btnYesterday.ForeColor = Color.Black;
-            btnYesterday.Location = new Point(10, 29);
+            btnYesterday.Location = new Point(1159, 4);
             btnYesterday.Margin = new Padding(3, 4, 3, 4);
             btnYesterday.Name = "btnYesterday";
             btnYesterday.Size = new Size(58, 61);
@@ -235,7 +240,7 @@
             btnTommorow.BackgroundImage = (Image)resources.GetObject("btnTommorow.BackgroundImage");
             btnTommorow.BackgroundImageLayout = ImageLayout.Center;
             btnTommorow.ForeColor = Color.Black;
-            btnTommorow.Location = new Point(88, 30);
+            btnTommorow.Location = new Point(1229, 4);
             btnTommorow.Margin = new Padding(3, 4, 3, 4);
             btnTommorow.Name = "btnTommorow";
             btnTommorow.Size = new Size(58, 61);
@@ -250,7 +255,7 @@
             button1.Font = new Font("Microsoft Sans Serif", 12F);
             button1.Image = (Image)resources.GetObject("button1.Image");
             button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(820, 28);
+            button1.Location = new Point(699, 79);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
             button1.Padding = new Padding(6, 0, 6, 0);
@@ -261,14 +266,55 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
+            // btnBack
+            // 
+            btnBack.BackColor = Color.FromArgb(50, 56, 134);
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnBack.ForeColor = Color.White;
+            btnBack.Image = (Image)resources.GetObject("btnBack.Image");
+            btnBack.ImageAlign = ContentAlignment.MiddleLeft;
+            btnBack.Location = new Point(1159, 79);
+            btnBack.Margin = new Padding(3, 4, 3, 4);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(128, 62);
+            btnBack.TabIndex = 28;
+            btnBack.Text = "Thoát";
+            btnBack.TextAlign = ContentAlignment.MiddleRight;
+            btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label11.Location = new Point(12, 96);
+            label11.Name = "label11";
+            label11.Size = new Size(156, 29);
+            label11.TabIndex = 29;
+            label11.Text = "Tên nhân sự";
+            // 
+            // txtName
+            // 
+            txtName.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtName.Location = new Point(188, 90);
+            txtName.Margin = new Padding(3, 4, 3, 4);
+            txtName.Name = "txtName";
+            txtName.ReadOnly = true;
+            txtName.Size = new Size(343, 38);
+            txtName.TabIndex = 30;
+            // 
             // MainSchedule
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1324, 961);
-            Controls.Add(button1);
             Controls.Add(btnTommorow);
+            Controls.Add(txtName);
             Controls.Add(btnYesterday);
+            Controls.Add(label11);
+            Controls.Add(btnBack);
+            Controls.Add(button1);
             Controls.Add(dateTo);
             Controls.Add(dateFrom);
             Controls.Add(label10);
@@ -313,6 +359,9 @@
         private Button btnYesterday;
         private Button btnTommorow;
         private Button button1;
+        private Button btnBack;
+        private Label label11;
+        private TextBox txtName;
     }
 
        

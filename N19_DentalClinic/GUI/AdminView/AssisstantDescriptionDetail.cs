@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using N19_DentalClinic.GUI.Work_schedule;
 
 namespace N19_DentalClinic.GUI.AdminView
 {
@@ -90,6 +91,7 @@ namespace N19_DentalClinic.GUI.AdminView
                     rbMale.Enabled = true;
                     btnCalendar.Enabled = true;
                     txtSalary.ReadOnly = false;
+                    btnCalendarWork.Enabled = false;
 
 
                     break;
@@ -106,6 +108,7 @@ namespace N19_DentalClinic.GUI.AdminView
                     rbMale.Enabled = true;
                     btnCalendar.Enabled = true;
                     txtSalary.ReadOnly = false;
+                    btnCalendarWork.Enabled = false;
 
                     break;
                 case "delete":
@@ -335,7 +338,7 @@ namespace N19_DentalClinic.GUI.AdminView
 
         private void btnCalendarWork_Click(object sender, EventArgs e)
         {
-            PanelInteraction.openForm(this, new ListCalendarOfDay(panelWrapper, AssID, role), panelWrapper);
+            PanelInteraction.openForm(this, new MainSchedule(AssID, panelWrapper, role), panelWrapper);
         }
     }
 }

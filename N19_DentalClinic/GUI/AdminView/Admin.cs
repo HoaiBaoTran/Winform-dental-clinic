@@ -12,13 +12,16 @@ using N19_DentalClinic.DAO;
 using N19_DentalClinic.GUI.ReceptionistView;
 using N19_DentalClinic.library;
 using N19_DentalClinic.GUI.AdminView;
+using N19_DentalClinic.GUI.AccountView;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace N19_DentalClinic.GUI.AdminView
 {
     public partial class Admin : Form
     {
         private int role;
-
+        private string adminId = "AD00000001";
+        DataInteraction data = new DataInteraction();
         public Admin()
         {
             InitializeComponent();
@@ -27,8 +30,20 @@ namespace N19_DentalClinic.GUI.AdminView
 
         private void Admin_Load(object sender, EventArgs e)
         {
+            //Doi ten 
+            string sqlGetNameAdmin = $"select name from admin where adminid = '{adminId}'";
+            DataTable tableGetNameAdmin = data.readData(sqlGetNameAdmin);
+            if (tableGetNameAdmin.Rows.Count > 0)
+            {
+                foreach (DataRow row in tableGetNameAdmin.Rows)
+                {
+                    lbNameAdmin.Text = row["name"].ToString();
+                    break;
+                }
+            }
+
+
             btnStatistics.FlatAppearance.BorderSize = 0;
-            btnWorkCalendar.FlatAppearance.BorderSize = 0;
             btnMaterialManagement.FlatAppearance.BorderSize = 0;
             btnServiceManagement.FlatAppearance.BorderSize = 0;
             btnManageAss.FlatAppearance.BorderSize = 0;
@@ -43,6 +58,7 @@ namespace N19_DentalClinic.GUI.AdminView
             // Tai mau giao dien
             loadDefaultColorFunctionBtn();
             PanelInteraction.loadForm(new ManageService(pnShowContent, role), pnShowContent);
+            ColorMarker.ButtonColor(btnServiceManagement, "DBAF09", "000000");
 
             pnSidebar.BackColor = ColorTranslator.FromHtml("#323886");
             ColorMarker.ButtonColor(btnManageAss, "E88ED9", "ffffff");
@@ -54,7 +70,6 @@ namespace N19_DentalClinic.GUI.AdminView
         private void loadDefaultColorFunctionBtn()
         {
             ColorMarker.ButtonColor(btnStatistics, "0918DB", "ffffff");
-            ColorMarker.ButtonColor(btnWorkCalendar, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnMaterialManagement, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnServiceManagement, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnPatFile, "0918DB", "ffffff");
@@ -64,7 +79,6 @@ namespace N19_DentalClinic.GUI.AdminView
         private void btnServiceManagement_Click(object sender, EventArgs e)
         {
             ColorMarker.ButtonColor(btnStatistics, "0918DB", "ffffff");
-            ColorMarker.ButtonColor(btnWorkCalendar, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnMaterialManagement, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnServiceManagement, "DBAF09", "000000");
             ColorMarker.ButtonColor(btnManageBill, "0918DB", "ffffff");
@@ -75,7 +89,6 @@ namespace N19_DentalClinic.GUI.AdminView
         private void btnMaterialManagement_Click(object sender, EventArgs e)
         {
             ColorMarker.ButtonColor(btnStatistics, "0918DB", "ffffff");
-            ColorMarker.ButtonColor(btnWorkCalendar, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnMaterialManagement, "DBAF09", "000000");
             ColorMarker.ButtonColor(btnServiceManagement, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnManageBill, "0918DB", "ffffff");
@@ -87,9 +100,7 @@ namespace N19_DentalClinic.GUI.AdminView
         private void btnManageBill_Click(object sender, EventArgs e)
         {
             ColorMarker.ButtonColor(btnStatistics, "0918DB", "ffffff");
-            ColorMarker.ButtonColor(btnWorkCalendar, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnMaterialManagement, "0918DB", "ffffff");
-            ColorMarker.ButtonColor(btnServiceManagement, "DBAF09", "000000");
             ColorMarker.ButtonColor(btnPatFile, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnServiceManagement, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnManageBill, "DBAF09", "000000");
@@ -100,7 +111,6 @@ namespace N19_DentalClinic.GUI.AdminView
         private void btnStatistics_Click(object sender, EventArgs e)
         {
             ColorMarker.ButtonColor(btnStatistics, "DBAF09", "000000");
-            ColorMarker.ButtonColor(btnWorkCalendar, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnMaterialManagement, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnServiceManagement, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnPatFile, "0918DB", "ffffff");
@@ -110,7 +120,6 @@ namespace N19_DentalClinic.GUI.AdminView
         private void btnWorkCalendar_Click(object sender, EventArgs e)
         {
             ColorMarker.ButtonColor(btnStatistics, "0918DB", "ffffff");
-            ColorMarker.ButtonColor(btnWorkCalendar, "DBAF09", "000000");
             ColorMarker.ButtonColor(btnMaterialManagement, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnServiceManagement, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnManageBill, "0918DB", "ffffff");
@@ -120,7 +129,6 @@ namespace N19_DentalClinic.GUI.AdminView
         {
             PanelInteraction.loadForm(new PatientFile(pnShowContent, role), pnShowContent);
             ColorMarker.ButtonColor(btnStatistics, "0918DB", "ffffff");
-            ColorMarker.ButtonColor(btnWorkCalendar, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnPatFile, "DBAF09", "000000");
             ColorMarker.ButtonColor(btnMaterialManagement, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnManageBill, "0918DB", "ffffff");
@@ -145,5 +153,10 @@ namespace N19_DentalClinic.GUI.AdminView
             PanelInteraction.loadForm(new AssisstantFile(pnShowContent, role), pnShowContent);
         }
 
+        private void backToLogin_Click(object sender, EventArgs e)
+        {
+            ConfirmToLogin confirmForm = new ConfirmToLogin(this, new LoginMain());
+            confirmForm.ShowDialog();
+        }
     }
 }

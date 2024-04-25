@@ -43,6 +43,25 @@ namespace N19_DentalClinic.GUI.AdminView
             isEdit = true;
         }
 
+        private string autoIncrementID()
+        {
+            string sql = @$"select top 1 materialID from material order by materialID desc";
+            DataTable table = data.readData(sql);
+            if (table.Rows.Count > 0)
+            {
+                DataRow row = table.Rows[0];
+                oldMaterialId = (string)row["materialID"];
+            }
+
+            oldMaterialId = oldMaterialId.Substring(2, 8);
+            int id = Convert.ToInt32(oldMaterialId);
+            int newID = id + 1;
+            string newIDString = Convert.ToString(newID);
+            string temp = "MA00000000";
+            string newServiceID = temp.Substring(0, 10 - newIDString.Length) + newIDString;
+            return newServiceID;
+        }
+
         private void handleAddMaterial()
         {
             string materialName = tbMaterialName.Text;
@@ -54,10 +73,56 @@ namespace N19_DentalClinic.GUI.AdminView
             string quantity = tbQuantity.Text;
             string price = tbPrice.Text;
 
-            if (!isEdit)
+            //Kiem tra vat lieu 
+            string mss = "";
+            if(materialName == "")
             {
+                mss = "Vui lòng nhập tên vật liệu";
+            }else if(calUnit == "")
+            {
+                mss = "Vui lòng nhập đơn vị tính";
+            }else if(type == "")
+            {
+                mss = "Vui lòng chọn loại vật liệu";
+            }else if(quantity == "")
+            {
+                mss = "Vui lòng nhập số lương";
+            }
+            //Kiem tra loai vat lieu 
+            if(cbType.SelectedIndex == 1) // tieu hao
+            {
+                if(functionType == "")
+                {
+                    mss = "Vui lòng chọn chức năng";
+                }else if(time == "")
+                {
+                    mss = "Vui lòng chọn thời gian hết hạn";
+                }else if(functionType == "Kháng sinh" || functionType == "Kháng viêm" || functionType == "Giảm đau") // thuoc
+                {
+                    if(price == "")
+                    {
+                        mss = "Vui lòng nhập giá vật liệu";
+                    }else if (!int.TryParse(price, out _))
+                    {
+                        mss = "Giá tiền phải là số";
+                    }
+                }
+            }
+
+
+            if (mss != "")
+            {
+                MessageBox.Show(mss);
+                return;
+            }
+
+            
+
+            if (!isEdit) // Them vat lieu
+            {
+                string newMaterialID = autoIncrementID();
                 string sql = @$"insert into material(materialID, name, AdminID, CalUnit, quantity, able) values
-                                (dbo.autoMaid(), N'{materialName}', 'AD00000001', N'{calUnit}', " + quantity + ", 1)";
+                                ('{newMaterialID}', N'{materialName}', 'AD00000001', N'{calUnit}', " + quantity + ", 1)";
                 data.changeData(sql);
 
                 string sqlSelect = @"SELECT TOP 1 materialID FROM material ORDER BY materialID DESC";
@@ -75,11 +140,11 @@ namespace N19_DentalClinic.GUI.AdminView
                 }
                 else if (type == "Tiêu hao")
                 {
-                    
+
 
                     string insertedConsumableMaterialsql = @$"insert into ConsumableMaterial(materialID, expiration_date, typeConmaterial, able) values 
                                                         ('{materialIdInserted}', '{time}', N'{functionType}',1)";
-     
+
                     data.changeData(insertedConsumableMaterialsql);
 
                     if (functionType == "Kháng sinh" || functionType == "Kháng viêm" || functionType == "Giảm đau")
@@ -92,25 +157,25 @@ namespace N19_DentalClinic.GUI.AdminView
                 MessageBox.Show("Thêm vật liệu thành công");
                 this.DialogResult = DialogResult.OK;
             }
-            else
+            else // Sua vat lieu
             {
                 string materialId = tbMaterialId.Text;
                 string sql = string.Empty;
                 if (type == "Tiêu hao")
                 {
                     sql = "update Medicine set price = " + price + $" where materialId = '{materialId}'";
-                    
+
                     data.changeData(sql);
 
                     sql = @$"update ConsumableMaterial set
                                 expiration_date = N'{time}', typeConMaterial = N'{functionType}' where materialId = '{materialId}'";
-                   
+
                     data.changeData(sql);
                 }
 
                 sql = @$"update Material set
                                 name = N'{materialName}', CalUnit = N'{calUnit}', quantity = " + quantity + $" where materialId = '{materialId}'";
-             
+
                 data.changeData(sql);
                 MessageBox.Show("Cập nhật vật liệu thành công");
                 this.DialogResult = DialogResult.OK;
@@ -138,12 +203,79 @@ namespace N19_DentalClinic.GUI.AdminView
                 tbQuantity.Text = oldQuantity;
                 tbCalUnit.Text = oldCalUnit;
                 cbType.Text = oldType;
+                if (oldExpirationDate != string.Empty)
+                {
+                    DateTime date = DateTime.ParseExact(oldExpirationDate, "dd/MM/yyyy", null);
+                    dateTimePicker.Value = date;
+                }
 
-                DateTime date = DateTime.ParseExact(oldExpirationDate, "dd/MM/yyyy", null);
-                dateTimePicker.Value = date;
+                
 
                 tbMaterialId.ReadOnly = true;
                 cbType.Enabled = false;
+
+                if (cbType.SelectedIndex == 0)
+                {
+                    tbPrice.Enabled = false;
+                    tbPrice.BackColor = Color.Gray;
+                    dateTimePicker.Enabled = false;
+                    dateTimePicker.CalendarMonthBackground = Color.Gray;
+                    dateTimePicker.CalendarTitleBackColor = Color.Gray;
+                }
+                else
+                {
+                    dateTimePicker.Enabled = true;
+                    dateTimePicker.CalendarMonthBackground = Color.White;
+                    dateTimePicker.CalendarTitleBackColor = Color.White;
+
+                    
+                }
+
+                string sql = $@"select cm.typeConMaterial, me.price
+                                from ConsumableMaterial cm
+                                join Medicine me on me.materialID = cm.materialID
+                                where cm.materialId = '{oldMaterialId}'";
+
+                DataTable table = data.readData(sql);
+                if (table.Rows.Count > 0)
+                {
+                    DataRow row = table.Rows[0];
+                    tbPrice.Text = ((int)row["price"]).ToString();
+                    cbFunction.Text = (string)row["typeConMaterial"];
+
+                    //Doi trong thuoc thi chi co thuoc
+                    if (cbType.SelectedIndex == 1 && (cbFunction.Text == "Kháng sinh" || cbFunction.Text == "Kháng viêm" || cbFunction.Text == "Giảm đau"))
+                    {
+                        cbFunction.Items.Clear();
+                        cbFunction.Items.Add("Kháng sinh");
+                        cbFunction.Items.Add("Kháng viêm");
+                        cbFunction.Items.Add("Giảm đau");
+                        if(cbFunction.Text == "Kháng sinh")
+                        {
+                            cbFunction.SelectedIndex = 0;
+                        }
+                        else if (cbFunction.Text == "Kháng sinh")
+                        {
+                            cbFunction.SelectedIndex = 1;
+                        }
+                        else
+                        {
+                            cbFunction.SelectedIndex = 2;
+                        }
+                    }
+                }
+                else
+                {
+                    sql = $@"select cm.typeConMaterial
+                                from ConsumableMaterial cm
+                                where cm.materialId = '{oldMaterialId}'";
+                    table = data.readData(sql);
+                    if (table.Rows.Count > 0)
+                    {
+                        DataRow row = table.Rows[0];
+                        cbFunction.Text = (string)row["typeConMaterial"];
+                    }
+                }
 
             }
             else
@@ -151,13 +283,67 @@ namespace N19_DentalClinic.GUI.AdminView
                 tbMaterialId.Enabled = false;
                 tbMaterialId.BackColor = Color.Gray;
                 cbType.SelectedIndex = 0;
-                cbFunction.SelectedIndex = 0;
+                tbPrice.Enabled = false;
+                tbPrice.BackColor = Color.Gray;
+                cbFunction.Text = "";
             }
         }
 
         private void roundPictureBox2_Click(object sender, EventArgs e)
         {
             handleAddMaterial();
+        }
+
+        private void cbType_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cbType.SelectedIndex == 0)
+            {
+
+                dateTimePicker.Enabled = false;
+                dateTimePicker.CalendarMonthBackground = Color.Gray;
+                dateTimePicker.CalendarTitleBackColor = Color.Gray;
+            }
+            else
+            {
+
+                dateTimePicker.Enabled = true;
+                dateTimePicker.CalendarMonthBackground = Color.White;
+                dateTimePicker.CalendarTitleBackColor = Color.White;
+            }
+        }
+
+        private void cbFunction_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbType.SelectedIndex == 1 && (cbFunction.Text == "Kháng sinh" || cbFunction.Text == "Kháng viêm" || cbFunction.Text == "Giảm đau"))
+            {
+                tbPrice.Enabled = true;
+                tbPrice.BackColor = Color.White;
+            }
+            else
+            {
+                tbPrice.Enabled = false;
+                tbPrice.BackColor = Color.Gray;
+            }
+        }
+
+        private void cbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbType.SelectedIndex == 0)
+            {
+                cbFunction.SelectedIndex = -1;
+                cbFunction.Enabled = false;
+            }
+            else
+            {
+                cbFunction.Enabled = true;
+            }
+        }
+
+        private void cbFunction_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(cbType.SelectedIndex == 0) {
+                MessageBox.Show("Chỉ có thể chọn công dụng với loại vật liệu tiêu hao");
+            }
         }
     }
 }

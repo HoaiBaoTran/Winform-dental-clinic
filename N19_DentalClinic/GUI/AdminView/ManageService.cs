@@ -28,6 +28,15 @@ namespace N19_DentalClinic.GUI.AdminView
 
         private void ManageService_Load(object sender, EventArgs e)
         {
+            string sqlUpdateComboboxKindService = "select distinct kindService from service where able = 1";
+            DataTable tableKindService = data.readData(sqlUpdateComboboxKindService);
+            if (tableKindService.Rows.Count > 0)
+            {
+                foreach (DataRow row in tableKindService.Rows)
+                {
+                    cbKindService.Items.Add(row["kindService"].ToString());
+                }
+            }
             updateUiOnDataChange();
         }
 
@@ -37,14 +46,16 @@ namespace N19_DentalClinic.GUI.AdminView
             DataTable table = data.readData(sql);
             if (table.Rows.Count > 0)
             {
-                dataService.ColumnCount = 7;
+                dataService.ColumnCount = 9;
                 dataService.Columns[0].Name = "STT";
                 dataService.Columns[1].Name = "Mã dịch vụ";
                 dataService.Columns[2].Name = "Tên dịch vụ";
                 dataService.Columns[3].Name = "Giá tiền";
                 dataService.Columns[4].Name = "Đơn vị tính";
                 dataService.Columns[5].Name = "Ghi chú";
-                dataService.Columns[6].Name = "Xóa";
+                dataService.Columns[6].Name = "Loại dịch vụ";
+                dataService.Columns[7].Name = "Chỉnh sửa";
+                dataService.Columns[8].Name = "Xóa";
                 dataService.EnableHeadersVisualStyles = false;
                 dataService.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
                 dataService.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
@@ -52,15 +63,19 @@ namespace N19_DentalClinic.GUI.AdminView
                 int countRow = 1;
                 foreach (DataRow row in table.Rows)
                 {
-
+                    int price = ((int)row["price"]);
+                    string formattedTotalRevenue = price.ToString("#,##0");
                     string[] rowString = new string[] {
                         countRow.ToString(),
                         (string)row["serviceID"],
                         (string)row["name"],
-                        ((int)row["price"]).ToString(),
+                        formattedTotalRevenue,
                         (string)row["calUnit"],
                         (string)row["note"],
-                        "Xóa" };
+                        (string)row["kindService"],
+                        "Chỉnh sửa",
+                        "Xóa"
+                    };
                     dataService.Rows.Add(rowString);
                     countRow++;
                 }
@@ -93,7 +108,7 @@ namespace N19_DentalClinic.GUI.AdminView
         {
             if (dataService.Rows.Count > 0)
             {
-                if (dataService.CurrentCell.ColumnIndex == 6)
+                if (dataService.CurrentCell.ColumnIndex == 8)
                 {
                     string serviceId = dataService[1, dataService.CurrentCell.RowIndex].Value.ToString();
                     string serviceName = dataService[2, dataService.CurrentCell.RowIndex].Value.ToString();
@@ -103,21 +118,24 @@ namespace N19_DentalClinic.GUI.AdminView
 
                     if (confirmResult == DialogResult.Yes)
                     {
-                        string sql = @$"delete from Service 
+                        string sql = $@"delete from Bill_Service where serviceID = '{serviceId}'";
+                        data.changeData(sql);
+                        sql = @$"delete from Service 
                                         where serviceID = '{serviceId}'";
                         data.changeData(sql);
                         MessageBox.Show("Xóa thành công");
                         updateUiOnDataChange();
                     }
                 }
-                else
+                else if (dataService.CurrentCell.ColumnIndex == 7)
                 {
                     string serviceId = dataService[1, dataService.CurrentCell.RowIndex].Value.ToString();
                     string serviceName = dataService[2, dataService.CurrentCell.RowIndex].Value.ToString();
                     string price = dataService[3, dataService.CurrentCell.RowIndex].Value.ToString();
                     string calUnit = dataService[4, dataService.CurrentCell.RowIndex].Value.ToString();
                     string note = dataService[5, dataService.CurrentCell.RowIndex].Value.ToString();
-                    AddService addService = new AddService(serviceId, serviceName, price, calUnit, note);
+                    string kindService = dataService[6, dataService.CurrentCell.RowIndex].Value.ToString();
+                    AddService addService = new AddService(serviceId, serviceName, price.Replace(",", ""), calUnit, note, kindService);
                     if (addService.ShowDialog() == DialogResult.OK)
                     {
                         updateUiOnDataChange();
@@ -129,17 +147,82 @@ namespace N19_DentalClinic.GUI.AdminView
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string serviceId = tbSearch.Text.ToString();
-            
-            if (serviceId != string.Empty)
+            //string serviceId = tbSearch.Text.ToString();
+
+            //if (serviceId != string.Empty)
+            //{
+            //    string sql = $"select * from service where serviceID = '{serviceId}'";
+            //    dataService.Rows.Clear();
+            //    updateDataGridView(sql);
+            //}
+            //else
+            //{
+            //    updateUiOnDataChange();
+            //}
+
+            string sql = "select * from service where able = 1";
+            DataTable table = data.readData(sql);
+            int selectIndex = cbKindSearch.SelectedIndex;
+            switch (selectIndex)
             {
-                string sql = $"select * from service where serviceID = '{serviceId}'";
-                dataService.Rows.Clear();
-                updateDataGridView(sql);
-            } else
-            {
-                updateUiOnDataChange();
+                // Tim theo ma dich vu
+                case 0:
+                    if (table.Rows.Count > 0)
+                    {
+                        bool flagId = true;
+                        foreach (DataRow row in table.Rows)
+                        {
+                            if (row["serviceId"].ToString() == tbSearch.Text)
+                            {
+                                string sqlFindByID = "select * from service where able = 1 and serviceId = '" + tbSearch.Text + "'";
+                                clearDataGridView(dataService);
+                                updateDataGridView(sqlFindByID);
+                                flagId = false;
+                            }
+                        }
+                        if (flagId)
+                        {
+                            MessageBox.Show("Không có mã dịch vụ này");
+                        }
+                    }
+                    break;
+                // Tim theo ten dich vu
+                case 1:
+
+                    string sqlFindByName = "select * from service where able = 1 and name like N'%" + tbSearch.Text + "%'";
+                    clearDataGridView(dataService);
+                    updateDataGridView(sqlFindByName);
+
+                    break;
+                default:
+                    MessageBox.Show("Vui lòng chọn loại tìm kiếm");
+                    break;
             }
+        }
+        public void clearDataGridView(DataGridView dtgv)
+        {
+            try
+            {
+                dtgv.Rows.Clear();
+            }
+            finally
+            {
+                dtgv.AllowUserToAddRows = false;
+            }
+        }
+
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbKindService_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string kindService = cbKindService.Items[cbKindService.SelectedIndex].ToString();
+            string sqlServiceSearch = $"select * from service where able = 1 and kindService = N'{kindService}' order by kindService asc ";
+            clearDataGridView(dataService);
+            updateDataGridView(sqlServiceSearch);
         }
     }
 }

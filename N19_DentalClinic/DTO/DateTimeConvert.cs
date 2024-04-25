@@ -37,7 +37,6 @@ namespace N19_DentalClinic.DAO
         {
             DateTime date = DateTime.ParseExact(day, "dd/MM/yyyy", null);
             return date.Date.ToString("yyyy-MM-dd hh:mm:ss");
-
         }
 
         //Chuyển dữ liệu sang giờ mặc định trong database cho mục chọn ngày 
@@ -52,7 +51,7 @@ namespace N19_DentalClinic.DAO
         //Chuyển dữ liệu sang ngày trong database
         public static string convertSqlTimeDay(string day) { 
             DateTime myDateTime = DateTime.ParseExact(day, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            return myDateTime.Date.ToString("yyyy-MM-dd");
+            return myDateTime.ToString("yyyy-MM-dd");
         }
 
         //Kiem tra thoi gian tuong lai

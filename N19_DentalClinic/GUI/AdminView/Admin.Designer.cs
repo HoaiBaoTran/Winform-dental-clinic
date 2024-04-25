@@ -38,10 +38,12 @@
             btnManageRecep = new Button();
             label1 = new Label();
             btnMaterialManagement = new Button();
-            btnWorkCalendar = new Button();
             btnServiceManagement = new Button();
             btnStatistics = new Button();
             pnShowContent = new Panel();
+            backToLogin = new component.RJButton();
+            label3 = new Label();
+            lbNameAdmin = new Label();
             pnSidebar.SuspendLayout();
             SuspendLayout();
             // 
@@ -57,7 +59,6 @@
             pnSidebar.Controls.Add(btnManageRecep);
             pnSidebar.Controls.Add(label1);
             pnSidebar.Controls.Add(btnMaterialManagement);
-            pnSidebar.Controls.Add(btnWorkCalendar);
             pnSidebar.Controls.Add(btnServiceManagement);
             pnSidebar.Controls.Add(btnStatistics);
             pnSidebar.Location = new Point(2, 13);
@@ -178,19 +179,6 @@
             btnMaterialManagement.UseVisualStyleBackColor = true;
             btnMaterialManagement.Click += btnMaterialManagement_Click;
             // 
-            // btnWorkCalendar
-            // 
-            btnWorkCalendar.FlatStyle = FlatStyle.Flat;
-            btnWorkCalendar.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnWorkCalendar.Location = new Point(11, 810);
-            btnWorkCalendar.Margin = new Padding(3, 4, 3, 4);
-            btnWorkCalendar.Name = "btnWorkCalendar";
-            btnWorkCalendar.Size = new Size(207, 68);
-            btnWorkCalendar.TabIndex = 3;
-            btnWorkCalendar.Text = "Xếp lịch làm việc";
-            btnWorkCalendar.UseVisualStyleBackColor = true;
-            btnWorkCalendar.Click += btnWorkCalendar_Click;
-            // 
             // btnServiceManagement
             // 
             btnServiceManagement.FlatStyle = FlatStyle.Flat;
@@ -221,17 +209,65 @@
             // 
             pnShowContent.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnShowContent.BackColor = Color.White;
-            pnShowContent.Location = new Point(246, 48);
+            pnShowContent.Location = new Point(246, 81);
             pnShowContent.Margin = new Padding(6, 8, 6, 8);
             pnShowContent.Name = "pnShowContent";
-            pnShowContent.Size = new Size(1421, 898);
+            pnShowContent.Size = new Size(1421, 865);
             pnShowContent.TabIndex = 2;
+            // 
+            // backToLogin
+            // 
+            backToLogin.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            backToLogin.BackColor = Color.FromArgb(165, 85, 80);
+            backToLogin.BackgroundColor = Color.FromArgb(165, 85, 80);
+            backToLogin.BorderColor = Color.PaleVioletRed;
+            backToLogin.BorderRadius = 0;
+            backToLogin.BorderSize = 0;
+            backToLogin.FlatAppearance.BorderSize = 0;
+            backToLogin.FlatStyle = FlatStyle.Flat;
+            backToLogin.ForeColor = Color.White;
+            backToLogin.Image = (Image)resources.GetObject("backToLogin.Image");
+            backToLogin.Location = new Point(1600, 6);
+            backToLogin.Name = "backToLogin";
+            backToLogin.Size = new Size(67, 64);
+            backToLogin.TabIndex = 12;
+            backToLogin.TextColor = Color.White;
+            backToLogin.UseVisualStyleBackColor = false;
+            backToLogin.Click += backToLogin_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(243, 22);
+            label3.Name = "label3";
+            label3.Size = new Size(118, 41);
+            label3.TabIndex = 14;
+            label3.Text = "Họ Tên:";
+            // 
+            // lbNameAdmin
+            // 
+            lbNameAdmin.AutoSize = true;
+            lbNameAdmin.Font = new Font("Segoe UI", 18F);
+            lbNameAdmin.ForeColor = Color.White;
+            lbNameAdmin.Location = new Point(382, 22);
+            lbNameAdmin.Name = "lbNameAdmin";
+            lbNameAdmin.Size = new Size(270, 41);
+            lbNameAdmin.TabIndex = 13;
+            lbNameAdmin.Text = "Quản Lí Toàn Năng";
+            lbNameAdmin.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // Admin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1682, 953);
+            ControlBox = false;
+            Controls.Add(label3);
+            Controls.Add(lbNameAdmin);
+            Controls.Add(backToLogin);
             Controls.Add(pnShowContent);
             Controls.Add(pnSidebar);
             Margin = new Padding(3, 4, 3, 4);
@@ -241,13 +277,13 @@
             pnSidebar.ResumeLayout(false);
             pnSidebar.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private System.Windows.Forms.Panel pnSidebar;
         private System.Windows.Forms.Button btnMaterialManagement;
-        private System.Windows.Forms.Button btnWorkCalendar;
         private System.Windows.Forms.Button btnServiceManagement;
         private System.Windows.Forms.Button btnStatistics;
         private System.Windows.Forms.Panel pnShowContent;
@@ -258,5 +294,8 @@
         private System.Windows.Forms.Label label1;
         private Button btnManageBill;
         private Button btnPatFile;
+        private component.RJButton backToLogin;
+        private Label label3;
+        private Label lbNameAdmin;
     }
 }

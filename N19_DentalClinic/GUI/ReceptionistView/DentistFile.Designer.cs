@@ -99,9 +99,10 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             // txtSearch
             // 
             txtSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtSearch.Location = new Point(44, 89);
+            txtSearch.Location = new Point(311, 90);
             txtSearch.Margin = new Padding(3, 4, 3, 4);
             txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "Tìm kiếm nha sĩ";
             txtSearch.Size = new Size(235, 38);
             txtSearch.TabIndex = 2;
             // 
@@ -109,7 +110,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             // 
             btnSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
-            btnSearch.Location = new Point(552, 80);
+            btnSearch.Location = new Point(576, 80);
             btnSearch.Margin = new Padding(3, 4, 3, 4);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(57, 55);
@@ -119,13 +120,14 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             // 
             // cbKindSearch
             // 
+            cbKindSearch.DropDownStyle = ComboBoxStyle.DropDownList;
             cbKindSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbKindSearch.FormattingEnabled = true;
-            cbKindSearch.Items.AddRange(new object[] { "Mã nha sĩ", "Tên nha sĩ" });
-            cbKindSearch.Location = new Point(314, 88);
+            cbKindSearch.Items.AddRange(new object[] { "Mã nha sĩ", "Tên nha sĩ", "Khoa" });
+            cbKindSearch.Location = new Point(44, 89);
             cbKindSearch.Margin = new Padding(3, 4, 3, 4);
             cbKindSearch.Name = "cbKindSearch";
-            cbKindSearch.Size = new Size(212, 39);
+            cbKindSearch.Size = new Size(261, 39);
             cbKindSearch.TabIndex = 4;
             // 
             // btnCreateDentist

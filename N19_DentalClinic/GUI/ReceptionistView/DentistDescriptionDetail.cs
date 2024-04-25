@@ -113,6 +113,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                     rbMale.Enabled = true;
                     btnCalendar.Enabled = true;
                     txtSalary.ReadOnly = false;
+                    btnCalendarWork.Enabled = false;
 
 
                     break;
@@ -133,6 +134,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                     rbMale.Enabled = true;
                     btnCalendar.Enabled = true;
                     txtSalary.ReadOnly = false;
+                    btnCalendarWork.Enabled = false;
 
                     break;
                 case "delete":
@@ -211,6 +213,10 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                         {
                             errorMess = "Email không hợp lệ";
                         }
+                        else if (data.isExistEmailInsert(txtEmail.Text))
+                        {
+                            errorMess = "Đã tồn tại email";
+                        }
                         else if (txtPhoneNumber.Text == "")
                         {
                             errorMess = "Vui lòng nhập số điện thoại";
@@ -254,6 +260,24 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                         }
                         else
                         {
+                            //them tai khoan nha si
+                            int quantityAc = 0;
+                            string sqlCountUser = "select count(*) as quantity from account";
+                            DataTable tableCountUser = data.readData(sqlCountUser);
+                            if (tableCountUser.Rows.Count > 0)
+                            {
+                                foreach (DataRow rowAccount in tableCountUser.Rows)
+                                {
+                                    quantityAc = int.Parse(rowAccount["quantity"].ToString());
+                                    break;
+                                }
+                            }
+                            quantityAc++;
+                            string newUsername = "dentist" + quantityAc.ToString();
+                            string newPassword = "123456";
+                            string sqlAddAccountForDentist = $"exec procAddAccount '{newUsername}', '{newPassword}', 'C'";
+                            data.changeData(sqlAddAccountForDentist);
+
                             string name = txtName.Text;
                             string birthday = txtBirthday.Text;
                             string email = txtEmail.Text;
@@ -287,6 +311,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                                 MessageBox.Show("Không tồn tại khoa này");
                                 return;
                             }
+                            string lenZeroInNewAcc = "00000000".Substring(0, 8 - quantityAc.ToString().Length);
                             string sqlAddDentist = "exec procAddDentist N'"
                                 + name
                                 + "', N'" + address
@@ -299,13 +324,23 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                                 + "', N'" + nation
                                 + "', " + gender
                                 + ", '" + DateTimeConvert.convertSqlTimeDay(birthday.ToString())
-                                + "'";
+                                + "', '" + "AC" + lenZeroInNewAcc + quantityAc.ToString() + "'";
                             data.changeData(sqlAddDentist);
                             MessageBox.Show("Thêm nha sĩ mới thành công");
                             PanelInteraction.openForm(this, new DentistFile(panelWrapper, role), panelWrapper);
                         }
                         break;
                     case "update":
+                        string oldEmail = "";
+                        string sqlEmail = "select email from dentist where denid = '" + DenID + "'";
+                        DataTable tableEmail = data.readData(sqlEmail);
+                        if (tableEmail.Rows.Count > 0)
+                        {
+                            foreach (DataRow email in tableEmail.Rows)
+                            {
+                                oldEmail = email["email"].ToString();
+                            }
+                        }
                         errorMess = "";
                         if (txtName.Text == "")
                         {
@@ -330,6 +365,10 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                         else if (CheckFieldInfo.checkEmail(txtEmail.Text) == false)
                         {
                             errorMess = "Email không hợp lệ";
+                        }
+                        else if (data.isExistEmailUpdate(txtEmail.Text, oldEmail))
+                        {
+                            errorMess = "Đã tồn tại email";
                         }
                         else if (txtPhoneNumber.Text == "")
                         {

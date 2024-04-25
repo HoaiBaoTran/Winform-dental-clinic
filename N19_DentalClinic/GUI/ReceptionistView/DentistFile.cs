@@ -35,18 +35,19 @@ namespace N19_DentalClinic.GUI.ReceptionistView
 
         private void dataDentistTable_MouseClick(object sender, MouseEventArgs e)
         {
+            //Kiem tra bang co null không 
             if (dataDentistTable.CurrentCell == null) return;
-            if (dataDentistTable.CurrentCell.ColumnIndex == 8)
+            if (dataDentistTable.CurrentCell.ColumnIndex == 9)
             {
                 string DenID = dataDentistTable[1, dataDentistTable.CurrentCell.RowIndex].Value.ToString();
                 PanelInteraction.openForm(this, new DentistDescriptionDetail(panelWrapper, DenID, role, "view"), panelWrapper);//xem thông tin chi tiết nha sĩ
             }
-            else if (dataDentistTable.CurrentCell.ColumnIndex == 9)
+            else if (dataDentistTable.CurrentCell.ColumnIndex == 10)
             {
                 string DenID = dataDentistTable[1, dataDentistTable.CurrentCell.RowIndex].Value.ToString();
                 PanelInteraction.openForm(this, new AppointmentForDentist(panelWrapper, DenID, role, "view"), panelWrapper);//xem thông tin lịch hẹn 
             }
-            else if (dataDentistTable.CurrentCell.ColumnIndex == 10)
+            else if (dataDentistTable.CurrentCell.ColumnIndex == 11)
             {
                 if(role == 1)
                 {
@@ -57,7 +58,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                     MessageBox.Show("Bạn không đủ thẩm quyền để chỉnh sửa");
                 }
             }
-            else if (dataDentistTable.CurrentCell.ColumnIndex == 11)
+            else if (dataDentistTable.CurrentCell.ColumnIndex == 12)
             {
                 if(role == 1)
                 {
@@ -79,7 +80,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             }
             finally
             {
-                dtgv.AllowUserToAddRows = true;
+                dtgv.AllowUserToAddRows = false;
             }
         }
 
@@ -90,19 +91,20 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             DataTable table = data.readData(sql);
             if (table.Rows.Count > 0)
             {
-                dataDentistTable.ColumnCount = 12;
+                dataDentistTable.ColumnCount = 13;
                 dataDentistTable.Columns[0].Name = "STT";
                 dataDentistTable.Columns[1].Name = "Mã nha sĩ";
-                dataDentistTable.Columns[2].Name = "Họ tên";
-                dataDentistTable.Columns[3].Name = "Năm sinh";
-                dataDentistTable.Columns[4].Name = "Địa chỉ";
-                dataDentistTable.Columns[5].Name = "Số điện thoại";
-                dataDentistTable.Columns[6].Name = "Email";
-                dataDentistTable.Columns[7].Name = "Giới tính";
-                dataDentistTable.Columns[8].Name = "Thông tin chi tiết";
-                dataDentistTable.Columns[9].Name = "Xem lịch hẹn";
-                dataDentistTable.Columns[10].Name = "Chỉnh sửa";
-                dataDentistTable.Columns[11].Name = "Xóa";
+                dataDentistTable.Columns[2].Name = "Khoa";
+                dataDentistTable.Columns[3].Name = "Họ tên";
+                dataDentistTable.Columns[4].Name = "Năm sinh";
+                dataDentistTable.Columns[5].Name = "Địa chỉ";
+                dataDentistTable.Columns[6].Name = "Số điện thoại";
+                dataDentistTable.Columns[7].Name = "Email";
+                dataDentistTable.Columns[8].Name = "Giới tính";
+                dataDentistTable.Columns[9].Name = "Thông tin chi tiết";
+                dataDentistTable.Columns[10].Name = "Xem lịch hẹn";
+                dataDentistTable.Columns[11].Name = "Chỉnh sửa";
+                dataDentistTable.Columns[12].Name = "Xóa";
                 int countRow = 1;
                 foreach (DataRow row in table.Rows)
                 {
@@ -115,9 +117,20 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                     {
                         gender = "Nữ";
                     }
+                    string facName = "";
+                    string sqlFacName = "select name from faculty where able = 1 and facID = '" + (string)row["FacID"] + "'";
+                    DataTable tableFacName = data.readData(sqlFacName);
+                    if(tableFacName.Rows.Count > 0)
+                    {
+                        foreach(DataRow rowName in  tableFacName.Rows)
+                        {
+                            facName = rowName["name"].ToString();
+                        }
+                    }
                     string[] rowString = new string[] {
                         countRow.ToString(),
                         (string)row["DenID"],
+                        facName,
                         (string)row["name"],
                         DateTimeConvert.convertDMY(row["birthday"].ToString()),
                         (string)row["address"], (string)row["phone_number"],
@@ -173,7 +186,15 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                     string sqlFindByName = "select * from dentist where able = 1 and name like N'%" + txtSearch.Text + "%'";
                     clearDataGridView(dataDentistTable);
                     updateDataGridView(sqlFindByName);
-
+                    break;
+                case 2:
+                    string sqlFindByFaculty = @$"
+                        select de.*
+                        from dentist de 
+                        join Faculty fa on fa.FacID = de.FacID
+                        where fa.name like N'%{txtSearch.Text}%'";
+                    clearDataGridView(dataDentistTable);
+                    updateDataGridView(sqlFindByFaculty);
                     break;
                 default:
                     MessageBox.Show("Vui lòng chọn loại tìm kiếm");

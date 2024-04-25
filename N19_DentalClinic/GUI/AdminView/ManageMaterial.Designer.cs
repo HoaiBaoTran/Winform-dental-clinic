@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageMaterial));
             dataMaterial = new DataGridView();
             btnAddMaterial = new Button();
@@ -38,6 +38,8 @@
             label6 = new Label();
             btnFixedMaterial = new component.RJButton();
             btnConsumableMaterial = new component.RJButton();
+            btnMedicine = new component.RJButton();
+            cbKindSearch = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dataMaterial).BeginInit();
             SuspendLayout();
             // 
@@ -50,27 +52,27 @@
             dataMaterial.BorderStyle = BorderStyle.None;
             dataMaterial.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
             dataMaterial.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Window;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.Padding = new Padding(4);
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dataMaterial.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.Padding = new Padding(4);
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dataMaterial.DefaultCellStyle = dataGridViewCellStyle5;
             dataMaterial.GridColor = Color.White;
             dataMaterial.Location = new Point(9, 167);
             dataMaterial.Name = "dataMaterial";
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(18, 219, 78);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.Padding = new Padding(4);
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataMaterial.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(18, 219, 78);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.Padding = new Padding(4);
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dataMaterial.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dataMaterial.RowHeadersWidth = 51;
             dataMaterial.Size = new Size(1186, 623);
             dataMaterial.TabIndex = 117;
@@ -80,13 +82,14 @@
             // 
             btnAddMaterial.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnAddMaterial.BackColor = Color.FromArgb(18, 219, 78);
-            btnAddMaterial.Font = new Font("Microsoft Sans Serif", 12F);
+            btnAddMaterial.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnAddMaterial.Image = (Image)resources.GetObject("btnAddMaterial.Image");
             btnAddMaterial.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddMaterial.Location = new Point(1024, 61);
+            btnAddMaterial.Location = new Point(957, 64);
             btnAddMaterial.Margin = new Padding(3, 4, 3, 4);
             btnAddMaterial.Name = "btnAddMaterial";
-            btnAddMaterial.Size = new Size(171, 57);
+            btnAddMaterial.Padding = new Padding(6, 0, 6, 0);
+            btnAddMaterial.Size = new Size(238, 57);
             btnAddMaterial.TabIndex = 116;
             btnAddMaterial.Text = "Thêm vật liệu";
             btnAddMaterial.TextAlign = ContentAlignment.MiddleRight;
@@ -105,7 +108,7 @@
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.ForeColor = Color.White;
             btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
-            btnSearch.Location = new Point(334, 55);
+            btnSearch.Location = new Point(575, 61);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(60, 52);
             btnSearch.TabIndex = 115;
@@ -117,7 +120,7 @@
             // 
             tbSearch.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             tbSearch.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tbSearch.Location = new Point(14, 64);
+            tbSearch.Location = new Point(276, 64);
             tbSearch.Name = "tbSearch";
             tbSearch.PlaceholderText = "Tìm kiếm vật liệu";
             tbSearch.Size = new Size(293, 43);
@@ -172,11 +175,44 @@
             btnConsumableMaterial.UseVisualStyleBackColor = false;
             btnConsumableMaterial.Click += btnConsumableMaterial_Click;
             // 
+            // btnMedicine
+            // 
+            btnMedicine.BackColor = Color.FromArgb(219, 175, 9);
+            btnMedicine.BackgroundColor = Color.FromArgb(219, 175, 9);
+            btnMedicine.BorderColor = Color.PaleVioletRed;
+            btnMedicine.BorderRadius = 5;
+            btnMedicine.BorderSize = 0;
+            btnMedicine.FlatAppearance.BorderSize = 0;
+            btnMedicine.FlatStyle = FlatStyle.Flat;
+            btnMedicine.ForeColor = Color.White;
+            btnMedicine.Location = new Point(292, 123);
+            btnMedicine.Name = "btnMedicine";
+            btnMedicine.Size = new Size(109, 38);
+            btnMedicine.TabIndex = 121;
+            btnMedicine.Text = "Thuốc";
+            btnMedicine.TextColor = Color.White;
+            btnMedicine.UseVisualStyleBackColor = false;
+            btnMedicine.Click += btnMedicine_Click;
+            // 
+            // cbKindSearch
+            // 
+            cbKindSearch.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbKindSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbKindSearch.FormattingEnabled = true;
+            cbKindSearch.Items.AddRange(new object[] { "Mã vật liệu", "Tên vật liệu" });
+            cbKindSearch.Location = new Point(14, 68);
+            cbKindSearch.Margin = new Padding(3, 4, 3, 4);
+            cbKindSearch.Name = "cbKindSearch";
+            cbKindSearch.Size = new Size(256, 39);
+            cbKindSearch.TabIndex = 122;
+            // 
             // ManageMaterial
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1205, 800);
+            Controls.Add(cbKindSearch);
+            Controls.Add(btnMedicine);
             Controls.Add(btnConsumableMaterial);
             Controls.Add(btnFixedMaterial);
             Controls.Add(dataMaterial);
@@ -202,5 +238,7 @@
         private Label label6;
         private component.RJButton btnFixedMaterial;
         private component.RJButton btnConsumableMaterial;
+        private component.RJButton btnMedicine;
+        private ComboBox cbKindSearch;
     }
 }

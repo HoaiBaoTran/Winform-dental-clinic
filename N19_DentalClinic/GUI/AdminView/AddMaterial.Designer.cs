@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddMaterial));
             tbCalUnit = new TextBox();
             tbMaterialName = new TextBox();
             tbMaterialId = new TextBox();
@@ -36,9 +37,7 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            roundPictureBox3 = new component.RoundPictureBox();
             btnExit = new component.RJButton();
-            roundPictureBox2 = new component.RoundPictureBox();
             btnAddMaterial = new component.RJButton();
             label6 = new Label();
             cbType = new ComboBox();
@@ -49,8 +48,6 @@
             label8 = new Label();
             tbPrice = new TextBox();
             label9 = new Label();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox2).BeginInit();
             SuspendLayout();
             // 
             // tbCalUnit
@@ -132,54 +129,31 @@
             label1.TabIndex = 72;
             label1.Text = "Mã vật liệu";
             // 
-            // roundPictureBox3
-            // 
-            roundPictureBox3.Anchor = AnchorStyles.Right;
-            roundPictureBox3.BackColor = Color.White;
-            roundPictureBox3.BackgroundImage = Properties.Resources.back_icon;
-            roundPictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox3.Location = new Point(863, 479);
-            roundPictureBox3.Name = "roundPictureBox3";
-            roundPictureBox3.Size = new Size(39, 45);
-            roundPictureBox3.TabIndex = 71;
-            roundPictureBox3.TabStop = false;
-            // 
             // btnExit
             // 
             btnExit.Anchor = AnchorStyles.Right;
-            btnExit.BackColor = Color.DarkGray;
-            btnExit.BackgroundColor = Color.DarkGray;
+            btnExit.BackColor = Color.FromArgb(80, 101, 122);
+            btnExit.BackgroundColor = Color.FromArgb(80, 101, 122);
             btnExit.BackgroundImageLayout = ImageLayout.Zoom;
             btnExit.BorderColor = Color.PaleVioletRed;
             btnExit.BorderRadius = 0;
             btnExit.BorderSize = 0;
             btnExit.FlatAppearance.BorderSize = 0;
             btnExit.FlatStyle = FlatStyle.Flat;
-            btnExit.Font = new Font("Segoe UI", 12F);
+            btnExit.Font = new Font("Microsoft Sans Serif", 13.8F);
             btnExit.ForeColor = Color.White;
+            btnExit.Image = (Image)resources.GetObject("btnExit.Image");
             btnExit.ImageAlign = ContentAlignment.MiddleLeft;
-            btnExit.Location = new Point(859, 470);
+            btnExit.Location = new Point(838, 470);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(102, 63);
+            btnExit.Padding = new Padding(6, 0, 6, 0);
+            btnExit.Size = new Size(123, 63);
             btnExit.TabIndex = 70;
             btnExit.Text = "Hủy";
             btnExit.TextAlign = ContentAlignment.MiddleRight;
             btnExit.TextColor = Color.White;
             btnExit.UseVisualStyleBackColor = false;
             btnExit.Click += btnExit_Click;
-            // 
-            // roundPictureBox2
-            // 
-            roundPictureBox2.Anchor = AnchorStyles.Right;
-            roundPictureBox2.BackColor = Color.FromArgb(56, 92, 67);
-            roundPictureBox2.BackgroundImage = Properties.Resources.white_plus_icon;
-            roundPictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox2.Location = new Point(699, 477);
-            roundPictureBox2.Name = "roundPictureBox2";
-            roundPictureBox2.Size = new Size(39, 47);
-            roundPictureBox2.TabIndex = 69;
-            roundPictureBox2.TabStop = false;
-            roundPictureBox2.Click += roundPictureBox2_Click;
             // 
             // btnAddMaterial
             // 
@@ -192,12 +166,14 @@
             btnAddMaterial.BorderSize = 0;
             btnAddMaterial.FlatAppearance.BorderSize = 0;
             btnAddMaterial.FlatStyle = FlatStyle.Flat;
-            btnAddMaterial.Font = new Font("Segoe UI", 12F);
+            btnAddMaterial.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnAddMaterial.ForeColor = Color.Black;
+            btnAddMaterial.Image = (Image)resources.GetObject("btnAddMaterial.Image");
             btnAddMaterial.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddMaterial.Location = new Point(684, 470);
+            btnAddMaterial.Location = new Point(674, 470);
             btnAddMaterial.Name = "btnAddMaterial";
-            btnAddMaterial.Size = new Size(148, 63);
+            btnAddMaterial.Padding = new Padding(6, 0, 6, 0);
+            btnAddMaterial.Size = new Size(158, 63);
             btnAddMaterial.TabIndex = 68;
             btnAddMaterial.Text = "Tạo mới";
             btnAddMaterial.TextAlign = ContentAlignment.MiddleRight;
@@ -218,6 +194,7 @@
             // 
             // cbType
             // 
+            cbType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbType.Font = new Font("Segoe UI", 14F);
             cbType.FormattingEnabled = true;
             cbType.Items.AddRange(new object[] { "Cố định", "Tiêu hao" });
@@ -225,6 +202,8 @@
             cbType.Name = "cbType";
             cbType.Size = new Size(262, 39);
             cbType.TabIndex = 81;
+            cbType.SelectedIndexChanged += cbType_SelectedIndexChanged;
+            cbType.SelectedValueChanged += cbType_SelectedValueChanged;
             // 
             // dateTimePicker
             // 
@@ -238,6 +217,8 @@
             // 
             // cbFunction
             // 
+            cbFunction.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbFunction.Enabled = false;
             cbFunction.Font = new Font("Segoe UI", 14F);
             cbFunction.FormattingEnabled = true;
             cbFunction.Items.AddRange(new object[] { "Chữa răng", "Nội nha", "Nha chu", "Nhổ răng", "Răng trẻ em", "Kháng sinh", "Giảm đau", "Kháng viêm" });
@@ -245,6 +226,8 @@
             cbFunction.Name = "cbFunction";
             cbFunction.Size = new Size(260, 39);
             cbFunction.TabIndex = 84;
+            cbFunction.SelectedIndexChanged += cbFunction_SelectedIndexChanged;
+            cbFunction.MouseClick += cbFunction_MouseClick;
             // 
             // label7
             // 
@@ -317,16 +300,12 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(roundPictureBox3);
             Controls.Add(btnExit);
-            Controls.Add(roundPictureBox2);
             Controls.Add(btnAddMaterial);
             Controls.Add(label6);
             Name = "AddMaterial";
             Text = "AddMaterial";
             Load += AddMaterial_Load;
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -340,9 +319,7 @@
         private Label label3;
         private Label label2;
         private Label label1;
-        private component.RoundPictureBox roundPictureBox3;
         private component.RJButton btnExit;
-        private component.RoundPictureBox roundPictureBox2;
         private component.RJButton btnAddMaterial;
         private Label label6;
         private ComboBox cbType;

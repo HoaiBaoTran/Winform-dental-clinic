@@ -71,5 +71,51 @@ namespace N19_DentalClinic.DAO
             return dt;
         }
 
+        public bool isExistEmailInsert(string email)
+        {
+            DataInteraction data = new DataInteraction();
+            string sqlEmailAdmin = "select email from admin where email = '" + email + "'";
+            string sqlEmailReceptionist = "select email from receptionist where email = '" + email + "'";
+            string sqlEmailDentist = "select email from dentist where email = '" + email + "'";
+
+            DataTable tableAdmin = data.readData(sqlEmailAdmin); 
+            DataTable tableReceptionist = data.readData(sqlEmailReceptionist);
+            DataTable tableDentist = data.readData(sqlEmailDentist);
+            if(tableAdmin.Rows.Count > 0 || tableReceptionist.Rows.Count > 0 || tableDentist.Rows.Count >0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool isExistEmailUpdate(string emailNew, string emailOld)
+        {
+            DataInteraction data = new DataInteraction();
+            string sqlEmailAdmin = $@"
+                select email from
+                (select email from admin 
+                where email not in (select email from admin where email = '{emailOld}')) a
+                where a.email = '{emailNew}'";
+            string sqlEmailReceptionist = $@"
+                select email from
+                (select email from receptionist 
+                where email not in (select email from receptionist where email = '{emailOld}')) a
+                where a.email = '{emailNew}'";
+            string sqlEmailDentist = $@"
+                select email from
+                (select email from dentist 
+                where email not in (select email from dentist where email = '{emailOld}')) a
+                where a.email = '{emailNew}'";
+
+            DataTable tableAdmin = data.readData(sqlEmailAdmin);
+            DataTable tableReceptionist = data.readData(sqlEmailReceptionist);
+            DataTable tableDentist = data.readData(sqlEmailDentist);
+            if (tableAdmin.Rows.Count > 0 || tableReceptionist.Rows.Count > 0 || tableDentist.Rows.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }

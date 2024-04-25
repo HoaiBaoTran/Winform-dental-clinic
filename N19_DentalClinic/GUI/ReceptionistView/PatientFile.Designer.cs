@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PatientFile));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             label1 = new Label();
             txtSearch = new TextBox();
             cbKindSearch = new ComboBox();
@@ -55,10 +56,11 @@
             // txtSearch
             // 
             txtSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtSearch.Location = new Point(31, 92);
+            txtSearch.Location = new Point(305, 93);
             txtSearch.Margin = new Padding(3, 4, 3, 4);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(235, 38);
+            txtSearch.PlaceholderText = "Tìm kiếm bệnh nhân";
+            txtSearch.Size = new Size(272, 38);
             txtSearch.TabIndex = 3;
             // 
             // cbKindSearch
@@ -66,10 +68,10 @@
             cbKindSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbKindSearch.FormattingEnabled = true;
             cbKindSearch.Items.AddRange(new object[] { "Mã bệnh nhân", "Tên bệnh nhân" });
-            cbKindSearch.Location = new Point(293, 91);
+            cbKindSearch.Location = new Point(32, 92);
             cbKindSearch.Margin = new Padding(3, 4, 3, 4);
             cbKindSearch.Name = "cbKindSearch";
-            cbKindSearch.Size = new Size(212, 39);
+            cbKindSearch.Size = new Size(267, 39);
             cbKindSearch.TabIndex = 5;
             // 
             // btnSearch
@@ -77,7 +79,7 @@
             btnSearch.BackColor = Color.FromArgb(219, 175, 9);
             btnSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
-            btnSearch.Location = new Point(536, 87);
+            btnSearch.Location = new Point(599, 84);
             btnSearch.Margin = new Padding(3, 4, 3, 4);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(67, 55);
@@ -88,35 +90,42 @@
             // dataPatientTable
             // 
             dataPatientTable.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 10F);
-            dataGridViewCellStyle1.Padding = new Padding(2);
-            dataPatientTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 10F);
+            dataGridViewCellStyle5.Padding = new Padding(2);
+            dataPatientTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             dataPatientTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataPatientTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataPatientTable.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataPatientTable.BackgroundColor = Color.White;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(18, 219, 78);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataPatientTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(18, 219, 78);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dataPatientTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dataPatientTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 10F);
-            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dataPatientTable.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Window;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 10F);
+            dataGridViewCellStyle7.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            dataPatientTable.DefaultCellStyle = dataGridViewCellStyle7;
             dataPatientTable.Location = new Point(32, 170);
             dataPatientTable.Margin = new Padding(3, 4, 3, 4);
             dataPatientTable.Name = "dataPatientTable";
             dataPatientTable.ReadOnly = true;
-            dataPatientTable.RowHeadersVisible = false;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(18, 219, 78);
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle8.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            dataPatientTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             dataPatientTable.RowHeadersWidth = 51;
             dataPatientTable.RowTemplate.Height = 24;
             dataPatientTable.Size = new Size(1293, 538);

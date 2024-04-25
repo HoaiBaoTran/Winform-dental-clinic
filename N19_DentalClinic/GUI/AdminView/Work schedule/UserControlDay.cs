@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -107,34 +108,41 @@ namespace N19_DentalClinic.GUI.Work_schedule
             string sqlGetCalendarToPaint;
             if (EmployID.Contains("DE"))
             {
-                sqlGetCalendarToPaint = $"SELECT timeStart, timeEnd FROM dbo.Calendar_Dentist WHERE DenID = '{EmployID}' AND dayWorks = '{dayWorks}' AND able = 1";
+                sqlGetCalendarToPaint = $"SELECT * FROM Calendar_Dentist WHERE DenID = '{EmployID}' AND dayWorks = '{dayWorks}' AND able = 1";
             }
             else if (EmployID.Contains("AS"))
             {
-                sqlGetCalendarToPaint = $"SELECT timeStart, timeEnd FROM dbo.Calendar_Assistant WHERE AssiID = '{EmployID}' AND dayWorks = '{dayWorks}' AND able = 1";
+                sqlGetCalendarToPaint = $"SELECT * FROM Calendar_Assisstant WHERE AssiID = '{EmployID}' AND dayWorks = '{dayWorks}' AND able = 1";
             }
             else
             {
-                sqlGetCalendarToPaint = $"SELECT timeStart, timeEnd FROM dbo.Calendar_Receptionist WHERE RecID = '{EmployID}' AND dayWorks = '{dayWorks}' AND able = 1";
+                sqlGetCalendarToPaint = $"SELECT * FROM Calendar_Receptionist WHERE recepid = '{EmployID}' AND dayWorks = '{dayWorks}' AND able = 1";
             }
 
             DataTable tableCalToPaint = data.readData(sqlGetCalendarToPaint);
 
             if (tableCalToPaint.Rows.Count > 0)
             {
-                int flagCount = 0;
+                string previousDay = DateTimeConvert.convertDMY(DateTime.MinValue.ToString());
                 foreach (DataRow row in tableCalToPaint.Rows)
                 {
-                    if(flagCount>0)
+                    string currentDay = DateTimeConvert.convertDMY(row["dayWorks"].ToString());
+                    if(currentDay!=previousDay)
                     {
                         timeSpans.Clear(); // Xóa danh sách các khoảng thời gian trước 
                     }
 
                     DateTime startTime = (DateTime)row["timeStart"];
                     DateTime endTime = (DateTime)row["timeEnd"];
-                    Color color = GetRandomColor(); // Lấy màu ngẫu nhiên
+
+                    //Lay mau ngau nhien tu ma mau
+                    string[] colorHexString = { "#F7054E", "#05F720", "#F7B505", "#009FFA", "#60F705", "#A27539", "#F305F7" };
+                    int randomIndex = new Random().Next(colorHexString.Length);
+                    string randomHexColor = colorHexString[randomIndex];
+
+                    Color color = System.Drawing.ColorTranslator.FromHtml(randomHexColor); // Lấy màu ngẫu nhiên
                     timeSpans.Add(new Tuple<DateTime, DateTime, Color>(startTime, endTime, color));
-                    flagCount++;
+                    previousDay = currentDay;
                 }
             }
         }

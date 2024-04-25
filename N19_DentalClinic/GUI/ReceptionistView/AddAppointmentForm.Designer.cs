@@ -30,9 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddAppointmentForm));
             label6 = new Label();
-            roundPictureBox3 = new component.RoundPictureBox();
             btnExit = new component.RJButton();
-            roundPictureBox2 = new component.RoundPictureBox();
             btnAddAppointment = new component.RJButton();
             label1 = new Label();
             tbSignal = new TextBox();
@@ -68,8 +66,16 @@
             tbDentistPhoneNumber = new TextBox();
             txtDay = new TextBox();
             btnChooseDay = new Button();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox2).BeginInit();
+            btnAssisstantList = new component.RJButton();
+            btnSearchAssiID = new component.RJButton();
+            tbAssissId = new TextBox();
+            label15 = new Label();
+            tbAsissPhone = new TextBox();
+            label16 = new Label();
+            tbAssissName = new TextBox();
+            label17 = new Label();
+            rtbNote = new RichTextBox();
+            label19 = new Label();
             SuspendLayout();
             // 
             // label6
@@ -82,50 +88,30 @@
             label6.TabIndex = 4;
             label6.Text = "Đặt lịch hẹn bệnh nhân";
             // 
-            // roundPictureBox3
-            // 
-            roundPictureBox3.BackColor = Color.White;
-            roundPictureBox3.BackgroundImage = Properties.Resources.back_icon;
-            roundPictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox3.Location = new Point(1132, 31);
-            roundPictureBox3.Name = "roundPictureBox3";
-            roundPictureBox3.Size = new Size(39, 41);
-            roundPictureBox3.TabIndex = 28;
-            roundPictureBox3.TabStop = false;
-            // 
             // btnExit
             // 
-            btnExit.BackColor = Color.DarkGray;
-            btnExit.BackgroundColor = Color.DarkGray;
+            btnExit.BackColor = Color.FromArgb(80, 101, 122);
+            btnExit.BackgroundColor = Color.FromArgb(80, 101, 122);
             btnExit.BackgroundImageLayout = ImageLayout.Zoom;
             btnExit.BorderColor = Color.PaleVioletRed;
             btnExit.BorderRadius = 5;
             btnExit.BorderSize = 0;
             btnExit.FlatAppearance.BorderSize = 0;
             btnExit.FlatStyle = FlatStyle.Flat;
-            btnExit.Font = new Font("Segoe UI", 11F);
+            btnExit.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnExit.ForeColor = Color.White;
+            btnExit.Image = (Image)resources.GetObject("btnExit.Image");
             btnExit.ImageAlign = ContentAlignment.MiddleLeft;
-            btnExit.Location = new Point(1122, 22);
+            btnExit.Location = new Point(1147, 22);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(102, 56);
+            btnExit.Padding = new Padding(6, 0, 6, 0);
+            btnExit.Size = new Size(113, 56);
             btnExit.TabIndex = 27;
             btnExit.Text = "Hủy";
             btnExit.TextAlign = ContentAlignment.MiddleRight;
             btnExit.TextColor = Color.White;
             btnExit.UseVisualStyleBackColor = false;
             btnExit.Click += btnExit_Click;
-            // 
-            // roundPictureBox2
-            // 
-            roundPictureBox2.BackColor = Color.FromArgb(56, 92, 67);
-            roundPictureBox2.BackgroundImage = Properties.Resources.white_plus_icon;
-            roundPictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox2.Location = new Point(984, 31);
-            roundPictureBox2.Name = "roundPictureBox2";
-            roundPictureBox2.Size = new Size(39, 41);
-            roundPictureBox2.TabIndex = 26;
-            roundPictureBox2.TabStop = false;
             // 
             // btnAddAppointment
             // 
@@ -137,12 +123,14 @@
             btnAddAppointment.BorderSize = 0;
             btnAddAppointment.FlatAppearance.BorderSize = 0;
             btnAddAppointment.FlatStyle = FlatStyle.Flat;
-            btnAddAppointment.Font = new Font("Segoe UI", 11F);
+            btnAddAppointment.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnAddAppointment.ForeColor = Color.Black;
+            btnAddAppointment.Image = (Image)resources.GetObject("btnAddAppointment.Image");
             btnAddAppointment.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddAppointment.Location = new Point(973, 22);
+            btnAddAppointment.Location = new Point(959, 22);
             btnAddAppointment.Name = "btnAddAppointment";
-            btnAddAppointment.Size = new Size(138, 56);
+            btnAddAppointment.Padding = new Padding(6, 0, 6, 0);
+            btnAddAppointment.Size = new Size(162, 56);
             btnAddAppointment.TabIndex = 25;
             btnAddAppointment.Text = "Tạo mới";
             btnAddAppointment.TextAlign = ContentAlignment.MiddleRight;
@@ -166,7 +154,7 @@
             tbSignal.Location = new Point(190, 100);
             tbSignal.Name = "tbSignal";
             tbSignal.PlaceholderText = "Nhập triệu chứng";
-            tbSignal.Size = new Size(1032, 39);
+            tbSignal.Size = new Size(1070, 39);
             tbSignal.TabIndex = 30;
             // 
             // label2
@@ -192,12 +180,13 @@
             // 
             // HMSPicker
             // 
+            HMSPicker.CustomFormat = "hh:mm:ss";
             HMSPicker.Font = new Font("Segoe UI", 14F);
-            HMSPicker.Format = DateTimePickerFormat.Time;
+            HMSPicker.Format = DateTimePickerFormat.Custom;
             HMSPicker.Location = new Point(926, 180);
             HMSPicker.Name = "HMSPicker";
             HMSPicker.ShowUpDown = true;
-            HMSPicker.Size = new Size(245, 39);
+            HMSPicker.Size = new Size(185, 39);
             HMSPicker.TabIndex = 34;
             // 
             // label3
@@ -247,18 +236,17 @@
             // 
             btnSearchPatId.BackColor = Color.FromArgb(219, 175, 9);
             btnSearchPatId.BackgroundColor = Color.FromArgb(219, 175, 9);
-            btnSearchPatId.BackgroundImage = Properties.Resources.search_icon;
             btnSearchPatId.BackgroundImageLayout = ImageLayout.Zoom;
             btnSearchPatId.BorderColor = Color.PaleVioletRed;
             btnSearchPatId.BorderRadius = 5;
             btnSearchPatId.BorderSize = 0;
-            btnSearchPatId.Enabled = false;
             btnSearchPatId.FlatAppearance.BorderSize = 0;
             btnSearchPatId.FlatStyle = FlatStyle.Flat;
             btnSearchPatId.ForeColor = Color.White;
-            btnSearchPatId.Location = new Point(896, 260);
+            btnSearchPatId.Image = (Image)resources.GetObject("btnSearchPatId.Image");
+            btnSearchPatId.Location = new Point(905, 255);
             btnSearchPatId.Name = "btnSearchPatId";
-            btnSearchPatId.Size = new Size(50, 40);
+            btnSearchPatId.Size = new Size(55, 55);
             btnSearchPatId.TabIndex = 39;
             btnSearchPatId.TextColor = Color.White;
             btnSearchPatId.UseVisualStyleBackColor = false;
@@ -271,14 +259,13 @@
             btnPatientList.BorderColor = Color.PaleVioletRed;
             btnPatientList.BorderRadius = 10;
             btnPatientList.BorderSize = 0;
-            btnPatientList.Enabled = false;
             btnPatientList.FlatAppearance.BorderSize = 0;
             btnPatientList.FlatStyle = FlatStyle.Flat;
             btnPatientList.Font = new Font("Segoe UI", 14F);
             btnPatientList.ForeColor = Color.Black;
-            btnPatientList.Location = new Point(950, 260);
+            btnPatientList.Location = new Point(986, 255);
             btnPatientList.Name = "btnPatientList";
-            btnPatientList.Size = new Size(274, 40);
+            btnPatientList.Size = new Size(274, 51);
             btnPatientList.TabIndex = 40;
             btnPatientList.Text = "Danh sách bệnh nhân";
             btnPatientList.TextColor = Color.Black;
@@ -300,7 +287,7 @@
             tbPatientName.Font = new Font("Segoe UI", 14F);
             tbPatientName.Location = new Point(190, 340);
             tbPatientName.Name = "tbPatientName";
-            tbPatientName.PlaceholderText = "Nhập tên bệnh nhân";
+            tbPatientName.PlaceholderText = "Tên bệnh nhân";
             tbPatientName.ReadOnly = true;
             tbPatientName.Size = new Size(345, 39);
             tbPatientName.TabIndex = 42;
@@ -345,7 +332,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 16F);
-            label8.Location = new Point(871, 340);
+            label8.Location = new Point(896, 339);
             label8.Name = "label8";
             label8.Size = new Size(64, 37);
             label8.TabIndex = 46;
@@ -354,9 +341,9 @@
             // tbPatientPhoneNumber
             // 
             tbPatientPhoneNumber.Font = new Font("Segoe UI", 14F);
-            tbPatientPhoneNumber.Location = new Point(941, 340);
+            tbPatientPhoneNumber.Location = new Point(977, 340);
             tbPatientPhoneNumber.Name = "tbPatientPhoneNumber";
-            tbPatientPhoneNumber.PlaceholderText = "Nhập số điện thoại";
+            tbPatientPhoneNumber.PlaceholderText = "Số điện thoại";
             tbPatientPhoneNumber.ReadOnly = true;
             tbPatientPhoneNumber.Size = new Size(283, 39);
             tbPatientPhoneNumber.TabIndex = 47;
@@ -376,7 +363,7 @@
             tbPatientAddress.Font = new Font("Segoe UI", 14F);
             tbPatientAddress.Location = new Point(190, 420);
             tbPatientAddress.Name = "tbPatientAddress";
-            tbPatientAddress.PlaceholderText = "Nhập địa chỉ";
+            tbPatientAddress.PlaceholderText = "Địa chỉ";
             tbPatientAddress.ReadOnly = true;
             tbPatientAddress.Size = new Size(586, 39);
             tbPatientAddress.TabIndex = 49;
@@ -396,9 +383,9 @@
             tbEmail.Font = new Font("Segoe UI", 14F);
             tbEmail.Location = new Point(871, 420);
             tbEmail.Name = "tbEmail";
-            tbEmail.PlaceholderText = "Nhập địa chỉ email";
+            tbEmail.PlaceholderText = "Email";
             tbEmail.ReadOnly = true;
-            tbEmail.Size = new Size(353, 39);
+            tbEmail.Size = new Size(389, 39);
             tbEmail.TabIndex = 51;
             // 
             // label11
@@ -447,18 +434,17 @@
             // 
             btnSearchDenId.BackColor = Color.FromArgb(219, 175, 9);
             btnSearchDenId.BackgroundColor = Color.FromArgb(219, 175, 9);
-            btnSearchDenId.BackgroundImage = Properties.Resources.search_icon;
             btnSearchDenId.BackgroundImageLayout = ImageLayout.Zoom;
             btnSearchDenId.BorderColor = Color.PaleVioletRed;
             btnSearchDenId.BorderRadius = 5;
             btnSearchDenId.BorderSize = 0;
-            btnSearchDenId.Enabled = false;
             btnSearchDenId.FlatAppearance.BorderSize = 0;
             btnSearchDenId.FlatStyle = FlatStyle.Flat;
             btnSearchDenId.ForeColor = Color.White;
-            btnSearchDenId.Location = new Point(898, 498);
+            btnSearchDenId.Image = (Image)resources.GetObject("btnSearchDenId.Image");
+            btnSearchDenId.Location = new Point(905, 495);
             btnSearchDenId.Name = "btnSearchDenId";
-            btnSearchDenId.Size = new Size(48, 43);
+            btnSearchDenId.Size = new Size(55, 55);
             btnSearchDenId.TabIndex = 56;
             btnSearchDenId.TextColor = Color.White;
             btnSearchDenId.UseVisualStyleBackColor = false;
@@ -471,18 +457,18 @@
             btnDentistList.BorderColor = Color.PaleVioletRed;
             btnDentistList.BorderRadius = 10;
             btnDentistList.BorderSize = 0;
-            btnDentistList.Enabled = false;
             btnDentistList.FlatAppearance.BorderSize = 0;
             btnDentistList.FlatStyle = FlatStyle.Flat;
             btnDentistList.Font = new Font("Segoe UI", 14F);
             btnDentistList.ForeColor = Color.Black;
-            btnDentistList.Location = new Point(950, 500);
+            btnDentistList.Location = new Point(986, 493);
             btnDentistList.Name = "btnDentistList";
-            btnDentistList.Size = new Size(274, 40);
+            btnDentistList.Size = new Size(274, 50);
             btnDentistList.TabIndex = 57;
             btnDentistList.Text = "Danh sách nha sĩ";
             btnDentistList.TextColor = Color.Black;
             btnDentistList.UseVisualStyleBackColor = false;
+            btnDentistList.Click += btnDentistList_Click;
             // 
             // label13
             // 
@@ -499,7 +485,7 @@
             tbDentistName.Font = new Font("Segoe UI", 14F);
             tbDentistName.Location = new Point(190, 580);
             tbDentistName.Name = "tbDentistName";
-            tbDentistName.PlaceholderText = "Nhập tên nha sĩ";
+            tbDentistName.PlaceholderText = "Tên nha sĩ";
             tbDentistName.ReadOnly = true;
             tbDentistName.Size = new Size(346, 39);
             tbDentistName.TabIndex = 59;
@@ -519,7 +505,7 @@
             tbDentistPhoneNumber.Font = new Font("Segoe UI", 14F);
             tbDentistPhoneNumber.Location = new Point(638, 578);
             tbDentistPhoneNumber.Name = "tbDentistPhoneNumber";
-            tbDentistPhoneNumber.PlaceholderText = "Nhập số điện thoại";
+            tbDentistPhoneNumber.PlaceholderText = "Số điện thoại";
             tbDentistPhoneNumber.ReadOnly = true;
             tbDentistPhoneNumber.Size = new Size(283, 39);
             tbDentistPhoneNumber.TabIndex = 61;
@@ -530,7 +516,7 @@
             txtDay.Location = new Point(508, 180);
             txtDay.Name = "txtDay";
             txtDay.ReadOnly = true;
-            txtDay.Size = new Size(281, 38);
+            txtDay.Size = new Size(321, 38);
             txtDay.TabIndex = 62;
             // 
             // btnChooseDay
@@ -539,7 +525,7 @@
             btnChooseDay.Font = new Font("Microsoft Sans Serif", 13.8F);
             btnChooseDay.Image = (Image)resources.GetObject("btnChooseDay.Image");
             btnChooseDay.ImageAlign = ContentAlignment.MiddleRight;
-            btnChooseDay.Location = new Point(814, 177);
+            btnChooseDay.Location = new Point(847, 177);
             btnChooseDay.Margin = new Padding(3, 4, 3, 4);
             btnChooseDay.Name = "btnChooseDay";
             btnChooseDay.Padding = new Padding(4, 0, 4, 0);
@@ -550,12 +536,140 @@
             btnChooseDay.UseVisualStyleBackColor = true;
             btnChooseDay.Click += btnChooseDay_Click;
             // 
+            // btnAssisstantList
+            // 
+            btnAssisstantList.BackColor = Color.FromArgb(18, 219, 78);
+            btnAssisstantList.BackgroundColor = Color.FromArgb(18, 219, 78);
+            btnAssisstantList.BorderColor = Color.PaleVioletRed;
+            btnAssisstantList.BorderRadius = 10;
+            btnAssisstantList.BorderSize = 0;
+            btnAssisstantList.FlatAppearance.BorderSize = 0;
+            btnAssisstantList.FlatStyle = FlatStyle.Flat;
+            btnAssisstantList.Font = new Font("Segoe UI", 14F);
+            btnAssisstantList.ForeColor = Color.Black;
+            btnAssisstantList.Location = new Point(638, 644);
+            btnAssisstantList.Name = "btnAssisstantList";
+            btnAssisstantList.Size = new Size(274, 50);
+            btnAssisstantList.TabIndex = 67;
+            btnAssisstantList.Text = "Danh sách phụ tá";
+            btnAssisstantList.TextColor = Color.Black;
+            btnAssisstantList.UseVisualStyleBackColor = false;
+            // 
+            // btnSearchAssiID
+            // 
+            btnSearchAssiID.BackColor = Color.FromArgb(219, 175, 9);
+            btnSearchAssiID.BackgroundColor = Color.FromArgb(219, 175, 9);
+            btnSearchAssiID.BackgroundImageLayout = ImageLayout.Zoom;
+            btnSearchAssiID.BorderColor = Color.PaleVioletRed;
+            btnSearchAssiID.BorderRadius = 5;
+            btnSearchAssiID.BorderSize = 0;
+            btnSearchAssiID.FlatAppearance.BorderSize = 0;
+            btnSearchAssiID.FlatStyle = FlatStyle.Flat;
+            btnSearchAssiID.ForeColor = Color.White;
+            btnSearchAssiID.Image = (Image)resources.GetObject("btnSearchAssiID.Image");
+            btnSearchAssiID.Location = new Point(563, 644);
+            btnSearchAssiID.Name = "btnSearchAssiID";
+            btnSearchAssiID.Size = new Size(55, 55);
+            btnSearchAssiID.TabIndex = 66;
+            btnSearchAssiID.TextColor = Color.White;
+            btnSearchAssiID.UseVisualStyleBackColor = false;
+            btnSearchAssiID.Click += btnSearchAssiID_Click;
+            // 
+            // tbAssissId
+            // 
+            tbAssissId.Font = new Font("Segoe UI", 14F);
+            tbAssissId.Location = new Point(190, 651);
+            tbAssissId.Name = "tbAssissId";
+            tbAssissId.PlaceholderText = "Mã phụ tá";
+            tbAssissId.Size = new Size(345, 39);
+            tbAssissId.TabIndex = 65;
+            tbAssissId.TextChanged += tbAssissId_TextChanged;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Segoe UI", 16F);
+            label15.Location = new Point(24, 647);
+            label15.Name = "label15";
+            label15.Size = new Size(138, 37);
+            label15.TabIndex = 64;
+            label15.Text = "Mã phụ tá";
+            // 
+            // tbAsissPhone
+            // 
+            tbAsissPhone.Font = new Font("Segoe UI", 14F);
+            tbAsissPhone.Location = new Point(638, 710);
+            tbAsissPhone.Name = "tbAsissPhone";
+            tbAsissPhone.PlaceholderText = "Số điện thoại";
+            tbAsissPhone.ReadOnly = true;
+            tbAsissPhone.Size = new Size(283, 39);
+            tbAsissPhone.TabIndex = 71;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Segoe UI", 16F);
+            label16.Location = new Point(554, 712);
+            label16.Name = "label16";
+            label16.Size = new Size(64, 37);
+            label16.TabIndex = 70;
+            label16.Text = "SĐT";
+            // 
+            // tbAssissName
+            // 
+            tbAssissName.Font = new Font("Segoe UI", 14F);
+            tbAssissName.Location = new Point(190, 712);
+            tbAssissName.Name = "tbAssissName";
+            tbAssissName.PlaceholderText = "Tên phụ tá";
+            tbAssissName.ReadOnly = true;
+            tbAssissName.Size = new Size(346, 39);
+            tbAssissName.TabIndex = 69;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Font = new Font("Segoe UI", 16F);
+            label17.Location = new Point(22, 712);
+            label17.Name = "label17";
+            label17.Size = new Size(133, 37);
+            label17.TabIndex = 68;
+            label17.Text = "Tên nha sĩ";
+            // 
+            // rtbNote
+            // 
+            rtbNote.Location = new Point(949, 617);
+            rtbNote.Name = "rtbNote";
+            rtbNote.Size = new Size(311, 136);
+            rtbNote.TabIndex = 72;
+            rtbNote.Text = "";
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Font = new Font("Segoe UI", 16F);
+            label19.Location = new Point(949, 565);
+            label19.Name = "label19";
+            label19.Size = new Size(107, 37);
+            label19.TabIndex = 74;
+            label19.Text = "Ghi chú";
+            // 
             // AddAppointmentForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1282, 653);
+            ClientSize = new Size(1282, 767);
+            ControlBox = false;
+            Controls.Add(label19);
+            Controls.Add(rtbNote);
+            Controls.Add(tbAsissPhone);
+            Controls.Add(label16);
+            Controls.Add(tbAssissName);
+            Controls.Add(label17);
+            Controls.Add(btnAssisstantList);
+            Controls.Add(btnSearchAssiID);
+            Controls.Add(tbAssissId);
+            Controls.Add(label15);
             Controls.Add(btnChooseDay);
             Controls.Add(txtDay);
             Controls.Add(tbDentistPhoneNumber);
@@ -590,16 +704,15 @@
             Controls.Add(label2);
             Controls.Add(tbSignal);
             Controls.Add(label1);
-            Controls.Add(roundPictureBox3);
             Controls.Add(btnExit);
-            Controls.Add(roundPictureBox2);
             Controls.Add(btnAddAppointment);
             Controls.Add(label6);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "AddAppointmentForm";
             Text = "AddAppointmentForm";
             Load += AddAppointmentForm_Load;
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -607,9 +720,7 @@
         #endregion
 
         private Label label6;
-        private component.RoundPictureBox roundPictureBox3;
         private component.RJButton btnExit;
-        private component.RoundPictureBox roundPictureBox2;
         private component.RJButton btnAddAppointment;
         private Label label1;
         private TextBox tbSignal;
@@ -645,5 +756,15 @@
         private TextBox tbDentistPhoneNumber;
         private TextBox txtDay;
         private Button btnChooseDay;
+        private component.RJButton btnAssisstantList;
+        private component.RJButton btnSearchAssiID;
+        private TextBox tbAssissId;
+        private Label label15;
+        private TextBox tbAsissPhone;
+        private Label label16;
+        private TextBox tbAssissName;
+        private Label label17;
+        private RichTextBox rtbNote;
+        private Label label19;
     }
 }

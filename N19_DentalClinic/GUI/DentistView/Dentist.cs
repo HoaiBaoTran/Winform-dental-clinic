@@ -1,5 +1,6 @@
 using N19_DentalClinic.controller;
 using N19_DentalClinic.DAO;
+using N19_DentalClinic.GUI.AccountView;
 using N19_DentalClinic.GUI.ReceptionistView;
 using N19_DentalClinic.GUI.Work_schedule;
 using N19_DentalClinic.library;
@@ -19,6 +20,7 @@ namespace N19_DentalClinic.GUI.DentistView
     {
         private int role;
         private string denId;
+        DataInteraction data = new DataInteraction();
         public Dentist(string denId)
         {
             InitializeComponent();
@@ -28,6 +30,20 @@ namespace N19_DentalClinic.GUI.DentistView
 
         private void Dentist_Load(object sender, EventArgs e)
         {
+
+            //Doi ten 
+            string sqlGetNameDentist = $"select name from dentist where denid = '{denId}'";
+            DataTable tableGetNameDentist = data.readData(sqlGetNameDentist);
+            if (tableGetNameDentist.Rows.Count > 0)
+            {
+                foreach (DataRow row in tableGetNameDentist.Rows)
+                {
+                    lbNameDentist.Text = row["name"].ToString();
+                    break;
+                }
+            }
+
+
             btnCalendar.FlatAppearance.BorderSize = 0;
             btnPrescription.FlatAppearance.BorderSize = 0;
             btnPatientProfile.FlatAppearance.BorderSize = 0;
@@ -63,7 +79,7 @@ namespace N19_DentalClinic.GUI.DentistView
             ColorMarker.ButtonColor(btnPatientProfile, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnAppoitmentForDentist, "0918DB", "ffffff");
 
-            PanelInteraction.loadForm(new MainSchedule("DE00000001", pnShowContent,role), pnShowContent);
+            PanelInteraction.loadForm(new MainSchedule(denId, pnShowContent, role), pnShowContent);
         }
 
         private void btnPrescription_Click(object sender, EventArgs e)
@@ -86,6 +102,12 @@ namespace N19_DentalClinic.GUI.DentistView
             ColorMarker.ButtonColor(btnAppoitmentForDentist, "DBAF09", "000000");
 
             PanelInteraction.loadForm(new AppointmentForDentist(pnShowContent, denId, role, "view"), pnShowContent);
+        }
+
+        private void backToLogin_Click(object sender, EventArgs e)
+        {
+            ConfirmToLogin confirmForm = new ConfirmToLogin(this, new LoginMain());
+            confirmForm.ShowDialog();
         }
     }
 }
