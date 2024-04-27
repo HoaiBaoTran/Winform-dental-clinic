@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddPrescriptionForBill));
             cbQuantity = new ComboBox();
             cbCalUnit = new ComboBox();
             cbMedicineId = new ComboBox();
@@ -38,21 +39,17 @@
             label2 = new Label();
             cbMedicineName = new ComboBox();
             label1 = new Label();
-            roundPictureBox3 = new component.RoundPictureBox();
             btnExit = new component.RJButton();
-            roundPictureBox2 = new component.RoundPictureBox();
             btnAddMedicine = new component.RJButton();
             label6 = new Label();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox2).BeginInit();
             SuspendLayout();
             // 
             // cbQuantity
             // 
             cbQuantity.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            cbQuantity.DropDownStyle = ComboBoxStyle.Simple;
             cbQuantity.Font = new Font("Segoe UI", 14F);
             cbQuantity.FormattingEnabled = true;
-            cbQuantity.Items.AddRange(new object[] { "Bệnh nhân đã đến", "Bệnh nhân chưa đến" });
             cbQuantity.Location = new Point(713, 238);
             cbQuantity.Name = "cbQuantity";
             cbQuantity.Size = new Size(248, 39);
@@ -61,6 +58,8 @@
             // cbCalUnit
             // 
             cbCalUnit.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            cbCalUnit.DropDownStyle = ComboBoxStyle.Simple;
+            cbCalUnit.Enabled = false;
             cbCalUnit.Font = new Font("Segoe UI", 14F);
             cbCalUnit.FormattingEnabled = true;
             cbCalUnit.Items.AddRange(new object[] { "Bệnh nhân đã đến", "Bệnh nhân chưa đến" });
@@ -72,6 +71,7 @@
             // cbMedicineId
             // 
             cbMedicineId.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            cbMedicineId.DropDownStyle = ComboBoxStyle.DropDownList;
             cbMedicineId.Font = new Font("Segoe UI", 14F);
             cbMedicineId.FormattingEnabled = true;
             cbMedicineId.Items.AddRange(new object[] { "Bệnh nhân đã đến", "Bệnh nhân chưa đến" });
@@ -137,6 +137,7 @@
             // cbMedicineName
             // 
             cbMedicineName.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            cbMedicineName.DropDownStyle = ComboBoxStyle.DropDownList;
             cbMedicineName.Font = new Font("Segoe UI", 14F);
             cbMedicineName.FormattingEnabled = true;
             cbMedicineName.Items.AddRange(new object[] { "Bệnh nhân đã đến", "Bệnh nhân chưa đến" });
@@ -156,55 +157,31 @@
             label1.TabIndex = 53;
             label1.Text = "Tên thuốc";
             // 
-            // roundPictureBox3
-            // 
-            roundPictureBox3.Anchor = AnchorStyles.Right;
-            roundPictureBox3.BackColor = Color.White;
-            roundPictureBox3.BackgroundImage = Properties.Resources.back_icon;
-            roundPictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox3.Location = new Point(863, 395);
-            roundPictureBox3.Name = "roundPictureBox3";
-            roundPictureBox3.Size = new Size(39, 45);
-            roundPictureBox3.TabIndex = 52;
-            roundPictureBox3.TabStop = false;
-            roundPictureBox3.Click += roundPictureBox3_Click;
-            // 
             // btnExit
             // 
             btnExit.Anchor = AnchorStyles.Right;
-            btnExit.BackColor = Color.DarkGray;
-            btnExit.BackgroundColor = Color.DarkGray;
+            btnExit.BackColor = Color.FromArgb(80, 101, 122);
+            btnExit.BackgroundColor = Color.FromArgb(80, 101, 122);
             btnExit.BackgroundImageLayout = ImageLayout.Zoom;
             btnExit.BorderColor = Color.PaleVioletRed;
             btnExit.BorderRadius = 0;
             btnExit.BorderSize = 0;
             btnExit.FlatAppearance.BorderSize = 0;
             btnExit.FlatStyle = FlatStyle.Flat;
-            btnExit.Font = new Font("Segoe UI", 12F);
+            btnExit.Font = new Font("Microsoft Sans Serif", 13.8F);
             btnExit.ForeColor = Color.White;
+            btnExit.Image = (Image)resources.GetObject("btnExit.Image");
             btnExit.ImageAlign = ContentAlignment.MiddleLeft;
-            btnExit.Location = new Point(859, 386);
+            btnExit.Location = new Point(845, 386);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(102, 63);
+            btnExit.Padding = new Padding(6, 0, 6, 0);
+            btnExit.Size = new Size(116, 63);
             btnExit.TabIndex = 51;
             btnExit.Text = "Hủy";
             btnExit.TextAlign = ContentAlignment.MiddleRight;
             btnExit.TextColor = Color.White;
             btnExit.UseVisualStyleBackColor = false;
             btnExit.Click += btnExit_Click;
-            // 
-            // roundPictureBox2
-            // 
-            roundPictureBox2.Anchor = AnchorStyles.Right;
-            roundPictureBox2.BackColor = Color.FromArgb(56, 92, 67);
-            roundPictureBox2.BackgroundImage = Properties.Resources.white_plus_icon;
-            roundPictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox2.Location = new Point(703, 393);
-            roundPictureBox2.Name = "roundPictureBox2";
-            roundPictureBox2.Size = new Size(39, 47);
-            roundPictureBox2.TabIndex = 50;
-            roundPictureBox2.TabStop = false;
-            roundPictureBox2.Click += roundPictureBox2_Click;
             // 
             // btnAddMedicine
             // 
@@ -217,12 +194,14 @@
             btnAddMedicine.BorderSize = 0;
             btnAddMedicine.FlatAppearance.BorderSize = 0;
             btnAddMedicine.FlatStyle = FlatStyle.Flat;
-            btnAddMedicine.Font = new Font("Segoe UI", 12F);
+            btnAddMedicine.Font = new Font("Microsoft Sans Serif", 13.8F);
             btnAddMedicine.ForeColor = Color.Black;
+            btnAddMedicine.Image = (Image)resources.GetObject("btnAddMedicine.Image");
             btnAddMedicine.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddMedicine.Location = new Point(694, 386);
+            btnAddMedicine.Location = new Point(648, 386);
             btnAddMedicine.Name = "btnAddMedicine";
-            btnAddMedicine.Size = new Size(138, 63);
+            btnAddMedicine.Padding = new Padding(6, 0, 6, 0);
+            btnAddMedicine.Size = new Size(162, 63);
             btnAddMedicine.TabIndex = 49;
             btnAddMedicine.Text = "Tạo mới";
             btnAddMedicine.TextAlign = ContentAlignment.MiddleRight;
@@ -257,16 +236,15 @@
             Controls.Add(label2);
             Controls.Add(cbMedicineName);
             Controls.Add(label1);
-            Controls.Add(roundPictureBox3);
             Controls.Add(btnExit);
-            Controls.Add(roundPictureBox2);
             Controls.Add(btnAddMedicine);
             Controls.Add(label6);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "AddPrescriptionForBill";
             Text = "AddPrescriptionForBill";
             Load += AddPrescriptionForBill_Load;
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -283,9 +261,7 @@
         private Label label2;
         private ComboBox cbMedicineName;
         private Label label1;
-        private component.RoundPictureBox roundPictureBox3;
         private component.RJButton btnExit;
-        private component.RoundPictureBox roundPictureBox2;
         private component.RJButton btnAddMedicine;
         private Label label6;
     }

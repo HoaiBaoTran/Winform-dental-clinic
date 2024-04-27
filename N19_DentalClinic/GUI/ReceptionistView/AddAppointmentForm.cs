@@ -423,7 +423,8 @@ namespace N19_DentalClinic.controller.receptionist
                         MessageBox.Show("Bác sĩ không có giờ làm việc trong ngày này");
                         return;
                     }
-                }else
+                }
+                else
                 {
                     MessageBox.Show("Bác sĩ không có lịch làm việc trong ngày này");
                     return;
@@ -452,7 +453,7 @@ namespace N19_DentalClinic.controller.receptionist
                         if (currTimeDt >= startSqlDT && currTimeDt <= endSqlDT)
                         {
                             flagCheckTime = false;
-                            break;      
+                            break;
                         }
                     }
 
@@ -567,6 +568,12 @@ namespace N19_DentalClinic.controller.receptionist
         private void btnDentistList_Click(object sender, EventArgs e)
         {
             DentistFileCopy fileCopy = new DentistFileCopy();
+            fileCopy.ShowDialog();
+        }
+
+        private void btnAssisstantList_Click(object sender, EventArgs e)
+        {
+            AssisstantFileCopy fileCopy = new AssisstantFileCopy();
             fileCopy.ShowDialog();
         }
     }

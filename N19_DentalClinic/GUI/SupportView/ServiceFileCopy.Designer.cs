@@ -1,6 +1,6 @@
-﻿namespace N19_DentalClinic.GUI.AdminView
+﻿namespace N19_DentalClinic.GUI.SupportView
 {
-    partial class ManageService
+    partial class ServiceFileCopy
     {
         /// <summary>
         /// Required designer variable.
@@ -28,38 +28,56 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageService));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServiceFileCopy));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            btnAddService = new Button();
+            cbKindService = new ComboBox();
+            label1 = new Label();
+            cbKindSearch = new ComboBox();
             btnSearch = new component.RJButton();
             tbSearch = new TextBox();
             label6 = new Label();
             dataService = new DataGridView();
-            cbKindSearch = new ComboBox();
-            label1 = new Label();
-            cbKindService = new ComboBox();
+            btnExit = new component.RJButton();
+            btnRefresh = new Button();
             ((System.ComponentModel.ISupportInitialize)dataService).BeginInit();
             SuspendLayout();
             // 
-            // btnAddService
+            // cbKindService
             // 
-            btnAddService.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnAddService.BackColor = Color.FromArgb(18, 219, 78);
-            btnAddService.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAddService.Image = (Image)resources.GetObject("btnAddService.Image");
-            btnAddService.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddService.Location = new Point(946, 9);
-            btnAddService.Margin = new Padding(3, 4, 3, 4);
-            btnAddService.Name = "btnAddService";
-            btnAddService.Padding = new Padding(6, 0, 6, 0);
-            btnAddService.Size = new Size(236, 57);
-            btnAddService.TabIndex = 111;
-            btnAddService.Text = "Thêm dịch vụ";
-            btnAddService.TextAlign = ContentAlignment.MiddleRight;
-            btnAddService.UseVisualStyleBackColor = false;
-            btnAddService.Click += btnAddService_Click;
+            cbKindService.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            cbKindService.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbKindService.FormattingEnabled = true;
+            cbKindService.Location = new Point(749, 99);
+            cbKindService.Margin = new Padding(3, 4, 3, 4);
+            cbKindService.Name = "cbKindService";
+            cbKindService.Size = new Size(433, 39);
+            cbKindService.TabIndex = 121;
+            cbKindService.SelectedIndexChanged += cbKindService_SelectedIndexChanged;
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label1.AutoSize = true;
+            label1.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(581, 105);
+            label1.Name = "label1";
+            label1.Size = new Size(140, 29);
+            label1.TabIndex = 120;
+            label1.Text = "Loại dịch vụ";
+            // 
+            // cbKindSearch
+            // 
+            cbKindSearch.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbKindSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbKindSearch.FormattingEnabled = true;
+            cbKindSearch.Items.AddRange(new object[] { "Mã dịch vụ", "Tên dịch vụ" });
+            cbKindSearch.Location = new Point(13, 99);
+            cbKindSearch.Margin = new Padding(3, 4, 3, 4);
+            cbKindSearch.Name = "cbKindSearch";
+            cbKindSearch.Size = new Size(232, 39);
+            cbKindSearch.TabIndex = 119;
             // 
             // btnSearch
             // 
@@ -73,10 +91,10 @@
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.ForeColor = Color.White;
             btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
-            btnSearch.Location = new Point(510, 91);
+            btnSearch.Location = new Point(500, 95);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(63, 55);
-            btnSearch.TabIndex = 106;
+            btnSearch.TabIndex = 118;
             btnSearch.TextColor = Color.White;
             btnSearch.UseVisualStyleBackColor = false;
             btnSearch.Click += btnSearch_Click;
@@ -85,25 +103,26 @@
             // 
             tbSearch.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             tbSearch.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tbSearch.Location = new Point(272, 91);
+            tbSearch.Location = new Point(262, 95);
             tbSearch.Name = "tbSearch";
             tbSearch.PlaceholderText = "Tìm kiếm dịch vụ";
             tbSearch.Size = new Size(232, 43);
-            tbSearch.TabIndex = 105;
+            tbSearch.TabIndex = 117;
             // 
             // label6
             // 
             label6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             label6.AutoSize = true;
             label6.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(23, 9);
+            label6.Location = new Point(13, 13);
             label6.Name = "label6";
             label6.Size = new Size(294, 46);
-            label6.TabIndex = 104;
+            label6.TabIndex = 116;
             label6.Text = "Quản lý dịch vụ";
             // 
             // dataService
             // 
+            dataService.AllowUserToAddRows = false;
             dataService.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataService.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataService.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -130,7 +149,7 @@
             dataService.DefaultCellStyle = dataGridViewCellStyle2;
             dataService.EnableHeadersVisualStyles = false;
             dataService.GridColor = Color.White;
-            dataService.Location = new Point(23, 165);
+            dataService.Location = new Point(12, 156);
             dataService.Name = "dataService";
             dataService.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -144,62 +163,72 @@
             dataService.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataService.RowHeadersWidth = 51;
             dataService.Size = new Size(1170, 623);
-            dataService.TabIndex = 112;
+            dataService.TabIndex = 122;
             dataService.MouseClick += dataService_MouseClick;
             // 
-            // cbKindSearch
+            // btnExit
             // 
-            cbKindSearch.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbKindSearch.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbKindSearch.FormattingEnabled = true;
-            cbKindSearch.Items.AddRange(new object[] { "Mã dịch vụ", "Tên dịch vụ" });
-            cbKindSearch.Location = new Point(23, 95);
-            cbKindSearch.Margin = new Padding(3, 4, 3, 4);
-            cbKindSearch.Name = "cbKindSearch";
-            cbKindSearch.Size = new Size(232, 39);
-            cbKindSearch.TabIndex = 113;
+            btnExit.Anchor = AnchorStyles.Right;
+            btnExit.BackColor = Color.FromArgb(80, 101, 122);
+            btnExit.BackgroundColor = Color.FromArgb(80, 101, 122);
+            btnExit.BackgroundImageLayout = ImageLayout.Zoom;
+            btnExit.BorderColor = Color.PaleVioletRed;
+            btnExit.BorderRadius = 0;
+            btnExit.BorderSize = 0;
+            btnExit.FlatAppearance.BorderSize = 0;
+            btnExit.FlatStyle = FlatStyle.Flat;
+            btnExit.Font = new Font("Microsoft Sans Serif", 13.8F);
+            btnExit.ForeColor = Color.White;
+            btnExit.Image = (Image)resources.GetObject("btnExit.Image");
+            btnExit.ImageAlign = ContentAlignment.MiddleLeft;
+            btnExit.Location = new Point(1040, 10);
+            btnExit.Name = "btnExit";
+            btnExit.Padding = new Padding(6, 0, 6, 0);
+            btnExit.Size = new Size(142, 63);
+            btnExit.TabIndex = 123;
+            btnExit.Text = "Trở về";
+            btnExit.TextAlign = ContentAlignment.MiddleRight;
+            btnExit.TextColor = Color.White;
+            btnExit.UseVisualStyleBackColor = false;
+            btnExit.Click += btnExit_Click;
             // 
-            // label1
+            // btnRefresh
             // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label1.AutoSize = true;
-            label1.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(591, 101);
-            label1.Name = "label1";
-            label1.Size = new Size(140, 29);
-            label1.TabIndex = 114;
-            label1.Text = "Loại dịch vụ";
-            label1.Click += label1_Click;
+            btnRefresh.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnRefresh.BackColor = Color.FromArgb(125, 124, 143);
+            btnRefresh.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnRefresh.ForeColor = Color.White;
+            btnRefresh.Image = (Image)resources.GetObject("btnRefresh.Image");
+            btnRefresh.ImageAlign = ContentAlignment.MiddleLeft;
+            btnRefresh.Location = new Point(866, 10);
+            btnRefresh.Margin = new Padding(3, 4, 3, 4);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Padding = new Padding(6, 0, 6, 0);
+            btnRefresh.Size = new Size(153, 66);
+            btnRefresh.TabIndex = 124;
+            btnRefresh.Text = "Tải lại";
+            btnRefresh.TextAlign = ContentAlignment.MiddleRight;
+            btnRefresh.UseVisualStyleBackColor = false;
+            btnRefresh.Click += btnRefresh_Click;
             // 
-            // cbKindService
-            // 
-            cbKindService.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            cbKindService.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbKindService.FormattingEnabled = true;
-            cbKindService.Location = new Point(749, 95);
-            cbKindService.Margin = new Padding(3, 4, 3, 4);
-            cbKindService.Name = "cbKindService";
-            cbKindService.Size = new Size(433, 39);
-            cbKindService.TabIndex = 115;
-            cbKindService.SelectedIndexChanged += cbKindService_SelectedIndexChanged;
-            // 
-            // ManageService
+            // ServiceFileCopy
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1205, 800);
+            Controls.Add(btnRefresh);
+            Controls.Add(btnExit);
+            Controls.Add(dataService);
             Controls.Add(cbKindService);
             Controls.Add(label1);
             Controls.Add(cbKindSearch);
-            Controls.Add(dataService);
-            Controls.Add(btnAddService);
             Controls.Add(btnSearch);
             Controls.Add(tbSearch);
             Controls.Add(label6);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "ManageService";
-            Text = "ManageService";
-            Load += ManageService_Load;
+            Name = "ServiceFileCopy";
+            Text = "ServiceFileCopy";
+            Load += ServiceFileCopy_Load;
             ((System.ComponentModel.ISupportInitialize)dataService).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -207,19 +236,14 @@
 
         #endregion
 
-        private ComboBox cbPatientName;
-        private Label label8;
-        private ComboBox cbPatientId;
-        private Label label7;
-        private Button btnAddService;
-        private component.RoundPictureBox roundPictureBox3;
-        private component.RJButton btnBack;
+        private ComboBox cbKindService;
+        private Label label1;
+        private ComboBox cbKindSearch;
         private component.RJButton btnSearch;
         private TextBox tbSearch;
         private Label label6;
         private DataGridView dataService;
-        private ComboBox cbKindSearch;
-        private Label label1;
-        private ComboBox cbKindService;
+        private component.RJButton btnExit;
+        private Button btnRefresh;
     }
 }

@@ -3,10 +3,19 @@ use master
 go
 drop database QuanLyPhongKham
 */
+/*	
 create database QuanLyPhongKham
 go
 use QuanLyPhongKham
 go
+*/
+select b.bilID as billID, b.able, b.total_price, b.payment_time, p.PatID as patient_ID, p.name as patient_name, r.name as receptionist_name
+                        from Bill b
+                        join Patient p on p.PatID = b.PatID
+                        join Bill_Recep br on br.bilID = b.bilID
+                        join Receptionist r on r.RecepID = br.RecepID
+                        where b.able = 1
+                        Order By b.bilID Asc
 
 
 CREATE TABLE Account
@@ -1648,6 +1657,3 @@ end
 exec GetDentistByPatID 'PA00000001' 
 GO
 */
-
-select * from account
-select * from dentist

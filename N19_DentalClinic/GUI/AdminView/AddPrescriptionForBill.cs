@@ -61,6 +61,21 @@ namespace N19_DentalClinic.GUI.AdminView
             string quantity = cbQuantity.Text;
             string note = tbNote.Text;
 
+            string mss = "";
+            if (!Int32.TryParse(quantity, out _))
+            {
+                mss = "Số lượng phải là số nguyên";
+            }else if (int.Parse(quantity) < 0)
+            {
+                mss = "Số lượng không thể âm";
+            }
+
+            if(mss != "")
+            {
+                MessageBox.Show(mss);
+                return;
+            }
+
             if (!isEdit)
             {
                 string sql = @$"INSERT INTO Prescription_Detail(PresID, materialID, quantity, calUnit, note) values

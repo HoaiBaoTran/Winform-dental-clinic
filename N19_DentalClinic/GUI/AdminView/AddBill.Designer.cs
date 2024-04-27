@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddBill));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
@@ -38,9 +39,7 @@
             label4 = new Label();
             label3 = new Label();
             label1 = new Label();
-            roundPictureBox3 = new component.RoundPictureBox();
             btnExit = new component.RJButton();
-            roundPictureBox2 = new component.RoundPictureBox();
             btnAddMaterial = new component.RJButton();
             label6 = new Label();
             timePicker = new DateTimePicker();
@@ -51,29 +50,23 @@
             label2 = new Label();
             dataPrescription = new DataGridView();
             label7 = new Label();
-            roundPictureBox1 = new component.RoundPictureBox();
             btnAddService = new component.RJButton();
-            roundPictureBox4 = new component.RoundPictureBox();
             btnAddMedicine = new component.RJButton();
             label8 = new Label();
             lbPrice = new Label();
-            roundPictureBox5 = new component.RoundPictureBox();
             btnCreatePrescription = new component.RJButton();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox2).BeginInit();
+            btnPatientList = new component.RJButton();
             ((System.ComponentModel.ISupportInitialize)dataService).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataPrescription).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox5).BeginInit();
             SuspendLayout();
             // 
             // datePicker
             // 
+            datePicker.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             datePicker.CustomFormat = "dd/MM/yyyy";
             datePicker.Font = new Font("Segoe UI", 14F);
             datePicker.Format = DateTimePickerFormat.Custom;
-            datePicker.Location = new Point(1402, 80);
+            datePicker.Location = new Point(1632, 80);
             datePicker.Name = "datePicker";
             datePicker.Size = new Size(238, 39);
             datePicker.TabIndex = 103;
@@ -83,6 +76,7 @@
             tbBillId.Font = new Font("Segoe UI", 14F);
             tbBillId.Location = new Point(229, 80);
             tbBillId.Name = "tbBillId";
+            tbBillId.ReadOnly = true;
             tbBillId.Size = new Size(420, 39);
             tbBillId.TabIndex = 99;
             // 
@@ -110,10 +104,10 @@
             // 
             // label3
             // 
-            label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 16F);
-            label3.Location = new Point(1132, 77);
+            label3.Location = new Point(1362, 77);
             label3.Name = "label3";
             label3.Size = new Size(124, 37);
             label3.TabIndex = 96;
@@ -130,56 +124,35 @@
             label1.TabIndex = 94;
             label1.Text = "Mã hóa đơn";
             // 
-            // roundPictureBox3
-            // 
-            roundPictureBox3.Anchor = AnchorStyles.Right;
-            roundPictureBox3.BackColor = Color.White;
-            roundPictureBox3.BackgroundImage = Properties.Resources.back_icon;
-            roundPictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox3.Location = new Point(1772, 887);
-            roundPictureBox3.Name = "roundPictureBox3";
-            roundPictureBox3.Size = new Size(39, 45);
-            roundPictureBox3.TabIndex = 93;
-            roundPictureBox3.TabStop = false;
-            // 
             // btnExit
             // 
-            btnExit.Anchor = AnchorStyles.Right;
-            btnExit.BackColor = Color.DarkGray;
-            btnExit.BackgroundColor = Color.DarkGray;
+            btnExit.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnExit.BackColor = Color.FromArgb(80, 101, 122);
+            btnExit.BackgroundColor = Color.FromArgb(80, 101, 122);
             btnExit.BackgroundImageLayout = ImageLayout.Zoom;
             btnExit.BorderColor = Color.PaleVioletRed;
             btnExit.BorderRadius = 0;
             btnExit.BorderSize = 0;
             btnExit.FlatAppearance.BorderSize = 0;
             btnExit.FlatStyle = FlatStyle.Flat;
-            btnExit.Font = new Font("Segoe UI", 12F);
+            btnExit.Font = new Font("Microsoft Sans Serif", 13.8F);
             btnExit.ForeColor = Color.White;
+            btnExit.Image = (Image)resources.GetObject("btnExit.Image");
             btnExit.ImageAlign = ContentAlignment.MiddleLeft;
-            btnExit.Location = new Point(1768, 878);
+            btnExit.Location = new Point(1749, 878);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(102, 63);
+            btnExit.Padding = new Padding(6, 0, 6, 0);
+            btnExit.Size = new Size(121, 63);
             btnExit.TabIndex = 92;
             btnExit.Text = "Hủy";
             btnExit.TextAlign = ContentAlignment.MiddleRight;
             btnExit.TextColor = Color.White;
             btnExit.UseVisualStyleBackColor = false;
-            // 
-            // roundPictureBox2
-            // 
-            roundPictureBox2.Anchor = AnchorStyles.Right;
-            roundPictureBox2.BackColor = Color.FromArgb(56, 92, 67);
-            roundPictureBox2.BackgroundImage = Properties.Resources.white_plus_icon;
-            roundPictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox2.Location = new Point(1608, 885);
-            roundPictureBox2.Name = "roundPictureBox2";
-            roundPictureBox2.Size = new Size(39, 47);
-            roundPictureBox2.TabIndex = 91;
-            roundPictureBox2.TabStop = false;
+            btnExit.Click += btnExit_Click;
             // 
             // btnAddMaterial
             // 
-            btnAddMaterial.Anchor = AnchorStyles.Right;
+            btnAddMaterial.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnAddMaterial.BackColor = Color.FromArgb(18, 219, 78);
             btnAddMaterial.BackgroundColor = Color.FromArgb(18, 219, 78);
             btnAddMaterial.BackgroundImageLayout = ImageLayout.Zoom;
@@ -188,12 +161,14 @@
             btnAddMaterial.BorderSize = 0;
             btnAddMaterial.FlatAppearance.BorderSize = 0;
             btnAddMaterial.FlatStyle = FlatStyle.Flat;
-            btnAddMaterial.Font = new Font("Segoe UI", 12F);
+            btnAddMaterial.Font = new Font("Microsoft Sans Serif", 13.8F);
             btnAddMaterial.ForeColor = Color.Black;
+            btnAddMaterial.Image = (Image)resources.GetObject("btnAddMaterial.Image");
             btnAddMaterial.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddMaterial.Location = new Point(1593, 878);
+            btnAddMaterial.Location = new Point(1565, 878);
             btnAddMaterial.Name = "btnAddMaterial";
-            btnAddMaterial.Size = new Size(148, 63);
+            btnAddMaterial.Padding = new Padding(6, 0, 6, 0);
+            btnAddMaterial.Size = new Size(161, 63);
             btnAddMaterial.TabIndex = 90;
             btnAddMaterial.Text = "Tạo mới";
             btnAddMaterial.TextAlign = ContentAlignment.MiddleRight;
@@ -214,10 +189,11 @@
             // 
             // timePicker
             // 
-            timePicker.CustomFormat = "dd/MM/yyyy";
+            timePicker.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            timePicker.CustomFormat = "HH:mm:00";
             timePicker.Font = new Font("Segoe UI", 14F);
-            timePicker.Format = DateTimePickerFormat.Time;
-            timePicker.Location = new Point(1402, 150);
+            timePicker.Format = DateTimePickerFormat.Custom;
+            timePicker.Location = new Point(1632, 150);
             timePicker.Name = "timePicker";
             timePicker.ShowUpDown = true;
             timePicker.Size = new Size(238, 39);
@@ -225,10 +201,10 @@
             // 
             // label10
             // 
-            label10.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label10.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 16F);
-            label10.Location = new Point(1132, 152);
+            label10.Location = new Point(1362, 152);
             label10.Name = "label10";
             label10.Size = new Size(172, 37);
             label10.TabIndex = 111;
@@ -236,6 +212,7 @@
             // 
             // cbPatientName
             // 
+            cbPatientName.DropDownStyle = ComboBoxStyle.DropDownList;
             cbPatientName.Font = new Font("Segoe UI", 14F);
             cbPatientName.FormattingEnabled = true;
             cbPatientName.Items.AddRange(new object[] { "Chữa răng", "Nội nha", "Nha chu", "Nhổ răng", "Răng trẻ em", "Kháng sinh", "Giảm đau", "Kháng viêm" });
@@ -246,6 +223,7 @@
             // 
             // cbPatientId
             // 
+            cbPatientId.DropDownStyle = ComboBoxStyle.DropDownList;
             cbPatientId.Font = new Font("Segoe UI", 14F);
             cbPatientId.FormattingEnabled = true;
             cbPatientId.Items.AddRange(new object[] { "Cố định", "Tiêu hao" });
@@ -256,7 +234,7 @@
             // 
             // dataService
             // 
-            dataService.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataService.AllowUserToAddRows = false;
             dataService.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataService.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataService.BackgroundColor = Color.White;
@@ -272,9 +250,11 @@
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dataService.DefaultCellStyle = dataGridViewCellStyle1;
+            dataService.EnableHeadersVisualStyles = false;
             dataService.GridColor = Color.White;
             dataService.Location = new Point(12, 360);
             dataService.Name = "dataService";
+            dataService.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(18, 219, 78);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F);
@@ -301,7 +281,8 @@
             // 
             // dataPrescription
             // 
-            dataPrescription.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataPrescription.AllowUserToAddRows = false;
+            dataPrescription.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             dataPrescription.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataPrescription.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataPrescription.BackgroundColor = Color.White;
@@ -317,9 +298,11 @@
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dataPrescription.DefaultCellStyle = dataGridViewCellStyle3;
+            dataPrescription.EnableHeadersVisualStyles = false;
             dataPrescription.GridColor = Color.White;
             dataPrescription.Location = new Point(993, 360);
             dataPrescription.Name = "dataPrescription";
+            dataPrescription.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = Color.FromArgb(18, 219, 78);
             dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F);
@@ -335,7 +318,7 @@
             // 
             // label7
             // 
-            label7.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label7.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             label7.Location = new Point(1065, 307);
@@ -344,22 +327,8 @@
             label7.TabIndex = 129;
             label7.Text = "Toa thuốc";
             // 
-            // roundPictureBox1
-            // 
-            roundPictureBox1.Anchor = AnchorStyles.Right;
-            roundPictureBox1.BackColor = Color.FromArgb(56, 92, 67);
-            roundPictureBox1.BackgroundImage = Properties.Resources.white_plus_icon;
-            roundPictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox1.Location = new Point(737, 298);
-            roundPictureBox1.Name = "roundPictureBox1";
-            roundPictureBox1.Size = new Size(39, 47);
-            roundPictureBox1.TabIndex = 131;
-            roundPictureBox1.TabStop = false;
-            roundPictureBox1.Click += roundPictureBox1_Click;
-            // 
             // btnAddService
             // 
-            btnAddService.Anchor = AnchorStyles.Right;
             btnAddService.BackColor = Color.FromArgb(18, 219, 78);
             btnAddService.BackgroundColor = Color.FromArgb(18, 219, 78);
             btnAddService.BackgroundImageLayout = ImageLayout.Zoom;
@@ -368,12 +337,14 @@
             btnAddService.BorderSize = 0;
             btnAddService.FlatAppearance.BorderSize = 0;
             btnAddService.FlatStyle = FlatStyle.Flat;
-            btnAddService.Font = new Font("Segoe UI", 12F);
+            btnAddService.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnAddService.ForeColor = Color.Black;
+            btnAddService.Image = (Image)resources.GetObject("btnAddService.Image");
             btnAddService.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddService.Location = new Point(721, 291);
+            btnAddService.Location = new Point(701, 291);
             btnAddService.Name = "btnAddService";
-            btnAddService.Size = new Size(191, 63);
+            btnAddService.Padding = new Padding(6, 0, 6, 0);
+            btnAddService.Size = new Size(211, 63);
             btnAddService.TabIndex = 130;
             btnAddService.Text = "Thêm dịch vụ";
             btnAddService.TextAlign = ContentAlignment.MiddleRight;
@@ -381,25 +352,11 @@
             btnAddService.UseVisualStyleBackColor = false;
             btnAddService.Click += btnAddService_Click;
             // 
-            // roundPictureBox4
-            // 
-            roundPictureBox4.Anchor = AnchorStyles.Right;
-            roundPictureBox4.BackColor = Color.FromArgb(18, 219, 78);
-            roundPictureBox4.BackgroundImage = Properties.Resources.white_plus_icon;
-            roundPictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox4.Enabled = false;
-            roundPictureBox4.Location = new Point(1711, 297);
-            roundPictureBox4.Name = "roundPictureBox4";
-            roundPictureBox4.Size = new Size(39, 47);
-            roundPictureBox4.TabIndex = 133;
-            roundPictureBox4.TabStop = false;
-            roundPictureBox4.Click += roundPictureBox4_Click;
-            // 
             // btnAddMedicine
             // 
-            btnAddMedicine.Anchor = AnchorStyles.Right;
-            btnAddMedicine.BackColor = Color.White;
-            btnAddMedicine.BackgroundColor = Color.White;
+            btnAddMedicine.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAddMedicine.BackColor = Color.FromArgb(18, 219, 78);
+            btnAddMedicine.BackgroundColor = Color.FromArgb(18, 219, 78);
             btnAddMedicine.BackgroundImageLayout = ImageLayout.Zoom;
             btnAddMedicine.BorderColor = Color.PaleVioletRed;
             btnAddMedicine.BorderRadius = 0;
@@ -407,12 +364,14 @@
             btnAddMedicine.Enabled = false;
             btnAddMedicine.FlatAppearance.BorderSize = 0;
             btnAddMedicine.FlatStyle = FlatStyle.Flat;
-            btnAddMedicine.Font = new Font("Segoe UI", 12F);
+            btnAddMedicine.Font = new Font("Microsoft Sans Serif", 13.8F);
             btnAddMedicine.ForeColor = Color.Black;
+            btnAddMedicine.Image = (Image)resources.GetObject("btnAddMedicine.Image");
             btnAddMedicine.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddMedicine.Location = new Point(1702, 291);
+            btnAddMedicine.Location = new Point(1670, 291);
             btnAddMedicine.Name = "btnAddMedicine";
-            btnAddMedicine.Size = new Size(168, 63);
+            btnAddMedicine.Padding = new Padding(6, 0, 6, 0);
+            btnAddMedicine.Size = new Size(200, 63);
             btnAddMedicine.TabIndex = 132;
             btnAddMedicine.Text = "Thêm thuốc";
             btnAddMedicine.TextAlign = ContentAlignment.MiddleRight;
@@ -422,7 +381,6 @@
             // 
             // label8
             // 
-            label8.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             label8.Location = new Point(34, 887);
@@ -433,31 +391,17 @@
             // 
             // lbPrice
             // 
-            lbPrice.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lbPrice.AutoSize = true;
             lbPrice.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lbPrice.Location = new Point(350, 887);
             lbPrice.Name = "lbPrice";
-            lbPrice.Size = new Size(178, 46);
+            lbPrice.Size = new Size(40, 46);
             lbPrice.TabIndex = 135;
-            lbPrice.Text = "5,000,000";
-            // 
-            // roundPictureBox5
-            // 
-            roundPictureBox5.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            roundPictureBox5.BackColor = Color.White;
-            roundPictureBox5.BackgroundImage = Properties.Resources.save_icon;
-            roundPictureBox5.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox5.Location = new Point(1506, 302);
-            roundPictureBox5.Name = "roundPictureBox5";
-            roundPictureBox5.Size = new Size(39, 41);
-            roundPictureBox5.TabIndex = 137;
-            roundPictureBox5.TabStop = false;
-            roundPictureBox5.Click += roundPictureBox5_Click;
+            lbPrice.Text = "0";
             // 
             // btnCreatePrescription
             // 
-            btnCreatePrescription.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCreatePrescription.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnCreatePrescription.BackColor = Color.FromArgb(18, 219, 78);
             btnCreatePrescription.BackgroundColor = Color.FromArgb(18, 219, 78);
             btnCreatePrescription.BackgroundImageLayout = ImageLayout.Zoom;
@@ -466,12 +410,14 @@
             btnCreatePrescription.BorderSize = 0;
             btnCreatePrescription.FlatAppearance.BorderSize = 0;
             btnCreatePrescription.FlatStyle = FlatStyle.Flat;
-            btnCreatePrescription.Font = new Font("Segoe UI", 11F);
+            btnCreatePrescription.Font = new Font("Microsoft Sans Serif", 13.8F);
             btnCreatePrescription.ForeColor = Color.Black;
+            btnCreatePrescription.Image = (Image)resources.GetObject("btnCreatePrescription.Image");
             btnCreatePrescription.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCreatePrescription.Location = new Point(1496, 291);
+            btnCreatePrescription.Location = new Point(1406, 291);
             btnCreatePrescription.Name = "btnCreatePrescription";
-            btnCreatePrescription.Size = new Size(191, 63);
+            btnCreatePrescription.Padding = new Padding(6, 0, 6, 0);
+            btnCreatePrescription.Size = new Size(234, 63);
             btnCreatePrescription.TabIndex = 136;
             btnCreatePrescription.Text = "Tạo đơn thuốc";
             btnCreatePrescription.TextAlign = ContentAlignment.MiddleRight;
@@ -479,19 +425,37 @@
             btnCreatePrescription.UseVisualStyleBackColor = false;
             btnCreatePrescription.Click += btnCreatePrescription_Click;
             // 
+            // btnPatientList
+            // 
+            btnPatientList.BackColor = Color.FromArgb(18, 219, 78);
+            btnPatientList.BackgroundColor = Color.FromArgb(18, 219, 78);
+            btnPatientList.BorderColor = Color.PaleVioletRed;
+            btnPatientList.BorderRadius = 10;
+            btnPatientList.BorderSize = 0;
+            btnPatientList.FlatAppearance.BorderSize = 0;
+            btnPatientList.FlatStyle = FlatStyle.Flat;
+            btnPatientList.Font = new Font("Segoe UI", 14F);
+            btnPatientList.ForeColor = Color.Black;
+            btnPatientList.Location = new Point(669, 185);
+            btnPatientList.Name = "btnPatientList";
+            btnPatientList.Size = new Size(275, 51);
+            btnPatientList.TabIndex = 137;
+            btnPatientList.Text = "Danh sách bệnh nhân";
+            btnPatientList.TextColor = Color.Black;
+            btnPatientList.UseVisualStyleBackColor = false;
+            btnPatientList.Click += btnPatientList_Click;
+            // 
             // AddBill
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1882, 953);
-            Controls.Add(roundPictureBox5);
+            Controls.Add(btnPatientList);
             Controls.Add(btnCreatePrescription);
             Controls.Add(lbPrice);
             Controls.Add(label8);
-            Controls.Add(roundPictureBox4);
             Controls.Add(btnAddMedicine);
-            Controls.Add(roundPictureBox1);
             Controls.Add(btnAddService);
             Controls.Add(label7);
             Controls.Add(dataPrescription);
@@ -507,21 +471,14 @@
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label1);
-            Controls.Add(roundPictureBox3);
             Controls.Add(btnExit);
-            Controls.Add(roundPictureBox2);
             Controls.Add(btnAddMaterial);
             Controls.Add(label6);
             Name = "AddBill";
             Text = "AddBill";
             Load += AddBill_Load;
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataService).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataPrescription).EndInit();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox5).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -533,9 +490,7 @@
         private Label label4;
         private Label label3;
         private Label label1;
-        private component.RoundPictureBox roundPictureBox3;
         private component.RJButton btnExit;
-        private component.RoundPictureBox roundPictureBox2;
         private component.RJButton btnAddMaterial;
         private Label label6;
         private DateTimePicker timePicker;
@@ -546,13 +501,11 @@
         private Label label2;
         private DataGridView dataPrescription;
         private Label label7;
-        private component.RoundPictureBox roundPictureBox1;
         private component.RJButton btnAddService;
-        private component.RoundPictureBox roundPictureBox4;
         private component.RJButton btnAddMedicine;
         private Label label8;
         private Label lbPrice;
-        private component.RoundPictureBox roundPictureBox5;
         private component.RJButton btnCreatePrescription;
+        private component.RJButton btnPatientList;
     }
 }

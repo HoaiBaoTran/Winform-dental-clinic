@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddServiceForBill));
             tbNote = new TextBox();
             label7 = new Label();
             tbQuantity = new TextBox();
@@ -36,17 +37,14 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            roundPictureBox3 = new component.RoundPictureBox();
             btnExit = new component.RJButton();
-            roundPictureBox2 = new component.RoundPictureBox();
             btnAddService = new component.RJButton();
             label6 = new Label();
             cbPrice = new ComboBox();
             cbKindService = new ComboBox();
             cbServiceName = new ComboBox();
             cbServiceId = new ComboBox();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox2).BeginInit();
+            btnFindCode = new component.RJButton();
             SuspendLayout();
             // 
             // tbNote
@@ -133,53 +131,30 @@
             label1.TabIndex = 74;
             label1.Text = "Mã dịch vụ";
             // 
-            // roundPictureBox3
-            // 
-            roundPictureBox3.Anchor = AnchorStyles.Right;
-            roundPictureBox3.BackColor = Color.White;
-            roundPictureBox3.BackgroundImage = Properties.Resources.back_icon;
-            roundPictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox3.Location = new Point(867, 487);
-            roundPictureBox3.Name = "roundPictureBox3";
-            roundPictureBox3.Size = new Size(39, 45);
-            roundPictureBox3.TabIndex = 73;
-            roundPictureBox3.TabStop = false;
-            // 
             // btnExit
             // 
             btnExit.Anchor = AnchorStyles.Right;
-            btnExit.BackColor = Color.DarkGray;
-            btnExit.BackgroundColor = Color.DarkGray;
+            btnExit.BackColor = Color.FromArgb(80, 101, 122);
+            btnExit.BackgroundColor = Color.FromArgb(80, 101, 122);
             btnExit.BackgroundImageLayout = ImageLayout.Zoom;
             btnExit.BorderColor = Color.PaleVioletRed;
             btnExit.BorderRadius = 0;
             btnExit.BorderSize = 0;
             btnExit.FlatAppearance.BorderSize = 0;
             btnExit.FlatStyle = FlatStyle.Flat;
-            btnExit.Font = new Font("Segoe UI", 12F);
+            btnExit.Font = new Font("Microsoft Sans Serif", 13.8F);
             btnExit.ForeColor = Color.White;
+            btnExit.Image = (Image)resources.GetObject("btnExit.Image");
             btnExit.ImageAlign = ContentAlignment.MiddleLeft;
-            btnExit.Location = new Point(863, 478);
+            btnExit.Location = new Point(852, 478);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(102, 63);
+            btnExit.Padding = new Padding(6, 0, 6, 0);
+            btnExit.Size = new Size(113, 63);
             btnExit.TabIndex = 72;
             btnExit.Text = "Hủy";
             btnExit.TextAlign = ContentAlignment.MiddleRight;
             btnExit.TextColor = Color.White;
             btnExit.UseVisualStyleBackColor = false;
-            // 
-            // roundPictureBox2
-            // 
-            roundPictureBox2.Anchor = AnchorStyles.Right;
-            roundPictureBox2.BackColor = Color.FromArgb(56, 92, 67);
-            roundPictureBox2.BackgroundImage = Properties.Resources.white_plus_icon;
-            roundPictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox2.Location = new Point(703, 485);
-            roundPictureBox2.Name = "roundPictureBox2";
-            roundPictureBox2.Size = new Size(39, 47);
-            roundPictureBox2.TabIndex = 71;
-            roundPictureBox2.TabStop = false;
-            roundPictureBox2.Click += roundPictureBox2_Click;
             // 
             // btnAddService
             // 
@@ -192,12 +167,14 @@
             btnAddService.BorderSize = 0;
             btnAddService.FlatAppearance.BorderSize = 0;
             btnAddService.FlatStyle = FlatStyle.Flat;
-            btnAddService.Font = new Font("Segoe UI", 12F);
+            btnAddService.Font = new Font("Microsoft Sans Serif", 13.8F);
             btnAddService.ForeColor = Color.Black;
+            btnAddService.Image = (Image)resources.GetObject("btnAddService.Image");
             btnAddService.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddService.Location = new Point(688, 478);
+            btnAddService.Location = new Point(647, 478);
             btnAddService.Name = "btnAddService";
-            btnAddService.Size = new Size(148, 63);
+            btnAddService.Padding = new Padding(6, 0, 6, 0);
+            btnAddService.Size = new Size(177, 63);
             btnAddService.TabIndex = 70;
             btnAddService.Text = "Tạo mới";
             btnAddService.TextAlign = ContentAlignment.MiddleRight;
@@ -219,6 +196,8 @@
             // cbPrice
             // 
             cbPrice.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            cbPrice.DropDownStyle = ComboBoxStyle.Simple;
+            cbPrice.Enabled = false;
             cbPrice.Font = new Font("Segoe UI", 14F);
             cbPrice.FormattingEnabled = true;
             cbPrice.Items.AddRange(new object[] { "Bệnh nhân đã đến", "Bệnh nhân chưa đến" });
@@ -230,6 +209,8 @@
             // cbKindService
             // 
             cbKindService.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            cbKindService.DropDownStyle = ComboBoxStyle.Simple;
+            cbKindService.Enabled = false;
             cbKindService.Font = new Font("Segoe UI", 14F);
             cbKindService.FormattingEnabled = true;
             cbKindService.Items.AddRange(new object[] { "Bệnh nhân đã đến", "Bệnh nhân chưa đến" });
@@ -241,6 +222,7 @@
             // cbServiceName
             // 
             cbServiceName.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            cbServiceName.DropDownStyle = ComboBoxStyle.DropDownList;
             cbServiceName.Font = new Font("Segoe UI", 14F);
             cbServiceName.FormattingEnabled = true;
             cbServiceName.Items.AddRange(new object[] { "Bệnh nhân đã đến", "Bệnh nhân chưa đến" });
@@ -252,6 +234,7 @@
             // cbServiceId
             // 
             cbServiceId.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            cbServiceId.DropDownStyle = ComboBoxStyle.DropDownList;
             cbServiceId.Font = new Font("Segoe UI", 14F);
             cbServiceId.FormattingEnabled = true;
             cbServiceId.Items.AddRange(new object[] { "Bệnh nhân đã đến", "Bệnh nhân chưa đến" });
@@ -260,12 +243,39 @@
             cbServiceId.Size = new Size(741, 39);
             cbServiceId.TabIndex = 86;
             // 
+            // btnFindCode
+            // 
+            btnFindCode.Anchor = AnchorStyles.Right;
+            btnFindCode.BackColor = Color.FromArgb(7, 127, 250);
+            btnFindCode.BackgroundColor = Color.FromArgb(7, 127, 250);
+            btnFindCode.BackgroundImageLayout = ImageLayout.Zoom;
+            btnFindCode.BorderColor = Color.PaleVioletRed;
+            btnFindCode.BorderRadius = 0;
+            btnFindCode.BorderSize = 0;
+            btnFindCode.FlatAppearance.BorderSize = 0;
+            btnFindCode.FlatStyle = FlatStyle.Flat;
+            btnFindCode.Font = new Font("Microsoft Sans Serif", 13.8F);
+            btnFindCode.ForeColor = Color.White;
+            btnFindCode.Image = (Image)resources.GetObject("btnFindCode.Image");
+            btnFindCode.ImageAlign = ContentAlignment.MiddleLeft;
+            btnFindCode.Location = new Point(21, 478);
+            btnFindCode.Name = "btnFindCode";
+            btnFindCode.Padding = new Padding(6, 0, 6, 0);
+            btnFindCode.Size = new Size(259, 63);
+            btnFindCode.TabIndex = 90;
+            btnFindCode.Text = "Xem mã dịch vụ";
+            btnFindCode.TextAlign = ContentAlignment.MiddleRight;
+            btnFindCode.TextColor = Color.White;
+            btnFindCode.UseVisualStyleBackColor = false;
+            btnFindCode.Click += btnFindCode_Click;
+            // 
             // AddServiceForBill
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(982, 559);
+            Controls.Add(btnFindCode);
             Controls.Add(cbPrice);
             Controls.Add(cbKindService);
             Controls.Add(cbServiceName);
@@ -278,16 +288,12 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(roundPictureBox3);
             Controls.Add(btnExit);
-            Controls.Add(roundPictureBox2);
             Controls.Add(btnAddService);
             Controls.Add(label6);
             Name = "AddServiceForBill";
             Text = "AddServiceForBill";
             Load += AddServiceForBill_Load;
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -302,14 +308,13 @@
         private Label label3;
         private Label label2;
         private Label label1;
-        private component.RoundPictureBox roundPictureBox3;
         private component.RJButton btnExit;
-        private component.RoundPictureBox roundPictureBox2;
         private component.RJButton btnAddService;
         private Label label6;
         private ComboBox cbPrice;
         private ComboBox cbKindService;
         private ComboBox cbServiceName;
         private ComboBox cbServiceId;
+        private component.RJButton btnFindCode;
     }
 }

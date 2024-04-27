@@ -554,6 +554,7 @@
             btnAssisstantList.Text = "Danh sách phụ tá";
             btnAssisstantList.TextColor = Color.Black;
             btnAssisstantList.UseVisualStyleBackColor = false;
+            btnAssisstantList.Click += btnAssisstantList_Click;
             // 
             // btnSearchAssiID
             // 

@@ -1,5 +1,4 @@
 ﻿using N19_DentalClinic.DAO;
-using N19_DentalClinic.GUI.DentistView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,24 +8,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace N19_DentalClinic.GUI.AdminView
+namespace N19_DentalClinic.GUI.SupportView
 {
-    public partial class ManageService : Form
+    public partial class ServiceFileCopy : Form
     {
-
-        private int role;
-        private Panel panelWrapper;
         DataInteraction data = new DataInteraction();
-
-        public ManageService(Panel panel, int role)
+        public ServiceFileCopy()
         {
             InitializeComponent();
-            panelWrapper = panel;
-            this.role = role;
         }
 
-        private void ManageService_Load(object sender, EventArgs e)
+        private void ServiceFileCopy_Load(object sender, EventArgs e)
         {
             string sqlUpdateComboboxKindService = "select distinct kindService from service where able = 1";
             DataTable tableKindService = data.readData(sqlUpdateComboboxKindService);
@@ -46,7 +40,7 @@ namespace N19_DentalClinic.GUI.AdminView
             DataTable table = data.readData(sql);
             if (table.Rows.Count > 0)
             {
-                dataService.ColumnCount = 9;
+                dataService.ColumnCount = 7;
                 dataService.Columns[0].Name = "STT";
                 dataService.Columns[1].Name = "Mã dịch vụ";
                 dataService.Columns[2].Name = "Tên dịch vụ";
@@ -54,8 +48,6 @@ namespace N19_DentalClinic.GUI.AdminView
                 dataService.Columns[4].Name = "Đơn vị tính";
                 dataService.Columns[5].Name = "Ghi chú";
                 dataService.Columns[6].Name = "Loại dịch vụ";
-                dataService.Columns[7].Name = "Chỉnh sửa";
-                dataService.Columns[8].Name = "Xóa";
                 dataService.EnableHeadersVisualStyles = false;
                 dataService.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
                 dataService.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
@@ -72,9 +64,7 @@ namespace N19_DentalClinic.GUI.AdminView
                         formattedTotalRevenue,
                         (string)row["calUnit"],
                         (string)row["note"],
-                        (string)row["kindService"],
-                        "Chỉnh sửa",
-                        "Xóa"
+                        (string)row["kindService"]
                     };
                     dataService.Rows.Add(rowString);
                     countRow++;
@@ -85,7 +75,6 @@ namespace N19_DentalClinic.GUI.AdminView
             //Căn giữa nội dung cột đầu tiên
             dataService.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataService.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
         }
 
         private void updateUiOnDataChange()
@@ -95,77 +84,8 @@ namespace N19_DentalClinic.GUI.AdminView
             updateDataGridView(sql);
         }
 
-        private void btnAddService_Click(object sender, EventArgs e)
-        {
-            if(role == 1)
-            {
-                AddService addService = new AddService();
-                if (addService.ShowDialog() == DialogResult.OK)
-                {
-                    updateUiOnDataChange();
-                }
-            }else
-            {
-                MessageBox.Show("Bản không đủ thẩm quyền để thêm dịch vụ");
-            }
-        }
-
-        private void dataService_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (dataService.Rows.Count > 0)
-            {
-                if (dataService.CurrentCell.ColumnIndex == 8)
-                {
-                    if (role == 1)
-                    {
-                        string serviceId = dataService[1, dataService.CurrentCell.RowIndex].Value.ToString();
-                        string serviceName = dataService[2, dataService.CurrentCell.RowIndex].Value.ToString();
-                        string title = "Xác nhận xóa";
-                        string message = $"Bạn có chắc muốn xóa {serviceName} với id là {serviceId}???";
-                        var confirmResult = MessageBox.Show(message, title, MessageBoxButtons.YesNo);
-
-                        if (confirmResult == DialogResult.Yes)
-                        {
-                            string sql = $@"delete from Bill_Service where serviceID = '{serviceId}'";
-                            data.changeData(sql);
-                            sql = @$"delete from Service 
-                                            where serviceID = '{serviceId}'";
-                            data.changeData(sql);
-                            MessageBox.Show("Xóa thành công");
-                            updateUiOnDataChange();
-                        }
-                    }else
-                    {
-                        MessageBox.Show("Bản không đủ thẩm quyền để xóa");
-                    }
-                }
-                else if (dataService.CurrentCell.ColumnIndex == 7)
-                {
-                    if(role == 1)
-                    {
-                        string serviceId = dataService[1, dataService.CurrentCell.RowIndex].Value.ToString();
-                        string serviceName = dataService[2, dataService.CurrentCell.RowIndex].Value.ToString();
-                        string price = dataService[3, dataService.CurrentCell.RowIndex].Value.ToString();
-                        string calUnit = dataService[4, dataService.CurrentCell.RowIndex].Value.ToString();
-                        string note = dataService[5, dataService.CurrentCell.RowIndex].Value.ToString();
-                        string kindService = dataService[6, dataService.CurrentCell.RowIndex].Value.ToString();
-                        AddService addService = new AddService(serviceId, serviceName, price.Replace(",", ""), calUnit, note, kindService);
-                        if (addService.ShowDialog() == DialogResult.OK)
-                        {
-                            updateUiOnDataChange();
-                        }
-                    }else
-                    {
-                        MessageBox.Show("Bản không đủ thẩm quyền để chỉnh sửa");
-                    }
-                }
-
-            }
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
             string sql = "select * from service where able = 1";
             DataTable table = data.readData(sql);
             int selectIndex = cbKindSearch.SelectedIndex;
@@ -205,6 +125,8 @@ namespace N19_DentalClinic.GUI.AdminView
                     break;
             }
         }
+
+
         public void clearDataGridView(DataGridView dtgv)
         {
             try
@@ -217,18 +139,42 @@ namespace N19_DentalClinic.GUI.AdminView
             }
         }
 
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void cbKindService_SelectedIndexChanged(object sender, EventArgs e)
         {
             string kindService = cbKindService.Items[cbKindService.SelectedIndex].ToString();
             string sqlServiceSearch = $"select * from service where able = 1 and kindService = N'{kindService}' order by kindService asc ";
             clearDataGridView(dataService);
             updateDataGridView(sqlServiceSearch);
+        }
+
+        private void dataService_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (dataService.Rows.Count > 0)
+            {
+                if (dataService.CurrentCell.ColumnIndex == 8)
+                {
+                    string serviceId = dataService[1, dataService.CurrentCell.RowIndex].Value.ToString();
+                    try
+                    {
+                        Clipboard.SetText(serviceId);
+                        if (serviceId != "")
+                        {
+                            MessageBox.Show("Đã sao chép mã dịch vụ " + serviceId);
+                        }
+                    }
+                    catch (Exception ex) { }
+                }
+            }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            updateUiOnDataChange();
         }
     }
 }

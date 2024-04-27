@@ -109,7 +109,7 @@
             // 
             dtpTimeStart.CalendarFont = new Font("Cambria Math", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpTimeStart.CalendarMonthBackground = Color.White;
-            dtpTimeStart.CustomFormat = "HH:mm:ss";
+            dtpTimeStart.CustomFormat = "HH:mm:00";
             dtpTimeStart.Font = new Font("Cascadia Mono", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpTimeStart.Format = DateTimePickerFormat.Custom;
             dtpTimeStart.Location = new Point(276, 341);
@@ -124,7 +124,7 @@
             // 
             dtpTimeEnd.CalendarFont = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpTimeEnd.CalendarMonthBackground = Color.White;
-            dtpTimeEnd.CustomFormat = "HH:mm:ss";
+            dtpTimeEnd.CustomFormat = "HH:mm:00";
             dtpTimeEnd.Font = new Font("Cascadia Mono", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpTimeEnd.Format = DateTimePickerFormat.Custom;
             dtpTimeEnd.Location = new Point(276, 435);

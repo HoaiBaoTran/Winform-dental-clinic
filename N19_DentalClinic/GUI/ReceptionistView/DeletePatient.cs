@@ -53,5 +53,10 @@ namespace N19_DentalClinic.GUI
         {
             PanelInteraction.openForm(this, new PatientFile(panelWrapper, role), panelWrapper);
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -60,6 +60,7 @@
             dataBill.GridColor = Color.White;
             dataBill.Location = new Point(25, 151);
             dataBill.Name = "dataBill";
+            dataBill.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(18, 219, 78);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F);
@@ -72,6 +73,7 @@
             dataBill.RowHeadersWidth = 51;
             dataBill.Size = new Size(1158, 639);
             dataBill.TabIndex = 125;
+            dataBill.MouseClick += dataBill_MouseClick;
             // 
             // btnSearch
             // 
@@ -91,6 +93,7 @@
             btnSearch.TabIndex = 123;
             btnSearch.TextColor = Color.White;
             btnSearch.UseVisualStyleBackColor = false;
+            btnSearch.Click += btnSearch_Click;
             // 
             // tbSearch
             // 
@@ -120,10 +123,11 @@
             btnAddBill.Font = new Font("Microsoft Sans Serif", 12F);
             btnAddBill.Image = (Image)resources.GetObject("btnAddBill.Image");
             btnAddBill.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddBill.Location = new Point(1005, 89);
+            btnAddBill.Location = new Point(999, 87);
             btnAddBill.Margin = new Padding(3, 4, 3, 4);
             btnAddBill.Name = "btnAddBill";
-            btnAddBill.Size = new Size(188, 57);
+            btnAddBill.Padding = new Padding(6, 0, 6, 0);
+            btnAddBill.Size = new Size(194, 57);
             btnAddBill.TabIndex = 126;
             btnAddBill.Text = "Thêm hóa đơn";
             btnAddBill.TextAlign = ContentAlignment.MiddleRight;

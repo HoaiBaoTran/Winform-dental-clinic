@@ -238,6 +238,7 @@
             ClientSize = new Size(970, 603);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "Report";
             Text = "Form1";
