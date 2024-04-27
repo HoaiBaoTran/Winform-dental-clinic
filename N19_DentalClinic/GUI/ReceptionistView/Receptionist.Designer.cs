@@ -34,6 +34,8 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             btnPatientProfile = new Button();
             btnCreateBill = new Button();
             panelSidebar = new Panel();
+            btnSerivce = new Button();
+            btnAssisstantManagement = new Button();
             label5 = new Label();
             roundPictureBox1 = new component.RoundPictureBox();
             label4 = new Label();
@@ -45,7 +47,6 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             eclipseControl1 = new DAO.EclipseControl();
             label1 = new Label();
             backToLogin = new component.RJButton();
-            btnAssisstantManagement = new Button();
             panelSidebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)roundPictureBox1).BeginInit();
             SuspendLayout();
@@ -97,6 +98,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             // panelSidebar
             // 
             panelSidebar.BackColor = SystemColors.AppWorkspace;
+            panelSidebar.Controls.Add(btnSerivce);
             panelSidebar.Controls.Add(btnAssisstantManagement);
             panelSidebar.Controls.Add(label5);
             panelSidebar.Controls.Add(roundPictureBox1);
@@ -113,6 +115,28 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             panelSidebar.Name = "panelSidebar";
             panelSidebar.Size = new Size(210, 840);
             panelSidebar.TabIndex = 0;
+            // 
+            // btnSerivce
+            // 
+            btnSerivce.Location = new Point(15, 757);
+            btnSerivce.Margin = new Padding(3, 4, 3, 4);
+            btnSerivce.Name = "btnSerivce";
+            btnSerivce.Size = new Size(170, 68);
+            btnSerivce.TabIndex = 16;
+            btnSerivce.Text = "Các dịch vụ";
+            btnSerivce.UseVisualStyleBackColor = true;
+            btnSerivce.Click += btnSerivce_Click;
+            // 
+            // btnAssisstantManagement
+            // 
+            btnAssisstantManagement.Location = new Point(15, 491);
+            btnAssisstantManagement.Margin = new Padding(3, 4, 3, 4);
+            btnAssisstantManagement.Name = "btnAssisstantManagement";
+            btnAssisstantManagement.Size = new Size(170, 68);
+            btnAssisstantManagement.TabIndex = 15;
+            btnAssisstantManagement.Text = "Quản lí phụ tá";
+            btnAssisstantManagement.UseVisualStyleBackColor = true;
+            btnAssisstantManagement.Click += btnAssisstantManagement_Click;
             // 
             // label5
             // 
@@ -233,17 +257,6 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             backToLogin.UseVisualStyleBackColor = false;
             backToLogin.Click += backToLogin_Click;
             // 
-            // btnAssisstantManagement
-            // 
-            btnAssisstantManagement.Location = new Point(15, 491);
-            btnAssisstantManagement.Margin = new Padding(3, 4, 3, 4);
-            btnAssisstantManagement.Name = "btnAssisstantManagement";
-            btnAssisstantManagement.Size = new Size(170, 68);
-            btnAssisstantManagement.TabIndex = 15;
-            btnAssisstantManagement.Text = "Quản lí phụ tá";
-            btnAssisstantManagement.UseVisualStyleBackColor = true;
-            btnAssisstantManagement.Click += btnAssisstantManagement_Click;
-            // 
             // Receptionist
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -285,5 +298,6 @@ namespace N19_DentalClinic.GUI.ReceptionistView
         private Label label1;
         private component.RJButton backToLogin;
         private Button btnAssisstantManagement;
+        private Button btnSerivce;
     }
 }

@@ -64,6 +64,8 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             ColorMarker.ButtonColor(btnPatientProfile, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnCreateBill, "0918DB", "ffffff");
             ColorMarker.ButtonColor(btnAssisstantManagement, "0918DB", "ffffff");
+            ColorMarker.ButtonColor(btnSerivce, "0918DB", "ffffff");
+
         }
 
         private void btnCreateAppointment_Click(object sender, EventArgs e)
@@ -89,7 +91,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
 
         public void btnPatientProfile_Click(object sender, EventArgs e)
         {
-            PanelInteraction.loadForm(new PatientFile(pnShowContent, role), pnShowContent); 
+            PanelInteraction.loadForm(new PatientFile(pnShowContent, role), pnShowContent);
             defaultColorButtonInSideBar();
             ColorMarker.ButtonColor(btnPatientProfile, "DBAF09", "000000");
         }
@@ -105,6 +107,13 @@ namespace N19_DentalClinic.GUI.ReceptionistView
             PanelInteraction.loadForm(new AssisstantFile(pnShowContent, role), pnShowContent);
             defaultColorButtonInSideBar();
             ColorMarker.ButtonColor(btnAssisstantManagement, "DBAF09", "000000");
+        }
+
+        private void btnSerivce_Click(object sender, EventArgs e)
+        {
+            PanelInteraction.loadForm(new ManageService(pnShowContent, role), pnShowContent);
+            defaultColorButtonInSideBar();
+            ColorMarker.ButtonColor(btnSerivce, "DBAF09", "000000");
         }
     }
 }

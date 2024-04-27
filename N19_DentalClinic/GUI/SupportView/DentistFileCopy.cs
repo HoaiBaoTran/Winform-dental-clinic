@@ -128,6 +128,7 @@ namespace N19_DentalClinic.GUI.SupportView
         private void DentistFileCopy_Load(object sender, EventArgs e)
         {
             string sql = "select * from dentist where able = 1";
+            clearDataGridView(dataDentistTable);
             updateDataGridView(sql);
         }
 
@@ -137,9 +138,21 @@ namespace N19_DentalClinic.GUI.SupportView
             if (dataDentistTable.CurrentCell.ColumnIndex == 1)
             {
                 string denId = dataDentistTable[1, dataDentistTable.CurrentCell.RowIndex].Value.ToString();
-                Clipboard.SetText(denId);
-                MessageBox.Show("Đã sao chép mã nha sĩ " + denId);
+                try
+                {
+                    Clipboard.SetText(denId);
+                    if (denId != "")
+                    {
+                        MessageBox.Show("Đã sao chép mã nha sĩ " + denId);
+                    }
+                }
+                catch (Exception ex) { }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DentistFileCopy_Load(sender, e);
         }
     }
 }

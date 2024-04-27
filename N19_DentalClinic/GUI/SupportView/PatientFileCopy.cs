@@ -114,9 +114,18 @@ namespace N19_DentalClinic.GUI.SupportView
             if (dataPatientTable.CurrentCell == null) return;
             if (dataPatientTable.CurrentCell.ColumnIndex == 1)
             {
-                string patId = dataPatientTable[1, dataPatientTable.CurrentCell.RowIndex].Value.ToString();
-                Clipboard.SetText(patId);
-                MessageBox.Show("Đã sao chép mã bệnh nhân " + patId);
+                try
+                {
+                    string patId = dataPatientTable[1, dataPatientTable.CurrentCell.RowIndex].Value.ToString();
+                    Clipboard.SetText(patId);
+                    if(patId!="")
+                    {
+                        MessageBox.Show("Đã sao chép mã bệnh nhân " + patId);
+                    }
+                }
+                catch (Exception ex) 
+                {
+                }    
             }
         }
     }

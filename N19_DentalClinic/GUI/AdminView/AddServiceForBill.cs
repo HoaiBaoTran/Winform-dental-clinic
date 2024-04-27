@@ -1,4 +1,5 @@
 ﻿using N19_DentalClinic.DAO;
+using N19_DentalClinic.GUI.SupportView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +31,11 @@ namespace N19_DentalClinic.GUI.AdminView
             if (!Int32.TryParse(quantity, out _))
             {
                 MessageBox.Show("Số lượng phải là số nguyên");
+                return;
+            }
+            if (int.Parse(quantity) < 0)
+            {
+                MessageBox.Show("Số lương không được âm");
                 return;
             }
             string sql = $"Insert into bill_service(BilId, serviceID, quantity) values ('{billId}', '{serviceId}', " + quantity + ")";
@@ -66,6 +72,10 @@ namespace N19_DentalClinic.GUI.AdminView
             }
         }
 
-        
+        private void btnFindCode_Click(object sender, EventArgs e)
+        {
+            ServiceFileCopy fileCopy = new ServiceFileCopy();
+            fileCopy.ShowDialog();  
+        }
     }
 }

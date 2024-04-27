@@ -1,4 +1,5 @@
 ﻿using N19_DentalClinic.DAO;
+using N19_DentalClinic.GUI.ReceptionistView;
 using Org.BouncyCastle.Ocsp;
 using System;
 using System.Collections.Generic;
@@ -90,6 +91,7 @@ namespace N19_DentalClinic.GUI.AdminView
                         join Patient p on p.PatID = b.PatID
                         join Bill_Recep br on br.bilID = b.bilID
                         join Receptionist r on r.RecepID = br.RecepID
+                        where b.able = 1
                         Order By b.bilID Asc";
             updateDataGridView(sql);
 
@@ -99,7 +101,6 @@ namespace N19_DentalClinic.GUI.AdminView
         {
             string bilId = autoIncrementID();
             string sql = $"Insert into Bill(bilID, PatID, total_price, payment_time) values ('{bilId}', 'PA00000001', 0, '2024-04-14 12:00:00')";
-            MessageBox.Show(sql);
             data.changeData(sql);
 
             AddBill addBill = new AddBill(bilId);
@@ -127,6 +128,35 @@ namespace N19_DentalClinic.GUI.AdminView
             string temp = "BI00000000";
             string newServiceID = temp.Substring(0, 10 - newIDString.Length) + newIDString;
             return newServiceID;
+        }
+
+        private void dataBill_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (dataBill.Rows.Count > 0)
+            {
+                if (dataBill.CurrentCell.ColumnIndex == 7)
+                {
+
+                }
+                if (dataBill.CurrentCell.ColumnIndex == 8)
+                {
+                    if (role == 3)
+                    {
+                        MessageBox.Show("Bạn không đủ thẩm quyền để xóa");
+                    }
+                    else
+                    {
+                        string billID = dataBill[1, dataBill.CurrentCell.RowIndex].Value.ToString();
+                        PanelInteraction.openForm(this, new DeleteBill(panelWrapper, role,billID), panelWrapper);
+                    }
+
+                }
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

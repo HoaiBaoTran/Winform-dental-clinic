@@ -1,5 +1,6 @@
 ﻿using N19_DentalClinic.DAO;
 using N19_DentalClinic.GUI.DentistView;
+using N19_DentalClinic.GUI.SupportView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,7 @@ namespace N19_DentalClinic.GUI.AdminView
     public partial class AddBill : Form
     {
         private DataInteraction data = new DataInteraction();
-        private bool isEdit = false;
+        private bool isEdit = false; // chinh sua
         private string billId = "BI00000001";
         private string presId = "PR00000001";
 
@@ -37,12 +38,12 @@ namespace N19_DentalClinic.GUI.AdminView
         private void AddBill_Load(object sender, EventArgs e)
         {
             comboBoxLoad();
-            if (!isEdit)
+            if (!isEdit) //chinh sua 
             {
                 tbBillId.Enabled = false;
                 tbBillId.BackColor = Color.Gray;
             }
-            else
+            else // them
             {
                 dataPrescriptionLoad();
                 dataServiceLoad();
@@ -71,6 +72,25 @@ namespace N19_DentalClinic.GUI.AdminView
             dataService.Columns[7].Name = "Ghi chú";
             dataService.Columns[8].Name = "Chỉnh sửa";
             dataService.Columns[9].Name = "Xóa";
+
+            //Chinh default datagridview
+            //Prescription
+            dataPrescription.AllowUserToAddRows = false;
+            dataPrescription.Columns[0].Width = 60;
+            //Căn giữa nội dung cột đầu tiên
+            dataPrescription.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dataPrescription.EnableHeadersVisualStyles = false;
+            dataPrescription.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
+
+            //Service
+            dataService.AllowUserToAddRows = false;
+            dataService.Columns[0].Width = 60;
+            //Căn giữa nội dung cột đầu tiên
+            dataPrescription.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dataService.EnableHeadersVisualStyles = false;
+            dataService.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
         }
 
         private void dataPrescriptionLoad()
@@ -273,7 +293,6 @@ namespace N19_DentalClinic.GUI.AdminView
             else
             {
                 btnAddMedicine.Enabled = true;
-                roundPictureBox4.Enabled = true;
                 btnCreatePrescription.BackColor = ColorTranslator.FromHtml("#DBAF09");
                 btnCreatePrescription.Text = "Lưu";
                 cbPatientId.Enabled = false;
@@ -314,6 +333,18 @@ namespace N19_DentalClinic.GUI.AdminView
             data.changeData(sql);
             MessageBox.Show("Thêm hóa đơn thành công");
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void btnPatientList_Click(object sender, EventArgs e)
+        {
+
+            PatientFileCopy fileCopy = new PatientFileCopy();
+            fileCopy.ShowDialog();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
