@@ -145,6 +145,7 @@
             // cbMedicineName
             // 
             cbMedicineName.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            cbMedicineName.DropDownStyle = ComboBoxStyle.DropDownList;
             cbMedicineName.Font = new Font("Segoe UI", 14F);
             cbMedicineName.FormattingEnabled = true;
             cbMedicineName.Items.AddRange(new object[] { "Bệnh nhân đã đến", "Bệnh nhân chưa đến" });
@@ -210,6 +211,7 @@
             // cbMedicineId
             // 
             cbMedicineId.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            cbMedicineId.DropDownStyle = ComboBoxStyle.DropDownList;
             cbMedicineId.Font = new Font("Segoe UI", 14F);
             cbMedicineId.FormattingEnabled = true;
             cbMedicineId.Items.AddRange(new object[] { "Bệnh nhân đã đến", "Bệnh nhân chưa đến" });
@@ -221,6 +223,7 @@
             // cbCalUnit
             // 
             cbCalUnit.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            cbCalUnit.DropDownStyle = ComboBoxStyle.DropDownList;
             cbCalUnit.Font = new Font("Segoe UI", 14F);
             cbCalUnit.FormattingEnabled = true;
             cbCalUnit.Items.AddRange(new object[] { "Bệnh nhân đã đến", "Bệnh nhân chưa đến" });
@@ -232,6 +235,7 @@
             // cbQuantity
             // 
             cbQuantity.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            cbQuantity.DropDownStyle = ComboBoxStyle.DropDownList;
             cbQuantity.Font = new Font("Segoe UI", 14F);
             cbQuantity.FormattingEnabled = true;
             cbQuantity.Items.AddRange(new object[] { "Bệnh nhân đã đến", "Bệnh nhân chưa đến" });

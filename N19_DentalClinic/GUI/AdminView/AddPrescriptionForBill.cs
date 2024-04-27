@@ -93,7 +93,6 @@ namespace N19_DentalClinic.GUI.AdminView
                                     note = '{note}'
                                     WHERE PresID = '{presId}' AND materialID = '{medicineId}'
                                     ";
-                MessageBox.Show(updateSql);
                 data.changeData(updateSql);
                 this.DialogResult = DialogResult.OK;
                 MessageBox.Show("Cập nhật thành công");

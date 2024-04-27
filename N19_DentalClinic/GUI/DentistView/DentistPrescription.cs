@@ -1,4 +1,7 @@
-﻿using N19_DentalClinic.DAO;
+﻿using iTextSharp.text.pdf;
+using iTextSharp.text;
+using N19_DentalClinic.DAO;
+using N19_DentalClinic.GUI.AdminView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +11,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Windows.Forms.DataVisualization.Charting;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Data.SqlClient;
 
 namespace N19_DentalClinic.GUI.DentistView
 {
@@ -101,8 +107,9 @@ namespace N19_DentalClinic.GUI.DentistView
 
         private void btnAddMedicine_Click(object sender, EventArgs e)
         {
-            AddMedicineRow addMedicineRow = new AddMedicineRow(presId);
-            if (addMedicineRow.ShowDialog() == DialogResult.OK)
+            //AddMedicineRow addMedicineRow = new AddMedicineRow(presId);
+            AddPrescriptionForBill addPrescriptionForBill = new AddPrescriptionForBill(presId);
+            if (addPrescriptionForBill.ShowDialog() == DialogResult.OK)
             {
                 updateUiOnDataChange();
             }
@@ -194,7 +201,7 @@ namespace N19_DentalClinic.GUI.DentistView
                         MessageBox.Show("Xóa thành công");
                         updateUiOnDataChange();
                     }
-                } 
+                }
                 else
                 {
                     string medicineId = dataPrescription[1, dataPrescription.CurrentCell.RowIndex].Value.ToString();
@@ -202,8 +209,9 @@ namespace N19_DentalClinic.GUI.DentistView
                     string quantity = dataPrescription[3, dataPrescription.CurrentCell.RowIndex].Value.ToString();
                     string calUnit = dataPrescription[4, dataPrescription.CurrentCell.RowIndex].Value.ToString();
                     string note = dataPrescription[5, dataPrescription.CurrentCell.RowIndex].Value.ToString();
-                    AddMedicineRow addMedicineRow = new AddMedicineRow(presId, medicineId, medicineName, quantity, calUnit, note);
-                    if (addMedicineRow.ShowDialog() == DialogResult.OK)
+                    AddPrescriptionForBill addPrescriptionForBill = new AddPrescriptionForBill(presId, medicineId, medicineName, quantity, calUnit, note);
+                    //AddMedicineRow addMedicineRow = new AddMedicineRow(presId, medicineId, medicineName, quantity, calUnit, note);
+                    if (addPrescriptionForBill.ShowDialog() == DialogResult.OK)
                     {
                         string sql = @$"Select pd.materialID, ma.name, pd.quantity, ma.CalUnit, pd.note
                                 from Prescription_Detail pd
@@ -213,8 +221,67 @@ namespace N19_DentalClinic.GUI.DentistView
                         updateDataGridView(sql);
                     }
                 }
-                
+
             }
+        }
+
+        private void rjButton1_Click(object sender, EventArgs e)
+        {
+            string pdfFilePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\prescription.pdf";
+
+            // Tạo một tài liệu PDF mới
+            Document document = new Document();
+            PdfWriter.GetInstance(document, new FileStream(pdfFilePath, FileMode.Create));
+            document.Open();
+
+            // Thêm thông tin tựa đề
+            Paragraph title = new Paragraph($"DON THUOC\n\n", FontFactory.GetFont(FontFactory.TIMES_ROMAN, "20", Font.Bold));
+            title.Alignment = Element.ALIGN_CENTER;
+            document.Add(title);
+
+
+            // Thêm thông tin chi tiết vào tài liệu 
+            Paragraph details = new Paragraph("Chi Tiet Don Thuoc:\n\n");
+            document.Add(details);
+
+            // Thêm dữ liệu chi tiết vào tài liệu (ví dụ: doanh thu hàng ngày)
+            string sql = @$"Select pd.materialID, ma.name, pd.quantity, ma.CalUnit, pd.note
+                                from Prescription_Detail pd
+                                join Material ma
+                                on ma.materialID = pd.materialID
+                                where pd.PresID = '{presId}'";
+            DataTable dataTable = data.readData(sql);
+            PdfPTable pdfTable = new PdfPTable(dataTable.Columns.Count);
+
+            string[] customColumnNames = new string[] {
+                "Ma thuoc", 
+                "Ten thuoc", 
+                "So luong",
+                "Don vi",
+                "Ghi chu"
+            };
+            for (int i = 0; i < customColumnNames.Length; i++)
+            {
+                pdfTable.AddCell(new Phrase(customColumnNames[i]));
+            }
+            // Thêm tiêu đề cột
+            //for (int i = 0; i < dataTable.Columns.Count; i++)
+            //{
+                //pdfTable.AddCell(new Phrase(dataTable.Columns[i].ColumnName));
+            //}
+            // Thêm dữ liệu từ DataTable vào PDF
+            for (int i = 0; i < dataTable.Rows.Count; i++)
+            {
+                for (int j = 0; j < customColumnNames.Length; j++)
+                {
+                    pdfTable.AddCell(dataTable.Rows[i][j].ToString());
+                }
+            }
+            document.Add(pdfTable);
+            // Đóng tài liệu
+            document.Close();
+
+            MessageBox.Show("In hóa đơn thành công, tên file prescription.pdf");
         }
     }
 }

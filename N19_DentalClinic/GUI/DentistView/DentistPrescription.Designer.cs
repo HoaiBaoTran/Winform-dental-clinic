@@ -28,15 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DentistPrescription));
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             btnSearch = new component.RJButton();
             tbSearch = new TextBox();
             label6 = new Label();
-            roundPictureBox3 = new component.RoundPictureBox();
             btnBack = new component.RJButton();
-            roundPictureBox2 = new component.RoundPictureBox();
             btnCreatePrescription = new component.RJButton();
             dataPrescription = new DataGridView();
             btnAddMedicine = new Button();
@@ -44,8 +42,7 @@
             label8 = new Label();
             cbPatientId = new ComboBox();
             label7 = new Label();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox2).BeginInit();
+            rjButton1 = new component.RJButton();
             ((System.ComponentModel.ISupportInitialize)dataPrescription).BeginInit();
             SuspendLayout();
             // 
@@ -89,18 +86,6 @@
             label6.TabIndex = 15;
             label6.Text = "Toa thuốc";
             // 
-            // roundPictureBox3
-            // 
-            roundPictureBox3.Anchor = AnchorStyles.Right;
-            roundPictureBox3.BackColor = Color.White;
-            roundPictureBox3.BackgroundImage = Properties.Resources.back_icon;
-            roundPictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox3.Location = new Point(1207, 69);
-            roundPictureBox3.Name = "roundPictureBox3";
-            roundPictureBox3.Size = new Size(39, 41);
-            roundPictureBox3.TabIndex = 93;
-            roundPictureBox3.TabStop = false;
-            // 
             // btnBack
             // 
             btnBack.Anchor = AnchorStyles.Right;
@@ -114,6 +99,7 @@
             btnBack.FlatStyle = FlatStyle.Flat;
             btnBack.Font = new Font("Segoe UI", 11F);
             btnBack.ForeColor = Color.White;
+            btnBack.Image = (Image)resources.GetObject("btnBack.Image");
             btnBack.ImageAlign = ContentAlignment.MiddleLeft;
             btnBack.Location = new Point(1197, 60);
             btnBack.Name = "btnBack";
@@ -123,18 +109,6 @@
             btnBack.TextAlign = ContentAlignment.MiddleRight;
             btnBack.TextColor = Color.White;
             btnBack.UseVisualStyleBackColor = false;
-            // 
-            // roundPictureBox2
-            // 
-            roundPictureBox2.Anchor = AnchorStyles.Right;
-            roundPictureBox2.BackColor = Color.White;
-            roundPictureBox2.BackgroundImage = Properties.Resources.save_icon;
-            roundPictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            roundPictureBox2.Location = new Point(832, 69);
-            roundPictureBox2.Name = "roundPictureBox2";
-            roundPictureBox2.Size = new Size(39, 41);
-            roundPictureBox2.TabIndex = 91;
-            roundPictureBox2.TabStop = false;
             // 
             // btnCreatePrescription
             // 
@@ -149,10 +123,11 @@
             btnCreatePrescription.FlatStyle = FlatStyle.Flat;
             btnCreatePrescription.Font = new Font("Segoe UI", 11F);
             btnCreatePrescription.ForeColor = Color.Black;
+            btnCreatePrescription.Image = (Image)resources.GetObject("btnCreatePrescription.Image");
             btnCreatePrescription.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCreatePrescription.Location = new Point(822, 62);
+            btnCreatePrescription.Location = new Point(847, 60);
             btnCreatePrescription.Name = "btnCreatePrescription";
-            btnCreatePrescription.Size = new Size(191, 56);
+            btnCreatePrescription.Size = new Size(175, 56);
             btnCreatePrescription.TabIndex = 90;
             btnCreatePrescription.Text = "Tạo đơn thuốc";
             btnCreatePrescription.TextAlign = ContentAlignment.MiddleRight;
@@ -169,27 +144,27 @@
             dataPrescription.BorderStyle = BorderStyle.None;
             dataPrescription.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
             dataPrescription.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Window;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.Padding = new Padding(4);
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dataPrescription.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = SystemColors.Window;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle7.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle7.Padding = new Padding(4);
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            dataPrescription.DefaultCellStyle = dataGridViewCellStyle7;
             dataPrescription.GridColor = Color.White;
             dataPrescription.Location = new Point(7, 215);
             dataPrescription.Name = "dataPrescription";
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(18, 219, 78);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.Padding = new Padding(4);
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataPrescription.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(18, 219, 78);
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle8.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle8.Padding = new Padding(4);
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            dataPrescription.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             dataPrescription.RowHeadersWidth = 51;
             dataPrescription.Size = new Size(1292, 574);
             dataPrescription.TabIndex = 98;
@@ -256,20 +231,44 @@
             label7.TabIndex = 100;
             label7.Text = "Mã bệnh nhân";
             // 
+            // rjButton1
+            // 
+            rjButton1.Anchor = AnchorStyles.Right;
+            rjButton1.BackColor = SystemColors.ActiveCaption;
+            rjButton1.BackgroundColor = SystemColors.ActiveCaption;
+            rjButton1.BackgroundImageLayout = ImageLayout.Zoom;
+            rjButton1.BorderColor = Color.PaleVioletRed;
+            rjButton1.BorderRadius = 5;
+            rjButton1.BorderSize = 0;
+            rjButton1.FlatAppearance.BorderSize = 0;
+            rjButton1.FlatStyle = FlatStyle.Flat;
+            rjButton1.Font = new Font("Segoe UI", 11F);
+            rjButton1.ForeColor = Color.Black;
+            rjButton1.Image = (Image)resources.GetObject("rjButton1.Image");
+            rjButton1.ImageAlign = ContentAlignment.MiddleLeft;
+            rjButton1.Location = new Point(680, 60);
+            rjButton1.Name = "rjButton1";
+            rjButton1.Size = new Size(161, 56);
+            rjButton1.TabIndex = 104;
+            rjButton1.Text = "In đơn thuốc";
+            rjButton1.TextAlign = ContentAlignment.MiddleRight;
+            rjButton1.TextColor = Color.Black;
+            rjButton1.UseVisualStyleBackColor = false;
+            rjButton1.Click += rjButton1_Click;
+            // 
             // DentistPrescription
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1311, 800);
+            Controls.Add(rjButton1);
             Controls.Add(cbPatientName);
             Controls.Add(label8);
             Controls.Add(cbPatientId);
             Controls.Add(label7);
             Controls.Add(btnAddMedicine);
             Controls.Add(dataPrescription);
-            Controls.Add(roundPictureBox3);
             Controls.Add(btnBack);
-            Controls.Add(roundPictureBox2);
             Controls.Add(btnCreatePrescription);
             Controls.Add(btnSearch);
             Controls.Add(tbSearch);
@@ -278,8 +277,6 @@
             Name = "DentistPrescription";
             Text = "DentistPrescription";
             Load += DentistPrescription_Load;
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)roundPictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataPrescription).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -290,9 +287,7 @@
         private component.RJButton btnSearch;
         private TextBox tbSearch;
         private Label label6;
-        private component.RoundPictureBox roundPictureBox3;
         private component.RJButton btnBack;
-        private component.RoundPictureBox roundPictureBox2;
         private component.RJButton btnCreatePrescription;
         private DataGridView dataPrescription;
         private Button btnAddMedicine;
@@ -300,5 +295,6 @@
         private Label label8;
         private ComboBox cbPatientId;
         private Label label7;
+        private component.RJButton rjButton1;
     }
 }

@@ -49,7 +49,7 @@ namespace N19_DentalClinic.GUI.AdminView
                 dataServiceLoad();
             }
 
-            dataPrescription.ColumnCount = 10;
+            dataPrescription.ColumnCount = 8;
             dataPrescription.Columns[0].Name = "STT";
             dataPrescription.Columns[1].Name = "Mã thuốc";
             dataPrescription.Columns[2].Name = "Tên thuốc";
@@ -58,10 +58,9 @@ namespace N19_DentalClinic.GUI.AdminView
             dataPrescription.Columns[5].Name = "Số lượng";
             dataPrescription.Columns[6].Name = "Tổng tiền";
             dataPrescription.Columns[7].Name = "Ghi chú";
-            dataPrescription.Columns[8].Name = "Chỉnh sửa";
-            dataPrescription.Columns[9].Name = "Xóa";
 
-            dataService.ColumnCount = 10;
+
+            dataService.ColumnCount = 8;
             dataService.Columns[0].Name = "STT";
             dataService.Columns[1].Name = "Mã dịch vụ";
             dataService.Columns[2].Name = "Tên dịch vụ";
@@ -70,8 +69,7 @@ namespace N19_DentalClinic.GUI.AdminView
             dataService.Columns[5].Name = "Số lượng";
             dataService.Columns[6].Name = "Tổng tiền";
             dataService.Columns[7].Name = "Ghi chú";
-            dataService.Columns[8].Name = "Chỉnh sửa";
-            dataService.Columns[9].Name = "Xóa";
+
 
             //Chinh default datagridview
             //Prescription
@@ -133,9 +131,8 @@ namespace N19_DentalClinic.GUI.AdminView
                         price.ToString("#,##0"),
                         quantity.ToString(),
                         totalPrice.ToString("#,##0"),
-                        (string)row["note"],
-                        "Chỉnh sửa",
-                        "Xóa"
+                        (string)row["note"]
+
                     };
                     dataPrescription.Rows.Add(rowString);
                     countRow++;
@@ -183,9 +180,7 @@ namespace N19_DentalClinic.GUI.AdminView
                         price.ToString("#,##0"),
                         quantity.ToString(),
                         totalPrice.ToString("#,##0"),
-                        (string)row["note"],
-                        "Chỉnh sửa",
-                        "Xóa"
+                        (string)row["note"]
                     };
                     dataService.Rows.Add(rowString);
                     countRow++;

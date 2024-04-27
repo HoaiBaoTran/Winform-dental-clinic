@@ -39,7 +39,7 @@ namespace N19_DentalClinic.GUI.AdminView
             int countRow = 1;
             if (table.Rows.Count > 0)
             {
-                dataBill.ColumnCount = 9;
+                dataBill.ColumnCount = 8;
                 dataBill.Columns[0].Name = "STT";
                 dataBill.Columns[1].Name = "Mã hóa đơn";
                 dataBill.Columns[2].Name = "Ngày lập";
@@ -47,8 +47,7 @@ namespace N19_DentalClinic.GUI.AdminView
                 dataBill.Columns[4].Name = "Tổng tiền";
                 dataBill.Columns[5].Name = "Tên bệnh nhân";
                 dataBill.Columns[6].Name = "Tên lễ tân";
-                dataBill.Columns[7].Name = "Chi tiết";
-                dataBill.Columns[8].Name = "Xóa";
+                dataBill.Columns[7].Name = "Xóa";
 
                 dataBill.EnableHeadersVisualStyles = false;
                 dataBill.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#" + "12DB4E");
@@ -68,7 +67,6 @@ namespace N19_DentalClinic.GUI.AdminView
                         formattedTotalRevenue,
                         (string)row["patient_name"],
                         (string)row["receptionist_name"],
-                        "Chi tiết",
                         "Xóa" };
                     dataBill.Rows.Add(rowString);
                     countRow++;
@@ -135,10 +133,6 @@ namespace N19_DentalClinic.GUI.AdminView
             if (dataBill.Rows.Count > 0)
             {
                 if (dataBill.CurrentCell.ColumnIndex == 7)
-                {
-
-                }
-                if (dataBill.CurrentCell.ColumnIndex == 8)
                 {
                     if (role == 3)
                     {
