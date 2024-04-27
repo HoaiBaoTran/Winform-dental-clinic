@@ -91,7 +91,7 @@
             // 
             // roundPictureBox3
             // 
-            roundPictureBox3.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            roundPictureBox3.Anchor = AnchorStyles.Right;
             roundPictureBox3.BackColor = Color.White;
             roundPictureBox3.BackgroundImage = Properties.Resources.back_icon;
             roundPictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
@@ -103,7 +103,7 @@
             // 
             // btnBack
             // 
-            btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnBack.Anchor = AnchorStyles.Right;
             btnBack.BackColor = Color.DarkGray;
             btnBack.BackgroundColor = Color.DarkGray;
             btnBack.BackgroundImageLayout = ImageLayout.Zoom;
@@ -126,7 +126,7 @@
             // 
             // roundPictureBox2
             // 
-            roundPictureBox2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            roundPictureBox2.Anchor = AnchorStyles.Right;
             roundPictureBox2.BackColor = Color.White;
             roundPictureBox2.BackgroundImage = Properties.Resources.save_icon;
             roundPictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
@@ -138,7 +138,7 @@
             // 
             // btnCreatePrescription
             // 
-            btnCreatePrescription.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCreatePrescription.Anchor = AnchorStyles.Right;
             btnCreatePrescription.BackColor = Color.FromArgb(18, 219, 78);
             btnCreatePrescription.BackgroundColor = Color.FromArgb(18, 219, 78);
             btnCreatePrescription.BackgroundImageLayout = ImageLayout.Zoom;
@@ -197,7 +197,7 @@
             // 
             // btnAddMedicine
             // 
-            btnAddMedicine.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAddMedicine.Anchor = AnchorStyles.Right;
             btnAddMedicine.Enabled = false;
             btnAddMedicine.Font = new Font("Microsoft Sans Serif", 12F);
             btnAddMedicine.Image = (Image)resources.GetObject("btnAddMedicine.Image");

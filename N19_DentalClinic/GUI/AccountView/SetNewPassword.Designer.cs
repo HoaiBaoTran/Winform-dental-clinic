@@ -72,6 +72,7 @@
             txtConfirmNewPass.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtConfirmNewPass.Location = new Point(55, 246);
             txtConfirmNewPass.Name = "txtConfirmNewPass";
+            txtConfirmNewPass.PasswordChar = '*';
             txtConfirmNewPass.Size = new Size(441, 38);
             txtConfirmNewPass.TabIndex = 25;
             // 
@@ -91,6 +92,7 @@
             txtNewPass.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNewPass.Location = new Point(55, 145);
             txtNewPass.Name = "txtNewPass";
+            txtNewPass.PasswordChar = '*';
             txtNewPass.Size = new Size(441, 38);
             txtNewPass.TabIndex = 22;
             // 

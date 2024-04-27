@@ -1,3 +1,5 @@
+use QuanLyPhongKham;
+
 CREATE FUNCTION CalculateDailyRevenue(@DateStart DATETIME, @DateEnd DATETIME)
 RETURNS TABLE
 AS
@@ -9,6 +11,7 @@ RETURN
     GROUP BY CONVERT(date, payment_time)
 )
 GO
+
 
 
 CREATE FUNCTION CalculateMonthlyRevenue(@DateStart DATETIME, @DateEnd DATETIME)
@@ -23,6 +26,7 @@ RETURN
 )
 GO
 
+
 CREATE FUNCTION CalculateYearlyRevenue(@DateStart DATETIME, @DateEnd DATETIME)
 RETURNS TABLE
 AS
@@ -34,6 +38,7 @@ RETURN
     GROUP BY YEAR(payment_time)
 )
 GO
+
 
 CREATE FUNCTION CalculateQuarterlyRevenue (@dateFrom DATETIME, @dateTo DATETIME)
 RETURNS @QuarterlyRevenue TABLE (

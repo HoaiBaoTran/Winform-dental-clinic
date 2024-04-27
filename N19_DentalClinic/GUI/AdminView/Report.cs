@@ -15,7 +15,8 @@ namespace N19_DentalClinic.GUI.AdminView
         
         private DateTime dayFrom = DateTime.Now;
         private DateTime dayTo = DateTime.Now;
-        public static string connectionString = @"Data Source=DESKTOP-H3R0OEQ;Initial Catalog=QuanLyPhongKham;Integrated Security=True;";
+        public static string connectionString = @"Data Source=DESKTOP-MJ8P9VM\HOAIBAO;Initial Catalog=QuanLyPhongKham;Integrated Security=True";
+        //public static string connectionString = @"Data Source=DESKTOP-H3R0OEQ;Initial Catalog=QuanLyPhongKham;Integrated Security=True;";
         private string pdfFilePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\Report.pdf";
         private object quanLyPhongKhamDataSet;
         Control originalPanel;
