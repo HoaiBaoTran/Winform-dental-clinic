@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DentistPrescription));
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             btnSearch = new component.RJButton();
             tbSearch = new TextBox();
             label6 = new Label();
@@ -88,7 +88,7 @@
             // 
             // btnBack
             // 
-            btnBack.Anchor = AnchorStyles.Right;
+            btnBack.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnBack.BackColor = Color.DarkGray;
             btnBack.BackgroundColor = Color.DarkGray;
             btnBack.BackgroundImageLayout = ImageLayout.Zoom;
@@ -112,7 +112,7 @@
             // 
             // btnCreatePrescription
             // 
-            btnCreatePrescription.Anchor = AnchorStyles.Right;
+            btnCreatePrescription.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnCreatePrescription.BackColor = Color.FromArgb(18, 219, 78);
             btnCreatePrescription.BackgroundColor = Color.FromArgb(18, 219, 78);
             btnCreatePrescription.BackgroundImageLayout = ImageLayout.Zoom;
@@ -144,27 +144,27 @@
             dataPrescription.BorderStyle = BorderStyle.None;
             dataPrescription.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
             dataPrescription.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = SystemColors.Window;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F);
-            dataGridViewCellStyle7.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle7.Padding = new Padding(4);
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
-            dataPrescription.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.Padding = new Padding(4);
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataPrescription.DefaultCellStyle = dataGridViewCellStyle1;
             dataPrescription.GridColor = Color.White;
             dataPrescription.Location = new Point(7, 215);
             dataPrescription.Name = "dataPrescription";
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(18, 219, 78);
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 12F);
-            dataGridViewCellStyle8.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle8.Padding = new Padding(4);
-            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            dataPrescription.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(18, 219, 78);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new Padding(4);
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataPrescription.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataPrescription.RowHeadersWidth = 51;
             dataPrescription.Size = new Size(1292, 574);
             dataPrescription.TabIndex = 98;
@@ -172,7 +172,7 @@
             // 
             // btnAddMedicine
             // 
-            btnAddMedicine.Anchor = AnchorStyles.Right;
+            btnAddMedicine.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnAddMedicine.Enabled = false;
             btnAddMedicine.Font = new Font("Microsoft Sans Serif", 12F);
             btnAddMedicine.Image = (Image)resources.GetObject("btnAddMedicine.Image");
@@ -233,7 +233,7 @@
             // 
             // rjButton1
             // 
-            rjButton1.Anchor = AnchorStyles.Right;
+            rjButton1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             rjButton1.BackColor = SystemColors.ActiveCaption;
             rjButton1.BackgroundColor = SystemColors.ActiveCaption;
             rjButton1.BackgroundImageLayout = ImageLayout.Zoom;
