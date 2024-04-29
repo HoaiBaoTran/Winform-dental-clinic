@@ -1,22 +1,14 @@
-﻿/*	
+﻿		/*
 use master
 go
 drop database QuanLyPhongKham
 */
-/*	
+/*
 create database QuanLyPhongKham
 go
 use QuanLyPhongKham
 go
 */
-select b.bilID as billID, b.able, b.total_price, b.payment_time, p.PatID as patient_ID, p.name as patient_name, r.name as receptionist_name
-                        from Bill b
-                        join Patient p on p.PatID = b.PatID
-                        join Bill_Recep br on br.bilID = b.bilID
-                        join Receptionist r on r.RecepID = br.RecepID
-                        where b.able = 1
-                        Order By b.bilID Asc
-
 
 CREATE TABLE Account
 (
@@ -444,6 +436,44 @@ CREATE TABLE Patient_Recep
 GO
 
 
+CREATE TABLE Prescription
+(
+	PresID VARCHAR(10) PRIMARY KEY, 
+	PatID VARCHAR(10) REFERENCES PATIENT(PatID),
+	DenID VARCHAR(10) REFERENCES DENTIST(DenID),
+	totalPrice INT NOT NULL
+)
+GO
+
+CREATE TABLE Bill_Prescription
+(
+	BilID VARCHAR(10) REFERENCES Bill(bilId),
+	PresID VARCHAR(10) REFERENCES Prescription(PresID)
+)
+GO
+
+
+CREATE TABLE Prescription_Detail
+(
+	PresID VARCHAR(10) REFERENCES Prescription(PresID), 
+	materialID VARCHAR(10) REFERENCES Material(materialID),
+	quantity INT NOT NULL,
+	calUnit NVARCHAR(10),
+	note NTEXT
+)
+GO
+
+create function autoPresid()
+returns VARCHAR(10)
+as 
+begin
+	declare @ID VARCHAR(10)
+	declare @QUAN INT 
+	SELECT @QUAN = COUNT(PresID) + 1 from Prescription 
+	SELECT @ID = 'PR' + RIGHT(REPLICATE(0,8), 8 - LEN(CAST (@QUAN AS VARCHAR(8)))) +  CAST(@QUAN AS VARCHAR(8))
+	RETURN @ID
+END
+GO
 
 -- TAO TRIGGER
 CREATE TRIGGER ADD_DENTIST
@@ -1488,6 +1518,30 @@ exec procAddAssiss_Recep 'AS00000005','RE00000002'
 exec procAddAssiss_Recep 'AS00000006','RE00000002'
 GO
 
+INSERT INTO Prescription(PresID, PatID, DenID, totalPrice) values (dbo.autoPresid(), 'PA00000001', 'DE00000001', 150000)
+INSERT INTO Prescription(PresID, PatID, DenID, totalPrice) values (dbo.autoPresid(), 'PA00000002', 'DE00000001', 250000)
+INSERT INTO Prescription(PresID, PatID, DenID, totalPrice) values (dbo.autoPresid(), 'PA00000003', 'DE00000002', 350000)
+INSERT INTO Prescription(PresID, PatID, DenID, totalPrice) values (dbo.autoPresid(), 'PA00000004', 'DE00000002', 400000)
+GO
+
+INSERT INTO Bill_Prescription(BilID, PresID) values 
+('BI00000001', 'PR00000001'),
+('BI00000002', 'PR00000002'),
+('BI00000003', 'PR00000003'),
+('BI00000004', 'PR00000004')
+GO
+
+INSERT INTO Prescription_Detail(PresID, materialID, quantity, calUnit, note) values
+('PR00000001', 'MA00000052', 10, N'viên', N'3 lần 1 ngày'),
+('PR00000001', 'MA00000055', 7, N'viên', N'2 lần 1 ngày'),
+('PR00000002', 'MA00000053', 10, N'viên', N'3 lần 1 ngày'),
+('PR00000002', 'MA00000055', 5, N'viên', N'1 lần 1 ngày'),
+('PR00000002', 'MA00000056', 10, N'viên', N'2 lần 1 ngày'),
+('PR00000003', 'MA00000060', 10, N'viên', N'2 lần 1 ngày'),
+('PR00000003', 'MA00000063', 4, N'viên', N'1 lần 1 ngày'),
+('PR00000003', 'MA00000059', 10, N'viên', N'5 lần 1 ngày'),
+('PR00000004', 'MA00000063', 5, N'viên', N'1 lần 1 ngày')
+GO
 
 --chuc nang truy van
 
@@ -1651,9 +1705,72 @@ begin
 	from Dentist
 	where DenID = dbo.GetDentistByPat(@PatID)
 end
-
+GO
 
 /*
 exec GetDentistByPatID 'PA00000001' 
 GO
 */
+
+CREATE FUNCTION CalculateDailyRevenue(@DateStart DATETIME, @DateEnd DATETIME)
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT CONVERT(date, payment_time) AS payment_date, SUM(total_price) AS daily_revenue
+    FROM bill
+    WHERE payment_time BETWEEN @DateStart AND @DateEnd
+    GROUP BY CONVERT(date, payment_time)
+)
+GO
+
+
+CREATE FUNCTION CalculateMonthlyRevenue(@DateStart DATETIME, @DateEnd DATETIME)
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT DATEFROMPARTS(YEAR(payment_time), MONTH(payment_time), 1) AS payment_month, SUM(total_price) AS monthly_revenue
+    FROM bill
+    WHERE payment_time BETWEEN @DateStart AND @DateEnd
+    GROUP BY YEAR(payment_time), MONTH(payment_time)
+)
+GO
+
+CREATE FUNCTION CalculateYearlyRevenue(@DateStart DATETIME, @DateEnd DATETIME)
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT YEAR(payment_time) AS payment_year, SUM(total_price) AS yearly_revenue
+    FROM bill
+    WHERE payment_time BETWEEN @DateStart AND @DateEnd
+    GROUP BY YEAR(payment_time)
+)
+GO
+
+CREATE FUNCTION CalculateQuarterlyRevenue (@dateFrom DATETIME, @dateTo DATETIME)
+RETURNS @QuarterlyRevenue TABLE (
+    payment_year INT,
+    payment_quarter INT,
+    quarterly_revenue DECIMAL(18, 2)
+)
+AS
+BEGIN
+    INSERT INTO @QuarterlyRevenue (payment_year, payment_quarter, quarterly_revenue)
+    SELECT
+        DATEPART(year, payment_time) AS payment_year,
+        DATEPART(quarter, payment_time) AS payment_quarter,
+        SUM(total_price) AS quarterly_revenue
+    FROM
+        Bill
+    WHERE
+        payment_time BETWEEN @dateFrom AND @dateTo
+    GROUP BY
+        DATEPART(year, payment_time),
+        DATEPART(quarter, payment_time)
+    ORDER BY
+        payment_year, payment_quarter;
+
+    RETURN;
+END;

@@ -12,11 +12,9 @@ namespace N19_DentalClinic.GUI.AdminView
 {
     public partial class Report : Form
     {
-        
+        DataInteraction data = new DataInteraction();
         private DateTime dayFrom = DateTime.Now;
         private DateTime dayTo = DateTime.Now;
-        public static string connectionString = @"Data Source=DESKTOP-MJ8P9VM\HOAIBAO;Initial Catalog=QuanLyPhongKham;Integrated Security=True";
-        //public static string connectionString = @"Data Source=DESKTOP-H3R0OEQ;Initial Catalog=QuanLyPhongKham;Integrated Security=True;";
         private string pdfFilePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\Report.pdf";
         private object quanLyPhongKhamDataSet;
         Control originalPanel;
@@ -34,31 +32,18 @@ namespace N19_DentalClinic.GUI.AdminView
             cbChart.Items.Add("Biểu đồ tròn");
         }
 
-        SqlConnection con = new SqlConnection(connectionString);
-
         private DataTable GetDataForChart()
         {
-            SqlConnection con = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand("SELECT CONVERT(varchar, payment_date, 103) AS payment_date, daily_revenue FROM CalculateDailyRevenue(@dateFrom, @dateTo)", con);
-            cmd.Parameters.AddWithValue("@dateFrom", dayFrom);
-            cmd.Parameters.AddWithValue("@dateTo", dayTo);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            return dt;
+            string dayFromText = dayFrom.ToString();
+            string dayToText = dayTo.ToString();
+            return data.readData($"SELECT CONVERT(varchar, payment_date, 103) AS payment_date, daily_revenue FROM CalculateDailyRevenue('{dayFromText}', '{dayToText}')");
         }
 
         private DataTable GetDataForReport()
         {
-            // Truy vấn cơ sở dữ liệu hoặc lấy dữ liệu từ nguồn khác
-            SqlConnection con = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Bill WHERE total_price > 0 AND payment_time >= @dateFrom AND payment_time <= @dateTo", con);
-            cmd.Parameters.AddWithValue("@dateFrom", dayFrom);
-            cmd.Parameters.AddWithValue("@dateTo", dayTo);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            return dt;
+            string dayFromText = dayFrom.ToString();
+            string dayToText = dayTo.ToString();
+            return data.readData($"SELECT * FROM Bill WHERE total_price > 0 AND payment_time >= '{dayFromText}' AND payment_time <= '{dayToText}'");
         }
         // Tính tổng tiền
         private decimal CalculateTotalRevenue(DataTable dataTable)
@@ -284,7 +269,9 @@ namespace N19_DentalClinic.GUI.AdminView
             }
             else
             {
-                fillBarChart_Final("SELECT payment_date, daily_revenue FROM CalculateDailyRevenue(@dateFrom, @dateTo)", "payment_date", "daily_revenue", "Doanh thu theo ngày", SeriesChartType.Column);
+                string dayFromText = dayFrom.ToString();
+                string dayToText = dayTo.ToString();
+                fillBarChart_Final($"SELECT payment_date, daily_revenue FROM CalculateDailyRevenue('{dayFromText}', '{dayToText}')", "payment_date", "daily_revenue", "Doanh thu theo ngày", SeriesChartType.Column);
             }
         }
 
@@ -307,7 +294,9 @@ namespace N19_DentalClinic.GUI.AdminView
             }
             else
             {
-                FillChart("SELECT payment_month, monthly_revenue FROM CalculateMonthlyRevenue(@dateFrom, @dateTo)", "payment_month", "monthly_revenue", "Doanh thu theo tháng", SeriesChartType.Column);
+                string dayFromText = dayFrom.ToString();
+                string dayToText = dayTo.ToString();
+                FillChart($"SELECT payment_month, monthly_revenue FROM CalculateMonthlyRevenue('{dayFromText}', '{dayToText}')", "payment_month", "monthly_revenue", "Doanh thu theo tháng", SeriesChartType.Column);
             }
         }
 
@@ -332,9 +321,11 @@ namespace N19_DentalClinic.GUI.AdminView
             }
             else
             {
+                string dayFromText = dayFrom.ToString();
+                string dayToText = dayTo.ToString();
                 chart1.Series["Doanh thu"].IsVisibleInLegend = false;
                 // Truy vấn cơ sở dữ liệu để lấy dữ liệu theo từng quý
-                FillChart("SELECT payment_quarter, quarterly_revenue FROM CalculateQuarterlyRevenue(@dateFrom, @dateTo)", "payment_quarter", "quarterly_revenue", "Doanh thu theo quý", SeriesChartType.Column);
+                FillChart($"SELECT payment_quarter, quarterly_revenue FROM CalculateQuarterlyRevenue('{dayFromText}', '{dayToText}')", "payment_quarter", "quarterly_revenue", "Doanh thu theo quý", SeriesChartType.Column);
             }
         }
 
@@ -357,7 +348,9 @@ namespace N19_DentalClinic.GUI.AdminView
             }
             else
             {
-                FillChart("SELECT payment_year, yearly_revenue FROM CalculateYearlyRevenue(@dateFrom, @dateTo)", "payment_year", "yearly_revenue", "Doanh thu theo năm", SeriesChartType.Column);
+                string dayFromText = dayFrom.ToString();
+                string dayToText = dayTo.ToString();
+                FillChart($"SELECT payment_year, yearly_revenue FROM CalculateYearlyRevenue('{dayFromText}', '{dayToText}')", "payment_year", "yearly_revenue", "Doanh thu theo năm", SeriesChartType.Column);
             }
         }
 
@@ -379,7 +372,9 @@ namespace N19_DentalClinic.GUI.AdminView
             }
             else
             {
-                FillChart("SELECT CONVERT(varchar, payment_date, 103) AS payment_date, daily_revenue FROM CalculateDailyRevenue(@dateFrom, @dateTo)", "payment_date", "daily_revenue", "Doanh thu theo ngày", SeriesChartType.Pie);
+                string dayFromText = dayFrom.ToString();
+                string dayToText = dayTo.ToString();
+                FillChart($"SELECT CONVERT(varchar, payment_date, 103) AS payment_date, daily_revenue FROM CalculateDailyRevenue('{dayFromText}', '{dayToText}')", "payment_date", "daily_revenue", "Doanh thu theo ngày", SeriesChartType.Pie);
 
                 chart1.Series["Doanh thu"].LegendText = "#AXISLABEL";
 
@@ -405,7 +400,9 @@ namespace N19_DentalClinic.GUI.AdminView
             }
             else
             {
-                FillChart("SELECT payment_month, monthly_revenue FROM CalculateMonthlyRevenue(@dateFrom, @dateTo)", "payment_month", "monthly_revenue", "Doanh thu theo tháng", SeriesChartType.Pie);
+                string dayFromText = dayFrom.ToString();
+                string dayToText = dayTo.ToString();
+                FillChart($"SELECT payment_month, monthly_revenue FROM CalculateMonthlyRevenue('{dayFromText}', '{dayToText}')", "payment_month", "monthly_revenue", "Doanh thu theo tháng", SeriesChartType.Pie);
                 chart1.Series["Doanh thu"].LegendText = "#VALX";
                 //month_Legend(dsMonthPie);
                 chart1.Series["Doanh thu"].Label = "#VALY (#PERCENT{P0})";
@@ -469,8 +466,10 @@ namespace N19_DentalClinic.GUI.AdminView
             }
             else
             {
+                string dayFromText = dayFrom.ToString();
+                string dayToText = dayTo.ToString();
                 // Truy vấn cơ sở dữ liệu để lấy dữ liệu theo từng quý
-                FillChart("SELECT payment_quarter, quarterly_revenue FROM CalculateQuarterlyRevenue(@dateFrom, @dateTo)", "payment_quarter", "quarterly_revenue", "Doanh thu theo quý", SeriesChartType.Pie);
+                FillChart($"SELECT payment_quarter, quarterly_revenue FROM CalculateQuarterlyRevenue('{dayFromText}', '{dayToText}')", "payment_quarter", "quarterly_revenue", "Doanh thu theo quý", SeriesChartType.Pie);
                 chart1.Series["Doanh thu"].LegendText = "#VALX";
 
                 chart1.Series["Doanh thu"].Label = "#VALY (#PERCENT{P0})";
@@ -496,7 +495,9 @@ namespace N19_DentalClinic.GUI.AdminView
             }
             else
             {
-                FillChart("SELECT payment_year, yearly_revenue FROM CalculateYearlyRevenue(@dateFrom, @dateTo)", "payment_year", "yearly_revenue", "Doanh thu theo năm", SeriesChartType.Pie);
+                string dayFromText = dayFrom.ToString();
+                string dayToText = dayTo.ToString();
+                FillChart($"SELECT payment_year, yearly_revenue FROM CalculateYearlyRevenue('{dayFromText}', '{dayToText}')", "payment_year", "yearly_revenue", "Doanh thu theo năm", SeriesChartType.Pie);
                 chart1.Series["Doanh thu"].LegendText = "#VALX";
 
                 chart1.Series["Doanh thu"].Label = "#VALY (#PERCENT{P0})";
@@ -506,85 +507,56 @@ namespace N19_DentalClinic.GUI.AdminView
         // Hàm tạo Chart
         private void FillChart(string sqlCommand_, string xValueMember, string yValueMember, string chartTitle, SeriesChartType chartType)
         {
-            
-            // Thiết lập khoảng cách giữa các cột
-            //chart1.Series["Doanh thu"].CustomProperties = "PointWidth=0.5";
-            DataSet ds = new DataSet();
-            
 
-            // Tạo đối tượng SqlCommand
-            SqlCommand cmd = new SqlCommand(sqlCommand_, con);
-
-            // Thêm các tham số vào câu lệnh SQL
-            cmd.Parameters.AddWithValue("@dateFrom", dayFrom);
-            cmd.Parameters.AddWithValue("@dateTo", dayTo);
-
-            // Thực thi truy vấn
-            SqlDataAdapter adapt = new SqlDataAdapter(cmd);
-            con.Open();
-            adapt.Fill(ds);
-            con.Close();
-            
-            if (ds.Tables.Count <= 0 || ds.Tables[0].Rows.Count <= 0)
+            DataTable table = data.readData(sqlCommand_);
+            if (table.Columns.Count > 0)
             {
-                MessageBox.Show("Không có dữ liệu để tạo biểu đồ");
-                return;
-            }
-            else
-            {
-                // Gán dữ liệu vào biểu đồ
-                chart1.DataSource = ds;
+                chart1.DataSource = table;
                 chart1.Series["Doanh thu"].XValueMember = xValueMember;
                 chart1.Series["Doanh thu"].YValueMembers = yValueMember;
                 chart1.Titles.Clear();
                 chart1.Titles.Add(chartTitle);
                 chart1.Series["Doanh thu"].ChartType = chartType;
-                //   
 
                 chart1.Series["Doanh thu"].IsValueShownAsLabel = true;
             }
+            else
+            {
+                MessageBox.Show("Không có dữ liệu để tạo biểu đồ");
+            }
+
+
         }
 
         //----------------     
         private void fillBarChart_Final(string sqlCommand_, string xValueMember, string yValueMember, string chartTitle, SeriesChartType chartType)
         {
-            
-            using (SqlConnection con = new SqlConnection(connectionString)) // Thay thế connectionString bằng chuỗi kết nối thích hợp
-            using (SqlCommand cmd = new SqlCommand(sqlCommand_, con))
-            using (SqlDataAdapter adapt = new SqlDataAdapter(cmd))
+            DataTable table = data.readData(sqlCommand_);
+            if(table.Columns.Count>0)
             {
-                cmd.Parameters.AddWithValue("@dateFrom", dayFrom);
-                cmd.Parameters.AddWithValue("@dateTo", dayTo);
-
-                DataSet ds = new DataSet();
-                adapt.Fill(ds);
-
-                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                foreach (DataRow row in table.Rows)
                 {
-                    foreach (DataRow row in ds.Tables[0].Rows)
+                    string paymentDateString = row[xValueMember].ToString();
+                    DateTime paymentDate;
+
+                    if (DateTime.TryParseExact(paymentDateString, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out paymentDate))
                     {
-                        string paymentDateString = row[xValueMember].ToString();
-                        DateTime paymentDate;
-
-                        if (DateTime.TryParseExact(paymentDateString, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out paymentDate))
-                        {
-                            string formattedDate = paymentDate.ToString("dd/MM/yyyy");
-                            row[xValueMember] = DateTime.ParseExact(formattedDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                        }                       
+                        string formattedDate = paymentDate.ToString("dd/MM/yyyy");
+                        row[xValueMember] = DateTime.ParseExact(formattedDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     }
+                }
 
-                    chart1.DataSource = ds;
-                    chart1.Series["Doanh thu"].XValueMember = xValueMember;
-                    chart1.Series["Doanh thu"].YValueMembers = yValueMember;
-                    chart1.Titles.Clear();
-                    chart1.Titles.Add(chartTitle);
-                    chart1.Series["Doanh thu"].ChartType = chartType;
-                }
-                else
-                {
-                    MessageBox.Show("Không có dữ liệu để tạo biểu đồ");
-                }
+                chart1.DataSource = table;
+                chart1.Series["Doanh thu"].XValueMember = xValueMember;
+                chart1.Series["Doanh thu"].YValueMembers = yValueMember;
+                chart1.Titles.Clear();
+                chart1.Titles.Add(chartTitle);
+                chart1.Series["Doanh thu"].ChartType = chartType;
+            }else
+            {
+                MessageBox.Show("Không có dữ liệu để tạo biểu đồ");
             }
+            
         }
 
         private void chart1_Click(object sender, EventArgs e)

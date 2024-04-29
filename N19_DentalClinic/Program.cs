@@ -22,10 +22,10 @@ namespace N19_DentalClinic
             // -- Test ManagePatientFornm
             //Application.Run(new ManageAppointmentBookingForm());
             //Application.Run(new Receptionist("RE00000001"));
-            Application.Run(new Dentist("DE00000001"));
+            //Application.Run(new Dentist("DE00000001"));
             //Application.Run(new Report());
             //Application.Run(new Admin());
-            //Application.Run(new LoginMain());
+            Application.Run(new LoginMain());
         }
     }
 }
