@@ -85,7 +85,14 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                         txtBirthday.Text = DateTimeConvert.convertDMY(row["birthday"].ToString());
                         if (role == 1)
                         {
-                            txtSalary.Text = int.Parse(row["salary"].ToString()).ToString("#,##0");
+                            if (interactionKind == "update")
+                            {
+                                txtSalary.Text = int.Parse(row["salary"].ToString()).ToString();
+                            }
+                            else
+                            {
+                                txtSalary.Text = int.Parse(row["salary"].ToString()).ToString("#,##0");
+                            }
                         }
                     }
                 }
@@ -352,7 +359,7 @@ namespace N19_DentalClinic.GUI.ReceptionistView
                         }
                         else if (DateTimeConvert.isFuture(txtBirthday.Text))
                         {
-                            MessageBox.Show("Năm sinh không thể ở tương lai");
+                            errorMess = "Năm sinh không thể ở tương lai";
                         }
                         else if (txtAddress.Text == "")
                         {
